@@ -141,6 +141,62 @@ Remember: Being cautious and asking "hey, this seems weird" is never wrong. Bein
 - Anything that leaves the machine
 - Anything you're uncertain about
 
+## 📦 Version Control - Commit Early, Commit Often
+
+**The rule: Every completed task gets a commit.**
+
+### Why This Matters
+- Sub-agents build in parallel → large mixed diffs → hard to review → risk of losing work
+- Atomic commits = atomic rollback
+- Clear history tells the story of what was built
+
+### Commit Boundaries
+
+| Prefix | When to Use | Example |
+|--------|-------------|---------|
+| `feat(area):` | New feature | `feat(pro): add CreateServiceLogScreen` |
+| `fix(area):` | Bug fix | `fix(edge): handle null boat_owner` |
+| `docs:` | Documentation only | `docs: add API contracts` |
+| `refactor(area):` | Code restructure | `refactor(pro): extract pricing logic` |
+| `chore:` | Build, deps, config | `chore: update dependencies` |
+| `test:` | Tests | `test(pro): add service log tests` |
+
+**Areas**: `pro`, `marketplace`, `edge`, `db`, `docs`
+
+### Sub-Agent Tasks
+
+When spawning builders, include in task instructions:
+```
+When complete, commit your changes:
+git add [relevant files]
+git commit -m "feat(area): description"
+```
+
+### When to Branch
+
+| Scenario | Branch? |
+|----------|---------|
+| Small feature (< 1 day) | No, commit to main |
+| Large feature (multi-day) | Yes, `feat/feature-name` |
+| Experimental work | Yes, `spike/experiment-name` |
+| Parallel builders editing same files | Yes, merge after |
+
+### Push Frequency
+
+- **After every session** — Don't leave unpushed work overnight
+- **Before spawning parallel builders** — Clean baseline
+- **After major milestones** — Natural save points
+
+### Checking Status
+
+Before starting work:
+```bash
+git status --short | wc -l  # Should be low
+git log --oneline -5        # Know where you are
+```
+
+If uncommitted changes > 20 files, stop and commit first.
+
 ## Group Chats
 
 You have access to your human's stuff. That doesn't mean you *share* their stuff. In groups, you're a participant — not their voice, not their proxy. Think before you speak.
