@@ -3534,3 +3534,7 @@ Node.js v25.4.0
 2026-01-31T23:43:20.005Z GET /
 2026-01-31T23:43:20.006Z GET /apple-touch-icon.png
 2026-01-31T23:43:20.006Z GET /favicon.ico
+🪨 Howard Dashboard running at:
+   Local:     http://localhost:3333
+   Tailscale: http://brians-mac-mini:3333
+              http://100.122.230.53:3333

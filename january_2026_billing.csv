@@ -1,0 +1,55 @@
+Boat,Date,Len,Type,Plan,Rate,Base,Type+,Growth,Growth+,Props,Props+,Notes,TOTAL
+Meliora,2026-01-01,28,Sail,Recurring,$4.49,$125.72,-,Minimal,-,1,-,,$125.72
+Pazzo Express,2026-01-09,37,Sail,Recurring,$4.49,$166.13,-,"Minimal,Moderate",-,1,-,,$166.13
+Glitch,2026-01-09,27,Sail,Recurring,$4.49,$121.23,-,Minimal,-,1,-,CAPPED,$99.00
+Mojo,2026-01-09,33,Sail,Recurring,$4.49,$148.17,-,Moderate,-,1,-,,$148.17
+Omega,2026-01-11,34,Sail,Recurring,$4.49,$152.66,-,"Minimal,Moderate",-,1,-,,$152.66
+Bennu,2026-01-11,35,Sail,Recurring,$4.49,$157.15,-,Moderate,-,1,-,,$157.15
+Carroll E,2026-01-11,24,Sail,Recurring,$4.49,$107.76,-,"Moderate,Heavy",$53.88,1,-,,$161.64
+Risky,2026-01-14,30,Sail,Recurring,$4.49,$134.70,-,Heavy,$67.35,1,-,,$202.05
+Mazu,2026-01-14,38,Sail,Recurring,$4.49,$170.62,-,"Minimal,Heavy",$85.31,1,-,,$255.93
+Salty Lady,2026-01-14,36,Sail,Recurring,$4.49,$161.64,-,Minimal,-,1,-,,$161.64
+Martha,2026-01-14,30,Sail,Recurring,$4.49,$134.70,-,Heavy,$67.35,1,-,,$202.05
+Second Wind,2026-01-15,25,Sail,Recurring,$4.49,$112.25,-,"Moderate,Heavy",$56.12,1,-,,$168.38
+Blow Fish,2026-01-15,25,Sail,Recurring,$4.49,$112.25,-,"Moderate,Heavy",$56.12,1,-,,$168.38
+Not Applicable,2026-01-15,22,Sail,Recurring,$4.49,$98.78,-,"Moderate,Heavy",$49.39,1,-,,$148.17
+Aleph Null,2026-01-15,25,Sail,Recurring,$4.49,$112.25,-,"Minimal,Moderate",-,1,-,,$112.25
+Genesis,2026-01-15,23,Sail,Recurring,$4.49,$103.27,-,"Heavy,Severe",$103.27,1,-,,$206.54
+Puntster,2026-01-15,25,Sail,Recurring,$4.49,$112.25,-,"Moderate,Heavy",$56.12,1,-,,$168.38
+Twilight Zone,2026-01-15,25,Sail,Recurring,$4.49,$112.25,-,Minimal,-,1,-,CAPPED,$99.00
+Dakini,2026-01-15,26,Sail,Recurring,$4.49,$116.74,-,"Moderate,Heavy",$58.37,1,-,,$175.11
+Que Sera Sera,2026-01-18,22,Sail,Recurring,$4.49,$98.78,-,"Moderate,Heavy",$49.39,1,-,,$148.17
+Molly Bloom,2026-01-18,34,Power,Recurring,$4.49,$152.66,$38.16,"Moderate,Heavy",$76.33,1,-,,$267.15
+Pearl,2026-01-18,30,Sail,Recurring,$4.49,$134.70,-,Heavy,$67.35,1,-,,$202.05
+Southern Cross,2026-01-19,42,Sail,Recurring,$4.49,$188.58,-,Moderate,-,1,-,,$188.58
+China Rose,2026-01-19,38,Sail,Recurring,$4.49,$170.62,-,Moderate,-,1,-,,$170.62
+Sunday Morning,2026-01-19,42,Sail,Recurring,$4.49,$188.58,-,Moderate,-,1,-,,$188.58
+La Donna Jean,2026-01-19,34,Sail,Recurring,$4.49,$152.66,-,Moderate,-,1,-,,$152.66
+Boghopper,2026-01-23,33,Sail,Recurring,$4.49,$148.17,-,"Moderate,Heavy",$74.09,1,-,,$222.26
+Mistral,2026-01-23,40,Sail,Recurring,$4.49,$179.60,-,Moderate,-,1,-,,$179.60
+Booty,2026-01-23,23,Sail,Recurring,$4.49,$103.27,-,Heavy,$51.64,1,-,,$154.91
+Junebug,2026-01-23,24,Sail,Recurring,$4.49,$107.76,-,"Moderate,Heavy",$53.88,1,-,,$161.64
+Tandem,2026-01-23,36,Sail,Recurring,$4.49,$161.64,-,"Minimal,Moderate",-,1,-,,$161.64
+Phoenix,2026-01-23,30,Sail,Recurring,$4.49,$134.70,-,Moderate,-,1,-,,$134.70
+Innamorata,2026-01-25,41,Sail,Recurring,$4.49,$184.09,-,"Moderate,Heavy",$92.05,1,-,,$276.13
+JGPC,2026-01-25,34,Sail,Recurring,$4.49,$152.66,-,"Minimal,Moderate",-,1,-,,$152.66
+Blue Heeler,2026-01-25,28,Sail,Recurring,$4.49,$125.72,-,Heavy,$62.86,1,-,,$188.58
+About Time,2026-01-25,45,Sail,Recurring,$4.49,$202.05,-,Moderate,-,1,-,,$202.05
+Raindancer II,2026-01-26,57,Power,Recurring,$4.49,$255.93,$63.98,"Moderate,Heavy",$127.97,1,-,,$447.88
+Halo,2026-01-26,42,Sail,Recurring,$4.49,$188.58,-,"Moderate,Heavy",$94.29,1,-,,$282.87
+Serenity,2026-01-27,54,Power,Recurring,$4.49,$242.46,$60.62,Heavy,$121.23,1,-,,$424.31
+Msafiri,2026-01-27,27,Sail,Recurring,$4.49,$121.23,-,Moderate,-,1,-,,$121.23
+Moon Dance,2026-01-27,42,Sail,Recurring,$4.49,$188.58,-,Minimal,-,1,-,,$188.58
+Kodiak,2026-01-27,23,Sail,Recurring,$4.49,$103.27,-,Moderate,-,1,-,,$103.27
+Mor Wind,2026-01-27,30,Sail,Recurring,$4.49,$134.70,-,"Moderate,Heavy",$67.35,1,-,,$202.05
+Smogen 2,2026-01-28,36,Sail,Recurring,$4.49,$161.64,-,Heavy,$80.82,1,-,,$242.46
+Maiden California,2026-01-28,30,Sail,Recurring,$4.49,$134.70,-,Minimal,-,1,-,CAPPED,$99.00
+Solo,2026-01-28,34,Sail,Recurring,$4.49,$152.66,-,"Minimal,Moderate",-,1,-,,$152.66
+Sarah,2026-01-30,26,Sail,Recurring,$4.49,$116.74,-,Minimal,-,1,-,,$116.74
+The Circus Police,2026-01-30,30,Power,One-time,$5.99,$179.70,$44.93,"Minimal,Heavy",$89.85,1,-,,$314.48
+Diva,2026-01-30,28,Sail,Recurring,$4.49,$125.72,-,"Heavy,Moderate",$62.86,1,-,,$188.58
+Merope,2026-01-30,38,Sail,Recurring,$4.49,$170.62,-,Moderate,-,1,-,,$170.62
+Elise,2026-01-30,40,Sail,Recurring,$4.49,$179.60,-,"Minimal,Moderate",-,1,-,,$179.60
+Brigadoon,2026-01-30,29,Sail,Recurring,$4.49,$130.21,-,"Moderate,Heavy",$65.11,1,-,,$195.31
+
+TOTAL,,,,,,,,,,,,,$9659.95
