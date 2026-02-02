@@ -1,0 +1,61 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Set up Howard (Clawdbot)",
+      "description": "Bootstrap personal assistant workspace",
+      "status": "done",
+      "created": "2026-01-25T10:30:00-08:00",
+      "completed": "2026-01-25T11:00:00-08:00"
+    },
+    {
+      "id": "2",
+      "title": "Connect Telegram",
+      "description": "Set up remote messaging via Telegram bot",
+      "status": "done",
+      "created": "2026-01-25T10:45:00-08:00",
+      "completed": "2026-01-25T10:58:00-08:00"
+    },
+    {
+      "id": "3",
+      "title": "Connect Google Calendar",
+      "description": "gog CLI setup with OAuth",
+      "status": "done",
+      "created": "2026-01-25T11:10:00-08:00",
+      "completed": "2026-01-25T11:20:00-08:00"
+    },
+    {
+      "id": "4",
+      "title": "Connect Notion",
+      "description": "Diving Client List database access",
+      "status": "done",
+      "created": "2026-01-25T11:25:00-08:00",
+      "completed": "2026-01-25T11:28:00-08:00"
+    },
+    {
+      "id": "5",
+      "title": "Create SailorSkills ecosystem diagram",
+      "description": "Mermaid + Excalidraw architecture diagram",
+      "status": "done",
+      "created": "2026-01-25T11:04:00-08:00",
+      "completed": "2026-01-25T11:08:00-08:00"
+    },
+    {
+      "id": "6",
+      "title": "Reschedule today's dives",
+      "description": "Push boats to start at noon, Blue Heeler first",
+      "status": "done",
+      "created": "2026-01-25T11:30:00-08:00",
+      "completed": "2026-01-25T11:37:00-08:00"
+    },
+    {
+      "id": "7",
+      "title": "Set up Kanban dashboard",
+      "description": "Task tracking accessible via Tailscale",
+      "status": "done",
+      "created": "2026-01-25T11:39:00-08:00",
+      "completed": "2026-01-25T11:45:00-08:00"
+    }
+  ],
+  "lastUpdated": "2026-01-25T11:45:00-08:00"
+}
