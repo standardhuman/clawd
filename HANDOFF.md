@@ -1,65 +1,51 @@
 # Handoff
 
-*Last updated: Saturday, January 31, 2026 18:18 PST*
+*Last updated: 2026-02-01 17:32 PST*
 *Branch: main*
 *Agent: Howard*
 
 ## Current Task
-Added new customer Greg Barnes (boat: The Circus Police) to Notion client database, and set up 1Password shell plugins for better credential management.
+
+Investigating why memory/recall isn't working across sessions, then discussing storage for Brian's upcoming CIR course materials.
 
 ## State
-**Completed this session:**
-- Found Greg Barnes order in Supabase (sailorskills-platform database at `fzygakldvvzxmahkdylq.supabase.co`)
-  - Order: ORD-1769637620915-V29ME (Jan 28, 2026)
-  - One-time Cleaning & Anodes, $273
-  - Note: "There is a big anode between motors that i am sure need to be replaced"
-- Created Notion entry for "The Circus Police" in Diving Client List
-  - Greg Barnes, 1sweetleni@gmail.com, 415-261-4401
-  - Regal 292 Commodore, 30 ft powerboat
-  - Berkeley Marina (BRK), Dock B, Slip 6
-  - Plan: One time, Start: 1, Interval: 0
-  - Notion page ID: 2fab82b7-eacc-8122-aa89-e3e238ba8afa
-- Saved "Notion - Howard Integration" token to 1Password (SailorSkills vault)
-- Installed Stripe CLI and configured 1Password shell plugin
-- Added shell plugin source to ~/.zshrc
 
-**Not completed:**
-- GitHub CLI shell plugin (needs Personal Access Token created on GitHub first)
+**Memory System Investigation - IDENTIFIED:**
+- OpenClaw's `memorySearch` is configured correctly (confirmed via Brian's screenshot)
+- **Root cause:** OpenAI embeddings API hitting 429 (quota exceeded)
+- Sessions are NOT being indexed (0/1125 sessions indexed)
+- When context fills → compaction happens → no summary survives → memories lost
+- This session hit 5 compactions, losing earlier context about CIR course discussion
+
+**CIR Course Setup - READY:**
+- Created `~/clawd/projects/communication-dojo/` folder structure
+- Course starts **February 4, 2026**
+- Brian will share course materials when he gets access
+- Storage location: `~/clawd/courses/cir/` (or use existing `projects/communication-dojo/materials/`)
 
 ## Key Context
 
-### Supabase Databases
-There are TWO Supabase instances:
-1. **Production/Platform** (`fzygakldvvzxmahkdylq.supabase.co`) — has real customer orders, boats, service_orders table
-   - Creds in: `~/AI/business/sailorskills-platform/.env.local`
-2. **Staging/Pro** (`aaxnoeirtjlizdhnbqbr.supabase.co`) — newer schema for Pro app
-   - Creds in: `~/AI/business/sailorskills/environments/.env.staging`
+1. **Why memory failed:** Not a config issue — it's an API quota issue. Brian needs to either top up OpenAI credits or switch to a different embeddings provider.
 
-### 1Password Setup
-- SailorSkills vault contains: Stripe, Supabase Production, OpenAI (Whisper), Resend, Notion - Howard Integration
-- Stripe shell plugin configured — `stripe` CLI will prompt for Touch ID
-- Shell plugins sourced from: `/Users/brian/.config/op/plugins.sh`
+2. **Session was heavy:** Multiple compactions lost earlier detailed discussion about course materials and how to organize them.
 
-### Notion Access
-- Howard integration token: stored in 1Password (SailorSkills vault)
-- Diving Client List database ID: `0ae0e330-780b-4764-956e-12e8ee344ea2`
-- API version: 2022-06-28 (NOT 2025-09-03)
+3. **Communication Dojo materials already exist:** Found PDFs in `projects/communication-dojo/materials/`:
+   - needs-alphabetical.pdf
+   - needs-values-motivations.pdf
 
 ## Next Steps
-1. **GitHub PAT** — If Brian wants GitHub shell plugin, he needs to:
-   - Go to github.com → Settings → Developer settings → Personal access tokens
-   - Create token with scopes: `repo`, `read:org`, `gist`
-   - Run `op plugin init gh` and import to 1Password
-2. Consider adding more API keys to 1Password for centralized management:
-   - Anthropic API key (currently in .env.staging)
-   - Gemini API key (currently in .env.staging)
+
+1. **Fix memory indexing** — Check OpenAI usage/billing, top up credits, or investigate alternative embedding providers for OpenClaw
+2. **Wait for CIR course access** (Feb 4) — Store materials when Brian gets them
+3. **Consider `/new` session** — This one hit 97% context (194k/200k tokens)
 
 ## Open Questions
-None — all tasks completed.
+
+- Should we consolidate "Communication Dojo" and "CIR" into one folder? They seem related (NVC-based communication courses)
+- What embedding provider alternatives does OpenClaw support?
 
 ## Files Changed
-- HANDOFF.md (this file)
-- ~/.zshrc (added 1Password shell plugins source)
-- 1Password: Added "Notion - Howard Integration" item
-- 1Password: Updated "Stripe" item field name to "key" for plugin compatibility
-- Notion: Created new page for The Circus Police
+
+- `memory/2026-02-01.md` — Today's session notes
+- `projects/communication-dojo/` — Course materials folder (may have been created earlier today)
+- Various workspace files committed (SOUL.md, USER.md, MEMORY.md, etc.)
