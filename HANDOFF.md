@@ -1,74 +1,53 @@
 # Handoff
 
-*Last updated: 2026-02-03 14:13 PST*
+*Last updated: 2026-02-03 15:10 PST*
 *Branch: main*
 *Agent: Howard*
 
-## Current Task
+## Current State: Billing Dashboard with Auto-Conditions
 
-SailorSkills billing system — CLI script + web dashboard for invoicing customers via Stripe.
+### ✅ Completed
 
-## State: Ready to Bill
+1. **Notion Conditions traversal working**
+   - Path: Client List → Boat Page → Service Log → synced_block → Conditions
+   - Auto-extracts growth levels and anode replacements
+   - Found 50/53 boats' conditions for January 2026
 
-### ✅ Completed This Session
+2. **Billing dashboard** — `~/clawd/billing-dashboard/`
+   - "Generate Month" button pulls from Notion automatically
+   - Calculates growth surcharges from Conditions multi-select
+   - Parses anode types from Notes field
+   - Start: `cd ~/clawd/billing-dashboard && npm run dev`
 
-1. **Stripe integration** — CLI connected, test invoice sent & received
-   - Restricted API key created: "Howard Billing Automation Key" (in 1Password)
-   - Permissions: Customers, Invoices, Charges (Write)
-   - Test invoice charged $248 to Brian, receipt received
+3. **CLI billing script** — `~/clawd/scripts/billing/sailorskills-invoice.sh`
 
-2. **Notion integration** — Howard token working
-   - Token saved in `~/AI/business/sailorskills-platform/.env` as `NOTION_HOWARD_TOKEN`
-   - Database: `0ae0e330-780b-4764-956e-12e8ee344ea2`
-   - Field name is "Boat" (not "Name") for vessel lookup
+4. **Stripe integration** — Test invoice sent successfully
+   - Key in 1Password: "Howard Billing Automation Key"
 
-3. **January 2026 billing finalized**
-   - 52 boats, $9,873.89 total
-   - Corrections applied: Halo anode ($28.37 Beneteau 30mm), The Circus Police (one-time rate)
-   - CSV: `~/clawd/billing/january_2026_billing.csv`
+### 🔧 Still Manual
 
-4. **CLI billing script** — `~/clawd/scripts/billing/sailorskills-invoice.sh`
-   - Interactive mode, dry-run, batch, or individual boat billing
-   - Tracks billed boats to prevent double-billing
-   - Reads Stripe key from 1Password, Notion token from .env
+- $99 caps for Glitch, Twilight Zone, Maiden California
+- Some anode type edge cases (Notes text parsing)
+- January total: $9,622.54 auto-calculated vs $9,873.89 manual (caps + anode diffs)
 
-5. **Web dashboard** — `~/clawd/billing-dashboard/`
-   - React + Tailwind + Express backend
-   - Month selector, billing queue, invoice preview, batch send
-   - Start with: `cd ~/clawd/billing-dashboard && npm run dev`
-   - Frontend: http://localhost:5173 | Backend: http://localhost:3001
-
-### Documentation Updated
-- `~/Obsidian/SailorSkills/Billing System.md` — full pricing rules, script usage
-- `~/Obsidian/SailorSkills/January 2026 Billing.md` — corrected totals
-- `~/clawd/scripts/billing/README.md` — script reference
-
-## Next Steps
-
-1. **Bill January 2026** — Use dashboard or CLI when Mac Mini is back (need 1Password for Stripe key)
-2. **Create February CSV** — Add boats as services complete, bill incrementally
-3. **Mac Mini issue** — Brian lost remote access (Tailscale down?). Needs physical power cycle. Set `sudo systemsetup -setrestartpowerfailure on` once back.
-
-## Key Files
+### Key Files
 
 | Purpose | Location |
 |---------|----------|
-| Billing CLI | `~/clawd/scripts/billing/sailorskills-invoice.sh` |
-| Web Dashboard | `~/clawd/billing-dashboard/` |
+| Billing Dashboard | `~/clawd/billing-dashboard/` |
+| Notion helpers | `~/clawd/billing-dashboard/server/notion-helpers.ts` |
 | January CSV | `~/clawd/billing/january_2026_billing.csv` |
-| Billed tracker | `~/clawd/billing/january_2026_billed.txt` |
-| Notion token | `~/AI/business/sailorskills-platform/.env` (NOTION_HOWARD_TOKEN) |
-| Stripe key | 1Password → "Howard Billing Automation Key" |
+| Memory: Notion structure | `~/clawd/memory/2026-02-03.md` |
 
-## Anode Pricing Reference
+### Notion API Reference
 
-Formula: `(cost × 1.5) + $15`
+```
+Conditions path: Boat Page → Service Log (child_page) → synced_block → Conditions (child_database)
+Fields: Date, Growth (multi-select), Anodes (multi-select), Installed (number), Notes (rich_text)
+```
 
-| Anode | Cost | Charge |
-|-------|------|--------|
-| 1" shaft (Camp X-3) | $11.28 | $31.92 |
-| Beneteau 30mm prop | $8.91 | $28.37 |
-| DF-80 Variprop | $20.97 | $46.46 |
-| DP-612H hull (Heavy) | $85.36 | $143.04 |
+### Next Steps
 
-Lookup other anodes in Supabase `anodes_catalog` table.
+1. Add $99 cap logic for specific boats
+2. Bill January 2026 via dashboard
+3. Test February generation with Robin
