@@ -279,3 +279,117 @@ app.listen(PORT, () => {
   console.log(`Notion token: ${getNotionToken() ? 'configured' : 'NOT CONFIGURED'}`);
   console.log(`Stripe key: not set (use POST /api/stripe-key)`);
 });
+
+// Generate billing CSV for a month from Notion data
+app.post('/api/generate/:year/:month', async (req, res) => {
+  const { year, month } = req.params;
+  const token = getNotionToken();
+  
+  if (!token) {
+    return res.status(400).json({ error: 'Notion token not configured' });
+  }
+  
+  const monthNum = parseInt(month);
+  const startDate = `${year}-${month.padStart(2, '0')}-01`;
+  const endDate = monthNum === 12 
+    ? `${parseInt(year) + 1}-01-01`
+    : `${year}-${(monthNum + 1).toString().padStart(2, '0')}-01`;
+  
+  const monthNames = ['', 'January', 'February', 'March', 'April', 'May', 'June', 
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+  const monthName = monthNames[monthNum];
+  
+  try {
+    // Query boats with Plan = Subbed or One-time, and Start Time in the month
+    const response = await fetch(`https://api.notion.com/v1/databases/${NOTION_DB_ID}/query`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Notion-Version': '2022-06-28',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        filter: {
+          and: [
+            { or: [
+              { property: 'Plan', select: { equals: 'Subbed' }},
+              { property: 'Plan', select: { equals: 'One-time' }}
+            ]},
+            { property: 'Start Time', date: { on_or_after: startDate }},
+            { property: 'Start Time', date: { before: endDate }}
+          ]
+        },
+        page_size: 100
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (!data.results) {
+      return res.status(500).json({ error: 'Failed to query Notion', details: data });
+    }
+    
+    // Process boats and calculate pricing
+    const boats = data.results.map((page: any) => {
+      const props = page.properties;
+      const boat = props.Boat?.title?.[0]?.plain_text || 'Unknown';
+      const plan = props.Plan?.select?.name || 'Subbed';
+      const startTime = props['Start Time']?.date?.start || '';
+      const length = props.Length?.number || 30;
+      const boatType = props['Boat Type']?.select?.name || 'Sail';
+      const numProps = props.Props?.number || 1;
+      
+      // Pricing calculation
+      const rate = plan === 'One-time' ? 5.99 : 4.49;
+      const base = length * rate;
+      const typeSurcharge = boatType === 'Power' ? base * 0.25 : 0;
+      const propSurcharge = numProps > 1 ? base * 0.10 * (numProps - 1) : 0;
+      const hullTotal = base + typeSurcharge + propSurcharge;
+      
+      // Extract just the date part
+      const serviceDate = startTime ? startTime.split('T')[0] : '';
+      
+      return {
+        boat,
+        date: serviceDate,
+        length,
+        type: boatType,
+        plan,
+        props: numProps,
+        hullTotal: hullTotal.toFixed(2),
+        anode: '0',
+        anodeType: '',
+        total: hullTotal.toFixed(2),
+        // Extra info for review
+        needsGrowth: true
+      };
+    });
+    
+    // Sort by date
+    boats.sort((a: any, b: any) => a.date.localeCompare(b.date));
+    
+    // Generate CSV content
+    const csvHeader = 'Boat,Date,HullTotal,Anode,AnodeType,Total';
+    const csvRows = boats.map((b: any) => 
+      `${b.boat},${b.date},${b.hullTotal},${b.anode},${b.anodeType},${b.total}`
+    );
+    const csv = [csvHeader, ...csvRows].join('\n');
+    
+    // Save to file
+    const filename = `${monthName.toLowerCase()}_${year}_billing.csv`;
+    const filepath = join(BILLING_DIR, filename);
+    writeFileSync(filepath, csv);
+    
+    res.json({
+      success: true,
+      month: `${monthName} ${year}`,
+      filename,
+      count: boats.length,
+      boats,
+      note: 'Growth surcharges not included - add manually or edit CSV'
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to generate billing' });
+  }
+});

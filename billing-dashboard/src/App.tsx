@@ -38,6 +38,31 @@ function App() {
   const [sendingBoat, setSendingBoat] = useState<string | null>(null);
   const [previewBoat, setPreviewBoat] = useState<Boat | null>(null);
   const [message, setMessage] = useState<{type: 'success' | 'error', text: string} | null>(null);
+  const [showGenerate, setShowGenerate] = useState(false);
+  const [generateYear, setGenerateYear] = useState('2026');
+  const [generateMonth, setGenerateMonth] = useState('2');
+  const [generating, setGenerating] = useState(false);
+
+  const generateBilling = async () => {
+    setGenerating(true);
+    try {
+      const res = await fetch(`${API_URL}/generate/${generateYear}/${generateMonth}`, { method: 'POST' });
+      const data = await res.json();
+      if (data.success) {
+        setMessage({ type: 'success', text: `Generated ${data.month}: ${data.count} boats` });
+        // Reload months list
+        const monthsRes = await fetch(`${API_URL}/months`);
+        setMonths(await monthsRes.json());
+        setShowGenerate(false);
+      } else {
+        setMessage({ type: 'error', text: data.error || 'Failed to generate' });
+      }
+    } catch (err) {
+      setMessage({ type: 'error', text: 'Failed to generate billing' });
+    }
+    setGenerating(false);
+    setTimeout(() => setMessage(null), 3000);
+  };
 
   // Load months on startup
   useEffect(() => {
@@ -220,6 +245,13 @@ function App() {
             ))}
           </select>
           
+          <button
+            onClick={() => setShowGenerate(true)}
+            className="bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded text-sm"
+          >
+            + Generate Month
+          </button>
+          
           {billingData && (
             <div className="flex gap-6 text-sm">
               <span className="text-gray-400">
@@ -364,6 +396,62 @@ function App() {
         ) : (
           <div className="text-center py-12 text-gray-400">
             Select a month to view billing data
+          </div>
+        )}
+        
+        {/* Generate Month Modal */}
+        {showGenerate && (
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4" onClick={() => setShowGenerate(false)}>
+            <div className="bg-gray-800 rounded-lg p-6 max-w-md w-full" onClick={e => e.stopPropagation()}>
+              <h2 className="text-xl font-bold mb-4">Generate Monthly Billing</h2>
+              <p className="text-gray-400 text-sm mb-4">
+                Pulls boats from Notion where Plan is "Subbed" or "One-time" and service date is in the selected month.
+              </p>
+              
+              <div className="flex gap-4 mb-6">
+                <div className="flex-1">
+                  <label className="block text-sm text-gray-400 mb-1">Month</label>
+                  <select
+                    value={generateMonth}
+                    onChange={e => setGenerateMonth(e.target.value)}
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2"
+                  >
+                    {['January','February','March','April','May','June','July','August','September','October','November','December'].map((m, i) => (
+                      <option key={m} value={i + 1}>{m}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="w-24">
+                  <label className="block text-sm text-gray-400 mb-1">Year</label>
+                  <input
+                    type="number"
+                    value={generateYear}
+                    onChange={e => setGenerateYear(e.target.value)}
+                    className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2"
+                  />
+                </div>
+              </div>
+              
+              <p className="text-yellow-400 text-sm mb-4">
+                ⚠️ Growth surcharges not included — edit CSV after generating
+              </p>
+              
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowGenerate(false)}
+                  className="flex-1 bg-gray-600 hover:bg-gray-500 py-2 rounded"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={generateBilling}
+                  disabled={generating}
+                  className="flex-1 bg-purple-600 hover:bg-purple-500 disabled:bg-gray-600 py-2 rounded"
+                >
+                  {generating ? 'Generating...' : 'Generate'}
+                </button>
+              </div>
+            </div>
           </div>
         )}
         
