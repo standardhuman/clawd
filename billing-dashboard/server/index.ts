@@ -3,6 +3,7 @@ import cors from 'cors';
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import dotenv from 'dotenv';
+import { getConditionsDatabase, getServiceConditions, calculateGrowthSurcharge, parseAnodeFromNotes } from './notion-helpers.js';
 
 // Load env from sailorskills-platform
 const envPath = join(process.env.HOME || '', 'AI/business/sailorskills-platform/.env');
@@ -280,7 +281,7 @@ app.listen(PORT, () => {
   console.log(`Stripe key: not set (use POST /api/stripe-key)`);
 });
 
-// Generate billing CSV for a month from Notion data
+// Generate billing CSV for a month from Notion data (with growth + anode lookup)
 app.post('/api/generate/:year/:month', async (req, res) => {
   const { year, month } = req.params;
   const token = getNotionToken();
@@ -329,9 +330,10 @@ app.post('/api/generate/:year/:month', async (req, res) => {
       return res.status(500).json({ error: 'Failed to query Notion', details: data });
     }
     
-    // Process boats and calculate pricing
-    const boats = data.results.map((page: any) => {
+    // Process boats with conditions lookup
+    const boats = await Promise.all(data.results.map(async (page: any) => {
       const props = page.properties;
+      const boatPageId = page.id;
       const boat = props.Boat?.title?.[0]?.plain_text || 'Unknown';
       const plan = props.Plan?.select?.name || 'Subbed';
       const startTime = props['Start Time']?.date?.start || '';
@@ -339,15 +341,47 @@ app.post('/api/generate/:year/:month', async (req, res) => {
       const boatType = props['Boat Type']?.select?.name || 'Sail';
       const numProps = props.Props?.number || 1;
       
-      // Pricing calculation
+      // Extract just the date part
+      const serviceDate = startTime ? startTime.split('T')[0] : '';
+      
+      // Base pricing
       const rate = plan === 'One-time' ? 5.99 : 4.49;
       const base = length * rate;
       const typeSurcharge = boatType === 'Power' ? base * 0.25 : 0;
       const propSurcharge = numProps > 1 ? base * 0.10 * (numProps - 1) : 0;
-      const hullTotal = base + typeSurcharge + propSurcharge;
+      const baseTotal = base + typeSurcharge + propSurcharge;
       
-      // Extract just the date part
-      const serviceDate = startTime ? startTime.split('T')[0] : '';
+      // Try to get growth and anode data from Conditions database
+      let growthPercent = 0;
+      let growthDesc = 'Unknown';
+      let anodeCost = 0;
+      let anodeType = '';
+      let conditionsFound = false;
+      
+      try {
+        const conditionsDbId = await getConditionsDatabase(boatPageId, token);
+        if (conditionsDbId) {
+          const conditions = await getServiceConditions(conditionsDbId, startDate, endDate, token);
+          if (conditions) {
+            conditionsFound = true;
+            const growth = calculateGrowthSurcharge(conditions.growth);
+            growthPercent = growth.percent;
+            growthDesc = growth.description;
+            
+            const anode = parseAnodeFromNotes(conditions.notes, conditions.anodes);
+            if (anode) {
+              anodeCost = anode.cost;
+              anodeType = anode.type;
+            }
+          }
+        }
+      } catch (err) {
+        console.error(`Error getting conditions for ${boat}:`, err);
+      }
+      
+      const growthSurcharge = baseTotal * growthPercent;
+      const hullTotal = baseTotal + growthSurcharge;
+      const total = hullTotal + anodeCost;
       
       return {
         boat,
@@ -356,14 +390,16 @@ app.post('/api/generate/:year/:month', async (req, res) => {
         type: boatType,
         plan,
         props: numProps,
+        baseTotal: baseTotal.toFixed(2),
+        growthPercent: (growthPercent * 100).toFixed(1) + '%',
+        growthDesc,
         hullTotal: hullTotal.toFixed(2),
-        anode: '0',
-        anodeType: '',
-        total: hullTotal.toFixed(2),
-        // Extra info for review
-        needsGrowth: true
+        anode: anodeCost.toFixed(2),
+        anodeType,
+        total: total.toFixed(2),
+        conditionsFound
       };
-    });
+    }));
     
     // Sort by date
     boats.sort((a: any, b: any) => a.date.localeCompare(b.date));
@@ -380,13 +416,17 @@ app.post('/api/generate/:year/:month', async (req, res) => {
     const filepath = join(BILLING_DIR, filename);
     writeFileSync(filepath, csv);
     
+    const withConditions = boats.filter((b: any) => b.conditionsFound).length;
+    const totalAmount = boats.reduce((sum: number, b: any) => sum + parseFloat(b.total), 0);
+    
     res.json({
       success: true,
       month: `${monthName} ${year}`,
       filename,
       count: boats.length,
-      boats,
-      note: 'Growth surcharges not included - add manually or edit CSV'
+      conditionsFound: withConditions,
+      totalAmount: totalAmount.toFixed(2),
+      boats
     });
   } catch (err) {
     console.error(err);
