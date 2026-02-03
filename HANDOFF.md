@@ -1,53 +1,81 @@
 # Handoff
 
-*Last updated: 2026-02-03 15:10 PST*
+*Last updated: 2026-02-03 15:12 PST*
 *Branch: main*
 *Agent: Howard*
+*Last commit: 0db170d*
 
-## Current State: Billing Dashboard with Auto-Conditions
+## Current Task
 
-### ✅ Completed
+SailorSkills billing automation — web dashboard + CLI that pulls boat data from Notion, calculates pricing with growth surcharges, and sends invoices via Stripe.
 
-1. **Notion Conditions traversal working**
-   - Path: Client List → Boat Page → Service Log → synced_block → Conditions
-   - Auto-extracts growth levels and anode replacements
-   - Found 50/53 boats' conditions for January 2026
+## State: Ready to Bill
 
-2. **Billing dashboard** — `~/clawd/billing-dashboard/`
-   - "Generate Month" button pulls from Notion automatically
-   - Calculates growth surcharges from Conditions multi-select
-   - Parses anode types from Notes field
-   - Start: `cd ~/clawd/billing-dashboard && npm run dev`
+### ✅ Done
 
-3. **CLI billing script** — `~/clawd/scripts/billing/sailorskills-invoice.sh`
+1. **Billing Dashboard** — `~/clawd/billing-dashboard/`
+   - React + Tailwind + Express
+   - "Generate Month" button auto-pulls from Notion
+   - Traverses nested Conditions databases for growth/anode data
+   - Preview invoices, batch send
+   - Start: `cd ~/clawd/billing-dashboard && npm run dev` (auto-opens browser)
 
-4. **Stripe integration** — Test invoice sent successfully
+2. **Notion Integration**
+   - Token: `NOTION_HOWARD_TOKEN` in `~/AI/business/sailorskills-platform/.env`
+   - **Critical path discovered:** Client List → Boat Page → Service Log (child_page) → synced_block → Conditions (child_database)
+   - Notion search API only indexes ~61/100+ Conditions databases — must traverse from boat
+
+3. **Stripe Integration**
    - Key in 1Password: "Howard Billing Automation Key"
+   - Test invoice sent successfully to Brian ($248)
+
+4. **January 2026 Billing Calculated**
+   - 53 boats, 50 with conditions auto-found
+   - Auto-total: $9,622.54 (manual was $9,873.89)
+   - Difference: $99 caps not implemented + some anode parsing
 
 ### 🔧 Still Manual
 
-- $99 caps for Glitch, Twilight Zone, Maiden California
-- Some anode type edge cases (Notes text parsing)
-- January total: $9,622.54 auto-calculated vs $9,873.89 manual (caps + anode diffs)
+- **$99 caps** for Glitch, Twilight Zone, Maiden California
+- **Anode edge cases** — Notes field parsing doesn't catch all patterns
+- **Growth "Unknown"** — 3 boats missing Conditions databases
 
-### Key Files
+## Key Context
 
-| Purpose | Location |
-|---------|----------|
-| Billing Dashboard | `~/clawd/billing-dashboard/` |
-| Notion helpers | `~/clawd/billing-dashboard/server/notion-helpers.ts` |
-| January CSV | `~/clawd/billing/january_2026_billing.csv` |
-| Memory: Notion structure | `~/clawd/memory/2026-02-03.md` |
-
-### Notion API Reference
-
+**Notion Structure (IMPORTANT):**
 ```
-Conditions path: Boat Page → Service Log (child_page) → synced_block → Conditions (child_database)
-Fields: Date, Growth (multi-select), Anodes (multi-select), Installed (number), Notes (rich_text)
+Client List DB → {Boat} page → children:
+  ├── {Boat} Admin (child_database) 
+  └── {Boat} Service Log (child_page) → children:
+        └── synced_block → children:
+              └── {Boat} Conditions (child_database)
 ```
 
-### Next Steps
+**Conditions fields:** Date, Growth (multi-select), Anodes (multi-select), Installed (number), Notes (rich_text)
 
-1. Add $99 cap logic for specific boats
-2. Bill January 2026 via dashboard
-3. Test February generation with Robin
+**Growth surcharge mapping:**
+- Minimal, Min→Mod, Moderate: 0%
+- Min→Heavy: 25%, Mod→Heavy: 37.5%, Heavy: 50%
+- Heavy→Severe: 75%, Severe: 100%
+
+**Anode pricing:** `(cost × 1.5) + $15`
+
+## Next Steps
+
+1. **Bill January 2026** — Open dashboard, review, send invoices
+2. **Add $99 cap logic** — Check boat name against cap list before final total
+3. **Improve anode parsing** — Add more patterns to `parseAnodeFromNotes()`
+4. **Bill February incrementally** — Generate as services complete
+
+## Files Changed This Session
+
+| File | Purpose |
+|------|---------|
+| `billing-dashboard/server/notion-helpers.ts` | Conditions traversal + growth calculation |
+| `billing-dashboard/server/index.ts` | Generate endpoint with full conditions lookup |
+| `billing-dashboard/src/App.tsx` | Generate Month UI |
+| `memory/2026-02-03.md` | Session notes + Notion structure docs |
+
+## Open Questions
+
+None — ready to bill once Brian reviews totals.
