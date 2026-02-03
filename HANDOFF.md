@@ -1,53 +1,52 @@
 # Handoff
 
-*Last updated: 2026-02-02 17:20 PST*
+*Last updated: 2026-02-03 11:20 PST*
 *Branch: main*
 *Agent: Howard*
 
 ## Current Task
 
-SailorSkills billing automation — January 2026 billing complete, Stripe workflow designed.
+Light session — bumper search for Brian's 2017 Subaru Outback.
 
 ## Completed This Session
 
-### Billing Rules Finalized
-- **Graduated growth surcharges** (Brian's clarification):
-  - Min→Heavy: 25%, Mod→Heavy: 37.5%, Heavy: 50%, Heavy→Severe: 75%, Severe: 100%
-- **Anode formula:** (cost × 1.5) + $15 labor per anode
+### Subaru Rear Bumper Search (Feb 3)
 
-### January 2026 Billing
-- 52 hull cleaning services: $9,125.47
-- 9 anodes installed: $444.86
-- **Total: $9,570.33**
-- Full breakdown in `~/Obsidian/SailorSkills/January 2026 Billing.md`
+Brian needs a rear bumper for his **2017 Subaru Outback** in burgundy.
 
-### Stripe Invoice Design
-- Use Stripe Invoices with line items (not simple charges)
-- Custom fields: Vessel name, Service Date
-- Line items: Hull Cleaning (bundled surcharges), Anodes (separate)
-- Workflow: auto-charge if card on file, send invoice if not
+**Specs:**
+- Upper painted bumper cover (wheel well to wheel well)
+- WITH parking sensor holes
+- Color: Venetian Red Pearl (H2Q)
+- Part number: 57702AL13A (with sensors)
 
-### Documentation Created
-- `~/Obsidian/SailorSkills/Billing System.md` — full billing reference
-- Includes pricing rules, anode catalog, Stripe CLI commands, workflow
+**Best option found:**
+- **eBay**: https://www.ebay.com/itm/401477628453
+- **Price**: $249 or best offer
+- Burgundy OEM with sensor holes, good condition
+- Seller: gm-autoparts (6,155 feedback, 4.9 rating)
+- **Action needed**: Message seller to confirm color code H2Q before buying
 
-### Test Data
-- Created "Test Vessel - Howard" in Notion (standardhuman@gmail.com)
+**Alternatives:**
+- ReveMoto pre-painted new: $1,050 (20 day lead time)
+- New OEM unpainted + paint shop: ~$500-700 total
 
-## Key Context
+## Prior Session Context (Feb 2)
 
-### Data Access
-- **Notion API:** `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`
-- **Notion Client DB:** `0ae0e330-780b-4764-956e-12e8ee344ea2`
-- **Supabase:** `fzygakldvvzxmahkdylq.supabase.co`
-- **Supabase keys:** In `~/AI/business/sailorskills-platform/sailorskills-inventory/.env`
+### SailorSkills Billing System Complete
+- Graduated growth surcharges finalized
+- January 2026 billing: $9,570.33 (52 services, 9 anodes)
+- Stripe invoice workflow designed with custom fields
+- Full docs in `~/Obsidian/SailorSkills/Billing System.md`
 
-### 2-Prop Boats (19 total)
-Amaterasu, Andiamo, Chew Toy, Could Be Worse, Cowboys Dream, Dark Star, Lil Bear, Loose Eel, One Prolonged Blast, Raindancer II, Ramble On, Rumble, Serenity, Sky Wanderer, Take it Easy, The Circus Police, Truth and Culture, VillaSey, Yachty By Nature
+### Stripe Next Steps
+1. Stripe CLI login
+2. Test invoice to Test Vessel - Howard
+3. Build invoice generation automation
 
-## Next Steps
+## Key Files
 
-1. **Stripe CLI login** — need `stripe login` or API key
-2. **Test invoice** — send test to Test Vessel - Howard
-3. **Build Notion crawler** — current search misses ~40% of Conditions databases
-4. **Invoice generation script** — automate the monthly billing process
+- `memory/2026-02-03.md` — bumper search details
+- `memory/2026-02-03-anode-billing.md` — billing session transcript
+- `~/Obsidian/SailorSkills/Billing System.md` — billing reference
+- `~/Obsidian/SailorSkills/January 2026 Billing.md` — Jan billing breakdown
