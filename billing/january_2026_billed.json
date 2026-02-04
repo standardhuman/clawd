@@ -1,0 +1,9 @@
+{
+  "Test Vessel": {
+    "invoiceId": "in_1SwwKBEbT3YrW03CqXvpgWss",
+    "status": "charged",
+    "billedAt": "2026-02-04T03:00:21.842Z",
+    "amount": "380.55",
+    "stripeUrl": "https://dashboard.stripe.com/invoices/in_1SwwKBEbT3YrW03CqXvpgWss"
+  }
+}

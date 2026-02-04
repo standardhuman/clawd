@@ -1,81 +1,60 @@
 # Handoff
 
-*Last updated: 2026-02-03 15:12 PST*
+*Last updated: 2026-02-03 18:57 PST*
 *Branch: main*
 *Agent: Howard*
-*Last commit: 0db170d*
 
 ## Current Task
 
-SailorSkills billing automation — web dashboard + CLI that pulls boat data from Notion, calculates pricing with growth surcharges, and sends invoices via Stripe.
+SailorSkills billing dashboard - fully functional with Notion integration, Stripe invoicing, and special pricing rules.
 
-## State: Ready to Bill
+## State: Ready to Bill January 2026
 
 ### ✅ Done
 
 1. **Billing Dashboard** — `~/clawd/billing-dashboard/`
    - React + Tailwind + Express
-   - "Generate Month" button auto-pulls from Notion
-   - Traverses nested Conditions databases for growth/anode data
-   - Preview invoices, batch send
-   - Start: `cd ~/clawd/billing-dashboard && npm run dev` (auto-opens browser)
+   - Accessible via Tailscale: http://100.122.230.53:5173
+   - Generate Month pulls from Notion Conditions databases
+   - Shows payment method status (💳 card / 📧 invoice)
+   - Stripe links for billed boats
+   - Bulk select + reset functionality
 
-2. **Notion Integration**
-   - Token: `NOTION_HOWARD_TOKEN` in `~/AI/business/sailorskills-platform/.env`
-   - **Critical path discovered:** Client List → Boat Page → Service Log (child_page) → synced_block → Conditions (child_database)
-   - Notion search API only indexes ~61/100+ Conditions databases — must traverse from boat
+2. **Service Date Clarity in Stripe**
+   - Line items: "January 9, 2026 - Hull Cleaning - Boat"
+   - Custom field: "Service Performed: January 9, 2026"
+   - Invoice description explains billing for past service
 
-3. **Stripe Integration**
-   - Key in 1Password: "Howard Billing Automation Key"
-   - Test invoice sent successfully to Brian ($248)
+3. **Special Pricing Rules**
+   - Gratis: Junebug (Brian's shared boat)
+   - $99 cap: Glitch, Twilight Zone, Maiden California, O'Mar
 
-4. **January 2026 Billing Calculated**
-   - 53 boats, 50 with conditions auto-found
-   - Auto-total: $9,622.54 (manual was $9,873.89)
-   - Difference: $99 caps not implemented + some anode parsing
+4. **January 2026 Ready**
+   - 53 boats, ~$9,711.90 total
+   - All Conditions databases found (fixed naming for Junebug, Solo)
 
-### 🔧 Still Manual
+5. **Test Vessel** in Notion
+   - 38ft Power, 2 props, Brian Cline owner
+   - Service log with growth surcharges + anodes
+   - Used for testing billing flow
 
-- **$99 caps** for Glitch, Twilight Zone, Maiden California
-- **Anode edge cases** — Notes field parsing doesn't catch all patterns
-- **Growth "Unknown"** — 3 boats missing Conditions databases
+### 🔧 Notes
 
-## Key Context
-
-**Notion Structure (IMPORTANT):**
-```
-Client List DB → {Boat} page → children:
-  ├── {Boat} Admin (child_database) 
-  └── {Boat} Service Log (child_page) → children:
-        └── synced_block → children:
-              └── {Boat} Conditions (child_database)
-```
-
-**Conditions fields:** Date, Growth (multi-select), Anodes (multi-select), Installed (number), Notes (rich_text)
-
-**Growth surcharge mapping:**
-- Minimal, Min→Mod, Moderate: 0%
-- Min→Heavy: 25%, Mod→Heavy: 37.5%, Heavy: 50%
-- Heavy→Severe: 75%, Severe: 100%
-
-**Anode pricing:** `(cost × 1.5) + $15`
-
-## Next Steps
-
-1. **Bill January 2026** — Open dashboard, review, send invoices
-2. **Add $99 cap logic** — Check boat name against cap list before final total
-3. **Improve anode parsing** — Add more patterns to `parseAnodeFromNotes()`
-4. **Bill February incrementally** — Generate as services complete
+- **Stripe key** resets on server restart - enter in dashboard or via API
+- Key in 1Password: "Howard Stripe Billing Automation Key"
+- Server runs on port 3001, Vite on 5173
 
 ## Files Changed This Session
 
 | File | Purpose |
 |------|---------|
-| `billing-dashboard/server/notion-helpers.ts` | Conditions traversal + growth calculation |
-| `billing-dashboard/server/index.ts` | Generate endpoint with full conditions lookup |
-| `billing-dashboard/src/App.tsx` | Generate Month UI |
-| `memory/2026-02-03.md` | Session notes + Notion structure docs |
+| `billing-dashboard/server/index.ts` | API + special pricing rules |
+| `billing-dashboard/server/notion-helpers.ts` | Broader DB name matching |
+| `billing-dashboard/src/App.tsx` | UI + Stripe links + reset |
+| `billing-dashboard/package.json` | Added --host for Tailscale |
 
-## Open Questions
+## Next Steps
 
-None — ready to bill once Brian reviews totals.
+1. **Bill January 2026** — Open dashboard, set Stripe key, review, send
+2. **Test with Test Vessel** — Verify full flow works
+3. **Bill February incrementally** — As services complete

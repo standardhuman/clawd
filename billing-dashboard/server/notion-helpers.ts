@@ -37,15 +37,22 @@ export async function getConditionsDatabase(boatPageId: string, token: string): 
           }
         }).then(r => r.json());
         
+        // Look for Conditions database OR any service-related database
         const conditionsDb = syncedChildren.results?.find((b: any) => 
-          b.type === 'child_database' && b.child_database?.title?.includes('Conditions')
+          b.type === 'child_database' && (
+            b.child_database?.title?.toLowerCase().includes('conditions') ||
+            b.child_database?.title?.toLowerCase().includes('service')
+          )
         );
         
         if (conditionsDb) return conditionsDb.id;
       }
       
       // Also check direct child_database
-      if (block.type === 'child_database' && block.child_database?.title?.includes('Conditions')) {
+      if (block.type === 'child_database' && (
+        block.child_database?.title?.toLowerCase().includes('conditions') ||
+        block.child_database?.title?.toLowerCase().includes('service')
+      )) {
         return block.id;
       }
     }

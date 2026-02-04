@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const API_URL = 'http://localhost:3001/api';
+// Use current hostname for Tailscale access
+const API_URL = `http://${window.location.hostname}:3001/api`;
 
 interface Boat {
   Boat: string;
@@ -11,6 +12,12 @@ interface Boat {
   Total: string;
   email: string | null;
   billed: boolean;
+  invoiceId?: string;
+  stripeUrl?: string;
+  billedAt?: string;
+  billedStatus?: string;
+  hasCard?: boolean | null;
+  stripeCustomerId?: string;
 }
 
 interface BillingData {
@@ -42,18 +49,26 @@ function App() {
   const [generateYear, setGenerateYear] = useState('2026');
   const [generateMonth, setGenerateMonth] = useState('2');
   const [generating, setGenerating] = useState(false);
+  const [filterPlan, setFilterPlan] = useState(false);
+  const [filterStartTime, setFilterStartTime] = useState(false);
+  const [generateResult, setGenerateResult] = useState<{count: number, total: string, checked: number} | null>(null);
 
   const generateBilling = async () => {
     setGenerating(true);
+    setGenerateResult(null);
     try {
-      const res = await fetch(`${API_URL}/generate/${generateYear}/${generateMonth}`, { method: 'POST' });
+      const params = new URLSearchParams();
+      if (filterPlan) params.set('filterPlan', 'true');
+      if (filterStartTime) params.set('filterStartTime', 'true');
+      const url = `${API_URL}/generate/${generateYear}/${generateMonth}${params.toString() ? '?' + params : ''}`;
+      const res = await fetch(url, { method: 'POST' });
       const data = await res.json();
       if (data.success) {
-        setMessage({ type: 'success', text: `Generated ${data.month}: ${data.count} boats` });
+        setGenerateResult({ count: data.count, total: data.totalAmount, checked: data.totalBoatsChecked });
+        setMessage({ type: 'success', text: `Generated ${data.month}: ${data.count} boats, $${data.totalAmount}` });
         // Reload months list
         const monthsRes = await fetch(`${API_URL}/months`);
         setMonths(await monthsRes.json());
-        setShowGenerate(false);
       } else {
         setMessage({ type: 'error', text: data.error || 'Failed to generate' });
       }
@@ -124,20 +139,28 @@ function App() {
           anodeType: boat.AnodeType,
           total: boat.Total,
           email: boat.email,
-          month: monthName
+          month: monthName,
+          serviceDate: boat.Date  // Actual service date for clear billing
         })
       });
       
       const data = await res.json();
       
       if (data.success) {
-        // Update local state
+        // Update local state with invoice details
         setBillingData(prev => {
           if (!prev) return prev;
           return {
             ...prev,
             boats: prev.boats.map(b => 
-              b.Boat === boat.Boat ? { ...b, billed: true } : b
+              b.Boat === boat.Boat ? { 
+                ...b, 
+                billed: true,
+                invoiceId: data.invoiceId,
+                stripeUrl: data.stripeUrl,
+                billedStatus: data.status,
+                billedAt: new Date().toISOString()
+              } : b
             ),
             summary: {
               ...prev.summary,
@@ -253,7 +276,7 @@ function App() {
           </button>
           
           {billingData && (
-            <div className="flex gap-6 text-sm">
+            <div className="flex gap-6 text-sm items-center">
               <span className="text-gray-400">
                 Total: <span className="text-white font-medium">{billingData.summary.total} boats</span>
               </span>
@@ -265,6 +288,11 @@ function App() {
               </span>
               <span className="text-yellow-400">
                 Pending: {billingData.summary.pending}
+              </span>
+              <span className="text-gray-400">
+                💳 <span className="text-green-400">{billingData.boats.filter(b => b.hasCard === true).length}</span>
+                {' / '}
+                📧 <span className="text-yellow-400">{billingData.boats.filter(b => b.hasCard === false).length}</span>
               </span>
             </div>
           )}
@@ -290,14 +318,46 @@ function App() {
             </div>
             
             <div className="flex items-center gap-4">
-              {selectedReadyCount > 0 && (
-                <button
-                  onClick={sendSelected}
-                  disabled={!stripeConfigured || sendingBoat !== null}
-                  className="bg-green-600 hover:bg-green-500 disabled:bg-gray-600 px-4 py-2 rounded"
-                >
-                  Send {selectedReadyCount} Selected
-                </button>
+              {selectedBoats.size > 0 && (
+                <>
+                  {/* Reset selected billed boats */}
+                  {[...selectedBoats].some(name => billingData?.boats.find(b => b.Boat === name)?.billed) && (
+                    <button
+                      onClick={async () => {
+                        const boatsToReset = [...selectedBoats].filter(name => 
+                          billingData?.boats.find(b => b.Boat === name)?.billed
+                        );
+                        if (boatsToReset.length === 0) return;
+                        
+                        await fetch(`${API_URL}/billing/${selectedMonth}/reset`, {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ boats: boatsToReset })
+                        });
+                        
+                        // Reload billing data
+                        const res = await fetch(`${API_URL}/billing/${selectedMonth}`);
+                        setBillingData(await res.json());
+                        setSelectedBoats(new Set());
+                        setMessage({ type: 'success', text: `Reset ${boatsToReset.length} boat(s)` });
+                        setTimeout(() => setMessage(null), 3000);
+                      }}
+                      className="bg-red-600 hover:bg-red-500 px-4 py-2 rounded"
+                    >
+                      Reset {[...selectedBoats].filter(name => billingData?.boats.find(b => b.Boat === name)?.billed).length} Billed
+                    </button>
+                  )}
+                  {/* Send selected ready boats */}
+                  {selectedReadyCount > 0 && (
+                    <button
+                      onClick={sendSelected}
+                      disabled={!stripeConfigured || sendingBoat !== null}
+                      className="bg-green-600 hover:bg-green-500 disabled:bg-gray-600 px-4 py-2 rounded"
+                    >
+                      Send {selectedReadyCount} Selected
+                    </button>
+                  )}
+                </>
               )}
             </div>
           </div>
@@ -325,6 +385,7 @@ function App() {
                   <th className="p-3 text-right">Anode</th>
                   <th className="p-3 text-right">Total</th>
                   <th className="p-3 text-left">Email</th>
+                  <th className="p-3 text-center">Card</th>
                   <th className="p-3 text-center">Status</th>
                   <th className="p-3 text-center">Action</th>
                 </tr>
@@ -347,7 +408,7 @@ function App() {
                           else next.delete(boat.Boat);
                           setSelectedBoats(next);
                         }}
-                        disabled={boat.billed || !boat.email}
+                        disabled={!boat.email}
                         className="rounded"
                       />
                     </td>
@@ -369,8 +430,32 @@ function App() {
                       {boat.email || <span className="text-red-400">Missing</span>}
                     </td>
                     <td className="p-3 text-center">
+                      {boat.hasCard === true ? (
+                        <span className="text-green-400" title="Card on file - will auto-charge">💳</span>
+                      ) : boat.hasCard === false ? (
+                        <span className="text-yellow-400" title="No card - will send invoice">📧</span>
+                      ) : (
+                        <span className="text-gray-500" title="Unknown">-</span>
+                      )}
+                    </td>
+                    <td className="p-3 text-center">
                       {boat.billed ? (
-                        <span className="inline-block px-2 py-1 rounded text-xs bg-green-600">Billed</span>
+                        boat.stripeUrl ? (
+                          <a 
+                            href={boat.stripeUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-green-600 hover:bg-green-500"
+                            title={`${boat.billedStatus === 'charged' ? 'Charged' : 'Sent'} - Click to view in Stripe`}
+                          >
+                            ✓ {boat.billedStatus === 'charged' ? 'Charged' : 'Sent'}
+                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        ) : (
+                          <span className="inline-block px-2 py-1 rounded text-xs bg-green-600">Billed</span>
+                        )
                       ) : boat.email ? (
                         <span className="inline-block px-2 py-1 rounded text-xs bg-yellow-600">Pending</span>
                       ) : (
@@ -401,14 +486,14 @@ function App() {
         
         {/* Generate Month Modal */}
         {showGenerate && (
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4" onClick={() => setShowGenerate(false)}>
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4" onClick={() => { setShowGenerate(false); setGenerateResult(null); }}>
             <div className="bg-gray-800 rounded-lg p-6 max-w-md w-full" onClick={e => e.stopPropagation()}>
               <h2 className="text-xl font-bold mb-4">Generate Monthly Billing</h2>
               <p className="text-gray-400 text-sm mb-4">
-                Pulls boats from Notion where Plan is "Subbed" or "One-time" and service date is in the selected month.
+                Finds boats with service logged in Conditions database for the selected month.
               </p>
               
-              <div className="flex gap-4 mb-6">
+              <div className="flex gap-4 mb-4">
                 <div className="flex-1">
                   <label className="block text-sm text-gray-400 mb-1">Month</label>
                   <select
@@ -432,23 +517,58 @@ function App() {
                 </div>
               </div>
               
-              <p className="text-yellow-400 text-sm mb-4">
-                ⚠️ Growth surcharges not included — edit CSV after generating
-              </p>
+              {/* Filter Toggles */}
+              <div className="bg-gray-700 rounded p-4 mb-4">
+                <p className="text-sm font-medium mb-3">Optional Filters</p>
+                <label className="flex items-center gap-3 mb-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={filterPlan}
+                    onChange={e => setFilterPlan(e.target.checked)}
+                    className="rounded"
+                  />
+                  <span className="text-sm">Only Plan = "Subbed" or "One-time"</span>
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={filterStartTime}
+                    onChange={e => setFilterStartTime(e.target.checked)}
+                    className="rounded"
+                  />
+                  <span className="text-sm">Only boats with Start Time ≤ end of month</span>
+                </label>
+                <p className="text-xs text-gray-400 mt-2">
+                  ✓ Always required: Service entry in Conditions for selected month
+                </p>
+              </div>
+              
+              {/* Results */}
+              {generateResult && (
+                <div className="bg-green-900/30 border border-green-600 rounded p-3 mb-4">
+                  <p className="text-green-200 font-medium">Generated!</p>
+                  <p className="text-sm text-green-300">
+                    {generateResult.count} boats serviced (checked {generateResult.checked} total)
+                  </p>
+                  <p className="text-sm text-green-300">
+                    Total: ${generateResult.total}
+                  </p>
+                </div>
+              )}
               
               <div className="flex gap-3">
                 <button
-                  onClick={() => setShowGenerate(false)}
+                  onClick={() => { setShowGenerate(false); setGenerateResult(null); }}
                   className="flex-1 bg-gray-600 hover:bg-gray-500 py-2 rounded"
                 >
-                  Cancel
+                  {generateResult ? 'Close' : 'Cancel'}
                 </button>
                 <button
                   onClick={generateBilling}
                   disabled={generating}
                   className="flex-1 bg-purple-600 hover:bg-purple-500 disabled:bg-gray-600 py-2 rounded"
                 >
-                  {generating ? 'Generating...' : 'Generate'}
+                  {generating ? 'Generating...' : generateResult ? 'Regenerate' : 'Generate'}
                 </button>
               </div>
             </div>
@@ -467,8 +587,13 @@ function App() {
                   <span className="font-medium">{previewBoat.Boat}</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-400">Service Date</span>
-                  <span>{months.find(m => m.id === selectedMonth)?.name}</span>
+                  <span className="text-gray-400">Service Performed</span>
+                  <span className="font-medium text-blue-300">
+                    {previewBoat.Date 
+                      ? new Date(previewBoat.Date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+                      : months.find(m => m.id === selectedMonth)?.name
+                    }
+                  </span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-gray-700">
                   <span className="text-gray-400">Customer Email</span>
@@ -476,13 +601,22 @@ function App() {
                 </div>
                 
                 <div className="bg-gray-700 rounded p-4 mt-4">
-                  <div className="flex justify-between py-1">
-                    <span>Hull Cleaning - {previewBoat.Boat}</span>
+                  <p className="text-xs text-gray-400 mb-2">Line items (as shown on invoice):</p>
+                  <div className="flex justify-between py-1 text-sm">
+                    <span>{
+                      previewBoat.Date 
+                        ? new Date(previewBoat.Date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+                        : months.find(m => m.id === selectedMonth)?.name
+                    } - Hull Cleaning - {previewBoat.Boat}</span>
                     <span>${previewBoat.HullTotal}</span>
                   </div>
                   {parseFloat(previewBoat.Anode) > 0 && (
-                    <div className="flex justify-between py-1">
-                      <span>Anode: {previewBoat.AnodeType}</span>
+                    <div className="flex justify-between py-1 text-sm">
+                      <span>{
+                        previewBoat.Date 
+                          ? new Date(previewBoat.Date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+                          : months.find(m => m.id === selectedMonth)?.name
+                      } - Anode Replacement: {previewBoat.AnodeType} - {previewBoat.Boat}</span>
                       <span>${previewBoat.Anode}</span>
                     </div>
                   )}
