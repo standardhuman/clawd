@@ -127,26 +127,59 @@ export function calculateGrowthSurcharge(growth: string[]): { percent: number, d
 }
 
 // Determine anode type and cost from notes
+// Pricing: 30% markup on supplier cost (sale_price), $2 minimum markup
+// See README.md for full pricing reference and Supabase lookup instructions
 export function parseAnodeFromNotes(notes: string | null, anodes: string[]): { type: string, cost: number } | null {
   if (!anodes.includes('Replaced') || !notes) return null;
   
   const notesLower = notes.toLowerCase();
   
-  // Check for specific anode types mentioned in notes
-  if (notesLower.includes('1-inch') || notesLower.includes('1"') || notesLower.includes('shaft')) {
-    const count = notesLower.includes('two') || notesLower.includes('2') ? 2 : 1;
-    return { type: `${count > 1 ? count + 'x ' : ''}1" shaft`, cost: 31.92 * count };
+  // Parse count: look for (2), (3), "two", "2x", "2 x", etc.
+  let count = 1;
+  const countMatch = notesLower.match(/\((\d+)\)|(\d+)\s*x\s|x\s*(\d+)|two|three/);
+  if (countMatch) {
+    if (countMatch[1]) count = parseInt(countMatch[1]);
+    else if (countMatch[2]) count = parseInt(countMatch[2]);
+    else if (countMatch[3]) count = parseInt(countMatch[3]);
+    else if (notesLower.includes('two')) count = 2;
+    else if (notesLower.includes('three')) count = 3;
   }
+  
+  // Check for specific anode types (most specific first)
+  // Prices based on 30% markup on supplier cost (sale_price from Supabase anodes_catalog)
+  
+  // 1-1/8" shaft anodes (check before 1" to avoid false match)
+  if (notesLower.includes('1-1/8') || notesLower.includes('1 1/8')) {
+    const isHeavy = notesLower.includes('heavy');
+    const unitPrice = isHeavy ? 18.17 : 16.82;  // Reliance X-4H vs Camp X-4
+    return { type: `${count > 1 ? count + 'x ' : ''}1-1/8" ${isHeavy ? 'heavy ' : ''}shaft`, cost: unitPrice * count };
+  }
+  
+  // 1-1/4" shaft anodes
+  if (notesLower.includes('1-1/4') || notesLower.includes('1 1/4')) {
+    const isHeavy = notesLower.includes('heavy');
+    const unitPrice = isHeavy ? 22.54 : 17.32;  // Reliance X-5H vs Camp X-5
+    return { type: `${count > 1 ? count + 'x ' : ''}1-1/4" ${isHeavy ? 'heavy ' : ''}shaft`, cost: unitPrice * count };
+  }
+  
+  // 1" shaft anodes
+  if (notesLower.includes('1-inch') || notesLower.includes('1"') || (notesLower.includes('shaft') && !notesLower.includes('/'))) {
+    const isHeavy = notesLower.includes('heavy');
+    const unitPrice = isHeavy ? 17.76 : 14.66;  // Camp X-3A vs Camp X-3
+    return { type: `${count > 1 ? count + 'x ' : ''}1" ${isHeavy ? 'heavy ' : ''}shaft`, cost: unitPrice * count };
+  }
+  
+  // Other specific types
   if (notesLower.includes('beneteau') && notesLower.includes('30')) {
-    return { type: 'Beneteau 30mm prop', cost: 28.37 };
+    return { type: 'Beneteau 30mm prop', cost: 28.37 * count };
   }
-  if (notesLower.includes('612') || notesLower.includes('hull')) {
-    return { type: '612H hull', cost: 143.04 };
+  if (notesLower.includes('612') || (notesLower.includes('hull') && notesLower.includes('anode'))) {
+    return { type: '612H hull', cost: 143.04 * count };
   }
   if (notesLower.includes('variprop') || notesLower.includes('df-80')) {
-    return { type: 'DF-80 Variprop', cost: 46.46 };
+    return { type: 'DF-80 Variprop', cost: 46.46 * count };
   }
   
   // Default to 1" shaft if "replaced" but type unclear
-  return { type: '1" shaft', cost: 31.92 };
+  return { type: `${count > 1 ? count + 'x ' : ''}1" shaft`, cost: 14.66 * count };
 }

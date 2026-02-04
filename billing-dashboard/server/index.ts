@@ -5,10 +5,11 @@ import { join } from 'path';
 import dotenv from 'dotenv';
 import { getConditionsDatabase, getServiceConditions, calculateGrowthSurcharge, parseAnodeFromNotes } from './notion-helpers.js';
 
-// Load env from sailorskills-platform
-const envPath = join(process.env.HOME || '', 'AI/business/sailorskills-platform/.env');
-if (existsSync(envPath)) {
-  dotenv.config({ path: envPath });
+// Load env from local .env first, then sailorskills-platform as fallback
+dotenv.config(); // Load local .env
+const platformEnvPath = join(process.env.HOME || '', 'AI/business/sailorskills-platform/.env');
+if (existsSync(platformEnvPath)) {
+  dotenv.config({ path: platformEnvPath });
 }
 
 const app = express();
@@ -27,8 +28,8 @@ const CAPPED_BOATS: Record<string, number> = {
   "O'Mar": 99
 };
 
-// Store Stripe key in memory (set via API)
-let stripeKey: string | null = null;
+// Store Stripe key in memory (loaded from env or set via API)
+let stripeKey: string | null = process.env.STRIPE_SECRET_KEY || null;
 
 // Get Notion token
 const getNotionToken = () => process.env.NOTION_HOWARD_TOKEN || process.env.NOTION_TOKEN;
@@ -92,22 +93,31 @@ app.get('/api/billing/:month', async (req, res) => {
         boat.billedStatus = billedData[boat.Boat].status;
       }
       
-      // Fetch email from Notion
+      // Fetch customer info from Notion and find in Stripe
       try {
-        const email = await getCustomerEmail(boat.Boat);
+        const { email, ownerName } = await getCustomerInfo(boat.Boat);
         boat.email = email || null;
+        boat.ownerName = ownerName || null;
         
         // Check if customer has payment method on file
-        if (boat.email && stripeKey) {
+        if ((boat.email || boat.ownerName) && stripeKey) {
           try {
-            const searchRes = await fetch(`https://api.stripe.com/v1/customers?email=${encodeURIComponent(boat.email)}&limit=1`, {
-              headers: { 'Authorization': `Basic ${Buffer.from(stripeKey + ':').toString('base64')}` }
-            });
-            const searchData = await searchRes.json();
-            const customer = searchData.data?.[0];
+            const customer = await findStripeCustomer(boat.email, boat.ownerName, stripeKey);
             if (customer) {
-              boat.hasCard = !!customer.invoice_settings?.default_payment_method;
               boat.stripeCustomerId = customer.id;
+              boat.stripeCustomerEmail = customer.email;  // Track what email Stripe has
+              
+              // Check for default payment method first
+              if (customer.invoice_settings?.default_payment_method) {
+                boat.hasCard = true;
+              } else {
+                // Check for any attached payment methods
+                const pmRes = await fetch(`https://api.stripe.com/v1/payment_methods?customer=${customer.id}&type=card&limit=1`, {
+                  headers: { 'Authorization': `Basic ${Buffer.from(stripeKey + ':').toString('base64')}` }
+                });
+                const pmData = await pmRes.json();
+                boat.hasCard = pmData.data?.length > 0;
+              }
             } else {
               boat.hasCard = false;
             }
@@ -144,10 +154,10 @@ app.get('/api/billing/:month', async (req, res) => {
   }
 });
 
-// Get customer email from Notion
-async function getCustomerEmail(boatName: string): Promise<string | null> {
+// Get customer info (email + owner name) from Notion
+async function getCustomerInfo(boatName: string): Promise<{ email: string | null, ownerName: string | null }> {
   const token = getNotionToken();
-  if (!token) return null;
+  if (!token) return { email: null, ownerName: null };
   
   try {
     const response = await fetch(`https://api.notion.com/v1/databases/${NOTION_DB_ID}/query`, {
@@ -163,10 +173,103 @@ async function getCustomerEmail(boatName: string): Promise<string | null> {
     });
     
     const data = await response.json();
-    return data.results?.[0]?.properties?.Email?.email || null;
+    const props = data.results?.[0]?.properties;
+    if (!props) return { email: null, ownerName: null };
+    
+    const email = props.Email?.email || null;
+    const firstName = props['First Name']?.rich_text?.[0]?.plain_text || '';
+    const lastName = props['Last Name']?.rich_text?.[0]?.plain_text || '';
+    const ownerName = [firstName, lastName].filter(Boolean).join(' ') || null;
+    
+    return { email, ownerName };
   } catch {
-    return null;
+    return { email: null, ownerName: null };
   }
+}
+
+// Legacy function for backwards compatibility
+async function getCustomerEmail(boatName: string): Promise<string | null> {
+  const info = await getCustomerInfo(boatName);
+  return info.email;
+}
+
+// Find Stripe customer by email or name
+async function findStripeCustomer(email: string | null, ownerName: string | null, stripeKey: string): Promise<any | null> {
+  const authHeader = { 'Authorization': `Basic ${Buffer.from(stripeKey + ':').toString('base64')}` };
+  
+  // Try email first (most reliable when it matches)
+  if (email) {
+    // Handle multiple emails (comma-separated) - try first one
+    const primaryEmail = email.split(',')[0].trim();
+    const searchRes = await fetch(`https://api.stripe.com/v1/customers?email=${encodeURIComponent(primaryEmail)}&limit=1`, {
+      headers: authHeader
+    });
+    const searchData = await searchRes.json();
+    if (searchData.data?.[0]) {
+      return searchData.data[0];
+    }
+    
+    // Try case-insensitive email match (Stripe search is case-sensitive)
+    const emailLower = primaryEmail.toLowerCase();
+    const emailUpper = primaryEmail.toUpperCase();
+    if (emailLower !== primaryEmail) {
+      const lowerRes = await fetch(`https://api.stripe.com/v1/customers?email=${encodeURIComponent(emailLower)}&limit=1`, {
+        headers: authHeader
+      });
+      const lowerData = await lowerRes.json();
+      if (lowerData.data?.[0]) return lowerData.data[0];
+    }
+    if (emailUpper !== primaryEmail && emailUpper !== emailLower) {
+      const upperRes = await fetch(`https://api.stripe.com/v1/customers?email=${encodeURIComponent(emailUpper)}&limit=1`, {
+        headers: authHeader
+      });
+      const upperData = await upperRes.json();
+      if (upperData.data?.[0]) return upperData.data[0];
+    }
+    
+    // Try email with common username variations (first initial + lastname)
+    // e.g., paul@domain.com might be pweismann@domain.com in Stripe
+    if (ownerName) {
+      const domain = primaryEmail.split('@')[1];
+      const nameParts = ownerName.toLowerCase().split(/[\s,]+/).filter(p => p.length > 1);
+      if (nameParts.length >= 2 && domain) {
+        // Try firstInitial + lastName @ domain
+        const firstInitial = nameParts[0][0];
+        const lastName = nameParts[nameParts.length - 1];
+        const altEmail = `${firstInitial}${lastName}@${domain}`;
+        const altRes = await fetch(`https://api.stripe.com/v1/customers?email=${encodeURIComponent(altEmail)}&limit=1`, {
+          headers: authHeader
+        });
+        const altData = await altRes.json();
+        if (altData.data?.[0]) return altData.data[0];
+      }
+    }
+  }
+  
+  // Fall back to name search if email didn't find a customer (searches recent 100)
+  if (ownerName) {
+    const listRes = await fetch(`https://api.stripe.com/v1/customers?limit=100`, {
+      headers: authHeader
+    });
+    const listData = await listRes.json();
+    
+    const firstName = ownerName.split(/[\s,]+/)[0].toLowerCase();
+    const nameParts = ownerName.toLowerCase().split(/[\s,]+/).filter(p => p.length > 2);
+    
+    const customer = listData.data?.find((c: any) => {
+      const customerName = (c.name || '').toLowerCase().trim();
+      if (!customerName || customerName.length < 3) return false;
+      
+      if (customerName === firstName && firstName.length > 3) return true;
+      
+      const matchedParts = nameParts.filter(part => customerName.includes(part));
+      return matchedParts.length >= 2;
+    });
+    
+    if (customer) return customer;
+  }
+  
+  return null;
 }
 
 app.get('/api/customer/:boat', async (req, res) => {
@@ -196,36 +299,58 @@ app.post('/api/invoice', async (req, res) => {
     return res.status(400).json({ error: 'Stripe key not configured' });
   }
   
-  const { boat, hull, anode, anodeType, total, email, month, serviceDate } = req.body;
+  const { boat, hull, anode, anodeType, total, email, month, serviceDate, stripeCustomerId: passedCustomerId, ownerName } = req.body;
   
   try {
-    // Find or create customer
-    const searchRes = await fetch(`https://api.stripe.com/v1/customers?email=${encodeURIComponent(email)}&limit=1`, {
-      headers: { 'Authorization': `Basic ${Buffer.from(stripeKey + ':').toString('base64')}` }
-    });
-    const searchData = await searchRes.json();
-    
-    let customerId = searchData.data?.[0]?.id;
+    // Find existing customer using smart lookup, or create new one
+    let customerId = passedCustomerId;
+    let hasCard = false;
     
     if (!customerId) {
+      // Try smart lookup first
+      const existingCustomer = await findStripeCustomer(email, ownerName, stripeKey);
+      if (existingCustomer) {
+        customerId = existingCustomer.id;
+      }
+    }
+    
+    if (!customerId) {
+      // Create new customer only if not found
       const createRes = await fetch('https://api.stripe.com/v1/customers', {
         method: 'POST',
         headers: { 
           'Authorization': `Basic ${Buffer.from(stripeKey + ':').toString('base64')}`,
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `email=${encodeURIComponent(email)}&description=${encodeURIComponent(boat + ' owner')}`
+        body: `email=${encodeURIComponent(email)}&description=${encodeURIComponent(boat + ' owner')}&name=${encodeURIComponent(ownerName || boat + ' owner')}`
       });
       const createData = await createRes.json();
       customerId = createData.id;
     }
     
-    // Check payment method
+    // Check payment method - look at default AND attached payment methods
+    // Store the actual payment method ID so we can use it for charging
+    let paymentMethodId: string | null = null;
+    
     const custRes = await fetch(`https://api.stripe.com/v1/customers/${customerId}`, {
       headers: { 'Authorization': `Basic ${Buffer.from(stripeKey + ':').toString('base64')}` }
     });
     const custData = await custRes.json();
-    const hasCard = !!custData.invoice_settings?.default_payment_method;
+    
+    if (custData.invoice_settings?.default_payment_method) {
+      hasCard = true;
+      paymentMethodId = custData.invoice_settings.default_payment_method;
+    } else {
+      // Check for any attached payment methods
+      const pmRes = await fetch(`https://api.stripe.com/v1/payment_methods?customer=${customerId}&type=card&limit=1`, {
+        headers: { 'Authorization': `Basic ${Buffer.from(stripeKey + ':').toString('base64')}` }
+      });
+      const pmData = await pmRes.json();
+      hasCard = pmData.data?.length > 0;
+      if (hasCard && pmData.data[0]) {
+        paymentMethodId = pmData.data[0].id;
+      }
+    }
     
     // Format service date for display (e.g., "January 15, 2026" or just "January 2026")
     const serviceDateDisplay = serviceDate 
@@ -283,10 +408,15 @@ app.post('/api/invoice', async (req, res) => {
     });
     
     // Pay or send
-    if (hasCard) {
+    if (hasCard && paymentMethodId) {
+      // Explicitly pass payment_method to ensure charge goes through
       await fetch(`https://api.stripe.com/v1/invoices/${invoiceId}/pay`, {
         method: 'POST',
-        headers: { 'Authorization': `Basic ${Buffer.from(stripeKey + ':').toString('base64')}` }
+        headers: { 
+          'Authorization': `Basic ${Buffer.from(stripeKey + ':').toString('base64')}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `payment_method=${paymentMethodId}`
       });
       
       // Get charge and send receipt
@@ -388,7 +518,7 @@ const HOST = '0.0.0.0';  // Bind to all interfaces for Tailscale access
 app.listen(PORT, HOST, () => {
   console.log(`Billing API running on http://${HOST}:${PORT}`);
   console.log(`Notion token: ${getNotionToken() ? 'configured' : 'NOT CONFIGURED'}`);
-  console.log(`Stripe key: not set (use POST /api/stripe-key)`);
+  console.log(`Stripe key: ${stripeKey ? 'configured from env' : 'not set (use POST /api/stripe-key or add STRIPE_SECRET_KEY to .env)'}`);
 });
 
 // Generate billing CSV for a month from Notion data (with growth + anode lookup)

@@ -2,6 +2,34 @@
 
 Web interface for reviewing and sending invoices via Stripe.
 
+## Anode Pricing Reference
+
+**Pricing Source:** Supabase `anodes_catalog` table + `pricing_settings` strategy
+
+**Supabase Project:** `fzygakldvvzxmahkdylq` (Archived- Sailor Skills)
+
+**Current Pricing Strategy (as of Feb 2026):**
+- 30% markup on supplier cost (sale_price from catalog)
+- $2.00 minimum markup
+- Round to nearest cent
+
+**Common Shaft Anodes:**
+| Size | Product | Supplier Cost | Customer Price |
+|------|---------|---------------|----------------|
+| 1" standard | Camp X-3 | $11.28 | $14.66 |
+| 1" heavy | Camp X-3A | $13.66 | $17.76 |
+| 1-1/8" standard | Camp X-4 | $12.94 | $16.82 |
+| 1-1/8" heavy | Reliance X-4H | $13.98 | $18.17 |
+
+**To look up pricing:**
+1. Query `anodes_catalog` in Supabase for `sale_price`
+2. Apply markup: `sale_price × 1.30` (or check `pricing_settings` for current rate)
+3. Ensure minimum $2 markup
+
+**Related code:**
+- Pricing utility: `sailorskills-platform/sailorskills-billing/src/utils/pricing.js`
+- Catalog scraper: `sailorskills-platform/sailorskills-inventory/anode-system/`
+
 ## Quick Start
 
 ```bash
