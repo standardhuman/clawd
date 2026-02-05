@@ -52,16 +52,19 @@ SailorSkills automation improvements — customer onboarding and service duratio
 
 ## Next Steps
 
-1. **Test the full flow** — process some videos through BOATY, verify:
+1. **Backfill historical duration data** — Priority task
+   - Scrape existing Notion Admin databases for past service entries
+   - Extract: boat_name, service_date, Time In, Time Out (or Duration)
+   - Populate Supabase `video_durations` table
+   - This gives immediate analytics visibility across all historical services
+   - Approach: Query Client List → iterate boats → find Admin child DB → extract entries
+
+2. **Test the forward flow** — process new videos through BOATY, verify:
    - Data appears in Supabase `video_durations` table
    - Entry created in boat's Notion Admin database
    - Analytics endpoint returns correct data
 
-2. **Backfill historical data** (optional) — could scrape existing Notion Admin databases to populate Supabase for historical analytics
-
-3. **Deploy BOATY changes** — commits made but app runs locally; may need restart
-
-4. **Dennis Zinn follow-up** — schedule his first service, do anode inspection
+3. **Dennis Zinn follow-up** — schedule his first service, do anode inspection
 
 ## Files Changed
 
@@ -80,7 +83,7 @@ SailorSkills automation improvements — customer onboarding and service duratio
 
 ## Open Questions
 
-- Should we backfill historical duration data from Notion?
+- How far back does Admin data go? (May need to handle boats with no Admin DB)
 - Is there value in correlating duration with boat length/type for pricing insights?
 
 ## Related Docs
