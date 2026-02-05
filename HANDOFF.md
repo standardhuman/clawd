@@ -1,92 +1,51 @@
 # Handoff
 
-*Last updated: 2026-02-04 18:19 PST*
-*Branch: main*
-*Commit: (pending)*
+*Last updated: 2026-02-05 10:55 PST*
+*Workspace: ~/clawd*
 
 ## Current Task
 
-SailorSkills automation improvements — customer onboarding and service duration tracking.
+Looking up **Scott Cyphers' order** (boat: Perpetua) to onboard him into Notion.
 
 ## State
 
-### ✅ Done This Session
+**Done:**
+- Found Scott Cyphers in archived Supabase
+- Discovered order data architecture (service interval is in `customer_services` table, NOT `boats`)
+- Retrieved full order details
 
-**1. Dennis Zinn Onboarding**
-- Found his order in archived Supabase project (`fzygakldvvzxmahkdylq`)
-- Ran onboarding script → created Notion Client List entry, Admin database, Service Log, YouTube playlist
-- Added `/jennie-ann` redirect to vercel.json
-- Note: He wants anode inspection — doesn't know how many anodes his boat has
+**Ready to do:**
+- Onboard Scott Cyphers to Notion using the onboarding script
 
-**2. Admin Database Simplified**
-- Changed from complex "Services" schema to simple "Admin" with: #, Date, Time In, Time Out, Duration (formula), Notes
-- Updated `onboard-customer.ts` script to use new schema
-- Old "Jennie Ann Services" database deleted
+## Scott Cyphers Order Details
 
-**3. BOATY Duration Sync to Notion**
-- Created `utils/notion_sync.py` — finds boat in Notion, creates Admin entry with timestamps
-- Replaced `sync_durations_to_operations()` with `sync_durations_to_notion()`
-- Auto-syncs after video uploads
+- **Boat**: Perpetua (Corbin MK 1, 39')
+- **Marina**: Berkeley, Dock O, Slip 703
+- **Email**: scottpcyphers@gmail.com
+- **Phone**: 707-337-8436
+- **Service**: Recurring Cleaning & Anodes
+- **Interval**: Quarterly (3 months)
+- **Price**: $205.50
+- **Notes**: "All anodes need replacing. I came from fresh water. Thank you."
+- **Supabase boat_id**: 52fa0ba4-53da-42ad-aadc-be42df5e9548
+- **Created**: 2026-02-02
 
-**4. Supabase Analytics for Durations** 
-- Created `video_durations` table in Supabase (active project: `aaxnoeirtjlizdhnbqbr`)
-- Created `utils/supabase_sync.py` — logs duration data for global analytics
-- Combined sync: BOATY → Supabase (analytics) AND Notion (per-boat Admin)
-- New API endpoints:
-  - `POST /api/sync-durations` — manual sync trigger
-  - `GET /api/duration-analytics` — avg duration per boat stats
+## Key Discovery
 
-### 🔧 Key Technical Details
+**SailorSkills order data architecture:**
+- `boats` table — boat details only (no service interval!)
+- `customer_services` table — has `frequency`, `service_type`, `base_price`, `notes`
+- `service_orders` table — has `service_interval`
+- `service_schedules` table — for recurring, has `interval_months`
 
-**Supabase Projects:**
-- Active: `aaxnoeirtjlizdhnbqbr` (Sailor Skills) — has `video_durations` table
-- Archived: `fzygakldvvzxmahkdylq` (Archived - Sailor Skills) — old diving orders
-
-**Duration Capture Flow:**
-1. Videos named: `{boat_name} {MM-DD-YYYY} {position} ({type}).mp4`
-2. ffprobe extracts creation_time from metadata
-3. Duration = end of last video − start of first video
-4. Stored: Supabase (analytics) + Notion Admin (per-boat history)
-
-**Brian's Insight:** The absolute timestamps don't matter (GoPro clock may be wrong), only the *difference* matters. Duration calculation is reliable regardless of clock setting.
+**To find a customer's service frequency**: Check `customer_services` table by `boat_id`, not `boats`.
 
 ## Next Steps
 
-1. **Backfill historical duration data** — Priority task
-   - Scrape existing Notion Admin databases for past service entries
-   - Extract: boat_name, service_date, Time In, Time Out (or Duration)
-   - Populate Supabase `video_durations` table
-   - This gives immediate analytics visibility across all historical services
-   - Approach: Query Client List → iterate boats → find Admin child DB → extract entries
+1. Run onboarding script to add Scott Cyphers to Notion (3-month interval)
+2. Confirm onboarding completed successfully
 
-2. **Test the forward flow** — process new videos through BOATY, verify:
-   - Data appears in Supabase `video_durations` table
-   - Entry created in boat's Notion Admin database
-   - Analytics endpoint returns correct data
+## Other Recent Orders (in customer_services)
 
-3. **Dennis Zinn follow-up** — schedule his first service, do anode inspection
-
-## Files Changed
-
-**~/AI/business/sailorskills-platform/sailorskills-video:**
-- `utils/notion_sync.py` — NEW: Notion API sync for durations
-- `utils/supabase_sync.py` — NEW: Supabase logging for analytics
-- `app.py` — Updated sync functions and API endpoints
-
-**~/AI/business/sailorskills:**
-- `scripts/onboard-customer.ts` — Simplified Admin database schema
-- `marketplace/vercel.json` — Added /jennie-ann redirect
-- `pro/supabase/migrations/20260204_create_video_durations.sql` — NEW
-
-**~/clawd:**
-- Memory files updated
-
-## Open Questions
-
-- How far back does Admin data go? (May need to handle boats with no Admin DB)
-- Is there value in correlating duration with boat length/type for pricing insights?
-
-## Related Docs
-
-- `memory/2026-02-04.md` — Session notes (needs update)
-- BOATY docs: `~/AI/business/sailorskills-platform/sailorskills-video/README.md`
+- Dennis Zinn — Jennie Ann, bi-monthly, $218.70 (Feb 3) — may also need onboarding
+- Greg Barnes — The circus police, one-time, $273.00 (Jan 28)
