@@ -1,83 +1,89 @@
 # Handoff
 
-*Last updated: 2026-02-04 06:51 PST*
+*Last updated: 2026-02-04 18:19 PST*
 *Branch: main*
-*Commit: 777ae9b*
+*Commit: (pending)*
 
 ## Current Task
 
-January 2026 billing for SailorSkills — invoicing all clients via Stripe.
+SailorSkills automation improvements — customer onboarding and service duration tracking.
 
 ## State
 
-**Billing is ~95% complete.**
+### ✅ Done This Session
 
-### Done
-- Built billing dashboard with Notion integration (auto-fetches growth surcharges, anodes from Conditions databases)
-- Fixed critical bug: invoices weren't charging cards because `payment_method` wasn't passed to Stripe `/pay` call
-- Charged 31 stuck invoices that were sitting "open"
-- Handled Tom Purcell price complaint (voided $135.82, sent new $99 invoice, Brian sent explanation email)
-- Marked Bret Laurent (Meliora) as paid by check
+**1. Dennis Zinn Onboarding**
+- Found his order in archived Supabase project (`fzygakldvvzxmahkdylq`)
+- Ran onboarding script → created Notion Client List entry, Admin database, Service Log, YouTube playlist
+- Added `/jennie-ann` redirect to vercel.json
+- Note: He wants anode inspection — doesn't know how many anodes his boat has
 
-### Remaining Open Invoices (correct — no cards on file)
-| Amount | Customer | Boat | Notes |
-|--------|----------|------|-------|
-| $99 | Tom Purcell | Que Sera Sera | New Jan invoice at reduced rate |
-| $288.64 | Lexie Price | Innamorata | No card |
-| $172.87 | Peter Baczek | Diva | No card |
-| $161.64 | Craig Aufenkamp | Salty Lady | No card |
-| $148.17 | Paul Weismann | Mojo | No card |
-| $202.05 | Greta Mart | Pearl | No card |
-| $121.23 | Lu Luna | Msafiri | No card |
-| $99 | Tom Purcell | Que Sera Sera | December invoice (unclear if paid) |
-| $90 | Casey | ? | **Card declined** — needs follow-up |
+**2. Admin Database Simplified**
+- Changed from complex "Services" schema to simple "Admin" with: #, Date, Time In, Time Out, Duration (formula), Notes
+- Updated `onboard-customer.ts` script to use new schema
+- Old "Jennie Ann Services" database deleted
 
-### Old Invoices (not from January)
-- Shannon Scott $304.02 — December 2025, leave as is
-- Tom Purcell $135.82 — Voided (was the original before adjustment)
+**3. BOATY Duration Sync to Notion**
+- Created `utils/notion_sync.py` — finds boat in Notion, creates Admin entry with timestamps
+- Replaced `sync_durations_to_operations()` with `sync_durations_to_notion()`
+- Auto-syncs after video uploads
 
-## Key Context
+**4. Supabase Analytics for Durations** 
+- Created `video_durations` table in Supabase (active project: `aaxnoeirtjlizdhnbqbr`)
+- Created `utils/supabase_sync.py` — logs duration data for global analytics
+- Combined sync: BOATY → Supabase (analytics) AND Notion (per-boat Admin)
+- New API endpoints:
+  - `POST /api/sync-durations` — manual sync trigger
+  - `GET /api/duration-analytics` — avg duration per boat stats
 
-### Billing Dashboard Location
-`~/clawd/billing-dashboard/` — React + Express + Tailwind
-- Local: http://localhost:5173
-- API: http://localhost:3001
-- Start: `cd ~/clawd/billing-dashboard && npm run dev`
+### 🔧 Key Technical Details
 
-### Stripe Key
-Stored in `~/clawd/billing-dashboard/.env` (STRIPE_SECRET_KEY)
-Also available in 1Password: "Howard Stripe Billing Automation Key"
+**Supabase Projects:**
+- Active: `aaxnoeirtjlizdhnbqbr` (Sailor Skills) — has `video_durations` table
+- Archived: `fzygakldvvzxmahkdylq` (Archived - Sailor Skills) — old diving orders
 
-### The Payment Method Bug (FIXED)
-Many Stripe customers have cards attached but no `default_payment_method` set. When we called `/invoices/{id}/pay` without specifying which card, Stripe couldn't charge. Fix: now we explicitly pass `payment_method=${paymentMethodId}` to the pay call.
+**Duration Capture Flow:**
+1. Videos named: `{boat_name} {MM-DD-YYYY} {position} ({type}).mp4`
+2. ffprobe extracts creation_time from metadata
+3. Duration = end of last video − start of first video
+4. Stored: Supabase (analytics) + Notion Admin (per-boat history)
 
-### Pricing Structure
-- Subscription rate: $4.49/ft
-- One-time rate: $5.99/ft
-- Growth surcharges: Mod→Heavy = 37.5%, Heavy = 50%, Severe = 100%
-- Capped boats: Glitch, Twilight Zone, Maiden California, O'Mar @ $99
-- Gratis: Junebug (Brian's shared boat)
-
-### Tom Purcell Situation
-- Complained about price increase ($99 → $135.82)
-- Increase was from growth surcharge (Mod→Heavy = 37.5%)
-- Brian decided to honor $99 this time as he hadn't communicated the policy
-- Voided original invoice, sent new $99 invoice
-- Brian sent explanation email about growth surcharge policy
+**Brian's Insight:** The absolute timestamps don't matter (GoPro clock may be wrong), only the *difference* matters. Duration calculation is reliable regardless of clock setting.
 
 ## Next Steps
 
-1. **Follow up on Casey's declined card** — needs updated payment method
-2. **February billing** — Robin is the only boat so far (serviced 2026-02-02, $157.15)
-3. **Monitor open invoices** — customers without cards will pay via invoice link
+1. **Test the full flow** — process some videos through BOATY, verify:
+   - Data appears in Supabase `video_durations` table
+   - Entry created in boat's Notion Admin database
+   - Analytics endpoint returns correct data
+
+2. **Backfill historical data** (optional) — could scrape existing Notion Admin databases to populate Supabase for historical analytics
+
+3. **Deploy BOATY changes** — commits made but app runs locally; may need restart
+
+4. **Dennis Zinn follow-up** — schedule his first service, do anode inspection
 
 ## Files Changed
 
-- `billing-dashboard/server/index.ts` — payment_method fix
-- `billing/january_2026_billed.json` — invoice tracking
-- `billing/january_2026_billing.csv` — January data
+**~/AI/business/sailorskills-platform/sailorskills-video:**
+- `utils/notion_sync.py` — NEW: Notion API sync for durations
+- `utils/supabase_sync.py` — NEW: Supabase logging for analytics
+- `app.py` — Updated sync functions and API endpoints
+
+**~/AI/business/sailorskills:**
+- `scripts/onboard-customer.ts` — Simplified Admin database schema
+- `marketplace/vercel.json` — Added /jennie-ann redirect
+- `pro/supabase/migrations/20260204_create_video_durations.sql` — NEW
+
+**~/clawd:**
+- Memory files updated
+
+## Open Questions
+
+- Should we backfill historical duration data from Notion?
+- Is there value in correlating duration with boat length/type for pricing insights?
 
 ## Related Docs
 
-- `memory/2026-02-03-billing-dashboard.md` — Dashboard build notes
-- `memory/2026-02-03-billing-csv-generation.md` — Notion traversal details
+- `memory/2026-02-04.md` — Session notes (needs update)
+- BOATY docs: `~/AI/business/sailorskills-platform/sailorskills-video/README.md`
