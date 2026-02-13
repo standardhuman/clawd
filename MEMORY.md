@@ -84,6 +84,22 @@ Original plan: Hiring Sarah (lives on Brian's dock) as **W-2 employee** (not 109
 
 **OpenClaw Version Mismatch:** Homebrew CLI at 2026.1.29, fnm CLI at 2026.2.12, gateway at 2026.2.3-1. Codex OAuth needs version alignment + gateway restart. Parked for now.
 
+**Anthropic API Key Swapped (Feb 13):** Replaced OAuth token (`sk-ant-oat01-...`) with real API key (`sk-ant-api03-...`) from console.anthropic.com. No more TOS ban risk. Brian needs to fund account (~$50 recommended). Key stored in 1Password as "Anthropic API Credentials".
+
+**Gemini Flash Image Fallback:** `imageModel.primary` set to `google/gemini-2.5-flash-preview`. Screenshots auto-route to Gemini when using text-only models (DeepSeek, Kimi). Free tier.
+
+**AGENTS.md Trimmed 76%:** From ~3,436 tokens to ~833 tokens. Saves ~2,600 tokens per message. Verbose sections in `docs/agent-reference.md`.
+
+**Tailscale Funnel Enabled:** Gateway accessible at `https://brians-mac-mini.taile67de1.ts.net/`. Auth mode switched to `password`. `controlUi.allowInsecureAuth` and `dangerouslyDisableDeviceAuth` enabled for Mission Control WebSocket client.
+
+**Agent-to-Agent Messaging:** `tools.agentToAgent.enabled: true`. Howard can send tasks to Jacques/Marcel via `sessions_send`.
+
+**Mission Control Dashboard:** Pixel-art animated office at `mission-control.briancline.co` (also tabbed into `dashboard.briancline.co`). Shows agent states from live gateway data. GitHub: `standardhuman/mission-control`. Password gate: "pocket".
+
+**ALSO TM-B E-Bike:** Brian has reservation for Performance model ($4,500). Rivian spinoff, Class 3, 28mph, 60-100mi range, shipping spring 2026. Part of truck+ebike combo analysis.
+
+**Dashboard Sync Script:** `~/clawd/dashboard/sync.sh` — bash+jq, no AI, auto-updates deadlines and progress.
+
 **briancline.io headshot:** Edited version at `~/AI/business/briancline-co/website/generated_imgs/2025-02-05-headshot-v3.png` (bald, softened wrinkles, slightly reduced white beard patches).
 
 ---
@@ -111,4 +127,4 @@ Planning spring trip to visit Christina Hart in Portland. No dates yet — final
 - Lien release needs filing with Clerk-Recorder ($20)
 - Blue Shield unclaimed property $100+ at sco.ca.gov
 
-*Last updated: February 13, 2026*
+*Last updated: February 13, 2026 (evening)*

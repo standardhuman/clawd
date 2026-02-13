@@ -42,6 +42,19 @@
     }
   </script>
   <div id="main-dashboard" class="dashboard">
+    <!-- Tab Bar -->
+    <nav class="view-tabs">
+      <button class="view-tab active" id="tab-dashboard" onclick="switchView('dashboard')">📊 Dashboard</button>
+      <button class="view-tab" id="tab-mc" onclick="switchView('mc')">🎮 Mission Control</button>
+    </nav>
+
+    <!-- Mission Control iframe (hidden by default) -->
+    <div id="mc-view" style="display:none; width:100%; height:calc(100vh - 52px); margin:0; padding:0;">
+      <iframe id="mc-iframe" style="width:100%; height:100%; border:none; background:#1e1e2e;" loading="lazy"></iframe>
+    </div>
+
+    <!-- Dashboard View -->
+    <div id="dashboard-view">
     <!-- Header -->
     <header class="header">
       <h1>⚡ Brian's Dashboard</h1>
@@ -89,8 +102,40 @@
 
     <!-- Agents Footer -->
     <div id="agents-bar" class="agents-bar"></div>
+  </div> <!-- end dashboard-view -->
   </div> <!-- end main-dashboard -->
 
+  <script>
+    function switchView(view) {
+      var dashView = document.getElementById('dashboard-view');
+      var mcView = document.getElementById('mc-view');
+      var tabDash = document.getElementById('tab-dashboard');
+      var tabMc = document.getElementById('tab-mc');
+      if (view === 'mc') {
+        dashView.style.display = 'none';
+        mcView.style.display = 'block';
+        tabDash.classList.remove('active');
+        tabMc.classList.add('active');
+        // Load iframe on first switch — try local first, fall back to deployed
+        var iframe = document.getElementById('mc-iframe');
+        if (!iframe.src || iframe.src === 'about:blank' || !iframe.src.includes('mission-control')) {
+          iframe.src = 'https://mission-control.briancline.co?auth=embed';
+        }
+      } else {
+        dashView.style.display = 'block';
+        mcView.style.display = 'none';
+        tabDash.classList.add('active');
+        tabMc.classList.remove('active');
+      }
+      // Remember preference
+      localStorage.setItem('dashboard-view', view);
+    }
+    // Restore last view on load
+    document.addEventListener('DOMContentLoaded', function() {
+      var lastView = localStorage.getItem('dashboard-view');
+      if (lastView === 'mc') switchView('mc');
+    });
+  </script>
   <script src="app.js"></script>
 </body>
 </html>
