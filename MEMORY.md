@@ -68,6 +68,22 @@ Original plan: Hiring Sarah (lives on Brian's dock) as **W-2 employee** (not 109
 
 **Claude Code Telegram Bridge:** Built a TOS-compliant alternative at `~/code/claude-telegram-bridge/`. Runs Claude Code natively in tmux, Telegram bot just acts as a remote keyboard. Needs a bot token from @BotFather to complete setup. Has project shortcuts: `/new ai`, `/new pro`, `/new pa`, etc.
 
+**Kimi K2.5 via NVIDIA:** Free tier configured as `nvidia/moonshotai/kimi-k2.5` (alias: `kimi`). Switch with `/model kimi` / `/model opus`. Slow (~60s responses), text-only, 200K context, 1K requests/day. Good for cost reduction but painful for interactive chat.
+
+**Local Embeddings:** Memory search switched from OpenAI to local `node-llama-cpp` + Metal GPU (Feb 13, 2026). No external API calls for semantic search. Model: `embeddinggemma-300M-Q8_0.gguf`.
+
+**Heartbeats Disabled:** Set to "0" on Feb 13, 2026. HEARTBEAT.md was empty — pure waste (~21% of API calls, ~$113/month).
+
+**Ajit TOS Ban (Feb 13, 2026):** Ajit got "only authorized for use with Claude Code" error. Same OAuth token type as Brian's. Strategy: keep running, build escape hatch, reduce API fingerprint.
+
+**Usage Audit (20 days):** $1,073 total ($546 Howard, $377 Jacques, $151 Marcel). ~$1,600/month projected. 49% cache reads, 41% cache writes, 10% output. Model diversity is the path to $60-100/month.
+
+**DeepSeek V3.2:** Configured as `deepseek/deepseek-chat` (alias: `deepseek`). $0.28/$0.42 per MTok — 95% cheaper than Opus. 128K context, tool calls supported. Also `deepseek-reasoner` (alias: `deepseek-r`). Balance topped up Feb 13. API verified working.
+
+**Model Menu (Feb 13, 2026):** `/model opus` (default), `/model kimi` (free), `/model deepseek` ($0.28/$0.42), `/model deepseek-r`. All configured and working.
+
+**OpenClaw Version Mismatch:** Homebrew CLI at 2026.1.29, fnm CLI at 2026.2.12, gateway at 2026.2.3-1. Codex OAuth needs version alignment + gateway restart. Parked for now.
+
 **briancline.io headshot:** Edited version at `~/AI/business/briancline-co/website/generated_imgs/2025-02-05-headshot-v3.png` (bald, softened wrinkles, slightly reduced white beard patches).
 
 ---

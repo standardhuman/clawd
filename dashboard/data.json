@@ -1,28 +1,28 @@
 {
-  "lastUpdated": "2026-02-13T00:01:00-08:00",
+  "lastUpdated": "2026-02-13T19:06:06-08:00",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
       "status": "OVERDUE",
       "detail": "~$12,343 estimated",
       "urgency": "critical",
-      "icon": "\ud83d\udea8",
+      "icon": "🚨",
       "details": "Estimated liability ~$9,200 + ~$3,100 penalties = ~$12,343. True 2024 gross: $67,666. CPA candidates: Dimov Tax (866-681-2140), Mary Geong (510-654-4417), Chang & Associates (510-548-1962). Howard has corrected income reconciliation ready. Next step: decide on CPA vs DIY prep."
     },
     {
       "title": "Insurance Broker Response",
       "status": "RESOLVED 2/12",
-      "detail": "USL&H required \u2014 confirmed by Novamar",
+      "detail": "USL&H required — confirmed by Novamar",
       "urgency": "low",
-      "icon": "\u23f3",
+      "icon": "⏳",
       "details": "Henry Medina (Novamar Insurance Group) confirmed 2/12/2026: USL&H endorsement IS required for in-water dive service. Standard CA state WC is NOT sufficient. To add W-2 employee to GL policy, broker needs: employee name+DOB, new gross receipts estimate, estimated payroll. RLI GL does NOT cover employee liability. Contact: Henry Medina (619) 226-8661, Henry@novamar.net. Katrina Kashishian also at Novamar now (moved from Mariners General)."
     },
     {
       "title": "1120-S Filing",
       "status": "Due March 15",
-      "detail": "31 days remaining",
+      "detail": "29 days remaining",
       "urgency": "medium",
-      "icon": "\ud83d\udccb",
+      "icon": "📋",
       "details": "S-Corp tax filing for SailorSkills LLC. Need to reconcile 2025 income/expenses, confirm officer compensation (reasonable salary test), and file by March 15 or request extension. Howard can help prep the financial summary."
     },
     {
@@ -30,15 +30,15 @@
       "status": "Expired",
       "detail": "Re-authenticate to restore email access",
       "urgency": "medium",
-      "icon": "\ud83d\udd11",
-      "details": "Gmail OAuth token expired. Need to re-authenticate through Google Cloud Console to restore Howard's email access. This blocks email checking, sending, and inbox monitoring. Quick fix \u2014 just need to go through the OAuth flow again."
+      "icon": "🔑",
+      "details": "Gmail OAuth token expired. Need to re-authenticate through Google Cloud Console to restore Howard's email access. This blocks email checking, sending, and inbox monitoring. Quick fix — just need to go through the OAuth flow again."
     },
     {
       "title": "USCG Vessel Documentation Expired",
       "status": "Expired 4/30/2025",
-      "detail": "Maris COD lapsed ~9.5 months \u2014 renew/reinstate ASAP",
+      "detail": "Maris COD lapsed ~9.5 months — renew/reinstate ASAP",
       "urgency": "high",
-      "icon": "\u2693",
+      "icon": "⚓",
       "details": "Coast Guard Certificate of Documentation for Maris (Official #1149206) expired 4/30/2025. Requires reinstatement (not just renewal) since >30 days lapsed. Cost: $26 + $5 late fee = $31. Renew online at uscg.mil/nvdc or call (800) 799-8362. Expired COD may affect insurance coverage (check RLI policy requirements). Address on file: 201 University Ave, Slip O-699."
     }
   ],
@@ -47,7 +47,7 @@
     "launchDate": "2026-03-01",
     "overallProgress": 85,
     "openIssues": 6,
-    "currentBuild": "TestFlight 14",
+    "currentBuild": "TestFlight 9",
     "weeks": [
       {
         "label": "Week 1",
@@ -98,9 +98,9 @@
       "name": "SailorSkills Pro",
       "status": "in-progress",
       "progress": 85,
-      "metric": "17 days to launch",
+      "metric": "16 days to launch",
       "nextAction": "Complete Week 4 sprint tasks",
-      "icon": "\ud83d\ude80",
+      "icon": "🚀",
       "checklist": [
         {
           "text": "Production deployment",
@@ -150,7 +150,7 @@
       "progress": 40,
       "metric": "Sarah postponed 2/11",
       "nextAction": "Revisit in a few months",
-      "icon": "\u23f8\ufe0f",
+      "icon": "⏸️",
       "checklist": [
         {
           "text": "Term sheet drafted",
@@ -199,7 +199,7 @@
       "progress": 10,
       "metric": "Need CPA",
       "nextAction": "File 2024 return, prep 1120-S",
-      "icon": "\ud83d\udcb0",
+      "icon": "💰",
       "checklist": [
         {
           "text": "Find CPA or decide DIY",
@@ -236,7 +236,7 @@
       "progress": 66,
       "metric": "2/3 domains verified",
       "nextAction": "Verify remaining domain",
-      "icon": "\ud83d\udce7",
+      "icon": "📧",
       "checklist": [
         {
           "text": "briancline.co verified",
@@ -268,12 +268,72 @@
       ]
     },
     {
+      "name": "OpenClaw Cost Optimization",
+      "status": "in-progress",
+      "progress": 75,
+      "metric": "$1,600→$50-150/mo target",
+      "nextAction": "Test DeepSeek as daily driver",
+      "icon": "⚡",
+      "checklist": [
+        {
+          "text": "Usage audit completed ($1,073/20 days)",
+          "done": true
+        },
+        {
+          "text": "Heartbeats disabled (saved ~$113/mo)",
+          "done": true
+        },
+        {
+          "text": "Local embeddings (no OpenAI dependency)",
+          "done": true
+        },
+        {
+          "text": "DeepSeek V3.2 configured ($0.28/$0.42/MTok)",
+          "done": true
+        },
+        {
+          "text": "Kimi K2.5 configured (free via NVIDIA)",
+          "done": true
+        },
+        {
+          "text": "Gemini Flash image fallback configured",
+          "done": true
+        },
+        {
+          "text": "Cowork skills ported (6 business plugins)",
+          "done": true
+        },
+        {
+          "text": "Test DeepSeek as daily driver",
+          "done": false
+        },
+        {
+          "text": "Set up Anthropic API key (cold spare)",
+          "done": false
+        },
+        {
+          "text": "Build claude-telegram-bridge escape hatch",
+          "done": false
+        }
+      ],
+      "recentActivity": [
+        "Gemini 2.5 Flash set as imageModel fallback",
+        "DeepSeek V3.2 + Reasoner configured and tested",
+        "Kimi K2.5 (NVIDIA free tier) configured",
+        "Local embeddings via node-llama-cpp + Metal GPU",
+        "Heartbeats disabled — were 21% of API calls",
+        "Full usage audit: $1,073 over 20 days",
+        "6 Anthropic Cowork plugins ported to OpenClaw skills"
+      ],
+      "docs": []
+    },
+    {
       "name": "Obsidian / Dashboard",
       "status": "just started",
       "progress": 15,
       "metric": "Just set up",
       "nextAction": "Configure Dataview queries",
-      "icon": "\ud83d\uddc2\ufe0f",
+      "icon": "🗂️",
       "checklist": [
         {
           "text": "Obsidian vault created",
@@ -338,7 +398,7 @@
       "label": "Infrastructure / Tools",
       "value": 10,
       "color": "#cba6f7",
-      "details": "Email infrastructure (Resend Pro, domain verification), Obsidian vault setup, dashboard deployment, Gmail OAuth fix needed. Howard + Claude orchestration."
+      "details": "Cost optimization: 4 model providers configured (Opus/DeepSeek/Kimi/Gemini). Heartbeats off, local embeddings. Email infra (Resend Pro). Dashboard. 6 Cowork skills ported. TOS escape hatch in progress."
     },
     {
       "label": "Personal",
@@ -348,6 +408,26 @@
     }
   ],
   "recentActivity": [
+    {
+      "text": "Gemini 2.5 Flash configured as image fallback for all models",
+      "date": "2026-02-13",
+      "details": "Set imageModel.primary to google/gemini-2.5-flash-preview. Screenshots now work on DeepSeek and Kimi (text-only models) by auto-routing to Gemini for vision analysis. Free tier."
+    },
+    {
+      "text": "Multi-model setup complete: Opus + DeepSeek + Kimi + Gemini",
+      "date": "2026-02-13",
+      "details": "Configured 4 model providers. /model opus ($5/$25 MTok), /model deepseek ($0.28/$0.42), /model kimi (free), plus Gemini Flash for images. Target: $50-150/month vs $1,600. Aliases configured for easy switching."
+    },
+    {
+      "text": "Local embeddings + heartbeats disabled — $150+/mo saved",
+      "date": "2026-02-13",
+      "details": "Switched memory search from OpenAI API to local node-llama-cpp with Metal GPU acceleration. Disabled heartbeats (were 21% of API calls, ~$113/mo wasted with empty HEARTBEAT.md). Combined savings: ~$150/month."
+    },
+    {
+      "text": "6 Anthropic Cowork plugins ported to OpenClaw skills",
+      "date": "2026-02-13",
+      "details": "Ported product-management, finance, legal, customer-support, sales, marketing skills from Anthropic's open-source Cowork plugins. 2,140 lines total. All passing validation."
+    },
     {
       "text": "Insurance broker confirmed USL&H required for dive work",
       "date": "2026-02-12",
@@ -359,7 +439,7 @@
       "details": "Digitized bullet journal to-do items into dashboard tracking system. Categories: Business, Personal, TMC. Now trackable and checkable from the web dashboard."
     },
     {
-      "text": "Sarah postponed diving venture \u2014 door left open",
+      "text": "Sarah postponed diving venture — door left open",
       "date": "2026-02-12",
       "details": "Sarah decided to postpone the diving venture for personal reasons. The door is left open for future collaboration. Term sheet and revenue model work preserved for when she's ready."
     },
@@ -422,7 +502,7 @@
   "todos": {
     "Business": [
       {
-        "text": "Email CPA \u2014 questions: (1) Should boat transfer to S-Corp? (used exclusively for biz, already deducting slip+insurance), (2) 2024 personal return prep, (3) 2025 1120-S filing (due 3/15)",
+        "text": "Email CPA — questions: (1) Should boat transfer to S-Corp? (used exclusively for biz, already deducting slip+insurance), (2) 2024 personal return prep, (3) 2025 1120-S filing (due 3/15)",
         "done": false
       },
       {
@@ -434,11 +514,11 @@
         "done": false
       },
       {
-        "text": "Mike (Southern Cross) \u2014 reply w/ portal link",
+        "text": "Mike (Southern Cross) — reply w/ portal link",
         "done": false
       },
       {
-        "text": "Ask Jacques \u2014 what's in, what's out",
+        "text": "Ask Jacques — what's in, what's out",
         "done": false
       },
       {
@@ -446,7 +526,7 @@
         "done": false
       },
       {
-        "text": "File Form 576D \u2014 boat property tax declaration (Alameda County, ~10mo overdue). Call assessor (510) 272-3836 to check status.",
+        "text": "File Form 576D — boat property tax declaration (Alameda County, ~10mo overdue). Call assessor (510) 272-3836 to check status.",
         "done": false
       },
       {
@@ -458,7 +538,7 @@
         "done": false
       },
       {
-        "text": "Renew USCG vessel documentation for Maris \u2014 expired 4/30/2025, reinstate at uscg.mil/nvdc ($31)",
+        "text": "Renew USCG vessel documentation for Maris — expired 4/30/2025, reinstate at uscg.mil/nvdc ($31)",
         "done": false
       }
     ],
@@ -468,7 +548,7 @@
         "done": false
       },
       {
-        "text": "Plan Portland trip \u2014 visit Christina Hart, aiming for spring. Finalize dates.",
+        "text": "Plan Portland trip — visit Christina Hart, aiming for spring. Finalize dates.",
         "done": false
       }
     ],
@@ -479,7 +559,7 @@
         "link": "https://www.youtube.com/watch?v=uHLAazKUU68"
       },
       {
-        "text": "Make Team No Events page \u2014 spreadsheet \u2192 calendar + invites",
+        "text": "Make Team No Events page — spreadsheet → calendar + invites",
         "done": false
       }
     ]
@@ -488,44 +568,44 @@
     {
       "date": "2026-02-11",
       "text": "Waiting on insurance broker",
-      "icon": "\u23f3",
+      "icon": "⏳",
       "status": "waiting"
     },
     {
       "date": "2026-03-01",
       "text": "Pro app launch",
-      "icon": "\ud83d\ude80",
-      "daysAway": 17
+      "icon": "🚀",
+      "daysAway": 16
     },
     {
       "date": "2026-03-15",
       "text": "1120-S filing deadline",
-      "icon": "\ud83d\udccb",
-      "daysAway": 31
+      "icon": "📋",
+      "daysAway": 29
     },
     {
       "date": "2026-03-01",
-      "text": "Sarah training \u2014 ON HOLD",
-      "icon": "\u23f8\ufe0f",
+      "text": "Sarah training — ON HOLD",
+      "icon": "⏸️",
       "note": "Revisit in a few months"
     }
   ],
   "agents": [
     {
       "name": "Howard",
-      "emoji": "\ud83e\udea8",
+      "emoji": "🪨",
       "status": "Active",
       "role": "Main assistant"
     },
     {
       "name": "Jacques",
-      "emoji": "\ud83d\udd27",
+      "emoji": "🔧",
       "status": "Active",
       "role": "Pro app dev"
     },
     {
       "name": "Marcel",
-      "emoji": "\ud83c\udfa8",
+      "emoji": "🎨",
       "status": "Configured",
       "role": "TBD"
     }
