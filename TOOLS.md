@@ -4,7 +4,7 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 
 ## Obsidian Vault
 
-**Path:** `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Brian's Vault/`
+**Path:** `~/Documents/Brian's Vault/`
 
 Key folders:
 - `SailorSkills/` — Architecture diagrams (mermaid), Business docs, Development notes

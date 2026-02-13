@@ -1,51 +1,66 @@
 # Handoff
 
-*Last updated: 2026-02-05 10:55 PST*
+*Last updated: 2026-02-05 12:55 PST*
 *Workspace: ~/clawd*
 
-## Current Task
+## Session Summary
 
-Looking up **Scott Cyphers' order** (boat: Perpetua) to onboard him into Notion.
+Successfully onboarded **Scott Cyphers (Perpetua)** and **Dennis Zinn (Jennie Ann)** to Notion, then updated the onboarding workflow and scripts.
 
-## State
+## Completed This Session
 
-**Done:**
-- Found Scott Cyphers in archived Supabase
-- Discovered order data architecture (service interval is in `customer_services` table, NOT `boats`)
-- Retrieved full order details
+### Customer Onboarding
+- ✅ **Scott Cyphers (Perpetua)** — full onboarding via script
+  - Notion entry, Admin database, Service Log
+  - YouTube playlist created
+  - Redirect deployed: `/perpetua`
+  
+- ✅ **Dennis Zinn (Jennie Ann)** — fixed incomplete setup
+  - Added missing: Dock (O), Slip (705), Interval (2)
+  - Created YouTube playlist
+  - Created Conditions database
+  - Redirect already existed: `/jennie-ann`
 
-**Ready to do:**
-- Onboard Scott Cyphers to Notion using the onboarding script
+- ✅ Both Service Log pages published and redirects working
 
-## Scott Cyphers Order Details
+### Script & Workflow Updates
+- ✅ Updated `onboard-customer.ts` to:
+  1. Create Conditions database inside Service Log
+  2. Auto-add redirects to vercel.json
+  3. Auto-deploy to Vercel
+  4. Show prominent reminder about manual Notion publish step
 
-- **Boat**: Perpetua (Corbin MK 1, 39')
-- **Marina**: Berkeley, Dock O, Slip 703
-- **Email**: scottpcyphers@gmail.com
-- **Phone**: 707-337-8436
-- **Service**: Recurring Cleaning & Anodes
-- **Interval**: Quarterly (3 months)
-- **Price**: $205.50
-- **Notes**: "All anodes need replacing. I came from fresh water. Thank you."
-- **Supabase boat_id**: 52fa0ba4-53da-42ad-aadc-be42df5e9548
-- **Created**: 2026-02-02
+- ✅ Updated workflow documentation:
+  - `docs/workflows/new-customer-onboarding.md` — now reflects implemented state
 
-## Key Discovery
+## Key Learnings Captured
 
-**SailorSkills order data architecture:**
+**Supabase order data architecture:**
 - `boats` table — boat details only (no service interval!)
-- `customer_services` table — has `frequency`, `service_type`, `base_price`, `notes`
-- `service_orders` table — has `service_interval`
-- `service_schedules` table — for recurring, has `interval_months`
+- `customer_services` table — has `frequency`, `service_type`, `base_price`
+- To find a customer's service frequency: check `customer_services` by `boat_id`
 
-**To find a customer's service frequency**: Check `customer_services` table by `boat_id`, not `boats`.
+**Notion API limitations:**
+- Cannot publish pages to web (manual step required)
+- Cannot create databases inside synced_blocks
+- Conditions database created as direct child of Service Log page instead
 
-## Next Steps
+## Files Changed
 
-1. Run onboarding script to add Scott Cyphers to Notion (3-month interval)
-2. Confirm onboarding completed successfully
+```
+~/AI/business/sailorskills/scripts/onboard-customer.ts  (Conditions DB, auto-deploy)
+~/AI/business/sailorskills/docs/workflows/new-customer-onboarding.md  (updated docs)
+~/AI/business/sailorskills/marketplace/vercel.json  (+perpetua redirect)
+```
 
-## Other Recent Orders (in customer_services)
+## Next Steps (if continuing)
 
-- Dennis Zinn — Jennie Ann, bi-monthly, $218.70 (Feb 3) — may also need onboarding
-- Greg Barnes — The circus police, one-time, $273.00 (Jan 28)
+1. Test the updated onboard script with the next new customer
+2. Consider adding: customer notification email after setup complete
+3. Consider adding: auto-trigger from Supabase webhook
+
+## Commits This Session
+
+- `94649de` feat: add /perpetua redirect for Scott Cyphers
+- `8986e77` feat(scripts): add Conditions database, auto-deploy redirects, publish reminder
+- `0b41c0c` docs: update onboarding workflow to reflect implemented script

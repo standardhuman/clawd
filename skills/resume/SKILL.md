@@ -1,6 +1,9 @@
 ---
 name: resume
 description: Resume work from a previous session. Use when starting a new session on a project, when you say "resume", or when picking up where you left off. Reads HANDOFF.md and orients to current state before continuing work.
+metadata:
+  author: Howard
+  version: 1.0.0
 ---
 
 # Resume Skill

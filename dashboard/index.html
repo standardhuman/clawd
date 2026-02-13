@@ -3,353 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Howard — Task Board</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      min-height: 100vh;
-      color: #e4e4e4;
-      padding: 20px;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #333;
-    }
-    h1 {
-      font-size: 28px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    h1 .emoji { font-size: 32px; }
-    .stats {
-      display: flex;
-      gap: 20px;
-      font-size: 14px;
-      color: #888;
-    }
-    .stat { background: #252540; padding: 8px 16px; border-radius: 8px; }
-    .stat strong { color: #4ade80; }
-    .board {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .column {
-      background: #252540;
-      border-radius: 12px;
-      padding: 16px;
-      min-height: 500px;
-    }
-    .column-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #333;
-    }
-    .column-title {
-      font-weight: 600;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .column-count {
-      background: #333;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 12px;
-      color: #888;
-    }
-    .backlog .column-header { border-color: #f59e0b; }
-    .in-progress .column-header { border-color: #3b82f6; }
-    .done .column-header { border-color: #10b981; }
-    .task {
-      background: #1a1a2e;
-      border-radius: 8px;
-      padding: 14px;
-      margin-bottom: 12px;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
-      border-left: 3px solid #444;
-    }
-    .task:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .backlog .task { border-left-color: #f59e0b; }
-    .in-progress .task { border-left-color: #3b82f6; }
-    .done .task { border-left-color: #10b981; }
-    .task-title {
-      font-weight: 500;
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
-    .task-desc {
-      font-size: 12px;
-      color: #888;
-      margin-bottom: 8px;
-    }
-    .task-meta {
-      font-size: 11px;
-      color: #666;
-    }
-    .done .task {
-      opacity: 0.7;
-    }
-    .done .task-title {
-      text-decoration: line-through;
-      color: #888;
-    }
-    .add-task {
-      background: transparent;
-      border: 2px dashed #444;
-      border-radius: 8px;
-      padding: 14px;
-      width: 100%;
-      color: #666;
-      cursor: pointer;
-      font-size: 14px;
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .add-task:hover {
-      border-color: #666;
-      color: #888;
-    }
-    /* Modal */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 100;
-    }
-    .modal-overlay.active { display: flex; }
-    .modal {
-      background: #252540;
-      border-radius: 12px;
-      padding: 24px;
-      width: 90%;
-      max-width: 400px;
-    }
-    .modal h2 {
-      margin-bottom: 20px;
-      font-size: 18px;
-    }
-    .modal input, .modal textarea, .modal select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border: 1px solid #444;
-      border-radius: 8px;
-      background: #1a1a2e;
-      color: #e4e4e4;
-      font-size: 14px;
-    }
-    .modal textarea { resize: vertical; min-height: 80px; }
-    .modal-actions {
-      display: flex;
-      gap: 12px;
-      justify-content: flex-end;
-      margin-top: 16px;
-    }
-    .btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .btn-primary { background: #3b82f6; color: white; }
-    .btn-secondary { background: #444; color: #e4e4e4; }
-    .btn:hover { opacity: 0.9; }
-    .refresh-note {
-      text-align: center;
-      color: #666;
-      font-size: 12px;
-      margin-top: 30px;
-    }
-  </style>
+  <title>Brian's Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1><span class="emoji">🪨</span> Howard — Task Board</h1>
-    <div class="stats">
-      <div class="stat">Backlog: <strong id="backlog-count">0</strong></div>
-      <div class="stat">In Progress: <strong id="progress-count">0</strong></div>
-      <div class="stat">Done: <strong id="done-count">0</strong></div>
-    </div>
-  </header>
-
-  <div class="board">
-    <div class="column backlog">
-      <div class="column-header">
-        <span class="column-title">📋 Backlog</span>
-        <span class="column-count" id="backlog-badge">0</span>
-      </div>
-      <div id="backlog-tasks"></div>
-      <button class="add-task" onclick="openModal('backlog')">+ Add Task</button>
-    </div>
-
-    <div class="column in-progress">
-      <div class="column-header">
-        <span class="column-title">🔄 In Progress</span>
-        <span class="column-count" id="progress-badge">0</span>
-      </div>
-      <div id="progress-tasks"></div>
-      <button class="add-task" onclick="openModal('in-progress')">+ Add Task</button>
-    </div>
-
-    <div class="column done">
-      <div class="column-header">
-        <span class="column-title">✅ Done</span>
-        <span class="column-count" id="done-badge">0</span>
-      </div>
-      <div id="done-tasks"></div>
-    </div>
+  <!-- Password Gate -->
+  <div id="auth-gate" style="display:flex; align-items:center; justify-content:center; height:100vh; background:#1e1e2e;">
+    <form id="auth-form" style="text-align:center;" onsubmit="return checkAuth()">
+      <div style="font-size:2rem; margin-bottom:1rem;">🪨</div>
+      <input type="password" id="auth-input" placeholder="Enter passphrase" autocomplete="off" autofocus
+        style="padding:12px 20px; border-radius:8px; border:1px solid #45475a; background:#313244; color:#cdd6f4; font-size:1rem; width:250px; text-align:center; outline:none;">
+      <div id="auth-error" style="color:#f38ba8; margin-top:8px; font-size:0.85rem; display:none;">Nope.</div>
+    </form>
   </div>
-
-  <p class="refresh-note">Tasks sync from ~/clawd/dashboard/tasks.json • Refresh to see Howard's updates</p>
-
-  <!-- Add Task Modal -->
-  <div class="modal-overlay" id="modal">
-    <div class="modal">
-      <h2>Add New Task</h2>
-      <input type="text" id="task-title" placeholder="Task title">
-      <textarea id="task-desc" placeholder="Description (optional)"></textarea>
-      <select id="task-status">
-        <option value="backlog">Backlog</option>
-        <option value="in-progress">In Progress</option>
-      </select>
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-        <button class="btn btn-primary" onclick="addTask()">Add Task</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    let tasks = [];
-
-    async function loadTasks() {
-      try {
-        const res = await fetch('/tasks.json?' + Date.now());
-        const data = await res.json();
-        tasks = data.tasks || [];
-        renderTasks();
-      } catch (e) {
-        console.error('Failed to load tasks:', e);
+    function checkAuth() {
+      var hash = 0, s = document.getElementById('auth-input').value;
+      for (var i = 0; i < s.length; i++) { hash = ((hash << 5) - hash) + s.charCodeAt(i); hash |= 0; }
+      if (hash === -982936170) {
+        localStorage.setItem('dashboard-auth', Date.now().toString());
+        document.getElementById('auth-gate').style.display = 'none';
+        document.getElementById('main-dashboard').style.display = 'block';
+        return false;
       }
+      document.getElementById('auth-error').style.display = 'block';
+      return false;
     }
-
-    function renderTasks() {
-      const backlog = tasks.filter(t => t.status === 'backlog');
-      const inProgress = tasks.filter(t => t.status === 'in-progress');
-      const done = tasks.filter(t => t.status === 'done');
-
-      document.getElementById('backlog-tasks').innerHTML = backlog.map(taskHTML).join('');
-      document.getElementById('progress-tasks').innerHTML = inProgress.map(taskHTML).join('');
-      document.getElementById('done-tasks').innerHTML = done.map(taskHTML).join('');
-
-      document.getElementById('backlog-count').textContent = backlog.length;
-      document.getElementById('progress-count').textContent = inProgress.length;
-      document.getElementById('done-count').textContent = done.length;
-      document.getElementById('backlog-badge').textContent = backlog.length;
-      document.getElementById('progress-badge').textContent = inProgress.length;
-      document.getElementById('done-badge').textContent = done.length;
+    var authTime = parseInt(localStorage.getItem('dashboard-auth') || '0');
+    var sevenDays = 7 * 24 * 60 * 60 * 1000;
+    if (authTime && (Date.now() - authTime) < sevenDays) {
+      document.getElementById('auth-gate').style.display = 'none';
+    } else {
+      localStorage.removeItem('dashboard-auth');
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('main-dashboard').style.display = 'none';
+      });
     }
-
-    function taskHTML(task) {
-      const date = new Date(task.created).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      return `
-        <div class="task" onclick="cycleStatus('${task.id}')">
-          <div class="task-title">${task.title}</div>
-          ${task.description ? `<div class="task-desc">${task.description}</div>` : ''}
-          <div class="task-meta">${date}</div>
-        </div>
-      `;
-    }
-
-    async function cycleStatus(id) {
-      const task = tasks.find(t => t.id === id);
-      if (!task) return;
-      
-      const statusOrder = ['backlog', 'in-progress', 'done'];
-      const currentIndex = statusOrder.indexOf(task.status);
-      task.status = statusOrder[(currentIndex + 1) % 3];
-      
-      if (task.status === 'done') {
-        task.completed = new Date().toISOString();
-      }
-      
-      await saveTasks();
-      renderTasks();
-    }
-
-    function openModal(status) {
-      document.getElementById('task-status').value = status;
-      document.getElementById('modal').classList.add('active');
-      document.getElementById('task-title').focus();
-    }
-
-    function closeModal() {
-      document.getElementById('modal').classList.remove('active');
-      document.getElementById('task-title').value = '';
-      document.getElementById('task-desc').value = '';
-    }
-
-    async function addTask() {
-      const title = document.getElementById('task-title').value.trim();
-      const desc = document.getElementById('task-desc').value.trim();
-      const status = document.getElementById('task-status').value;
-      
-      if (!title) return;
-
-      const newTask = {
-        id: Date.now().toString(),
-        title,
-        description: desc,
-        status,
-        created: new Date().toISOString()
-      };
-
-      tasks.push(newTask);
-      await saveTasks();
-      renderTasks();
-      closeModal();
-    }
-
-    async function saveTasks() {
-      try {
-        await fetch('/tasks.json', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tasks, lastUpdated: new Date().toISOString() }, null, 2)
-        });
-      } catch (e) {
-        console.error('Failed to save tasks:', e);
-      }
-    }
-
-    // Initial load
-    loadTasks();
-    
-    // Auto-refresh every 30 seconds
-    setInterval(loadTasks, 30000);
   </script>
+  <div id="main-dashboard" class="dashboard">
+    <!-- Header -->
+    <header class="header">
+      <h1>⚡ Brian's Dashboard</h1>
+      <div class="header-meta">
+        <span id="last-updated"></span>
+        <span class="live-time" id="live-time"></span>
+      </div>
+    </header>
+
+    <!-- Needs Attention -->
+    <div class="section-title">🔴 Needs Attention</div>
+    <div id="attention-grid" class="attention-grid"></div>
+
+    <!-- Sprint Progress -->
+    <div class="section-title">📱 SailorSkills Pro — Sprint Progress</div>
+    <div id="sprint-section" class="sprint-section card"></div>
+
+    <!-- Projects -->
+    <div class="section-title">📦 Active Projects</div>
+    <div id="project-grid" class="project-grid"></div>
+
+    <!-- To-Do Section -->
+    <div class="section-title">✅ To-Do</div>
+    <div id="todo-section" class="todo-section"></div>
+
+    <!-- Bottom: Chart + Activity + Deadlines -->
+    <div class="section-title" style="margin-bottom: 0;"></div>
+    <div class="bottom-grid" style="margin-top: 14px;">
+      <div>
+        <div class="section-title" style="margin-top: 0;">⏰ Time Allocation</div>
+        <div class="chart-container">
+          <canvas id="time-chart"></canvas>
+        </div>
+        <div id="time-detail-panel" class="time-detail-panel"></div>
+      </div>
+      <div>
+        <div class="section-title" style="margin-top: 0;">📋 Recent Activity</div>
+        <div id="activity-list" class="activity-list"></div>
+      </div>
+      <div>
+        <div class="section-title" style="margin-top: 0;">🎯 Deadlines</div>
+        <div id="deadlines-list" class="deadlines-list"></div>
+      </div>
+    </div>
+
+    <!-- Agents Footer -->
+    <div id="agents-bar" class="agents-bar"></div>
+  </div> <!-- end main-dashboard -->
+
+  <script src="app.js"></script>
 </body>
 </html>

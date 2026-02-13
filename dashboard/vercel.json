@@ -1,0 +1,20 @@
+{
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/data.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "X-Frame-Options", "value": "DENY" }
+      ]
+    }
+  ]
+}

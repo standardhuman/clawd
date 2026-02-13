@@ -1,6 +1,9 @@
 ---
 name: handoff
 description: Session continuity handoff. Use when context window is filling up, ending a work session, or when you say "handoff". Captures current state so the next agent session can pick up seamlessly. Creates/updates HANDOFF.md in the project, commits progress, and updates relevant docs.
+metadata:
+  author: Howard
+  version: 1.0.0
 ---
 
 # Handoff Skill

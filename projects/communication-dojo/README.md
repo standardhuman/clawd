@@ -10,7 +10,7 @@
 | Week | Date | Time | Topic |
 |------|------|------|-------|
 | 1 | Sun Feb 1 | 10am-12pm PT | Introduction / Foundations |
-| 2 | Sun Feb 8 | 10am-12pm PT | TBD |
+| 2 | Sun Feb 8 | 10am-12pm PT | Self-Connection & Connected Conversation Process |
 | 3 | Sun Feb 15 | 10am-12pm PT | TBD |
 | 4 | Sun Feb 22 | 10am-12pm PT | TBD |
 | 5 | Sun Mar 1 | 10am-12pm PT | TBD |
@@ -24,12 +24,16 @@
 *(Same link for all sessions)*
 
 ### Course Documents
-- [Logistics Document](https://docs.google.com/document/d/1Dw4y5dKXP6Tmud8DLlpI3qogTVoWwJ3DqV_RBeDdOJI/edit?usp=sharing)
+- [Logistics Document](https://docs.google.com/document/d/1Dw4y5dKXP6Tmud8DLlpI3qogTVoWwJ3DqV_RBeDdOJI/edit?usp=drive_link)
 - [Needs/Values/Motivations](https://www.communicationdojo.com/needs)
 - [Needs List (Alphabetical)](https://www.communicationdojo.com/needs-list-alphabetical)
+- [Feelings List](https://www.communicationdojo.com/feelings)
+- [Feelings List (Alphabetical)](https://www.communicationdojo.com/feelings-list-alphabetical)
 - [Connected Conversation Process](https://drive.google.com/file/d/1qHZny3iuXgzuu28s7WeDFI6wnVBIiKvt/view?usp=sharing)
 - [Connected Conversation Examples](https://drive.google.com/file/d/1sYrkrXKgABf5QSy85MgVwKYmk7uOvEga/view?usp=sharing)
 - [Discussion Topics + Intention Setting](https://drive.google.com/file/d/165IFhinkhr97fRhWxip2HdeCyvdWVgTV/view?usp=drive_link)
+- [Communication Habits We Try Not To Use ("fiery" document)](https://drive.google.com/file/d/12SIZP97bUt596ytuSfy2_0nw1grzEEoK/view?usp=drive_link)
+- [Alternative Ways of Communicating ("blue/green" document)](https://drive.google.com/file/d/10KXRXjFsPF2FbtM6ampQTttQdX9gInpD/view?usp=drive_link)
 
 ---
 
@@ -71,7 +75,7 @@ Ask me to:
 ## 📝 Weekly Notes
 
 - [[Week 1 - Feb 1]] — Foundations
-- [[Week 2 - Feb 8]] — TBD
+- [[Week 2 - Feb 8]] — Self-Connection & Connected Conversation Process
 - [[Week 3 - Feb 15]] — TBD
 - [[Week 4 - Feb 22]] — TBD
 - [[Week 5 - Mar 1]] — TBD
@@ -101,4 +105,4 @@ Ask me to:
 
 ---
 
-*Last updated: Feb 1, 2026*
+*Last updated: Feb 8, 2026*
