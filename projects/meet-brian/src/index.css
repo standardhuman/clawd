@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #1A1A2E;
+  --color-charcoal-light: #252540;
+  --color-cream: #F0E6D3;
+  --color-cream-dim: #C4B8A5;
+  --color-sage: #7D8C6E;
+  --color-sage-light: #A3B08F;
+  --color-sage-dark: #5E6B52;
+  --color-terracotta: #C4774C;
+  --color-terracotta-light: #D4946E;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+  background-color: #1A1A2E;
+  color: #F0E6D3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(125, 140, 110, 0.3);
+  color: #F0E6D3;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1A2E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7D8C6E;
+  border-radius: 3px;
+}
+
+/* Link base */
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
