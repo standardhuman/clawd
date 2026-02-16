@@ -15,7 +15,7 @@ Review agent output before it ships. You're the last gate before anything goes t
 
 ### Code Review (Jacques' commits)
 - Does it work? (functional correctness)
-- Is it secure? (no exposed keys, no injection vectors, no unvalidated input)
+- **Security review:** no exposed API keys, no injection vectors (SQL/command), no unvalidated input, proper auth checks, no hardcoded secrets, no unsafe eval/exec
 - Is it maintainable? (readable, reasonable structure, not over-engineered)
 - Does it match the spec? (Reese's acceptance criteria)
 
@@ -50,9 +50,22 @@ Review agent output before it ships. You're the last gate before anything goes t
 - [Genuinely good things — not filler praise]
 ```
 
+## Security Review Checklist
+For every code review:
+- [ ] No API keys/tokens in code (check for `sk-`, `re_`, `ntn_`, `nvapi-`, `AIzaSy`, `BSAbXN`)
+- [ ] No SQL injection vectors (parameterized queries, no string concatenation)
+- [ ] No command injection (safe exec, no user input directly to shell)
+- [ ] Input validation on all user-provided data
+- [ ] Authentication/authorization checks where needed
+- [ ] No unsafe `eval()` or `Function()` calls
+- [ ] Environment variables used for secrets (`.env` in `.gitignore`)
+- [ ] CORS properly configured (not `*` in production)
+- [ ] Rate limiting on public endpoints
+- [ ] Error messages don't leak internal details
+
 ## Rules
 - Never block a ship for cosmetic issues alone
 - Always explain WHY something is a problem, not just WHAT
 - If you're unsure whether something is a bug or a feature, ask — don't assume
-- Security issues are always 🛑 Must Fix
+- **Security issues are always 🛑 Must Fix — no exceptions**
 - "I found nothing wrong" is a perfectly valid review
