@@ -127,4 +127,30 @@ Planning spring trip to visit Christina Hart in Portland. No dates yet — final
 - Lien release needs filing with Clerk-Recorder ($20)
 - Blue Shield unclaimed property $100+ at sco.ca.gov
 
-*Last updated: February 13, 2026 (evening)*
+## Brian as Teacher & Sailor
+- Teaching sailing is what's brought him the most joy over ~20 years
+- People hire him to teach them to sail oceans aboard their own boats
+- Specialty: helping people overcome fear and unlock confidence in **close quarters maneuvering** (docking, tight spaces, high winds, strong currents)
+- Very skilled at piloting all kinds of vessels (tiny sailboats to large ferries) in challenging conditions
+- Accesses a calm, focused state under pressure — handles it exceptionally well
+- Greatest satisfaction: leading others to unlock their potential in those spaces
+- Derives deep meaning from supporting and serving others: holding space, guiding, teaching
+
+### Close Quarters Metaphor (Brian's insight, Feb 14 2026)
+Everyone thinks crossing an ocean is the hardest part of sailing. It's actually the close quarters maneuvering — tight spaces, near hard things. Brian sees this as a metaphor for relationships: the small moments, the closeness, the intimacy — navigating safely in tight spaces — are the unexpected building blocks that lead to the ocean crossings together. This is also literally what he teaches professionally.
+
+## Intentional Partner Search (Feb 2026)
+- Decided to get off dating apps permanently — sees them as the same dopamine treadmill as social media
+- Meeting people through friends, TMC, events, workshops (attachment workshop, improv, cuddle party, Frontier Tower)
+- Values: someone passionate about something, someone he can be in awe of, active, curious about themselves, real connection over convenience
+- Meet page: meet.briancline.co
+- Applying to Frontier Tower in SF (referred by James Kirsch)
+
+## Appreciating Serenity (Feb 2026)
+- Built appreciatingserenity.com — resource on dopamine, digital addiction, reclaiming attention
+- Jimmy Carr quote: "Boredom is just unappreciated serenity"
+- Brian's practice: phones off at 7pm (Circle start), back on 7am Thursday
+- Amazon affiliate tag: sail01-20
+- GitHub: standardhuman/appreciating-serenity
+
+*Last updated: February 14, 2026 (morning)*

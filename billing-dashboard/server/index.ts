@@ -513,6 +513,242 @@ app.post('/api/billing/:month/reset', (req, res) => {
   res.json({ success: true, resetCount, boats });
 });
 
+// ==================== EMAIL ENDPOINTS ====================
+
+const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
+const FROM_EMAIL = 'brian@sailorskills.com';
+
+// Get all clients with email addresses (for email panel)
+app.get('/api/email/clients', async (req, res) => {
+  const token = getNotionToken();
+  if (!token) return res.status(400).json({ error: 'Notion token not configured' });
+
+  try {
+    let allResults: any[] = [];
+    let hasMore = true;
+    let startCursor: string | undefined;
+
+    while (hasMore) {
+      const response = await fetch(`https://api.notion.com/v1/databases/${NOTION_DB_ID}/query`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Notion-Version': '2022-06-28',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          filter: {
+            or: [
+              { property: 'Plan', select: { equals: 'Subbed' } },
+              { property: 'Plan', select: { equals: 'One-time' } }
+            ]
+          },
+          page_size: 100,
+          ...(startCursor && { start_cursor: startCursor })
+        })
+      });
+
+      const data = await response.json();
+      allResults = allResults.concat(data.results || []);
+      hasMore = data.has_more;
+      startCursor = data.next_cursor;
+    }
+
+    const clients = allResults
+      .map((page: any) => {
+        const props = page.properties;
+        return {
+          boat: props.Boat?.title?.[0]?.plain_text || 'Unknown',
+          firstName: props['First Name']?.rich_text?.[0]?.plain_text || '',
+          email: props.Email?.email || null,
+          plan: props.Plan?.select?.name || '',
+          startTime: props['Start Time']?.date?.start || null,
+          serviceLogUrl: props['Service Log']?.url || null
+        };
+      })
+      .filter((c: any) => c.email);
+
+    res.json({ clients });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to load clients' });
+  }
+});
+
+// Email templates
+function renderUpcomingEmail(vars: { firstName: string; boatName: string; monthName: string; seasonalMessage: string; closingMessage: string }) {
+  return {
+    subject: `${vars.boatName} dive service is coming up!`,
+    body: `Hi ${vars.firstName},
+
+${vars.seasonalMessage}
+
+Just a heads-up that ${vars.boatName} is scheduled for dive service this ${vars.monthName}. I'll be in touch closer to the date to coordinate timing.
+
+${vars.closingMessage}
+
+Thanks,
+Brian
+SailorSkills.com | BrianCline.co`
+  };
+}
+
+function renderPostServiceEmail(vars: { firstName: string; boatName: string; serviceDate: string; serviceLog: string; note: string; seasonalMessage: string; closingMessage: string }) {
+  const datePart = vars.serviceDate
+    ? new Date(vars.serviceDate + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+    : 'recently';
+
+  let body = `Hi ${vars.firstName},
+
+${vars.seasonalMessage}
+
+${vars.boatName} was serviced on ${datePart}. Everything is looking good down there!`;
+
+  if (vars.serviceLog) {
+    body += `\n\nYou can view the service log here: ${vars.serviceLog}`;
+  }
+
+  if (vars.note) {
+    body += `\n\n${vars.note}`;
+  }
+
+  body += `\n\n${vars.closingMessage}
+
+Thanks,
+Brian
+SailorSkills.com | BrianCline.co`;
+
+  return {
+    subject: `${vars.boatName} has been serviced!`,
+    body
+  };
+}
+
+// Get full client info including service log URL from Notion
+async function getFullClientInfo(boatName: string): Promise<{ email: string | null, ownerName: string | null, serviceLogUrl: string | null, firstName: string | null }> {
+  const token = getNotionToken();
+  if (!token) return { email: null, ownerName: null, serviceLogUrl: null, firstName: null };
+
+  try {
+    const response = await fetch(`https://api.notion.com/v1/databases/${NOTION_DB_ID}/query`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Notion-Version': '2022-06-28',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        filter: { property: 'Boat', title: { equals: boatName } }
+      })
+    });
+
+    const data = await response.json();
+    const props = data.results?.[0]?.properties;
+    if (!props) return { email: null, ownerName: null, serviceLogUrl: null, firstName: null };
+
+    const email = props.Email?.email || null;
+    const firstName = props['First Name']?.rich_text?.[0]?.plain_text || null;
+    const lastName = props['Last Name']?.rich_text?.[0]?.plain_text || '';
+    const ownerName = [firstName, lastName].filter(Boolean).join(' ') || null;
+    const serviceLogUrl = props['Service Log']?.url || null;
+
+    return { email, ownerName, serviceLogUrl, firstName };
+  } catch {
+    return { email: null, ownerName: null, serviceLogUrl: null, firstName: null };
+  }
+}
+
+// Preview emails
+app.post('/api/email/preview', async (req, res) => {
+  const token = getNotionToken();
+  if (!token) return res.status(400).json({ error: 'Notion token not configured' });
+
+  const { template, boats, seasonalMessage, closingMessage, serviceDate, note, monthName } = req.body;
+
+  try {
+    // Get client info for each boat (including per-boat service log URL)
+    const previews = await Promise.all((boats as string[]).map(async (boatName) => {
+      const { email, ownerName, serviceLogUrl, firstName: fn } = await getFullClientInfo(boatName);
+      const firstName = fn || ownerName?.split(' ')[0] || 'there';
+
+      let rendered;
+      if (template === 'post-service') {
+        rendered = renderPostServiceEmail({
+          firstName, boatName, serviceDate, serviceLog: serviceLogUrl || '', note, seasonalMessage, closingMessage
+        });
+      } else {
+        rendered = renderUpcomingEmail({
+          firstName, boatName, monthName: monthName || new Date().toLocaleString('en-US', { month: 'long' }),
+          seasonalMessage, closingMessage
+        });
+      }
+
+      return {
+        boat: boatName,
+        firstName,
+        email: email || '',
+        subject: rendered.subject,
+        body: rendered.body,
+        serviceLogUrl,
+        status: 'pending' as const
+      };
+    }));
+
+    res.json({ previews: previews.filter(p => p.email) });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to generate previews' });
+  }
+});
+
+// Send a single email via Resend
+app.post('/api/email/send', async (req, res) => {
+  if (!RESEND_API_KEY) {
+    return res.status(400).json({ error: 'Resend API key not configured. Add RESEND_API_KEY to .env' });
+  }
+
+  const { to, subject, body, boat } = req.body;
+
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: `Brian <${FROM_EMAIL}>`,
+        to: [to],
+        subject,
+        text: body
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log(`Email sent to ${to} for ${boat}: ${data.id}`);
+      res.json({ success: true, id: data.id });
+    } else {
+      console.error(`Email failed for ${boat}:`, data);
+      res.json({ success: false, error: data.message || 'Send failed' });
+    }
+  } catch (err) {
+    console.error(`Email error for ${boat}:`, err);
+    res.status(500).json({ error: 'Failed to send email' });
+  }
+});
+
+// Get available templates
+app.get('/api/email/templates', (req, res) => {
+  res.json({
+    templates: [
+      { id: 'upcoming', name: 'Upcoming Service', description: 'Notify clients about upcoming monthly service' },
+      { id: 'post-service', name: 'Post-Service', description: 'Follow up after completing service' }
+    ]
+  });
+});
+
 const PORT = process.env.PORT || 3001;
 const HOST = '0.0.0.0';  // Bind to all interfaces for Tailscale access
 app.listen(PORT, HOST, () => {
