@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-13T19:06:06-08:00",
+  "lastUpdated": "2026-02-16T09:39:00-08:00",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
@@ -10,20 +10,12 @@
       "details": "Estimated liability ~$9,200 + ~$3,100 penalties = ~$12,343. True 2024 gross: $67,666. CPA candidates: Dimov Tax (866-681-2140), Mary Geong (510-654-4417), Chang & Associates (510-548-1962). Howard has corrected income reconciliation ready. Next step: decide on CPA vs DIY prep."
     },
     {
-      "title": "Insurance Broker Response",
-      "status": "RESOLVED 2/12",
-      "detail": "USL&H required — confirmed by Novamar",
-      "urgency": "low",
-      "icon": "⏳",
-      "details": "Henry Medina (Novamar Insurance Group) confirmed 2/12/2026: USL&H endorsement IS required for in-water dive service. Standard CA state WC is NOT sufficient. To add W-2 employee to GL policy, broker needs: employee name+DOB, new gross receipts estimate, estimated payroll. RLI GL does NOT cover employee liability. Contact: Henry Medina (619) 226-8661, Henry@novamar.net. Katrina Kashishian also at Novamar now (moved from Mariners General)."
-    },
-    {
       "title": "1120-S Filing",
       "status": "Due March 15",
-      "detail": "29 days remaining",
+      "detail": "27 days remaining",
       "urgency": "medium",
       "icon": "📋",
-      "details": "S-Corp tax filing for SailorSkills LLC. Need to reconcile 2025 income/expenses, confirm officer compensation (reasonable salary test), and file by March 15 or request extension. Howard can help prep the financial summary."
+      "details": "S-Corp tax filing for SailorSkills LLC. Need to reconcile 2025 income/expenses, confirm officer compensation (reasonable salary test), and file by March 15 or request extension."
     },
     {
       "title": "Gmail OAuth",
@@ -31,15 +23,23 @@
       "detail": "Re-authenticate to restore email access",
       "urgency": "medium",
       "icon": "🔑",
-      "details": "Gmail OAuth token expired. Need to re-authenticate through Google Cloud Console to restore Howard's email access. This blocks email checking, sending, and inbox monitoring. Quick fix — just need to go through the OAuth flow again."
+      "details": "Gmail OAuth token expired. Run: gog auth add standardhuman@gmail.com --services gmail"
     },
     {
       "title": "USCG Vessel Documentation Expired",
       "status": "Expired 4/30/2025",
-      "detail": "Maris COD lapsed ~9.5 months — renew/reinstate ASAP",
+      "detail": "Maris COD lapsed ~9.5 months — reinstate ASAP",
       "urgency": "high",
       "icon": "⚓",
-      "details": "Coast Guard Certificate of Documentation for Maris (Official #1149206) expired 4/30/2025. Requires reinstatement (not just renewal) since >30 days lapsed. Cost: $26 + $5 late fee = $31. Renew online at uscg.mil/nvdc or call (800) 799-8362. Expired COD may affect insurance coverage (check RLI policy requirements). Address on file: 201 University Ave, Slip O-699."
+      "details": "Coast Guard Certificate of Documentation for Maris expired 4/30/2025. Requires reinstatement ($31). Renew at uscg.mil/nvdc or call (800) 799-8362."
+    },
+    {
+      "title": "macOS Firewall",
+      "status": "ENABLED ✅",
+      "detail": "Turned on Feb 16",
+      "urgency": "low",
+      "icon": "🛡️",
+      "details": "macOS Application Firewall enabled 2/16/2026 during security healthcheck."
     }
   ],
   "sprintProgress": {
@@ -47,7 +47,7 @@
     "launchDate": "2026-03-01",
     "overallProgress": 85,
     "openIssues": 6,
-    "currentBuild": "TestFlight 9",
+    "currentBuild": "TestFlight 18",
     "weeks": [
       {
         "label": "Week 1",
@@ -98,7 +98,7 @@
       "name": "SailorSkills Pro",
       "status": "in-progress",
       "progress": 85,
-      "metric": "16 days to launch",
+      "metric": "13 days to launch",
       "nextAction": "Complete Week 4 sprint tasks",
       "icon": "🚀",
       "checklist": [
@@ -137,10 +137,6 @@
         {
           "label": "TODO.md",
           "url": "https://github.com/standardhuman/sailorskills-pro/blob/main/pro/TODO.md"
-        },
-        {
-          "label": "Architecture Diagram",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Architecture-backup-20260127/ecosystem-diagram"
         }
       ]
     },
@@ -148,7 +144,7 @@
       "name": "Sarah Hiring",
       "status": "on-hold",
       "progress": 40,
-      "metric": "Sarah postponed 2/11",
+      "metric": "Postponed 2/11",
       "nextAction": "Revisit in a few months",
       "icon": "⏸️",
       "checklist": [
@@ -170,26 +166,14 @@
         }
       ],
       "recentActivity": [
-        "Sarah postponed diving venture",
-        "Term sheet cost analysis added",
-        "Revenue model built"
+        "Sarah postponed — needs stable income first",
+        "USL&H confirmed required by Novamar broker",
+        "Term sheet cost analysis completed"
       ],
       "docs": [
         {
           "label": "Term Sheet",
           "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Employee%20Expansion/Sarah%20Contractor%20Term%20Sheet"
-        },
-        {
-          "label": "Revenue Model",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Employee%20Expansion/Revenue%20Model"
-        },
-        {
-          "label": "Piece-Rate Compliance",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Employee%20Expansion/Piece-Rate%20Compliance"
-        },
-        {
-          "label": "W-2 vs 1099",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Employee%20Expansion/W-2%20vs%201099%20Comparison"
         }
       ]
     },
@@ -210,7 +194,7 @@
           "done": false
         },
         {
-          "text": "Prep 1120-S filing",
+          "text": "Prep 1120-S filing (due 3/15)",
           "done": false
         },
         {
@@ -223,57 +207,15 @@
         "CPA candidates identified",
         "Penalty estimates calculated"
       ],
-      "docs": [
-        {
-          "label": "Tax Notes",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Employee%20Expansion/Tax%20Impact%20on%20Cash%20Flow"
-        }
-      ]
+      "docs": []
     },
     {
-      "name": "Email Infrastructure",
+      "name": "OpenClaw Security & Cost",
       "status": "in-progress",
-      "progress": 66,
-      "metric": "2/3 domains verified",
-      "nextAction": "Verify remaining domain",
-      "icon": "📧",
-      "checklist": [
-        {
-          "text": "briancline.co verified",
-          "done": true
-        },
-        {
-          "text": "sailorskills.com verified",
-          "done": true
-        },
-        {
-          "text": "needsarenormal.com transfer",
-          "done": false
-        },
-        {
-          "text": "Resend Pro configured",
-          "done": true
-        }
-      ],
-      "recentActivity": [
-        "Resend Pro setup complete",
-        "briancline.co domain verified",
-        "needsarenormal.com transfer initiated"
-      ],
-      "docs": [
-        {
-          "label": "Resend Dashboard",
-          "url": "https://resend.com/domains"
-        }
-      ]
-    },
-    {
-      "name": "OpenClaw Cost Optimization",
-      "status": "in-progress",
-      "progress": 75,
-      "metric": "$1,600→$50-150/mo target",
+      "progress": 85,
+      "metric": "Hardened 2/16",
       "nextAction": "Test DeepSeek as daily driver",
-      "icon": "⚡",
+      "icon": "🔒",
       "checklist": [
         {
           "text": "Usage audit completed ($1,073/20 days)",
@@ -288,85 +230,64 @@
           "done": true
         },
         {
-          "text": "DeepSeek V3.2 configured ($0.28/$0.42/MTok)",
+          "text": "Multi-model: DeepSeek + Kimi + Gemini Flash",
           "done": true
         },
         {
-          "text": "Kimi K2.5 configured (free via NVIDIA)",
+          "text": "Tailscale funnel → serve (tailnet-only)",
           "done": true
         },
         {
-          "text": "Gemini Flash image fallback configured",
+          "text": "Control UI auth hardened",
           "done": true
         },
         {
-          "text": "Cowork skills ported (6 business plugins)",
+          "text": "Anthropic OAuth token → 1Password injection",
           "done": true
         },
         {
-          "text": "Test DeepSeek as daily driver",
+          "text": "macOS firewall enabled",
+          "done": true
+        },
+        {
+          "text": "Move remaining API keys to 1Password",
           "done": false
         },
         {
-          "text": "Set up Anthropic API key (cold spare)",
-          "done": false
-        },
-        {
-          "text": "Build claude-telegram-bridge escape hatch",
+          "text": "Move gateway password to env var",
           "done": false
         }
       ],
       "recentActivity": [
-        "Gemini 2.5 Flash set as imageModel fallback",
-        "DeepSeek V3.2 + Reasoner configured and tested",
-        "Kimi K2.5 (NVIDIA free tier) configured",
-        "Local embeddings via node-llama-cpp + Metal GPU",
-        "Heartbeats disabled — were 21% of API calls",
-        "Full usage audit: $1,073 over 20 days",
-        "6 Anthropic Cowork plugins ported to OpenClaw skills"
+        "Security healthcheck — 1Password secret injection",
+        "Tailscale switched to serve (tailnet-only)",
+        "Control UI: device auth re-enabled",
+        "macOS firewall enabled",
+        "Stale config key cleaned"
       ],
       "docs": []
     },
     {
-      "name": "Obsidian / Dashboard",
-      "status": "just started",
-      "progress": 15,
-      "metric": "Just set up",
-      "nextAction": "Configure Dataview queries",
-      "icon": "🗂️",
+      "name": "Appreciating Serenity",
+      "status": "launched",
+      "progress": 100,
+      "metric": "Live at appreciatingserenity.com",
+      "nextAction": "Content updates as needed",
+      "icon": "🧘",
       "checklist": [
         {
-          "text": "Obsidian vault created",
+          "text": "Site built and deployed",
           "done": true
         },
         {
-          "text": "Dataview plugin installed",
+          "text": "Amazon affiliate configured",
           "done": true
-        },
-        {
-          "text": "Web dashboard deployed",
-          "done": true
-        },
-        {
-          "text": "Dataview queries configured",
-          "done": false
-        },
-        {
-          "text": "Dashboard interactive features",
-          "done": false
         }
       ],
       "recentActivity": [
-        "Web dashboard deployed to dashboard.briancline.co",
-        "Obsidian Dataview + Charts installed",
-        "Dashboard built in Obsidian"
+        "Site launched at appreciatingserenity.com"
       ],
-      "docs": [
-        {
-          "label": "Dashboard Repo",
-          "url": "https://github.com/standardhuman/dashboard"
-        }
-      ]
+      "docs": []
     }
   ],
   "timeAllocation": [
@@ -374,135 +295,85 @@
       "label": "SailorSkills Pro Dev",
       "value": 35,
       "color": "#89b4fa",
-      "details": "Jacques building Pro app (TestFlight Build 18). Recent: voice data transform, auto-calculated billing, anode management. 17 days to March 1 launch."
+      "details": "Jacques building Pro app (TestFlight Build 18). 13 days to March 1 launch."
     },
     {
       "label": "Hull Cleaning (diving)",
       "value": 30,
       "color": "#a6e3a1",
-      "details": "Active hull cleaning operations in Oakland/Berkeley marina. Regular clients: Scott Cyphers, Dennis Zinn. Revenue stream while building Pro app."
+      "details": "Active hull cleaning operations in Oakland/Berkeley marina. 15-20 hrs/week."
     },
     {
       "label": "Business / Planning",
       "value": 15,
       "color": "#f9e2af",
-      "details": "Sarah's hiring/term sheet analysis, revenue modeling, insurance research, strategic planning for SailorSkills expansion. Mariners General WC quote pending."
+      "details": "Sarah hiring on hold. Insurance research complete (USL&H required). Strategic planning."
     },
     {
       "label": "Taxes / Finance",
       "value": 5,
       "color": "#f38ba8",
-      "details": "2024 tax return overdue (~$12,343 estimated). 1120-S due March 15. Need to find CPA or prepare DIY. Income reconciliation done."
+      "details": "2024 tax return overdue (~$12,343 estimated). 1120-S due March 15. Need CPA."
     },
     {
-      "label": "Infrastructure / Tools",
+      "label": "Infrastructure / Security",
       "value": 10,
       "color": "#cba6f7",
-      "details": "Cost optimization: 4 model providers configured (Opus/DeepSeek/Kimi/Gemini). Heartbeats off, local embeddings. Email infra (Resend Pro). Dashboard. 6 Cowork skills ported. TOS escape hatch in progress."
+      "details": "Security hardening (Feb 16): Tailscale serve, 1Password injection, firewall. 4 model providers. Cost target $50-150/mo."
     },
     {
       "label": "Personal",
       "value": 5,
       "color": "#94e2d5",
-      "details": "Car maintenance (smog check needed), TMC group coordination, personal errands. Keeping it minimal during sprint push."
+      "details": "Portland trip planning (Christina Hart). Meet page live. Appreciating Serenity launched."
     }
   ],
   "recentActivity": [
     {
-      "text": "Gemini 2.5 Flash configured as image fallback for all models",
+      "text": "Security healthcheck: Tailscale serve, 1Password, firewall, Control UI hardened",
+      "date": "2026-02-16",
+      "details": "Full security audit. Switched Tailscale from funnel→serve (tailnet-only). Anthropic OAuth token now injected via 1Password CLI (never touches disk). macOS firewall enabled. Control UI device auth re-enabled."
+    },
+    {
+      "text": "Appreciating Serenity launched at appreciatingserenity.com",
+      "date": "2026-02-14",
+      "details": "Resource on dopamine, digital addiction, reclaiming attention. Amazon affiliate tag: sail01-20."
+    },
+    {
+      "text": "Gemini 2.5 Flash configured as image fallback",
       "date": "2026-02-13",
-      "details": "Set imageModel.primary to google/gemini-2.5-flash-preview. Screenshots now work on DeepSeek and Kimi (text-only models) by auto-routing to Gemini for vision analysis. Free tier."
+      "details": "Screenshots auto-route to Gemini when using text-only models (DeepSeek, Kimi). Free tier."
     },
     {
       "text": "Multi-model setup complete: Opus + DeepSeek + Kimi + Gemini",
       "date": "2026-02-13",
-      "details": "Configured 4 model providers. /model opus ($5/$25 MTok), /model deepseek ($0.28/$0.42), /model kimi (free), plus Gemini Flash for images. Target: $50-150/month vs $1,600. Aliases configured for easy switching."
+      "details": "/model opus ($5/$25 MTok), /model deepseek ($0.28/$0.42), /model kimi (free). Target: $50-150/month."
     },
     {
       "text": "Local embeddings + heartbeats disabled — $150+/mo saved",
       "date": "2026-02-13",
-      "details": "Switched memory search from OpenAI API to local node-llama-cpp with Metal GPU acceleration. Disabled heartbeats (were 21% of API calls, ~$113/mo wasted with empty HEARTBEAT.md). Combined savings: ~$150/month."
-    },
-    {
-      "text": "6 Anthropic Cowork plugins ported to OpenClaw skills",
-      "date": "2026-02-13",
-      "details": "Ported product-management, finance, legal, customer-support, sales, marketing skills from Anthropic's open-source Cowork plugins. 2,140 lines total. All passing validation."
+      "details": "Switched memory search to local node-llama-cpp with Metal GPU. Disabled heartbeats (21% of API calls)."
     },
     {
       "text": "Insurance broker confirmed USL&H required for dive work",
       "date": "2026-02-12",
-      "details": "Henry Medina at Novamar confirmed that in-water dive service requires WC policy with USL&H endorsement, not standard state WC. Estimated cost ~$3,500-4,800/yr for $36K-48K payroll. Also confirmed RLI GL does not cover employee liability. Katrina moved from Mariners General to Novamar."
-    },
-    {
-      "text": "Bullet journal to-dos integrated into tracking",
-      "date": "2026-02-12",
-      "details": "Digitized bullet journal to-do items into dashboard tracking system. Categories: Business, Personal, TMC. Now trackable and checkable from the web dashboard."
+      "details": "Henry Medina at Novamar confirmed USL&H endorsement required. Estimated ~$3,500-4,800/yr."
     },
     {
       "text": "Sarah postponed diving venture — door left open",
-      "date": "2026-02-12",
-      "details": "Sarah decided to postpone the diving venture for personal reasons. The door is left open for future collaboration. Term sheet and revenue model work preserved for when she's ready."
+      "date": "2026-02-11",
+      "details": "Sarah decided to postpone. Needs stable income first. Term sheet and revenue model preserved."
     },
     {
       "text": "Web dashboard deployed to dashboard.briancline.co",
       "date": "2026-02-12",
-      "details": "Static dashboard deployed via Vercel with auto-deploy from GitHub. Catppuccin Mocha theme, Chart.js donut, password-gated. Data-driven via data.json."
-    },
-    {
-      "text": "Insurance email sent to Mariners General",
-      "date": "2026-02-11",
-      "details": "Sent inquiry about workers compensation classification type for hull cleaning operations. Need to know WC type for insurance planning regardless of Sarah's decision."
-    },
-    {
-      "text": "Dashboard built in Obsidian",
-      "date": "2026-02-11",
-      "details": "Set up Obsidian vault with Dataview and Charts plugins. Created initial dashboard views for project tracking. Decided to also build a web version for mobile access."
-    },
-    {
-      "text": "Term sheet cost analysis added",
-      "date": "2026-02-11",
-      "details": "Added Section 16 to Sarah's term sheet: per-boat economics at 50% and 45%, monthly projections, strategic considerations for each rate."
-    },
-    {
-      "text": "Resend Pro setup, briancline.co verified",
-      "date": "2026-02-11",
-      "details": "Set up Resend Pro for transactional email. Verified briancline.co domain with DNS records. Two of three domains now verified."
-    },
-    {
-      "text": "needsarenormal.com transfer initiated",
-      "date": "2026-02-11",
-      "details": "Started domain transfer for needsarenormal.com. Waiting for transfer to complete before DNS verification for email sending."
-    },
-    {
-      "text": "Obsidian Dataview + Charts installed",
-      "date": "2026-02-11",
-      "details": "Installed Dataview and Charts community plugins in Obsidian. Configured for project tracking queries and visual progress charts."
-    },
-    {
-      "text": "Email to broker re: WC type",
-      "date": "2026-02-11",
-      "details": "Follow-up email to insurance broker about workers compensation classification type for marine hull cleaning services."
-    },
-    {
-      "text": "TestFlight Build 14",
-      "date": "2026-02-10",
-      "details": "Submitted TestFlight Build 14 for SailorSkills Pro. Includes latest UI improvements and bug fixes from Week 3 sprint."
-    },
-    {
-      "text": "Revenue model built for Sarah",
-      "date": "2026-02-09",
-      "details": "Built comprehensive revenue model for Sarah's diving venture: per-boat economics, monthly projections at different rates, break-even analysis."
-    },
-    {
-      "text": "Customer onboarding: Scott Cyphers, Dennis Zinn",
-      "date": "2026-02-05",
-      "details": "Onboarded two new hull cleaning customers. Set up in system with boat details, scheduling preferences, and billing information."
+      "details": "Static dashboard via Vercel with auto-deploy. Catppuccin Mocha theme, password-gated."
     }
   ],
   "todos": {
     "Business": [
       {
-        "text": "Email CPA — questions: (1) Should boat transfer to S-Corp? (used exclusively for biz, already deducting slip+insurance), (2) 2024 personal return prep, (3) 2025 1120-S filing (due 3/15)",
+        "text": "Email CPA — questions: (1) Boat transfer to S-Corp? (2) 2024 personal return prep, (3) 2025 1120-S filing (due 3/15)",
         "done": false
       },
       {
@@ -518,27 +389,19 @@
         "done": false
       },
       {
-        "text": "Ask Jacques — what's in, what's out",
+        "text": "File Form 576D — boat property tax (call assessor 510-272-3836)",
         "done": false
       },
       {
-        "text": "Write sprint status on white board",
+        "text": "Claim Blue Shield unclaimed property via sco.ca.gov ($100+)",
         "done": false
       },
       {
-        "text": "File Form 576D — boat property tax declaration (Alameda County, ~10mo overdue). Call assessor (510) 272-3836 to check status.",
+        "text": "Mail lien release + $20 to Clerk-Recorder",
         "done": false
       },
       {
-        "text": "Claim unclaimed property from Blue Shield via sco.ca.gov ($100+, insurance benefit/claim payment)",
-        "done": false
-      },
-      {
-        "text": "Mail lien release form + $20 check to Clerk-Recorder (1106 Madison St, Oakland 94607) to clear boat tax lien from records",
-        "done": false
-      },
-      {
-        "text": "Renew USCG vessel documentation for Maris — expired 4/30/2025, reinstate at uscg.mil/nvdc ($31)",
+        "text": "Renew USCG vessel documentation for Maris ($31, uscg.mil/nvdc)",
         "done": false
       }
     ],
@@ -548,7 +411,7 @@
         "done": false
       },
       {
-        "text": "Plan Portland trip — visit Christina Hart, aiming for spring. Finalize dates.",
+        "text": "Plan Portland trip — visit Christina Hart, spring",
         "done": false
       }
     ],
@@ -566,28 +429,16 @@
   },
   "deadlines": [
     {
-      "date": "2026-02-11",
-      "text": "Waiting on insurance broker",
-      "icon": "⏳",
-      "status": "waiting"
-    },
-    {
       "date": "2026-03-01",
       "text": "Pro app launch",
       "icon": "🚀",
-      "daysAway": 16
+      "daysAway": 13
     },
     {
       "date": "2026-03-15",
       "text": "1120-S filing deadline",
       "icon": "📋",
-      "daysAway": 29
-    },
-    {
-      "date": "2026-03-01",
-      "text": "Sarah training — ON HOLD",
-      "icon": "⏸️",
-      "note": "Revisit in a few months"
+      "daysAway": 27
     }
   ],
   "agents": [
@@ -599,7 +450,7 @@
     },
     {
       "name": "Jacques",
-      "emoji": "🔧",
+      "emoji": "🤿",
       "status": "Active",
       "role": "Pro app dev"
     },
@@ -607,7 +458,7 @@
       "name": "Marcel",
       "emoji": "🎨",
       "status": "Configured",
-      "role": "TBD"
+      "role": "Creative Director"
     }
   ]
 }
