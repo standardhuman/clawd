@@ -155,4 +155,35 @@ Everyone thinks crossing an ocean is the hardest part of sailing. It's actually 
 - Amazon affiliate tag: sail01-20
 - GitHub: standardhuman/appreciating-serenity
 
+## Agent Org Structure (Feb 15-16, 2026)
+
+Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster at `~/clawd/agents/README.md`.
+
+**Core Team (full agents, own workspaces):**
+- 🪨 Howard — Chief of Staff (Opus 4.6, ~/clawd)
+- 🤿 Jacques — Dev Partner (DeepSeek, ~/clawd-jacques)
+- 🎨 Marcel — Creative Director (DeepSeek, ~/clawd-marcel)
+
+**Scheduled (cron):**
+- 🔍 Noa — Research Analyst (midnight daily → ~/clawd/reports/YYYY-MM-DD-research.md)
+- 💡 Kai — Strategist (6:30am daily → pitch announced to Brian)
+
+**On-Demand (Howard spawns via sessions_spawn with persona context):**
+- Blake (QA), Quinn (Ops & Finance), Sage (Sales), Milo (Marketing), Reese (Product), Avery (Legal), Cyrus (Security)
+
+**Pipelines:**
+- Innovation: Noa → Kai → Brian → Reese → Jacques → Blake → Cyrus
+- Sales: Sage → Quinn
+- Marketing: Milo → Marcel
+
+**Spawn pattern:** "Read ~/clawd/agents/{name}/PERSONA.md and follow its instructions. Then: {task}"
+
+**Avatars:** Generated Feb 16. Final style: cute bobblehead robots (Wall-E inspired), nautical ship crew theme, each at their station. Canonical files: `~/clawd/avatars/{name}-robot-v2.png`. Style guide + visual details in `~/clawd/agents/README.md`. Each PERSONA.md references its avatar. Earlier versions (illustrated, pixel art) also in avatars dir but `-robot-v2` is canonical.
+
+**Slack Integration (Feb 16):** Socket Mode configured in OpenClaw. Bot token + app token stored in 1Password ("OpenClaw Slack - Howard Bot Token" / "OpenClaw Slack - Howard App Token"). DM allowlist: `*`. Awaiting first test DM.
+
+**Telegram streamMode:** Set to `"off"` for all accounts — stops noisy intermediate messages.
+
+**Model Cost Optimization (Feb 16):** Howard=Opus 4.6, Jacques/Marcel/all subagents=DeepSeek V3.2. Estimated $70/day → $3-5/day.
+
 *Last updated: February 16, 2026*

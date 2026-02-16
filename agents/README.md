@@ -1,5 +1,25 @@
 # Agent Roster
 
+## Avatar Style Guide
+**Style:** Cute bobblehead robots, Wall-E inspired. Warm, weathered, expressive with big soulful eyes. Nautical ship crew theme — each agent photographed at their station on the vessel. Muted nautical palette with unique accent color per agent.
+
+**Canonical images:** `~/clawd/avatars/{name}-robot-v2.png`
+
+| Agent | Accent Color | Location on Ship | Distinguishing Feature |
+|-------|-------------|-----------------|----------------------|
+| Howard 🪨 | Slate blue | Bridge/helm | Captain's hat, epaulets, cairn emblem |
+| Jacques 🤿 | Amber/gold | Deck near rigging | Red Life Aquatic beanie |
+| Marcel 🎨 | Teal/sea green | Workshop below deck | French beret, paint smudges |
+| Noa 🔍 | Deep indigo | Crow's nest | Binoculars/telescope |
+| Kai 💡 | Sunrise orange | Chart room | Maps and navigation charts |
+| Blake 🧪 | Forest green | Engine room | Magnifying loupe/inspector visor |
+| Quinn 📊 | Steel blue-gray | Supply hold | Clipboard/ledger |
+| Sage 💰 | Rich copper | Gangway | Merchant's satchel |
+| Milo 📣 | Coral/warm red | Main deck | Megaphone/signal flags |
+| Reese 📋 | Warm plum/mauve | Drafting table on deck | Ship blueprints |
+| Avery ⚖️ | Deep burgundy | Captain's quarters | Spectacles, ship's log |
+| Cyrus 🔒 | Dark charcoal + electric blue | Stern | Shield emblem |
+
 ## How to invoke sub-agents
 
 Howard can spawn any sub-agent using `sessions_spawn` with their persona file read as context.
