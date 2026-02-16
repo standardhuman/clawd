@@ -52,10 +52,10 @@ function App() {
               I'm 46, I live in Berkeley, and I'm looking to meet someone.
             </p>
             <p className="text-lg leading-relaxed text-cream/85 mb-6">
-              I'm not on the apps. I spent most of my adult dating life on them and I've realized that's not how I want to find a partner. The endless scrolling, the sense that there's always someone else around the corner — it doesn't let you appreciate the person in front of you. I'd rather meet someone through people who actually know us both.
+              I'm not on the apps. I spent most of my adult dating life on them and I've come to realize that's not how I want to find a partner. The endless scrolling, the sense that there's always someone else around the corner, it makes it hard to appreciate the person who's actually in front of you. I'd rather meet someone through people who know us both.
             </p>
             <p className="text-lg leading-relaxed text-cream/85">
-              If you're reading this, someone who cares about me shared this with you. That already means something.
+              If you're reading this, someone who cares about me shared it with you. That already means something.
             </p>
           </section>
 
@@ -67,10 +67,13 @@ function App() {
               What my days look like
             </h2>
             <p className="text-lg leading-relaxed text-cream/85 mb-6">
-              I spend half my week underwater. I run a hull cleaning business in the East Bay marinas — I dive on boats and keep their hulls clean. It's physical work, it's on the water, and I love it. The other half of my week I'm building the software platform for that business. I like making things.
+              I spend half my week underwater. I run a hull cleaning business in the East Bay marinas. I dive on boats and keep their hulls clean. It's physical work, it's on the water, and I love it. The other half of my week I'm building the software platform for that business. I like making things.
             </p>
             <p className="text-lg leading-relaxed text-cream/85 mb-6">
-              I sail. In 2014 I solo raced from San Francisco to Hawaii and back — 4,000 miles of open ocean, alone. It was the hardest and most clarifying thing I've ever done.
+              I sail. In 2014 I solo raced from San Francisco to Hawaii and back. 4,000 miles of open ocean, alone. It was the second hardest thing I've ever done, and the most clarifying.
+            </p>
+            <p className="text-lg leading-relaxed text-cream/85 mb-6">
+              I also teach sailing. People hire me to help them sail oceans aboard their own boats. The part that surprises people: crossing the ocean isn't the hard part. It's the close quarters maneuvering — moving a boat in tight spaces, near hard things. That's where the fear lives. I help people find calm in those moments. It's the work I'm most proud of.
             </p>
 
             {/* Photo placeholder for sailing/biking/Pocket */}
@@ -79,7 +82,7 @@ function App() {
             </div>
 
             <p className="text-lg leading-relaxed text-cream/85 mb-6">
-              I mountain bike fast, technical trails around the East Bay — 20 to 40 miles at a time. My dog Pocket comes along. She's a big part of my life.
+              I mountain bike fast, technical trails around the East Bay, usually 20 to 40 miles at a time. My dog Pocket comes along. She's a big part of my life. Last year I did a six-day bikepacking trip across southern Utah and it was one of the highlights of my year. I like how I feel when I use my body. I like how I feel after I go to the gym, after a long ride, after a day on the water.
             </p>
             <p className="text-lg leading-relaxed text-cream/85">
               I didn't take a traditional path to get here. I traveled the country on freight trains and hitchhiking when I was young, came back to school, studied social psychology, and rode a motorcycle to San Francisco in 2006 with nothing but what I could carry. I've been building a life here ever since.
@@ -94,13 +97,13 @@ function App() {
               What matters to me
             </h2>
             <p className="text-lg leading-relaxed text-cream/85 mb-6">
-              I'm in a men's group called The Men's Circle that meets every week. It's one of the most important things in my life. We show up for each other honestly — no performing, no fixing, just presence. I practice Nonviolent Communication and I believe in saying what's real, even when it's uncomfortable.
+              My friends and my community are the most important things in my life. I'm in a men's group called The Men's Circle that meets every week. We show up for each other honestly. No performing, no fixing, just presence. The value I get from being able to support the people around me, and to be supported by them, is immeasurable.
             </p>
             <p className="text-lg leading-relaxed text-cream/85 mb-6">
-              I've been doing a lot of personal growth work and I'm going to keep doing it. Attachment workshops, improv, community events. I'm showing up to things and meeting people and staying open.
+              I practice Nonviolent Communication and I believe in saying what's real, even when it's uncomfortable. I've been doing a lot of personal growth work and I plan to keep doing it. Attachment workshops, improv, community events. I keep showing up to things and meeting people and staying open.
             </p>
             <p className="text-lg leading-relaxed text-cream/85">
-              I recently got out of a relationship and I've taken my time with it. I'm not rushing. I'm not rebounding. I'm being intentional about what comes next.
+              I recently got out of a relationship and I've taken my time with it. I'm not rushing. I'm being intentional about what comes next.
             </p>
           </section>
 
@@ -112,13 +115,16 @@ function App() {
               What I'm looking for
             </h2>
             <p className="text-lg leading-relaxed text-cream/85 mb-6">
-              Someone who's curious about themselves. You don't have to have it all figured out — I don't — but you're paying attention to your own life. You notice things. You're willing to go there.
+              Someone who's curious about themselves. You don't have to have it all figured out. I certainly don't. But you're paying attention to your own life. You notice things. You're willing to go there.
             </p>
             <p className="text-lg leading-relaxed text-cream/85 mb-6">
-              Someone active. I'm on the water or on the trails most days. I'd love a partner who wants to come along sometimes, or who has her own thing that gets her outside and moving.
+              Someone who's passionate about something. Something she's really into, something that lights her up, something she's genuinely good at. I want to be in awe of my partner.
+            </p>
+            <p className="text-lg leading-relaxed text-cream/85 mb-6">
+              Someone active. I'm on the water or on the trails most days and I'd love a partner who wants to come along sometimes, or who has her own thing that gets her outside and moving.
             </p>
             <p className="text-lg leading-relaxed text-cream/85">
-              Someone who values real connection. Who'd rather meet through a friend than through an algorithm. Who puts her phone down at dinner.
+              Someone who values real connection. Who'd rather meet through a friend than through an algorithm.
             </p>
           </section>
 
@@ -143,10 +149,10 @@ function App() {
             </div>
 
             <p className="text-lg leading-relaxed text-cream/85 mb-6">
-              No pressure. No expectations. Just two people seeing if there's something worth exploring over coffee.
+              No pressure, no expectations. Just two people seeing if there's something worth exploring over coffee.
             </p>
             <p className="text-lg leading-relaxed text-cream/85">
-              And if you're a friend reading this and someone comes to mind — I'd be grateful for the introduction. Even a simple "I think you two should meet" is enough.
+              And if you're a friend reading this and someone comes to mind, I'd be grateful for the introduction. Even a simple "I think you two should meet" is enough.
             </p>
           </section>
 

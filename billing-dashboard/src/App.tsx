@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
+import { EmailPanel } from './EmailPanel';
 
-// Use current hostname for Tailscale access
-const API_URL = `http://${window.location.hostname}:3001/api`;
+// Use env var if set (production), otherwise use current hostname (dev/Tailscale)
+const API_URL = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:3001/api`;
 
 interface Boat {
   Boat: string;
@@ -32,8 +33,12 @@ interface BillingData {
 }
 
 type FilterType = 'all' | 'ready' | 'noEmail' | 'billed';
+type ViewType = 'billing' | 'email';
+
+export { API_URL };
 
 function App() {
+  const [activeView, setActiveView] = useState<ViewType>('billing');
   const [months, setMonths] = useState<{id: string, name: string}[]>([]);
   const [selectedMonth, setSelectedMonth] = useState<string>('');
   const [billingData, setBillingData] = useState<BillingData | null>(null);
@@ -222,7 +227,24 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">SailorSkills Billing</h1>
+        <div className="flex items-center gap-6 mb-6">
+          <h1 className="text-3xl font-bold">SailorSkills Billing</h1>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setActiveView('billing')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium ${activeView === 'billing' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+            >💰 Invoicing</button>
+            <button
+              onClick={() => setActiveView('email')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium ${activeView === 'email' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+            >📧 Email</button>
+          </div>
+        </div>
+
+        {activeView === 'email' ? (
+          <EmailPanel apiUrl={API_URL} />
+        ) : (
+        <>
         
         {/* Stripe Key Config */}
         {!stripeConfigured && (
@@ -646,6 +668,8 @@ function App() {
               </div>
             </div>
           </div>
+        )}
+        </>
         )}
       </div>
     </div>

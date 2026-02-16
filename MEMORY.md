@@ -84,13 +84,15 @@ Original plan: Hiring Sarah (lives on Brian's dock) as **W-2 employee** (not 109
 
 **OpenClaw Version Mismatch:** Homebrew CLI at 2026.1.29, fnm CLI at 2026.2.12, gateway at 2026.2.3-1. Codex OAuth needs version alignment + gateway restart. Parked for now.
 
-**Anthropic API Key Swapped (Feb 13):** Replaced OAuth token (`sk-ant-oat01-...`) with real API key (`sk-ant-api03-...`) from console.anthropic.com. No more TOS ban risk. Brian needs to fund account (~$50 recommended). Key stored in 1Password as "Anthropic API Credentials".
+**Anthropic OAuth Token (Feb 16):** Using OAuth token (`sk-ant-oat01-...`) — Brian's preference. Token removed from `openclaw.json` and now injected at runtime via 1Password CLI (`op run`). Wrapper script: `~/.openclaw/gateway-start.sh`, env file: `~/.openclaw/gateway.env` with `op://Personal/Anthropic Claude Code OAuth Token/credential`. After reboot, 1Password must be unlocked for gateway to start. Also has API key in 1Password as "Anthropic API Credentials" if needed.
+
+**Security Hardening (Feb 16):** Tailscale switched from funnel→serve (tailnet-only). Control UI: insecure auth disabled, device auth re-enabled. FileVault intentionally OFF for remote boot access. macOS firewall still needs enabling (requires sudo).
 
 **Gemini Flash Image Fallback:** `imageModel.primary` set to `google/gemini-2.5-flash-preview`. Screenshots auto-route to Gemini when using text-only models (DeepSeek, Kimi). Free tier.
 
 **AGENTS.md Trimmed 76%:** From ~3,436 tokens to ~833 tokens. Saves ~2,600 tokens per message. Verbose sections in `docs/agent-reference.md`.
 
-**Tailscale Funnel Enabled:** Gateway accessible at `https://brians-mac-mini.taile67de1.ts.net/`. Auth mode switched to `password`. `controlUi.allowInsecureAuth` and `dangerouslyDisableDeviceAuth` enabled for Mission Control WebSocket client.
+**Tailscale Serve (tailnet-only):** Gateway accessible at `https://brians-mac-mini.taile67de1.ts.net/` but only within tailnet (switched from funnel→serve Feb 16). Auth mode: `password`. Control UI device auth enabled, insecure auth disabled.
 
 **Agent-to-Agent Messaging:** `tools.agentToAgent.enabled: true`. Howard can send tasks to Jacques/Marcel via `sessions_send`.
 
@@ -153,4 +155,4 @@ Everyone thinks crossing an ocean is the hardest part of sailing. It's actually 
 - Amazon affiliate tag: sail01-20
 - GitHub: standardhuman/appreciating-serenity
 
-*Last updated: February 14, 2026 (morning)*
+*Last updated: February 16, 2026*

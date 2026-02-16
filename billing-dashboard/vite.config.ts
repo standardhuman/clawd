@@ -5,5 +5,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     open: true
+  },
+  define: {
+    'import.meta.env.VITE_API_URL': JSON.stringify(process.env.VITE_API_URL || '')
   }
 })
