@@ -1,74 +1,52 @@
 # Noa's Source List
 
-Last updated: 2026-02-15
+Last updated: 2026-02-18 (v2)
 
-## ⚓ Marine Services & SailorSkills
+## 🎯 Primary Sources (check every night)
 
-### Industry News
-- https://www.marinebusiness.com.au/news — Marine business news
-- https://www.boatingindustry.com/ — Boating industry news and trends
-- https://www.tradeonlytoday.com/ — Marine trade publication
-- https://www.soundingsonline.com/ — Boating lifestyle + industry
-- https://www.workboat.com/ — Commercial marine operations
+### Greg Isenberg — The Startup Ideas Podcast
+- **RSS Feed:** https://www.youtube.com/feeds/videos.xml?channel_id=UCPjNBjflYl0-HQtUvOx0Ibw
+- **Method:** `web_fetch` the RSS feed to find new episodes (published dates are in the XML). For any episode from the last 48 hours, run `summarize https://www.youtube.com/watch?v=<VIDEO_ID> --youtube auto` to get the full transcript.
+- **What to extract:** Business ideas, methods, tools, guest names, referenced creators/builders
+- **Frequency:** New episodes ~2-3x/week
 
-### Technology & SaaS
-- https://www.dockwa.com/blog — Marina management software blog
-- https://www.marinamaster.com/blog — Marina technology
-- https://www.snagaslip.com/blog — Marina booking platform
+### Hacker News
+- **URL:** https://news.ycombinator.com/
+- **Focus:** "Show HN" launches, AI business discussions, solo founder stories, SaaS/micro-SaaS ideas
+- **Method:** `web_fetch` the front page, dig into promising threads
+- **Skip:** Pure tech debates, language wars, politics, drama
 
-### Bay Area / Local
-- https://sfbaysss.org/ — SF Bay Sailing community
-- https://www.latitude38.com/ — Bay Area sailing publication
-- https://www.picya.org/ — Pacific Inter-Club Yacht Association
+## 📡 Secondary Sources
 
-### Regulations
-- https://www.wildlife.ca.gov/ — CA Dept of Fish & Wildlife (hull paint regulations, copper)
-- https://www.epa.gov/newsreleases — EPA newsroom (antifouling, marine coatings)
+### AI Business & Builders
+- https://www.indiehackers.com/ — Solo founder stories and revenue numbers
+- https://microconf.com/resources — SaaS growth tactics (note: /blog returns 404 as of 2026-02-18, try /resources)
+- https://www.saastr.com/blog/ — SaaS business insights
 
-## 🤖 AI & Technology
-
-### AI News & Research
-- https://news.ycombinator.com/ — Hacker News (filter: AI, agents, LLM)
-- https://www.reddit.com/r/LocalLLaMA/ — Local LLM community
-- https://www.reddit.com/r/OpenAI/ — OpenAI community
-- https://www.reddit.com/r/ClaudeAI/ — Claude/Anthropic community
-- https://www.reddit.com/r/MachineLearning/ — ML research
-- https://simonwillison.net/ — Simon Willison's blog (LLM tools, practical AI)
+### AI & Technology
+- https://simonwillison.net/ — Simon Willison's blog (practical AI tools)
 - https://www.latent.space/ — Latent Space podcast/blog
-- https://jack-clark.net/ — Import AI newsletter
-- https://www.oneusefulthing.org/ — Ethan Mollick's AI in practice blog
-
-### Agent Frameworks & Tools
-- https://docs.openclaw.ai/changelog — OpenClaw changelog
-- https://discord.com/channels/openclaw — OpenClaw Discord (manual check)
-- https://github.com/openclaw/openclaw/releases — OpenClaw releases
-- https://www.langchain.com/blog — LangChain blog
-- https://docs.crewai.com/blog — CrewAI blog
 - https://www.anthropic.com/news — Anthropic announcements
 - https://openai.com/blog — OpenAI blog
-- https://blog.google/technology/ai/ — Google AI blog
-- https://deepmind.google/blog/ — DeepMind blog
 
-### Developer Tools & Infrastructure
-- https://github.com/trending — GitHub trending repos
-- https://www.producthunt.com/topics/artificial-intelligence — Product Hunt AI
-- https://changelog.com/ — Developer news
+### Marine Services & SailorSkills
+- https://www.latitude38.com/ — Bay Area sailing publication
+- https://www.boatingindustry.com/ — Boating industry trends
+- https://www.dockwa.com/blog — Marina management software
 
-### Industry Analysis
-- https://www.theinformation.com/ — Tech business reporting (may be paywalled)
-- https://stratechery.com/ — Ben Thompson's analysis
-- https://a16z.com/ai/ — a16z AI content
-- https://www.sequoiacap.com/articles/ — Sequoia perspectives
+## 🌱 Sources to Evaluate
+*Discovered through primary source research — need to check if they're worth adding as regular sources.*
 
-## 📡 Social & Community
-- https://twitter.com/search?q=ai+agents — Twitter AI agents discourse
-- https://twitter.com/search?q=hull+cleaning+robot — Marine automation chatter
-- https://trends.google.com/trends/explore?q=ai+agent,hull+cleaning — Google Trends
+- **cpojer.net** (Christoph Nakazawa) — Frontend tooling + AI agent development patterns. Discovered 2026-02-18.
+- **@louispereira / AudioPen** — Solo founder voice-to-text SaaS. Discovered 2026-02-18.
+- **Fawaz Ishola (Axiom OS)** — 19-year-old systems programmer building math-native OS. Extreme talent worth tracking. Discovered 2026-02-18.
+- **Anna's Archive** — Non-profit knowledge preservation with thoughtful AI/LLM engagement policies. Model for ethical data access. Discovered 2026-02-18.
+- **CEL (Common Expression Language)** — Lightweight business logic language used by Kubernetes, Google Cloud, Firebase. Could be useful for SailorSkills validation logic. Discovered 2026-02-18.
 
 ---
 
 ## Notes
-- Brian will refine this list over time
-- Some sources may be paywalled — note in coverage report when can't access
-- Prioritize sources with RSS feeds for reliability
-- GitHub trending should focus on: agent frameworks, automation tools, marine/boat software
+- This list should grow organically as Noa discovers new voices through Greg Isenberg's guests and HN threads
+- Prioritize sources with frequent updates and actionable content
+- Remove sources that consistently have nothing useful
+- Greg Isenberg's guests are a goldmine — each guest is a potential new source

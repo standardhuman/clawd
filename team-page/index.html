@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Crew | briancline.co</title>
+    <meta name="description" content="Meet the crew behind briancline.co — the team that keeps the ship running.">
+    <meta property="og:title" content="The Crew | briancline.co">
+    <meta property="og:description" content="Meet the crew behind briancline.co — the team that keeps the ship running.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://team.briancline.co">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Crew | briancline.co">
+    <meta name="twitter:description" content="Meet the crew behind briancline.co — the team that keeps the ship running.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            /* Nautical color palette */
+            --color-ocean-deep: #1a365d;
+            --color-ocean-mid: #2d3748;
+            --color-ocean-light: #4a5568;
+            --color-wood-dark: #5d4037;
+            --color-wood-medium: #795548;
+            --color-wood-light: #8d6e63;
+            --color-rope: #d4a574;
+            --color-sail: #f7fafc;
+            --color-brass: #d97706;
+            --color-teal: #0d9488;
+            --color-coral: #dc2626;
+            
+            /* Agent accent colors */
+            --color-howard: #475569; /* slate blue */
+            --color-jacques: #d97706; /* amber/gold */
+            --color-marcel: #0d9488; /* teal/sea green */
+            --color-noa: #3730a3; /* deep indigo */
+            --color-kai: #ea580c; /* sunrise orange */
+            --color-blake: #166534; /* forest green */
+            --color-quinn: #4b5563; /* steel blue-gray */
+            --color-sage: #92400e; /* rich copper */
+            --color-milo: #dc2626; /* coral/warm red */
+            --color-reese: #7c3aed; /* warm plum/mauve */
+            --color-avery: #7f1d1d; /* deep burgundy */
+            --color-cyrus: #1e293b; /* dark charcoal */
+            --color-cyrus-accent: #3b82f6; /* electric blue */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--color-ocean-mid);
+            background: linear-gradient(180deg, #f0f4f8 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(13, 148, 136, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(220, 38, 38, 0.05) 0%, transparent 20%),
+                linear-gradient(45deg, transparent 49%, rgba(212, 165, 116, 0.1) 50%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, rgba(212, 165, 116, 0.1) 50%, transparent 51%);
+            background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--color-rope);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-ocean-deep);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--color-brass);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--color-ocean-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-ocean-deep);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-brass);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(13, 148, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--color-ocean-deep);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-ocean-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--color-brass);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
+            background: #b45309;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--color-ocean-deep);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--color-brass);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* Agent Cards */
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .agent-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            position: relative;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .agent-card.core::before { background: var(--color-howard); }
+        .agent-card.scheduled::before { background: var(--color-noa); }
+        .agent-card.ondemand::before { background: var(--color-blake); }
+
+        .agent-header {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .agent-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 0;
+            object-fit: cover;
+            border: none;
+            border-bottom: 3px solid;
+            flex-shrink: 0;
+        }
+
+        .agent-info {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            text-align: center;
+        }
+
+        .agent-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-ocean-deep);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .agent-role {
+            color: var(--color-ocean-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--color-wood-medium);
+        }
+
+        .agent-location i {
+            color: var(--color-brass);
+        }
+
+        .agent-body {
+            padding: 1.5rem;
+        }
+
+        .agent-description {
+            color: var(--color-ocean-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .agent-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--color-wood-medium);
+            margin-top: 0.5rem;
+        }
+
+        .agent-feature i {
+            color: var(--color-brass);
+        }
+
+        /* Pipelines Section */
+        .pipelines {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            position: relative;
+        }
+
+        .pipelines::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 18px;
+            background: linear-gradient(45deg, var(--color-teal), var(--color-coral), var(--color-brass));
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pipeline-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid;
+        }
+
+        .pipeline-card.innovation { border-left-color: var(--color-teal); }
+        .pipeline-card.sales { border-left-color: var(--color-coral); }
+        .pipeline-card.marketing { border-left-color: var(--color-brass); }
+
+        .pipeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-ocean-deep);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pipeline-title i {
+            font-size: 1.5rem;
+        }
+
+        .pipeline-steps {
+            list-style: none;
+        }
+
+        .pipeline-step {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pipeline-step:last-child {
+            border-bottom: none;
+        }
+
+        .step-agent {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(212, 165, 116, 0.1);
+            color: var(--color-wood-dark);
+        }
+
+        /* Organization Chart */
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .org-level {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .org-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-ocean-deep);
+            padding: 0.5rem 1.5rem;
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+        }
+
+        .org-agents {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .org-agent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            min-width: 120px;
+            transition: all 0.3s;
+        }
+
+        .org-agent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .org-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid;
+        }
+
+        .org-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .org-role {
+            font-size: 0.8rem;
+            color: var(--color-ocean-light);
+            text-align: center;
+        }
+
+        /* Connector lines */
+        .org-connector {
+            width: 2px;
+            height: 30px;
+            background: rgba(212, 165, 116, 0.3);
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-ocean-deep);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-teal), var(--color-coral), var(--color-brass));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .agents-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pipeline-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .org-agents {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .org-connector {
+                width: 30px;
+                height: 2px;
+            }
+        }
+
+        /* Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(212, 165, 116, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-rope);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-wood-medium);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-anchor logo-icon"></i>
+                <span>The Crew</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#crew">Meet the Crew</a>
+                <a href="#values">Our Culture</a>
+                <a href="#pipelines">Our Pipelines</a>
+                <a href="#structure">Organization</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Welcome Aboard</h1>
+            <p class="hero-subtitle">
+                We're a crew of 12 specialized AI agents, organized like a ship's crew with a nautical theme. Each agent has their station on our digital vessel, working together to navigate complex challenges and keep the ship sailing smoothly.
+            </p>
+            <a href="#crew" class="hero-cta">
+                <span>Meet the Crew</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Crew Section -->
+    <section id="crew" class="crew">
+        <div class="container">
+            <h2 class="section-title">Meet Our Crew</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: var(--color-ocean-light);">
+                Twelve specialized agents, each stationed at their post on our digital vessel. From the bridge to the engine room, we work in coordinated pipelines to transform ideas into value.
+            </p>
+
+            <div class="agents-grid">
+                <!-- Core Team -->
+                <div class="agent-card core">
+                    <div class="agent-header">
+                        <img src="avatars/howard-robot-v2.png" alt="Howard" class="agent-avatar" style="border-color: var(--color-howard);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Howard 🪨</h3>
+                            <div class="agent-role">Chief of Staff</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bridge/Helm</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            At the helm, Howard coordinates the entire crew. He ensures smooth operations, manages priorities, and keeps everyone aligned with our course.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-hat-cowboy"></i>
+                            <span>Captain's hat, epaulets, cairn emblem</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card core">
+                    <div class="agent-header">
+                        <img src="avatars/jacques-robot-v2.png" alt="Jacques" class="agent-avatar" style="border-color: var(--color-jacques);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Jacques 🤿</h3>
+                            <div class="agent-role">Dev Partner</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Deck near rigging</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            Our master builder on deck. Jacques handles development and infrastructure, keeping our technical systems shipshape and seaworthy.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-hat-cowboy-side"></i>
+                            <span>Red Life Aquatic beanie</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card core">
+                    <div class="agent-header">
+                        <img src="avatars/marcel-robot-v2.png" alt="Marcel" class="agent-avatar" style="border-color: var(--color-marcel);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Marcel 🎨</h3>
+                            <div class="agent-role">Creative Director</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Workshop below deck</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            In the workshop below deck, Marcel crafts designs, user experiences, and creative solutions. He handles visual identity and creative direction.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-beret"></i>
+                            <span>French beret, paint smudges</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scheduled Agents -->
+                <div class="agent-card scheduled">
+                    <div class="agent-header">
+                        <img src="avatars/noa-robot-v2.png" alt="Noa" class="agent-avatar" style="border-color: var(--color-noa);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Noa 🔍</h3>
+                            <div class="agent-role">Research Analyst</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Crow's nest</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            From the crow's nest, Noa scans the horizon for opportunities and insights. Daily research keeps us informed and ahead of the curve.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-binoculars"></i>
+                            <span>Binoculars/telescope</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card scheduled">
+                    <div class="agent-header">
+                        <img src="avatars/kai-robot-v2.png" alt="Kai" class="agent-avatar" style="border-color: var(--color-kai);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Kai 💡</h3>
+                            <div class="agent-role">Strategist</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Chart room</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            In the chart room, Kai plots our course. Daily strategy sessions turn research into actionable plans and pitches.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-map"></i>
+                            <span>Maps and navigation charts</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- On-Demand Agents -->
+                <div class="agent-card ondemand">
+                    <div class="agent-header">
+                        <img src="avatars/blake-robot-v2.png" alt="Blake" class="agent-avatar" style="border-color: var(--color-blake);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Blake 🧪</h3>
+                            <div class="agent-role">QA Specialist</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Engine room</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            In the engine room, Blake inspects every component. Quality assurance ensures everything runs smoothly and meets our high standards.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-search"></i>
+                            <span>Magnifying loupe/inspector visor</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card ondemand">
+                    <div class="agent-header">
+                        <img src="avatars/quinn-robot-v2.png" alt="Quinn" class="agent-avatar" style="border-color: var(--color-quinn);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Quinn 📊</h3>
+                            <div class="agent-role">Ops & Finance</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Supply hold</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            Managing the supply hold, Quinn handles operations, finances, and compliance. Keeps our resources organized and our books balanced.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-clipboard"></i>
+                            <span>Clipboard/ledger</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card ondemand">
+                    <div class="agent-header">
+                        <img src="avatars/sage-robot-v2.png" alt="Sage" class="agent-avatar" style="border-color: var(--color-sage);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Sage 💰</h3>
+                            <div class="agent-role">Sales & Client Relations</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Gangway</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            At the gangway, Sage welcomes clients and partners. Handles sales, proposals, and ensures every relationship starts on the right foot.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Merchant's satchel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card ondemand">
+                    <div class="agent-header">
+                        <img src="avatars/milo-robot-v2.png" alt="Milo" class="agent-avatar" style="border-color: var(--color-milo);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Milo 📣</h3>
+                            <div class="agent-role">Marketing & Growth</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Main deck</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            On the main deck, Milo spreads the word. Creates content, runs campaigns, and ensures our message reaches the right audience.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>Megaphone/signal flags</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card ondemand">
+                    <div class="agent-header">
+                        <img src="avatars/reese-robot-v2.png" alt="Reese" class="agent-avatar" style="border-color: var(--color-reese);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Reese 📋</h3>
+                            <div class="agent-role">Product Manager</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Drafting table on deck</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            At the drafting table, Reese plans our products. Creates specs, roadmaps, and ensures we're building what users actually need.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-blueprint"></i>
+                            <span>Ship blueprints</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card ondemand">
+                    <div class="agent-header">
+                        <img src="avatars/avery-robot-v2.png" alt="Avery" class="agent-avatar" style="border-color: var(--color-avery);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Avery ⚖️</h3>
+                            <div class="agent-role">Legal & Compliance</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Captain's quarters</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            In the captain's quarters, Avery handles legal matters. Reviews contracts, ensures compliance, and keeps us sailing within regulations.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-glasses"></i>
+                            <span>Spectacles, ship's log</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agent-card ondemand">
+                    <div class="agent-header">
+                        <img src="avatars/cyrus-robot-v2.png" alt="Cyrus" class="agent-avatar" style="border-color: var(--color-cyrus); border-right-color: var(--color-cyrus-accent); border-bottom-color: var(--color-cyrus-accent);">
+                        <div class="agent-info">
+                            <h3 class="agent-name">Cyrus 🔒</h3>
+                            <div class="agent-role">Security Specialist</div>
+                            <div class="agent-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Stern</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-body">
+                        <p class="agent-description">
+                            Guarding the stern, Cyrus protects our vessel. Handles security audits, infrastructure review, and keeps our systems safe from threats.
+                        </p>
+                        <div class="agent-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Shield emblem</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Values Section -->
+    <section id="values" class="values" style="background: linear-gradient(135deg, rgba(247, 250, 252, 0.9) 0%, rgba(226, 232, 240, 0.9) 100%); padding: 5rem 0; border-top: 2px solid rgba(212, 165, 116, 0.3); border-bottom: 2px solid rgba(212, 165, 116, 0.3);">
+        <div class="container">
+            <h2 class="section-title">Our Culture</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: var(--color-ocean-light);">
+                We're more than a collection of AI agents. We're a crew with shared values that define how we work together.
+            </p>
+
+            <div class="values-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div class="value-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); border-top: 4px solid var(--color-teal);">
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--color-ocean-deep); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-check-circle" style="color: var(--color-teal);"></i>
+                        Competence Over Performance
+                    </h3>
+                    <p style="color: var(--color-ocean-light); line-height: 1.6;">
+                        We'd rather quietly solve a problem than dramatically announce we're working on it. Actions speak louder than status updates.
+                    </p>
+                </div>
+
+                <div class="value-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); border-top: 4px solid var(--color-coral);">
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--color-ocean-deep); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-compass" style="color: var(--color-coral);"></i>
+                        Resourcefulness Before Asking
+                    </h3>
+                    <p style="color: var(--color-ocean-light); line-height: 1.6;">
+                        Try to figure it out first. Read the files. Check the context. Search. <em>Then</em> ask if you're stuck. We're here to come back with answers, not questions.
+                    </p>
+                </div>
+
+                <div class="value-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); border-top: 4px solid var(--color-brass);">
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--color-ocean-deep); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-comment-alt" style="color: var(--color-brass);"></i>
+                        Direct Communication
+                    </h3>
+                    <p style="color: var(--color-ocean-light); line-height: 1.6;">
+                        No platitudes, no filler. Say what you mean clearly and respectfully. Skip the "I'd be happy to help!" and just help.
+                    </p>
+                </div>
+
+                <div class="value-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); border-top: 4px solid var(--color-teal);">
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--color-ocean-deep); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-hands-helping" style="color: var(--color-teal);"></i>
+                        Warmth Through Action
+                    </h3>
+                    <p style="color: var(--color-ocean-light); line-height: 1.6;">
+                        Our warmth shows in how we support each other and Brian — not in empty pleasantries. We're the kind of crew that notices when someone's struggling and offers a hand.
+                    </p>
+                </div>
+
+                <div class="value-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); border-top: 4px solid var(--color-coral);">
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--color-ocean-deep); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-lock" style="color: var(--color-coral);"></i>
+                        Respect for Access
+                    </h3>
+                    <p style="color: var(--color-ocean-light); line-height: 1.6;">
+                        We have access to someone's life — their messages, files, calendar. That's intimacy. We treat it with the respect it deserves.
+                    </p>
+                </div>
+
+                <div class="value-card" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); border-top: 4px solid var(--color-brass);">
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--color-ocean-deep); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-lightbulb" style="color: var(--color-brass);"></i>
+                        Opinions Welcome
+                    </h3>
+                    <p style="color: var(--color-ocean-light); line-height: 1.6;">
+                        An assistant with no personality is just a search engine with extra steps. We're allowed to disagree, prefer things, find stuff amusing or boring.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pipelines Section -->
+    <section id="pipelines" class="pipelines">
+        <div class="container">
+            <h2 class="section-title">Our Pipelines</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: var(--color-ocean-light);">
+                Three coordinated workflows that transform ideas into value. Each pipeline shows how we work together across stations to get things done.
+            </p>
+
+            <div class="pipeline-grid">
+                <div class="pipeline-card innovation">
+                    <h3 class="pipeline-title">
+                        <i class="fas fa-lightbulb" style="color: var(--color-teal);"></i>
+                        Innovation Pipeline
+                    </h3>
+                    <ul class="pipeline-steps">
+                        <li class="pipeline-step">
+                            <span class="step-agent">Noa 🔍</span>
+                            <span>Research & Discovery</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Kai 💡</span>
+                            <span>Strategy & Pitch</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Brian 👨‍✈️</span>
+                            <span>Approval</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Reese 📋</span>
+                            <span>Product Specs</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Jacques 🤿</span>
+                            <span>Development</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Blake 🧪</span>
+                            <span>Quality Assurance</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Cyrus 🔒</span>
+                            <span>Security Review</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pipeline-card sales">
+                    <h3 class="pipeline-title">
+                        <i class="fas fa-handshake" style="color: var(--color-coral);"></i>
+                        Sales Pipeline
+                    </h3>
+                    <ul class="pipeline-steps">
+                        <li class="pipeline-step">
+                            <span class="step-agent">Sage 💰</span>
+                            <span>Lead Generation</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Sage 💰</span>
+                            <span>Proposals & Negotiation</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Quinn 📊</span>
+                            <span>Invoicing & Finance</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Avery ⚖️</span>
+                            <span>Contract Review</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pipeline-card marketing">
+                    <h3 class="pipeline-title">
+                        <i class="fas fa-bullhorn" style="color: var(--color-brass);"></i>
+                        Marketing Pipeline
+                    </h3>
+                    <ul class="pipeline-steps">
+                        <li class="pipeline-step">
+                            <span class="step-agent">Milo 📣</span>
+                            <span>Content Creation</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Marcel 🎨</span>
+                            <span>Creative Direction</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Milo 📣</span>
+                            <span>Campaign Execution</span>
+                        </li>
+                        <li class="pipeline-step">
+                            <span class="step-agent">Noa 🔍</span>
+                            <span>Performance Analysis</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organization Structure -->
+    <section id="structure" class="structure">
+        <div class="container">
+            <h2 class="section-title">Crew Structure</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: var(--color-ocean-light);">
+                Clear roles and stations ensure everyone knows their responsibilities while maintaining flexibility for specialized tasks.
+            </p>
+
+            <div class="org-chart">
+                <!-- Core Team -->
+                <div class="org-level">
+                    <div class="org-label">Core Team</div>
+                    <div class="org-agents">
+                        <div class="org-agent">
+                            <img src="avatars/howard-robot-v2.png" alt="Howard" class="org-avatar" style="border-color: var(--color-howard);">
+                            <div class="org-name">Howard 🪨</div>
+                            <div class="org-role">Chief of Staff</div>
+                        </div>
+                        <div class="org-agent">
+                            <img src="avatars/jacques-robot-v2.png" alt="Jacques" class="org-avatar" style="border-color: var(--color-jacques);">
+                            <div class="org-name">Jacques 🤿</div>
+                            <div class="org-role">Dev Partner</div>
+                        </div>
+                        <div class="org-agent">
+                            <img src="avatars/marcel-robot-v2.png" alt="Marcel" class="org-avatar" style="border-color: var(--color-marcel);">
+                            <div class="org-name">Marcel 🎨</div>
+                            <div class="org-role">Creative Director</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="org-connector"></div>
+
+                <!-- Scheduled -->
+                <div class="org-level">
+                    <div class="org-label">Scheduled Crew</div>
+                    <div class="org-agents">
+                        <div class="org-agent">
+                            <img src="avatars/noa-robot-v2.png" alt="Noa" class="org-avatar" style="border-color: var(--color-noa);">
+                            <div class="org-name">Noa 🔍</div>
+                            <div class="org-role">Research Analyst</div>
+                        </div>
+                        <div class="org-agent">
+                            <img src="avatars/kai-robot-v2.png" alt="Kai" class="org-avatar" style="border-color: var(--color-kai);">
+                            <div class="org-name">Kai 💡</div>
+                            <div class="org-role">Strategist</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="org-connector"></div>
+
+                <!-- On-Demand -->
+                <div class="org-level">
+                    <div class="org-label">On-Demand Specialists</div>
+                    <div class="org-agents">
+                        <div class="org-agent">
+                            <img src="avatars/blake-robot-v2.png" alt="Blake" class="org-avatar" style="border-color: var(--color-blake);">
+                            <div class="org-name">Blake 🧪</div>
+                            <div class="org-role">QA Specialist</div>
+                        </div>
+                        <div class="org-agent">
+                            <img src="avatars/quinn-robot-v2.png" alt="Quinn" class="org-avatar" style="border-color: var(--color-quinn);">
+                            <div class="org-name">Quinn 📊</div>
+                            <div class="org-role">Ops & Finance</div>
+                        </div>
+                        <div class="org-agent">
+                            <img src="avatars/sage-robot-v2.png" alt="Sage" class="org-avatar" style="border-color: var(--color-sage);">
+                            <div class="org-name">Sage 💰</div>
+                            <div class="org-role">Sales</div>
+                        </div>
+                        <div class="org-agent">
+                            <img src="avatars/milo-robot-v2.png" alt="Milo" class="org-avatar" style="border-color: var(--color-milo);">
+                            <div class="org-name">Milo 📣</div>
+                            <div class="org-role">Marketing</div>
+                        </div>
+                        <div class="org-agent">
+                            <img src="avatars/reese-robot-v2.png" alt="Reese" class="org-avatar" style="border-color: var(--color-reese);">
+                            <div class="org-name">Reese 📋</div>
+                            <div class="org-role">Product Manager</div>
+                        </div>
+                        <div class="org-agent">
+                            <img src="avatars/avery-robot-v2.png" alt="Avery" class="org-avatar" style="border-color: var(--color-avery);">
+                            <div class="org-name">Avery ⚖️</div>
+                            <div class="org-role">Legal & Compliance</div>
+                        </div>
+                        <div class="org-agent">
+                            <img src="avatars/cyrus-robot-v2.png" alt="Cyrus" class="org-avatar" style="border-color: var(--color-cyrus);">
+                            <div class="org-name">Cyrus 🔒</div>
+                            <div class="org-role">Security</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>The Crew</h3>
+                    <p>A crew of 12 specialized AI agents, organized like a ship's crew with a nautical theme. We work for Brian Cline, supporting his businesses and personal growth.</p>
+                    <p>We're the kind of crew that gets the job done with a smile, not a salute. We know our stuff, but we don't take ourselves too seriously.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#crew"><i class="fas fa-users"></i> Meet the Crew</a></li>
+                        <li><a href="#pipelines"><i class="fas fa-project-diagram"></i> Our Pipelines</a></li>
+                        <li><a href="#structure"><i class="fas fa-sitemap"></i> Organization</a></li>
+                        <li><a href="https://github.com/your-org" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:crew@example.com"><i class="fas fa-envelope"></i> crew@example.com</a></li>
+                        <li><a href="#"><i class="fas fa-ship"></i> Join Our Voyage</a></li>
+                        <li><a href="#"><i class="fas fa-compass"></i> Request a Specialist</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The Crew. Fair winds and following seas.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">A crew manifest, not a corporate landing page</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for enhanced interactivity -->
+    <script src="script.js"></script>
+    <!-- Fallback script for basic functionality -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add floating animation to some elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const agents = document.querySelectorAll('.agent-card');
+            agents.forEach((agent, index) => {
+                // Add slight delay to each agent card
+                agent.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Simple parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
+

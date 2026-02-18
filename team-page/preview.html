@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Preview - The Crew</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        
+        .preview-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #1a365d;
+            border-bottom: 3px solid #d97706;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #0d9488;
+        }
+        
+        .feature h3 {
+            margin-top: 0;
+            color: #2d3748;
+        }
+        
+        .agent-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .agent-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .agent-emoji {
+            font-size: 1.5rem;
+        }
+        
+        .agent-info h4 {
+            margin: 0;
+            color: #2d3748;
+        }
+        
+        .agent-info p {
+            margin: 0.25rem 0 0;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .color-swatch {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .cta {
+            display: inline-block;
+            background: #d97706;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .cta:hover {
+            background: #b45309;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <h1>🎯 The Crew - Landing Page Preview</h1>
+        
+        <p><strong>Location:</strong> <code>/Users/brian/clawd/team-page/index.html</code></p>
+        
+        <div class="feature-grid">
+            <div class="feature">
+                <h3>🚢 Nautical Theme</h3>
+                <p>Warm, weathered wood, ocean blues, rope textures, and brass accents throughout the design.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🤖 Wall-E Inspired</h3>
+                <p>Cute bobblehead robot avatars with playful but professional energy matching the agent personalities.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>📱 Fully Responsive</h3>
+                <p>Modern CSS with responsive design that works on mobile, tablet, and desktop devices.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>⚡ Vanilla Stack</h3>
+                <p>No frameworks - pure HTML5, CSS3, and vanilla JavaScript for optimal performance.</p>
+            </div>
+        </div>
+        
+        <h2>👥 All 12 Agents Included</h2>
+        
+        <div class="agent-list">
+            <div class="agent-item">
+                <div class="agent-emoji">🪨</div>
+                <div class="agent-info">
+                    <h4>Howard <span class="color-swatch" style="background: #475569;"></span></h4>
+                    <p>Chief of Staff • Bridge/Helm</p>
+                </div>
+            </div>
+            
+            <div class="agent-item">
+                <div class="agent-emoji">🤿</div>
+                <div class="agent-info">
+                    <h4>Jacques <span class="color-swatch" style="background: #d97706;"></span></h4>
+                    <p>Dev Partner • Deck near rigging</p>
+                </div>
+            </div>
+            
+            <div class="agent-item">
+                <div class="agent-emoji">🎨</div>
+                <div class="agent-info">
+                    <h4>Marcel <span class="color-swatch" style="background: #0d9488;"></span></h4>
+                    <p>Creative Director • Workshop below deck</p>
+                </div>
+            </div>
+            
+            <div class="agent-item">
+                <div class="agent-emoji">🔍</div>
+                <div class="agent-info">
+                    <h4>Noa <span class="color-swatch" style="background: #3730a3;"></span></h4>
+                    <p>Research Analyst • Crow's nest</p>
+                </div>
+            </div>
+            
+            <div class="agent-item">
+                <div class="agent-emoji">💡</div>
+                <div class="agent-info">
+                    <h4>Kai <span class="color-swatch" style="background: #ea580c;"></span></h4>
+                    <p>Strategist • Chart room</p>
+                </div>
+            </div>
+            
+            <div class="agent-item">
+                <div class="agent-emoji">🧪</div>
+                <div class="agent-info">
+                    <h4>Blake <span class="color-swatch" style="background: #166534;"></span></h4>
+                    <p>QA Specialist • Engine room</p>
+                </div>
+            </div>
+        </div>
+        
+        <h2>📊 Key Sections</h2>
+        
+        <ul>
+            <li><strong>Hero Section</strong> - Welcoming introduction with nautical theme</li>
+            <li><strong>Agent Profiles</strong> - All 12 agents with avatar images, roles, emojis, accent colors, and descriptions</li>
+            <li><strong>Pipeline Visualization</strong> - Innovation, Sales, and Marketing pipelines</li>
+            <li><strong>Organization Chart</strong> - Core Team → Scheduled → On-Demand structure</li>
+            <li><strong>Responsive Design</strong> - Mobile-first approach with breakpoints</li>
+            <li><strong>Accessibility Features</strong> - Keyboard navigation, screen reader support, high contrast modes</li>
+        </ul>
+        
+        <h2>🎨 Design Elements</h2>
+        
+        <div class="code-block">
+:root {
+    /* Nautical color palette */
+    --color-ocean-deep: #1a365d;
+    --color-ocean-mid: #2d3748;
+    --color-ocean-light: #4a5568;
+    --color-wood-dark: #5d4037;
+    --color-wood-medium: #795548;
+    --color-wood-light: #8d6e63;
+    --color-rope: #d4a574;
+    --color-sail: #f7fafc;
+    --color-brass: #d97706;
+    --color-teal: #0d9488;
+    --color-coral: #dc2626;
+    
+    /* Agent accent colors */
+    --color-howard: #475569; /* slate blue */
+    --color-jacques: #d97706; /* amber/gold */
+    --color-marcel: #0d9488; /* teal/sea green */
+    --color-noa: #3730a3; /* deep indigo */
+    --color-kai: #ea580c; /* sunrise orange */
+    --color-blake: #166534; /* forest green */
+    --color-quinn: #4b5563; /* steel blue-gray */
+    --color-sage: #92400e; /* rich copper */
+    --color-milo: #dc2626; /* coral/warm red */
+    --color-reese: #7c3aed; /* warm plum/mauve */
+    --color-avery: #7f1d1d; /* deep burgundy */
+    --color-cyrus: #1e293b; /* dark charcoal */
+    --color-cyrus-accent: #3b82f6; /* electric blue */
+}</div>
+        
+        <h2>📁 Files Created</h2>
+        
+        <ul>
+            <li><code>index.html</code> - Main landing page (15KB)</li>
+            <li><code>style.css</code> - Additional styles (3KB)</li>
+            <li><code>script.js</code> - Enhanced interactivity (6KB)</li>
+            <li><code>README.md</code> - Documentation (4KB)</li>
+            <li><code>preview.html</code> - This preview page</li>
+        </ul>
+        
+        <p>The page references avatar images from <code>avatars/{name}-robot-v2.png</code> which all exist in the avatars directory.</p>
+        
+        <a href="index.html" class="cta">🚀 Open Landing Page</a>
+        <a href="README.md" class="cta" style="background: #4a5568; margin-left: 1rem;">📖 View README</a>
+    </div>
+</body>
+</html>

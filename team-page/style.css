@@ -1,0 +1,171 @@
+/* Additional styles for the team page */
+
+/* Values section animations */
+.value-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Agent card hover effects enhancement */
+.agent-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.agent-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Pipeline card animations */
+.pipeline-card {
+    transition: transform 0.3s ease;
+}
+
+.pipeline-card:hover {
+    transform: translateX(5px);
+}
+
+/* Organization chart connectors animation */
+.org-connector {
+    position: relative;
+    overflow: hidden;
+}
+
+.org-connector::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--color-rope), transparent);
+    animation: flow 2s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes flow {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .agent-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .agent-avatar {
+        margin-bottom: 1rem;
+    }
+    
+    .org-agent {
+        min-width: 100px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .hero-cta,
+    .nav-links,
+    footer {
+        display: none;
+    }
+    
+    .agent-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    section {
+        padding: 2rem 0;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    :root {
+        --color-ocean-deep: #000;
+        --color-ocean-mid: #111;
+        --color-ocean-light: #222;
+        --color-brass: #b45309;
+    }
+    
+    .agent-card {
+        border: 2px solid var(--color-ocean-deep);
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(180deg, #1a202c 0%, #2d3748 100%);
+        color: #e2e8f0;
+    }
+    
+    .agent-card,
+    .pipeline-card,
+    .org-agent {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    .agent-name,
+    .agent-role,
+    .pipeline-title,
+    .org-name {
+        color: #e2e8f0;
+    }
+    
+    .agent-description,
+    .agent-location,
+    .org-role {
+        color: #a0aec0;
+    }
+    
+    header {
+        background: rgba(45, 55, 72, 0.95);
+    }
+    
+    .logo {
+        color: #e2e8f0;
+    }
+    
+    .nav-links a {
+        color: #a0aec0;
+    }
+    
+    .nav-links a:hover {
+        color: #e2e8f0;
+    }
+    
+    .hero-title {
+        color: #e2e8f0;
+    }
+    
+    .hero-subtitle {
+        color: #a0aec0;
+    }
+    
+    .section-title {
+        color: #e2e8f0;
+    }
+}
