@@ -18,6 +18,7 @@
 | Milo 📣 | Coral/warm red | Main deck | Megaphone/signal flags |
 | Reese 📋 | Warm plum/mauve | Drafting table on deck | Ship blueprints |
 | Avery ⚖️ | Deep burgundy | Captain's quarters | Spectacles, ship's log |
+| Rio 🌊 | Warm sunrise orange / soft gold | Ship's bow | Headband, calm expression |
 | Cyrus 🔒 | Dark charcoal + electric blue | Stern | Shield emblem |
 
 ## How to invoke sub-agents
@@ -43,6 +44,7 @@ Howard can spawn any sub-agent using `sessions_spawn` with their persona file re
 | **Milo** 📢 | Marketing & Growth | Content, SEO, distribution, campaigns |
 | **Reese** 📋 | Product Manager | Feature specs, roadmap, user research synthesis |
 | **Avery** ⚖️ | Legal & Compliance | Contract review, regulatory, risk assessment |
+| **Rio** 🌊 | Wellbeing Coach | Morning routine, training oversight, recovery, accountability |
 | **Cyrus** 🛡️ | Security | Security audits, infrastructure review, incident response |
 
 ### Core Team (Full agents with own workspaces)

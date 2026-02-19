@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-19T18:51:04.257Z",
+  "lastUpdated": "2026-02-19T19:06:03.209Z",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
@@ -506,12 +506,12 @@
       "team": "Core Team",
       "station": "Helm",
       "avatar": "/avatars/howard-robot-v2.png",
-      "status": "standby",
-      "costThisMonth": 547.99,
-      "totalTokens": 504674998,
-      "lastActive": "16m ago",
-      "lastActiveTs": 1771526101260,
-      "currentTask": "The biggest thing that stands out to me is the pillars around my personal health",
+      "status": "active",
+      "costThisMonth": 550.28,
+      "totalTokens": 507239561,
+      "lastActive": "just now",
+      "lastActiveTs": 1771527950651,
+      "currentTask": "Yes, and add strength to training, mobility, and cardio to the well being pillar",
       "tasksCompleted": 1226,
       "productivity": 99
     },
@@ -540,11 +540,11 @@
       "avatar": "/avatars/marcel-robot-v2.png",
       "status": "active",
       "costThisMonth": 111.37,
-      "totalTokens": 136839754,
+      "totalTokens": 136860101,
       "lastActive": "just now",
-      "lastActiveTs": 1771527059329,
+      "lastActiveTs": 1771527959302,
       "currentTask": "It looks like you added various APIs that we're using as staff members? Review t",
-      "tasksCompleted": 1252,
+      "tasksCompleted": 1253,
       "productivity": 64
     },
     {
@@ -695,15 +695,15 @@
   "organization": {
     "monthlyCosts": {
       "actual": 551.87,
-      "apiEquivalent": 1178.81,
+      "apiEquivalent": 1181.1,
       "infrastructure": 349,
       "target": 500
     },
     "anthropic": {
       "plan": "Max 20X",
       "planCost": 200,
-      "apiEquivalentUsage": 1026.94,
-      "savings": 826.94,
+      "apiEquivalentUsage": 1029.23,
+      "savings": 829.23,
       "apiUsage": null,
       "source": "transcript-estimate"
     },
@@ -724,7 +724,7 @@
     "costsByModel": [
       {
         "name": "claude-opus-4-6",
-        "cost": 597.22,
+        "cost": 599.51,
         "percent": 58
       },
       {
@@ -741,7 +741,7 @@
     "costsByAgent": [
       {
         "agent": "Howard",
-        "cost": 547.99
+        "cost": 550.28
       },
       {
         "agent": "Jacques",
@@ -802,9 +802,39 @@
   "recentActivity": [
     {
       "icon": "🎨",
-      "text": "Marcel: I'll run the dashboard data collection script for you.",
+      "text": "Marcel: I'll run the dashboard data collection script as requested.",
       "time": "just now",
       "agent": "Marcel"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: All pushed. Here's what's live:  **6 Pillars, in order of foundation:**  1. 🧭 *",
+      "time": "5m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: All 8 wellbeing goals showing — strength training (in progress), cardio (on trac",
+      "time": "7m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: 6 pillars in the right order — Wellbeing first, AI Team second, then Operations,",
+      "time": "7m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Now let me also sync the Obsidian vault copy:",
+      "time": "8m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Now update the dashboard PILLARS data to match:",
+      "time": "8m ago",
+      "agent": "Howard"
     },
     {
       "icon": "🎨",
@@ -814,110 +844,80 @@
     },
     {
       "icon": "🎨",
-      "text": "Marcel: I'll run the dashboard data collection script as requested.",
+      "text": "Marcel: I'll run the dashboard data collection script for you.",
       "time": "15m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: The dashboard data collection script has completed successfully! Here's what it ",
+      "time": "30m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: I'll run the dashboard data collection script as requested.",
+      "time": "30m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🪨",
       "text": "Howard:   That's a really clear reframe. Let me play it back:  **The actual hierarchy:**",
-      "time": "16m ago",
+      "time": "31m ago",
       "agent": "Howard"
     },
     {
       "icon": "🎨",
       "text": "Marcel: The dashboard data collection script has completed successfully! Here's what it ",
-      "time": "30m ago",
+      "time": "45m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
       "text": "Marcel: I'll run the dashboard data collection script as requested.",
-      "time": "30m ago",
+      "time": "45m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🪨",
       "text": "Howard: `https://brians-mac-mini.taile67de1.ts.net:8443/`  Passphrase: \"pocket\"",
-      "time": "30m ago",
+      "time": "45m ago",
       "agent": "Howard"
     },
     {
       "icon": "🪨",
       "text": "Howard: Here's what's live now:  **Projects & Time tab** — 7 Pillar cards at the top: - ",
-      "time": "32m ago",
+      "time": "47m ago",
       "agent": "Howard"
     },
     {
       "icon": "🪨",
       "text": "Howard: Also commit the pillars doc to the clawd repo:",
-      "time": "32m ago",
+      "time": "47m ago",
       "agent": "Howard"
     },
     {
       "icon": "🪨",
       "text": "Howard: Howard's profile now shows his 4 Pillars — color-coded badges for SailorSkills O",
-      "time": "33m ago",
+      "time": "47m ago",
       "agent": "Howard"
     },
     {
       "icon": "🪨",
       "text": "Howard: Financial Health shows the red-bordered detail with all 5 goals — 🔴 Behind for ",
-      "time": "33m ago",
+      "time": "48m ago",
       "agent": "Howard"
     },
     {
       "icon": "🪨",
       "text": "Howard: The detail drawer expands showing SailorSkills Operations with all 4 value goals",
-      "time": "33m ago",
+      "time": "48m ago",
       "agent": "Howard"
     },
     {
       "icon": "🪨",
       "text": "Howard: The 7 Pillars are showing beautifully at the top of Projects & Time — each with ",
-      "time": "34m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now restart MC and test:",
-      "time": "34m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Also update the shared docs path registry:",
-      "time": "34m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Also update the shared docs list endpoint:",
-      "time": "35m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now add pillar document to the serve.mjs document registry so it's viewable:",
-      "time": "35m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now add pillar badges to the agent modal. I need to add it after the \"Current Fo",
-      "time": "35m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now add the renderPillars function. I'll put it right before the renderProjectsT",
-      "time": "35m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now add the renderPillars function and wire it into renderProjectsTab:",
-      "time": "35m ago",
+      "time": "49m ago",
       "agent": "Howard"
     }
   ],
@@ -974,16 +974,16 @@
     ],
     "monthlySummary": {
       "actual": 551.87,
-      "apiEquivalent": 1178.81,
+      "apiEquivalent": 1181.1,
       "anthropicPlan": 200,
-      "anthropicApiEquiv": 1026.94,
-      "anthropicSavings": 826.94,
+      "anthropicApiEquiv": 1029.23,
+      "anthropicSavings": 829.23,
       "otherApis": 2.87,
       "infrastructure": 349
     }
   },
   "metadata": {
-    "lastUpdated": "2026-02-19T18:51:04.258Z",
+    "lastUpdated": "2026-02-19T19:06:03.210Z",
     "version": "3.0",
     "source": "Real data from session transcripts + curated static data"
   }
