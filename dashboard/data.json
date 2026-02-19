@@ -1,20 +1,20 @@
 {
-  "lastUpdated": "2026-02-19T16:42:45.630Z",
+  "lastUpdated": "2026-02-19T16:51:05.074Z",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
       "status": "OVERDUE",
       "detail": "~$12,343 estimated",
       "urgency": "critical",
-      "icon": "🚨",
+      "icon": "\ud83d\udea8",
       "details": "Estimated liability ~$9,200 + ~$3,100 penalties = ~$12,343. True 2024 gross: $67,666. CPA candidates: Dimov Tax (866-681-2140), Mary Geong (510-654-4417), Chang & Associates (510-548-1962). Howard has corrected income reconciliation ready. Next step: decide on CPA vs DIY prep."
     },
     {
       "title": "Insurance Broker Response",
       "status": "RESOLVED 2/12",
-      "detail": "USL&H required — confirmed by Novamar",
+      "detail": "USL&H required \u2014 confirmed by Novamar",
       "urgency": "low",
-      "icon": "⏳",
+      "icon": "\u23f3",
       "details": "Henry Medina (Novamar Insurance Group) confirmed 2/12/2026: USL&H endorsement IS required for in-water dive service. Standard CA state WC is NOT sufficient. To add W-2 employee to GL policy, broker needs: employee name+DOB, new gross receipts estimate, estimated payroll. RLI GL does NOT cover employee liability. Contact: Henry Medina (619) 226-8661, Henry@novamar.net. Katrina Kashishian also at Novamar now (moved from Mariners General)."
     },
     {
@@ -22,7 +22,7 @@
       "status": "Due March 15",
       "detail": "29 days remaining",
       "urgency": "medium",
-      "icon": "📋",
+      "icon": "\ud83d\udccb",
       "details": "S-Corp tax filing for SailorSkills LLC. Need to reconcile 2025 income/expenses, confirm officer compensation (reasonable salary test), and file by March 15 or request extension. Howard can help prep the financial summary."
     },
     {
@@ -30,15 +30,15 @@
       "status": "Expired",
       "detail": "Re-authenticate to restore email access",
       "urgency": "medium",
-      "icon": "🔑",
-      "details": "Gmail OAuth token expired. Need to re-authenticate through Google Cloud Console to restore Howard's email access. This blocks email checking, sending, and inbox monitoring. Quick fix — just need to go through the OAuth flow again."
+      "icon": "\ud83d\udd11",
+      "details": "Gmail OAuth token expired. Need to re-authenticate through Google Cloud Console to restore Howard's email access. This blocks email checking, sending, and inbox monitoring. Quick fix \u2014 just need to go through the OAuth flow again."
     },
     {
       "title": "USCG Vessel Documentation Expired",
       "status": "Expired 4/30/2025",
-      "detail": "Maris COD lapsed ~9.5 months — renew/reinstate ASAP",
+      "detail": "Maris COD lapsed ~9.5 months \u2014 renew/reinstate ASAP",
       "urgency": "high",
-      "icon": "⚓",
+      "icon": "\u2693",
       "details": "Coast Guard Certificate of Documentation for Maris (Official #1149206) expired 4/30/2025. Requires reinstatement (not just renewal) since >30 days lapsed. Cost: $26 + $5 late fee = $31. Renew online at uscg.mil/nvdc or call (800) 799-8362. Expired COD may affect insurance coverage (check RLI policy requirements). Address on file: 201 University Ave, Slip O-699."
     }
   ],
@@ -100,7 +100,7 @@
       "progress": 85,
       "metric": "16 days to launch",
       "nextAction": "Complete Week 4 sprint tasks",
-      "icon": "🚀",
+      "icon": "\ud83d\ude80",
       "checklist": [
         {
           "text": "Production deployment",
@@ -150,7 +150,7 @@
       "progress": 40,
       "metric": "Sarah postponed 2/11",
       "nextAction": "Revisit in a few months",
-      "icon": "⏸️",
+      "icon": "\u23f8\ufe0f",
       "checklist": [
         {
           "text": "Term sheet drafted",
@@ -199,7 +199,7 @@
       "progress": 10,
       "metric": "Need CPA",
       "nextAction": "File 2024 return, prep 1120-S",
-      "icon": "💰",
+      "icon": "\ud83d\udcb0",
       "checklist": [
         {
           "text": "Find CPA or decide DIY",
@@ -236,7 +236,7 @@
       "progress": 66,
       "metric": "2/3 domains verified",
       "nextAction": "Verify remaining domain",
-      "icon": "📧",
+      "icon": "\ud83d\udce7",
       "checklist": [
         {
           "text": "briancline.co verified",
@@ -271,9 +271,9 @@
       "name": "OpenClaw Cost Optimization",
       "status": "in-progress",
       "progress": 75,
-      "metric": "$1,600→$50-150/mo target",
+      "metric": "$1,600\u2192$50-150/mo target",
       "nextAction": "Test DeepSeek as daily driver",
-      "icon": "⚡",
+      "icon": "\u26a1",
       "checklist": [
         {
           "text": "Usage audit completed ($1,073/20 days)",
@@ -321,7 +321,7 @@
         "DeepSeek V3.2 + Reasoner configured and tested",
         "Kimi K2.5 (NVIDIA free tier) configured",
         "Local embeddings via node-llama-cpp + Metal GPU",
-        "Heartbeats disabled — were 21% of API calls",
+        "Heartbeats disabled \u2014 were 21% of API calls",
         "Full usage audit: $1,073 over 20 days",
         "6 Anthropic Cowork plugins ported to OpenClaw skills"
       ],
@@ -333,7 +333,7 @@
       "progress": 15,
       "metric": "Just set up",
       "nextAction": "Configure Dataview queries",
-      "icon": "🗂️",
+      "icon": "\ud83d\uddc2\ufe0f",
       "checklist": [
         {
           "text": "Obsidian vault created",
@@ -372,7 +372,7 @@
   "todos": {
     "Business": [
       {
-        "text": "Email CPA — questions: (1) Should boat transfer to S-Corp? (used exclusively for biz, already deducting slip+insurance), (2) 2024 personal return prep, (3) 2025 1120-S filing (due 3/15)",
+        "text": "Email CPA \u2014 questions: (1) Should boat transfer to S-Corp? (used exclusively for biz, already deducting slip+insurance), (2) 2024 personal return prep, (3) 2025 1120-S filing (due 3/15)",
         "done": false
       },
       {
@@ -384,11 +384,11 @@
         "done": false
       },
       {
-        "text": "Mike (Southern Cross) — reply w/ portal link",
+        "text": "Mike (Southern Cross) \u2014 reply w/ portal link",
         "done": false
       },
       {
-        "text": "Ask Jacques — what's in, what's out",
+        "text": "Ask Jacques \u2014 what's in, what's out",
         "done": false
       },
       {
@@ -396,7 +396,7 @@
         "done": false
       },
       {
-        "text": "File Form 576D — boat property tax declaration (Alameda County, ~10mo overdue). Call assessor (510) 272-3836 to check status.",
+        "text": "File Form 576D \u2014 boat property tax declaration (Alameda County, ~10mo overdue). Call assessor (510) 272-3836 to check status.",
         "done": false
       },
       {
@@ -408,7 +408,7 @@
         "done": false
       },
       {
-        "text": "Renew USCG vessel documentation for Maris — expired 4/30/2025, reinstate at uscg.mil/nvdc ($31)",
+        "text": "Renew USCG vessel documentation for Maris \u2014 expired 4/30/2025, reinstate at uscg.mil/nvdc ($31)",
         "done": false
       }
     ],
@@ -418,7 +418,7 @@
         "done": false
       },
       {
-        "text": "Plan Portland trip — visit Christina Hart, aiming for spring. Finalize dates.",
+        "text": "Plan Portland trip \u2014 visit Christina Hart, aiming for spring. Finalize dates.",
         "done": false
       }
     ],
@@ -429,7 +429,7 @@
         "link": "https://www.youtube.com/watch?v=uHLAazKUU68"
       },
       {
-        "text": "Make Team No Events page — spreadsheet → calendar + invites",
+        "text": "Make Team No Events page \u2014 spreadsheet \u2192 calendar + invites",
         "done": false
       }
     ]
@@ -476,52 +476,52 @@
     {
       "date": "2026-02-11",
       "text": "Waiting on insurance broker",
-      "icon": "⏳",
+      "icon": "\u23f3",
       "status": "waiting"
     },
     {
       "date": "2026-03-01",
       "text": "Pro app launch",
-      "icon": "🚀",
+      "icon": "\ud83d\ude80",
       "daysAway": 16
     },
     {
       "date": "2026-03-15",
       "text": "1120-S filing deadline",
-      "icon": "📋",
+      "icon": "\ud83d\udccb",
       "daysAway": 29
     },
     {
       "date": "2026-03-01",
-      "text": "Sarah training — ON HOLD",
-      "icon": "⏸️",
+      "text": "Sarah training \u2014 ON HOLD",
+      "icon": "\u23f8\ufe0f",
       "note": "Revisit in a few months"
     }
   ],
   "agents": [
     {
       "name": "Howard",
-      "emoji": "🪨",
+      "emoji": "\ud83e\udea8",
       "role": "Chief of Staff",
       "team": "Core Team",
       "station": "Helm",
-      "avatar": "/avatars/howard-avatar.png",
+      "avatar": "/avatars/howard-robot-v2.png",
       "status": "active",
-      "costThisMonth": 530.65,
-      "totalTokens": 488326164,
+      "costThisMonth": 531.73,
+      "totalTokens": 489635116,
       "lastActive": "just now",
-      "lastActiveTs": 1771519359434,
-      "currentTask": "How do we besst keep it all up to date?",
+      "lastActiveTs": 1771519860680,
+      "currentTask": "The avatars on our dashboard do not match",
       "tasksCompleted": 1226,
       "productivity": 99
     },
     {
       "name": "Jacques",
-      "emoji": "🤿",
+      "emoji": "\ud83e\udd3f",
       "role": "Dev Partner",
       "team": "Core Team",
       "station": "Deck",
-      "avatar": "/avatars/jacques-avatar.png",
+      "avatar": "/avatars/jacques-robot-v2.png",
       "status": "standby",
       "costThisMonth": 370.02,
       "totalTokens": 505311159,
@@ -533,27 +533,27 @@
     },
     {
       "name": "Marcel",
-      "emoji": "🎨",
+      "emoji": "\ud83c\udfa8",
       "role": "Creative Director",
       "team": "Core Team",
       "station": "Workshop",
-      "avatar": "/avatars/marcel-avatar.png",
-      "status": "standby",
+      "avatar": "/avatars/marcel-robot-v2.png",
+      "status": "active",
       "costThisMonth": 111.36,
-      "totalTokens": 136666770,
-      "lastActive": "7m ago",
-      "lastActiveTs": 1771518964412,
+      "totalTokens": 136676815,
+      "lastActive": "just now",
+      "lastActiveTs": 1771519859313,
       "currentTask": "It looks like you added various APIs that we're using as staff members? Review t",
-      "tasksCompleted": 1243,
+      "tasksCompleted": 1244,
       "productivity": 64
     },
     {
       "name": "Noa",
-      "emoji": "🔍",
+      "emoji": "\ud83d\udd0d",
       "role": "Research Analyst",
       "team": "Scheduled Crew",
       "station": "Crow's Nest",
-      "avatar": "/avatars/noa-avatar.png",
+      "avatar": "/avatars/noa-robot-v2.png",
       "status": "standby",
       "costThisMonth": 0,
       "totalTokens": 0,
@@ -565,11 +565,11 @@
     },
     {
       "name": "Kai",
-      "emoji": "💡",
+      "emoji": "\ud83d\udca1",
       "role": "Strategist",
       "team": "Scheduled Crew",
       "station": "Chart Room",
-      "avatar": "/avatars/kai-avatar.png",
+      "avatar": "/avatars/kai-robot-v2.png",
       "status": "standby",
       "costThisMonth": 0,
       "totalTokens": 0,
@@ -581,11 +581,11 @@
     },
     {
       "name": "Blake",
-      "emoji": "🧪",
+      "emoji": "\ud83e\uddea",
       "role": "QA Specialist",
       "team": "On-Demand",
       "station": "Engine Room",
-      "avatar": "/avatars/blake-avatar.png",
+      "avatar": "/avatars/blake-robot-v2.png",
       "status": "standby",
       "costThisMonth": 0,
       "totalTokens": 0,
@@ -597,11 +597,11 @@
     },
     {
       "name": "Quinn",
-      "emoji": "📊",
+      "emoji": "\ud83d\udcca",
       "role": "Ops & Finance",
       "team": "On-Demand",
       "station": "Supply Hold",
-      "avatar": "/avatars/quinn-avatar.png",
+      "avatar": "/avatars/quinn-robot-v2.png",
       "status": "standby",
       "costThisMonth": 0,
       "totalTokens": 0,
@@ -613,11 +613,11 @@
     },
     {
       "name": "Sage",
-      "emoji": "🤝",
+      "emoji": "\ud83e\udd1d",
       "role": "Sales",
       "team": "On-Demand",
       "station": "Gangway",
-      "avatar": "/avatars/sage-avatar.png",
+      "avatar": "/avatars/sage-robot-v2.png",
       "status": "standby",
       "costThisMonth": 0,
       "totalTokens": 0,
@@ -629,11 +629,11 @@
     },
     {
       "name": "Milo",
-      "emoji": "📣",
+      "emoji": "\ud83d\udce3",
       "role": "Marketing",
       "team": "On-Demand",
       "station": "Main Deck",
-      "avatar": "/avatars/milo-avatar.png",
+      "avatar": "/avatars/milo-robot-v2.png",
       "status": "standby",
       "costThisMonth": 0,
       "totalTokens": 0,
@@ -645,11 +645,11 @@
     },
     {
       "name": "Reese",
-      "emoji": "🎯",
+      "emoji": "\ud83c\udfaf",
       "role": "Product Manager",
       "team": "On-Demand",
       "station": "Drafting Table",
-      "avatar": "/avatars/reese-avatar.png",
+      "avatar": "/avatars/reese-robot-v2.png",
       "status": "standby",
       "costThisMonth": 0,
       "totalTokens": 0,
@@ -661,11 +661,11 @@
     },
     {
       "name": "Avery",
-      "emoji": "⚖️",
+      "emoji": "\u2696\ufe0f",
       "role": "Legal",
       "team": "On-Demand",
       "station": "Captain's Quarters",
-      "avatar": "/avatars/avery-avatar.png",
+      "avatar": "/avatars/avery-robot-v2.png",
       "status": "standby",
       "costThisMonth": 0,
       "totalTokens": 0,
@@ -677,11 +677,11 @@
     },
     {
       "name": "Cyrus",
-      "emoji": "🔒",
+      "emoji": "\ud83d\udd12",
       "role": "Security",
       "team": "On-Demand",
       "station": "Stern",
-      "avatar": "/avatars/cyrus-avatar.png",
+      "avatar": "/avatars/cyrus-robot-v2.png",
       "status": "standby",
       "costThisMonth": 0,
       "totalTokens": 0,
@@ -695,15 +695,15 @@
   "organization": {
     "monthlyCosts": {
       "actual": 551.43,
-      "apiEquivalent": 1161.03,
+      "apiEquivalent": 1162.11,
       "infrastructure": 349,
       "target": 500
     },
     "anthropic": {
       "plan": "Max 20X",
       "planCost": 200,
-      "apiEquivalentUsage": 1009.6,
-      "savings": 809.6,
+      "apiEquivalentUsage": 1010.68,
+      "savings": 810.68,
       "apiUsage": null,
       "source": "transcript-estimate"
     },
@@ -724,7 +724,7 @@
     "costsByModel": [
       {
         "name": "claude-opus-4-6",
-        "cost": 579.88,
+        "cost": 580.96,
         "percent": 57
       },
       {
@@ -741,7 +741,7 @@
     "costsByAgent": [
       {
         "agent": "Howard",
-        "cost": 530.65
+        "cost": 531.73
       },
       {
         "agent": "Jacques",
@@ -801,123 +801,123 @@
   },
   "recentActivity": [
     {
-      "icon": "🪨",
-      "text": "Howard: Marcel's still getting system messages. Let me also filter those:",
-      "time": "just now",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Still a cron-ish message. Let me also filter those system timestamp prefixes:",
-      "time": "just now",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now we're talking. All 12 agents with **real avatars**, **real costs**, **real c",
-      "time": "just now",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Data is flowing. Let me restart the MC server and check:",
-      "time": "1m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now test it:",
-      "time": "1m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now do the same for the extra agents (standby ones):",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now update `buildAgentData` to include the new fields:",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now update the return statement:",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now track the last user message as \"currentTask\":",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now add session counting and last task extraction inside the file loop:",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now update the collect script — add avatars, currentTask from last message, and ",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now I need serve.mjs to serve avatar files. Let me add that route, then update t",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Good, I can see exactly where to add the fields. Let me update `buildAgentData` ",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: The dashboard data collection script has completed successfully. Here's what it ",
-      "time": "7m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "text": "Marcel: I'll run the dashboard data collection script as requested.",
-      "time": "7m ago",
+      "time": "just now",
       "agent": "Marcel"
     },
     {
-      "icon": "🪨",
-      "text": "Howard: Here's the current state and what I'd recommend:  **Already working:** - ✅ `coll",
-      "time": "7m ago",
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Now commit:",
+      "time": "just now",
       "agent": "Howard"
     },
     {
-      "icon": "🪨",
-      "text": "Howard: None of those fields exist in the collect script. Here's the plan for keeping ev",
-      "time": "7m ago",
+      "icon": "\ud83e\udea8",
+      "text": "Howard: The serve.mjs already serves `/avatars/` from `~/clawd/avatars/` \u2014 and the robot",
+      "time": "just now",
       "agent": "Howard"
     },
     {
-      "icon": "🪨",
-      "text": "Howard: Now let me also check what `collect-data.js` looks like to see how hard it is to",
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Now also check the serve.mjs serves legacy avatars properly:",
+      "time": "just now",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Now rebuild the MC React app and check that the legacy dashboard serves the avat",
+      "time": "just now",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: All pointing to `-avatar.png`. Need to update data.json and also copy the robot-",
+      "time": "just now",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Legacy dashboard pulls avatar from data \u2014 let me check what data.json has:",
+      "time": "just now",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Now fix the legacy dashboard too:",
+      "time": "just now",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Only 3 avatar files exist in MC, and it's using `-avatar.png` naming. Need to co",
+      "time": "just now",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Found it. Mission Control uses `-avatar.png` while team.briancline.co uses `-rob",
+      "time": "1m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard:   Let me check what the dashboard is currently using vs what's on team.brianclin",
+      "time": "1m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: So team.briancline.co uses `avatars/{name}-robot-v2.png`. These are the same rob",
+      "time": "2m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: I need to find the actual image URLs on the page. Let me grab the raw HTML.",
+      "time": "2m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Here's the summary of how it all stays fresh now:  **Every 15 minutes** (Marcel'",
       "time": "8m ago",
       "agent": "Howard"
     },
     {
-      "icon": "🪨",
-      "text": "Howard: The data is already pretty rich. The missing fields for the dashboard are:  - `a",
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Much better \u2014 that's an actual conversation message from Marcel. Now commit ever",
       "time": "8m ago",
       "agent": "Howard"
     },
     {
-      "icon": "🪨",
-      "text": "Howard: Now the dashboard always reads from the cron's live output. But `collect-data.js",
-      "time": "8m ago",
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Marcel's still getting system messages. Let me also filter those:",
+      "time": "9m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Still a cron-ish message. Let me also filter those system timestamp prefixes:",
+      "time": "9m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Now we're talking. All 12 agents with **real avatars**, **real costs**, **real c",
+      "time": "9m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Data is flowing. Let me restart the MC server and check:",
+      "time": "10m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "\ud83e\udea8",
+      "text": "Howard: Now test it:",
+      "time": "10m ago",
       "agent": "Howard"
     }
   ],
@@ -974,16 +974,16 @@
     ],
     "monthlySummary": {
       "actual": 551.43,
-      "apiEquivalent": 1161.03,
+      "apiEquivalent": 1162.11,
       "anthropicPlan": 200,
-      "anthropicApiEquiv": 1009.6,
-      "anthropicSavings": 809.6,
+      "anthropicApiEquiv": 1010.68,
+      "anthropicSavings": 810.68,
       "otherApis": 2.43,
       "infrastructure": 349
     }
   },
   "metadata": {
-    "lastUpdated": "2026-02-19T16:42:45.631Z",
+    "lastUpdated": "2026-02-19T16:51:05.074Z",
     "version": "3.0",
     "source": "Real data from session transcripts + curated static data"
   }

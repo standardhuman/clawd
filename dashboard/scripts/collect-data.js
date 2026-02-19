@@ -208,7 +208,7 @@ function buildAgentData(parsed) {
     const agentNameLower = meta.name.toLowerCase();
     agents.push({
       ...meta,
-      avatar: `/avatars/${agentNameLower}-avatar.png`,
+      avatar: `/avatars/${agentNameLower}-robot-v2.png`,
       status: isActive ? 'active' : 'standby',
       costThisMonth: Math.round(cost * 100) / 100,
       totalTokens: tokens.total || 0,
@@ -228,7 +228,7 @@ function buildAgentData(parsed) {
     const agentNameLower = extra.name.toLowerCase();
     agents.push({
       ...extra,
-      avatar: `/avatars/${agentNameLower}-avatar.png`,
+      avatar: `/avatars/${agentNameLower}-robot-v2.png`,
       status: 'standby',
       costThisMonth: 0,
       totalTokens: 0,
