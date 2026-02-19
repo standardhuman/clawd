@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Morning Flow with Rio</title>
+    <description>Your daily guided morning movement flow. Yoga, mobility, and bodyweight resistance blended into a calming 10-minute practice. Generated fresh each morning by Rio, your AI wellbeing coach.</description>
+    <language>en-us</language>
+    <itunes:author>Rio</itunes:author>
+    <itunes:category text="Health &amp; Fitness">
+      <itunes:category text="Fitness"/>
+    </itunes:category>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:image href="https://brians-mac-mini.taile67de1.ts.net:8443/avatars/rio-headshot.png"/>
+    <link>https://brians-mac-mini.taile67de1.ts.net:8443/morning-flow/feed.xml</link>
+    <item>
+      <title>Morning Flow - February 19</title>
+      <description>Your personalized morning flow for today. 10:00 of guided movement.</description>
+      <enclosure url="https://brians-mac-mini.taile67de1.ts.net:8443/morning-flow/episodes/2026-02-19-morning-flow.mp3" length="4800564" type="audio/mpeg"/>
+      <itunes:duration>10:00</itunes:duration>
+      <pubDate>Thu, 19 Feb 2026 11:39:57 -0800</pubDate>
+      <guid>https://brians-mac-mini.taile67de1.ts.net:8443/morning-flow/episodes/2026-02-19-morning-flow.mp3</guid>
+    </item>
+  </channel>
+</rss>
