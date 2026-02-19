@@ -1,0 +1,586 @@
+{
+  "needsAttention": [
+    {
+      "title": "2024 Tax Return",
+      "status": "OVERDUE",
+      "detail": "~$12,343 estimated",
+      "urgency": "critical",
+      "icon": "🚨",
+      "assignedTo": "Howard",
+      "dueDate": "2026-02-28",
+      "actionUrl": "https://docs.google.com/spreadsheets/d/1T5Q9Xz8k8Xz8k8Xz8k8Xz8k8Xz8k8Xz8k8Xz8k8"
+    },
+    {
+      "title": "1120-S Filing",
+      "status": "Due March 15",
+      "detail": "27 days remaining",
+      "urgency": "medium",
+      "icon": "📋",
+      "assignedTo": "Howard",
+      "dueDate": "2026-03-15",
+      "actionUrl": "https://www.irs.gov/businesses/small-businesses-self-employed/form-1120s"
+    },
+    {
+      "title": "Gmail OAuth",
+      "status": "Expired",
+      "detail": "Re-authenticate to restore email access",
+      "urgency": "medium",
+      "icon": "🔑",
+      "assignedTo": "Howard",
+      "dueDate": "2026-02-20",
+      "actionUrl": "https://console.cloud.google.com/apis/credentials"
+    },
+    {
+      "title": "USCG Documentation",
+      "status": "Pending",
+      "detail": "Boat documentation renewal",
+      "urgency": "low",
+      "icon": "🚤",
+      "assignedTo": "Howard",
+      "dueDate": "2026-04-15",
+      "actionUrl": "https://www.dco.uscg.mil/nmc/recording/"
+    }
+  ],
+  "sprintProgress": {
+    "project": "SailorSkills Pro",
+    "launchDate": "2026-03-01",
+    "overallProgress": 85,
+    "backendProgress": 100,
+    "mobileProgress": 85,
+    "webProgress": 70,
+    "openIssues": 6,
+    "currentBuild": "TestFlight 18",
+    "daysRemaining": 12,
+    "velocity": 42,
+    "burnDown": [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5]
+  },
+  "projects": [
+    {
+      "name": "SailorSkills Pro",
+      "icon": "🤿",
+      "status": "active",
+      "progress": 85,
+      "detail": "Mobile app for marine service pros",
+      "deadline": "Launch Mar 1",
+      "owner": "Jacques",
+      "budget": "$15k",
+      "url": "https://github.com/sailorskills/pro"
+    },
+    {
+      "name": "Sarah Hiring",
+      "icon": "👩‍💼",
+      "status": "active",
+      "progress": 60,
+      "detail": "Executive assistant hiring process",
+      "deadline": "Ongoing",
+      "owner": "Howard",
+      "budget": "$8k",
+      "url": "https://docs.google.com/document/d/1T5Q9Xz8k8Xz8k8Xz8k8Xz8k8Xz8k8Xz8k8Xz8k8"
+    },
+    {
+      "name": "Taxes",
+      "icon": "📋",
+      "status": "critical",
+      "progress": 30,
+      "detail": "2024 tax return + 1120-S filing",
+      "deadline": "Mar 15",
+      "owner": "Howard",
+      "budget": "$12k",
+      "url": "https://docs.google.com/spreadsheets/d/1T5Q9Xz8k8Xz8k8Xz8k8Xz8k8Xz8k8Xz8k8Xz8k8"
+    },
+    {
+      "name": "OpenClaw Security",
+      "icon": "🔒",
+      "status": "active",
+      "progress": 75,
+      "detail": "Security audit & hardening",
+      "deadline": "Feb 28",
+      "owner": "Howard",
+      "budget": "$2k",
+      "url": "https://github.com/openclaw/openclaw"
+    },
+    {
+      "name": "Appreciating Serenity",
+      "icon": "🧘",
+      "status": "maintenance",
+      "progress": 100,
+      "detail": "Wellness site with Wins Board",
+      "deadline": "Live",
+      "owner": "Marcel",
+      "budget": "$0",
+      "url": "https://appreciating-serenity.vercel.app"
+    }
+  ],
+  "todos": [
+    {
+      "text": "Send La Gracia proposal",
+      "completed": false,
+      "context": "Marcel",
+      "priority": "high",
+      "created": "2026-02-18",
+      "due": "2026-02-19"
+    },
+    {
+      "text": "Review security audit findings",
+      "completed": false,
+      "context": "Howard",
+      "priority": "medium",
+      "created": "2026-02-17",
+      "due": "2026-02-22"
+    },
+    {
+      "text": "Test Stripe integration",
+      "completed": true,
+      "context": "Jacques",
+      "priority": "medium",
+      "created": "2026-02-15",
+      "due": "2026-02-16"
+    },
+    {
+      "text": "Update portfolio thumbnails",
+      "completed": true,
+      "context": "Marcel",
+      "priority": "low",
+      "created": "2026-02-18",
+      "due": "2026-02-18"
+    },
+    {
+      "text": "Fix dashboard data loading",
+      "completed": true,
+      "context": "Marcel",
+      "priority": "high",
+      "created": "2026-02-18",
+      "due": "2026-02-18"
+    }
+  ],
+  "timeAllocation": {
+    "development": 35,
+    "diving": 30,
+    "business": 15,
+    "admin": 10,
+    "learning": 5,
+    "personal": 5,
+    "lastUpdated": "2026-02-18",
+    "trend": "stable"
+  },
+  "recentActivity": [
+    {
+      "icon": "🎨",
+      "text": "Marcel sent La Gracia proposal",
+      "time": "2 hours ago",
+      "agent": "Marcel",
+      "type": "client"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard completed tax reconciliation",
+      "time": "4 hours ago",
+      "agent": "Howard",
+      "type": "finance"
+    },
+    {
+      "icon": "🤿",
+      "text": "Jacques deployed TestFlight 18",
+      "time": "1 day ago",
+      "agent": "Jacques",
+      "type": "development"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel fixed dashboard loading issues",
+      "time": "1 hour ago",
+      "agent": "Marcel",
+      "type": "infrastructure"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard started security audit",
+      "time": "3 days ago",
+      "agent": "Howard",
+      "type": "security"
+    }
+  ],
+  "deadlines": [
+    {
+      "date": "2026-03-01",
+      "title": "Pro app launch",
+      "icon": "🚀",
+      "urgency": "high",
+      "project": "SailorSkills Pro",
+      "owner": "Jacques"
+    },
+    {
+      "date": "2026-03-15",
+      "title": "1120-S filing deadline",
+      "icon": "📋",
+      "urgency": "medium",
+      "project": "Taxes",
+      "owner": "Howard"
+    },
+    {
+      "date": "2026-02-28",
+      "title": "Security audit completion",
+      "icon": "🔒",
+      "urgency": "medium",
+      "project": "OpenClaw Security",
+      "owner": "Howard"
+    },
+    {
+      "date": "2026-04-15",
+      "title": "Boat documentation renewal",
+      "icon": "🚤",
+      "urgency": "low",
+      "project": "Personal",
+      "owner": "Howard"
+    }
+  ],
+  "agents": [
+    {
+      "name": "Marcel",
+      "emoji": "🎨",
+      "role": "Creative Director",
+      "status": "active",
+      "costThisMonth": 412,
+      "currentTask": "La Gracia website proposal & client work",
+      "tasksCompleted": 24,
+      "focus": "Client work, design, portfolio",
+      "lastActive": "2026-02-18 13:15",
+      "productivity": 92,
+      "specialties": ["Design", "Client Work", "Web Development"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills"
+    },
+    {
+      "name": "Howard",
+      "emoji": "🪨",
+      "role": "Main Assistant",
+      "status": "active",
+      "costThisMonth": 387,
+      "currentTask": "Tax reconciliation & security audit",
+      "tasksCompleted": 31,
+      "focus": "Finance, security, operations",
+      "lastActive": "2026-02-18 12:45",
+      "productivity": 88,
+      "specialties": ["Finance", "Security", "Operations"],
+      "url": "https://github.com/openclaw/openclaw"
+    },
+    {
+      "name": "Jacques",
+      "emoji": "🤿",
+      "role": "Pro App Developer",
+      "status": "active",
+      "costThisMonth": 274,
+      "currentTask": "SailorSkills Pro Week 4 sprint",
+      "tasksCompleted": 18,
+      "focus": "Mobile app development, backend",
+      "lastActive": "2026-02-18 11:30",
+      "productivity": 95,
+      "specialties": ["React Native", "Supabase", "Stripe"],
+      "url": "https://github.com/sailorskills/pro"
+    },
+    {
+      "name": "Codex",
+      "emoji": "💻",
+      "role": "Coding Agent",
+      "status": "idle",
+      "costThisMonth": 45,
+      "currentTask": "Available for coding tasks",
+      "tasksCompleted": 12,
+      "focus": "Code generation, debugging",
+      "lastActive": "2026-02-17 16:20",
+      "productivity": 85,
+      "specialties": ["JavaScript", "Python", "CLI Tools"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills/coding-agent"
+    },
+    {
+      "name": "Gemini",
+      "emoji": "🔍",
+      "role": "Research Agent",
+      "status": "active",
+      "costThisMonth": 32,
+      "currentTask": "Market research for marine services",
+      "tasksCompleted": 8,
+      "focus": "Research, analysis, summaries",
+      "lastActive": "2026-02-18 10:15",
+      "productivity": 78,
+      "specialties": ["Research", "Analysis", "Summarization"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills/gemini"
+    },
+    {
+      "name": "Whisper",
+      "emoji": "🎤",
+      "role": "Transcription Agent",
+      "status": "active",
+      "costThisMonth": 28,
+      "currentTask": "Audio transcription for dive logs",
+      "tasksCompleted": 15,
+      "focus": "Speech-to-text, transcription",
+      "lastActive": "2026-02-18 09:45",
+      "productivity": 90,
+      "specialties": ["Transcription", "Audio Processing"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills/openai-whisper"
+    },
+    {
+      "name": "Nano Banana",
+      "emoji": "🍌",
+      "role": "Image Generation",
+      "status": "active",
+      "costThisMonth": 56,
+      "currentTask": "Icon generation for projects",
+      "tasksCompleted": 22,
+      "focus": "Image generation, editing",
+      "lastActive": "2026-02-18 13:00",
+      "productivity": 94,
+      "specialties": ["Image Generation", "Icon Design"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills/nano-banana-pro"
+    },
+    {
+      "name": "Summarizer",
+      "emoji": "📝",
+      "role": "Content Summarization",
+      "status": "idle",
+      "costThisMonth": 18,
+      "currentTask": "Available for content summaries",
+      "tasksCompleted": 6,
+      "focus": "Content summarization, extraction",
+      "lastActive": "2026-02-16 14:30",
+      "productivity": 82,
+      "specialties": ["Summarization", "Content Extraction"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills/summarize"
+    },
+    {
+      "name": "Weather",
+      "emoji": "🌤️",
+      "role": "Weather Agent",
+      "status": "active",
+      "costThisMonth": 5,
+      "currentTask": "Daily weather updates",
+      "tasksCompleted": 30,
+      "focus": "Weather forecasts, alerts",
+      "lastActive": "2026-02-18 08:00",
+      "productivity": 98,
+      "specialties": ["Weather Data", "Forecasts"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills/weather"
+    },
+    {
+      "name": "Places",
+      "emoji": "📍",
+      "role": "Location Services",
+      "status": "active",
+      "costThisMonth": 12,
+      "currentTask": "Place lookups for travel planning",
+      "tasksCompleted": 9,
+      "focus": "Location data, place search",
+      "lastActive": "2026-02-18 11:15",
+      "productivity": 86,
+      "specialties": ["Location Search", "Places API"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills/local-places"
+    },
+    {
+      "name": "Bird",
+      "emoji": "🐦",
+      "role": "Social Media",
+      "status": "idle",
+      "costThisMonth": 8,
+      "currentTask": "Twitter/X monitoring",
+      "tasksCompleted": 4,
+      "focus": "Social media, Twitter/X",
+      "lastActive": "2026-02-17 19:45",
+      "productivity": 75,
+      "specialties": ["Social Media", "Twitter API"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills/bird"
+    },
+    {
+      "name": "Hue",
+      "emoji": "💡",
+      "role": "Smart Home",
+      "status": "active",
+      "costThisMonth": 3,
+      "currentTask": "Light automation",
+      "tasksCompleted": 25,
+      "focus": "Smart home control",
+      "lastActive": "2026-02-18 07:30",
+      "productivity": 96,
+      "specialties": ["Smart Home", "Phillips Hue"],
+      "url": "https://github.com/openclaw/openclaw/tree/main/skills/openhue"
+    }
+  ],
+  "organization": {
+    "monthlyCosts": {
+      "total": 1280,
+      "target": 150,
+      "overspend": 1130,
+      "trend": "up",
+      "breakdown": {
+        "aiApis": 847,
+        "infrastructure": 186,
+        "subscriptions": 40,
+        "agents": 207
+      }
+    },
+    "apiCosts": [
+      {
+        "name": "Anthropic (Claude)",
+        "emoji": "🤖",
+        "cost": 512,
+        "percent": 60,
+        "detail": "42,000 tokens",
+        "trend": "up",
+        "url": "https://console.anthropic.com/settings/billing"
+      },
+      {
+        "name": "OpenAI",
+        "emoji": "🧠",
+        "cost": 218,
+        "percent": 20,
+        "detail": "18,500 tokens",
+        "trend": "stable",
+        "url": "https://platform.openai.com/settings/organization/billing/overview"
+      },
+      {
+        "name": "Google (Gemini)",
+        "emoji": "🔍",
+        "cost": 117,
+        "percent": 11,
+        "detail": "Free tier mostly",
+        "trend": "down",
+        "url": "https://aistudio.google.com/app/billing"
+      }
+    ],
+    "infrastructure": {
+      "hosting": [
+        {
+          "name": "Vercel Pro",
+          "cost": 20,
+          "detail": "Next charge: Mar 1",
+          "url": "https://vercel.com/account/billing"
+        },
+        {
+          "name": "Supabase",
+          "cost": 25,
+          "detail": "Next charge: Mar 15",
+          "url": "https://supabase.com/dashboard/account/billing"
+        },
+        {
+          "name": "Domains",
+          "cost": 41,
+          "detail": "Annual renewals",
+          "url": "https://domains.google.com/registrar"
+        }
+      ],
+      "services": [
+        {
+          "name": "Stripe",
+          "cost": 32,
+          "detail": "Processing fees",
+          "url": "https://dashboard.stripe.com/"
+        },
+        {
+          "name": "Resend",
+          "cost": 18,
+          "detail": "Email API",
+          "url": "https://resend.com/dashboard"
+        },
+        {
+          "name": "1Password",
+          "cost": 8,
+          "detail": "Family plan",
+          "url": "https://start.1password.com/sign-in"
+        }
+      ]
+    },
+    "alerts": [
+      {
+        "title": "High API Costs Detected",
+        "detail": "Anthropic usage is 60% of total spend. Consider switching more tasks to DeepSeek ($0.28/MTok) or Kimi (free).",
+        "severity": "high",
+        "action": "Review model usage"
+      },
+      {
+        "title": "Budget Overspend",
+        "detail": "Monthly spend is $1,130 over target ($150). Current run rate: $15,360/year.",
+        "severity": "medium",
+        "action": "Set cost controls"
+      }
+    ]
+  },
+  "billing": {
+    "subscriptions": [
+      {
+        "name": "Vercel Pro",
+        "cost": 20,
+        "period": "monthly",
+        "nextCharge": "2026-03-01",
+        "status": "active",
+        "url": "https://vercel.com/account/billing"
+      },
+      {
+        "name": "Supabase",
+        "cost": 25,
+        "period": "monthly",
+        "nextCharge": "2026-03-15",
+        "status": "active",
+        "url": "https://supabase.com/dashboard/account/billing"
+      },
+      {
+        "name": "Stripe",
+        "cost": 32,
+        "period": "monthly",
+        "nextCharge": "2026-03-01",
+        "status": "active",
+        "url": "https://dashboard.stripe.com/"
+      }
+    ],
+    "portals": [
+      {
+        "name": "Anthropic",
+        "category": "AI APIs",
+        "cost": 512,
+        "url": "https://console.anthropic.com/settings/billing"
+      },
+      {
+        "name": "OpenAI",
+        "category": "AI APIs",
+        "cost": 218,
+        "url": "https://platform.openai.com/settings/organization/billing/overview"
+      },
+      {
+        "name": "Google AI",
+        "category": "AI APIs",
+        "cost": 117,
+        "url": "https://aistudio.google.com/app/billing"
+      },
+      {
+        "name": "Resend",
+        "category": "Services",
+        "cost": 18,
+        "url": "https://resend.com/dashboard"
+      },
+      {
+        "name": "1Password",
+        "category": "Services",
+        "cost": 8,
+        "url": "https://start.1password.com/sign-in"
+      },
+      {
+        "name": "Domains",
+        "category": "Infrastructure",
+        "cost": 41,
+        "url": "https://domains.google.com/registrar"
+      }
+    ],
+    "monthlySummary": {
+      "aiApis": 847,
+      "infrastructure": 186,
+      "subscriptions": 40,
+      "agents": 207,
+      "total": 1280,
+      "previousMonth": 1120,
+      "change": "+14%"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-02-18T13:30:00-08:00",
+    "version": "2.0",
+    "source": "Enhanced dashboard data"
+  }
+}

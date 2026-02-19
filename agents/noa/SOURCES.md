@@ -1,6 +1,6 @@
 # Noa's Source List
 
-Last updated: 2026-02-18 (v2)
+Last updated: 2026-02-19 (v3)
 
 ## 🎯 Primary Sources (check every night)
 
@@ -42,6 +42,8 @@ Last updated: 2026-02-18 (v2)
 - **Fawaz Ishola (Axiom OS)** — 19-year-old systems programmer building math-native OS. Extreme talent worth tracking. Discovered 2026-02-18.
 - **Anna's Archive** — Non-profit knowledge preservation with thoughtful AI/LLM engagement policies. Model for ethical data access. Discovered 2026-02-18.
 - **CEL (Common Expression Language)** — Lightweight business logic language used by Kubernetes, Google Cloud, Firebase. Could be useful for SailorSkills validation logic. Discovered 2026-02-18.
+- **Nick Vasilescu / Orgo** — OpenClaw deployment specialist, builds automation-as-a-service. Featured on Greg Isenberg. Discovered 2026-02-19.
+- **Alexander Van Le** (@qwertyu_alex) — AI portfolio bootstrapper, $20k/mo across Starpop + AI Flow Chat. Marketing-first approach. Discovered 2026-02-19.
 
 ---
 

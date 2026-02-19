@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug Dashboard</title>
+  <style>
+    body { font-family: monospace; padding: 20px; }
+    .success { color: green; }
+    .error { color: red; }
+    pre { background: #f5f5f5; padding: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Debug Dashboard Load</h1>
+  <div id="log"></div>
+  
+  <script>
+    const log = document.getElementById('log');
+    
+    function addLog(message, type = 'info') {
+      const div = document.createElement('div');
+      div.className = type;
+      div.textContent = `[${new Date().toISOString()}] ${message}`;
+      log.appendChild(div);
+      console.log(message);
+    }
+    
+    async function debugLoad() {
+      addLog('Starting debug load...');
+      
+      try {
+        addLog('Fetching /data.json...');
+        const response = await fetch('/data.json');
+        addLog(`Response status: ${response.status} ${response.statusText}`);
+        
+        if (!response.ok) {
+          addLog(`HTTP error: ${response.status}`, 'error');
+          return;
+        }
+        
+        addLog('Parsing JSON...');
+        const data = await response.json();
+        addLog(`Success! Parsed ${Object.keys(data).length} keys`, 'success');
+        
+        // Check for required data
+        if (data.needsAttention) {
+          addLog(`✓ Needs attention: ${data.needsAttention.length} items`);
+        }
+        if (data.organization) {
+          addLog(`✓ Organization data: ${JSON.stringify(data.organization.monthlyCosts)}`);
+        }
+        if (data.agents) {
+          addLog(`✓ Agents: ${data.agents.length} agents`);
+        }
+        
+        // Try to render
+        addLog('Attempting to render...');
+        try {
+          // Simulate render
+          if (data.needsAttention && Array.isArray(data.needsAttention)) {
+            addLog('✓ Render would work');
+          } else {
+            addLog('✗ Data structure issue', 'error');
+          }
+        } catch (renderError) {
+          addLog(`Render error: ${renderError.message}`, 'error');
+        }
+        
+      } catch (error) {
+        addLog(`Fetch error: ${error.message}`, 'error');
+        addLog(`Stack: ${error.stack}`, 'error');
+      }
+    }
+    
+    // Also check for syntax errors
+    window.addEventListener('error', function(event) {
+      addLog(`Global error: ${event.message} at ${event.filename}:${event.lineno}`, 'error');
+    });
+    
+    debugLoad();
+  </script>
+</body>
+</html>

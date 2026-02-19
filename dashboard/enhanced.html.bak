@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brian's Enhanced Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    /* Enhanced styles for better visuals */
+    .cost-card {
+      background: linear-gradient(135deg, var(--bg-card), var(--bg-surface));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .cost-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cost-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .cost-card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .cost-card-amount {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 12px 0;
+    }
+    
+    .cost-card-detail {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    
+    .cost-card-progress {
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+    
+    .cost-card-progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    }
+    
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .agent-card-enhanced {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: all 0.2s;
+    }
+    
+    .agent-card-enhanced:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    
+    .agent-header-enhanced {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .agent-avatar-enhanced {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+    
+    .agent-info-enhanced {
+      flex: 1;
+    }
+    
+    .agent-name-enhanced {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+    
+    .agent-role-enhanced {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    
+    .agent-status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .status-active {
+      background: rgba(166, 227, 161, 0.2);
+      color: var(--accent-green);
+      border: 1px solid rgba(166, 227, 161, 0.3);
+    }
+    
+    .status-idle {
+      background: rgba(108, 112, 134, 0.2);
+      color: var(--text-muted);
+      border: 1px solid rgba(108, 112, 134, 0.3);
+    }
+    
+    .agent-metrics-enhanced {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 16px 0;
+    }
+    
+    .agent-metric {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+    }
+    
+    .agent-metric-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    
+    .agent-metric-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    
+    .agent-focus {
+      margin-top: 16px;
+      padding: 12px;
+      background: rgba(137, 180, 250, 0.05);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--accent-blue);
+    }
+    
+    .agent-focus-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    
+    .agent-focus-text {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
+    .billing-portal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    
+    .billing-portal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.2s;
+    }
+    
+    .billing-portal-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .billing-portal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .billing-portal-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    .billing-portal-cost {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent-red);
+    }
+    
+    .billing-portal-category {
+      display: inline-block;
+      padding: 2px 8px;
+      background: rgba(108, 112, 134, 0.2);
+      border-radius: 12px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .billing-portal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: var(--accent-blue);
+      text-decoration: none;
+      margin-top: 12px;
+    }
+    
+    .billing-portal-link:hover {
+      text-decoration: underline;
+    }
+    
+    .subscription-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    
+    .subscription-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      position: relative;
+    }
+    
+    .subscription-status {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(166, 227, 161, 0.2);
+      color: var(--accent-green);
+    }
+    
+    .subscription-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    
+    .subscription-cost {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 8px 0;
+    }
+    
+    .subscription-period {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .subscription-next {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .monthly-summary-card {
+      background: linear-gradient(135deg, var(--bg-surface), var(--bg-card));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 24px;
+    }
+    
+    .summary-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    
+    .summary-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    
+    .summary-total {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent-red);
+    }
+    
+    .summary-breakdown {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+    
+    .summary-item-label {
+      font-weight: 600;
+    }
+    
+    .summary-item-value {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    
+    .summary-change {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    
+    .change-up {
+      background: rgba(243, 139, 168, 0.2);
+      color: var(--accent-red);
+    }
+    
+    .change-down {
+      background: rgba(166, 227, 161, 0.2);
+      color: var(--accent-green);
+    }
+    
+    .change-neutral {
+      background: rgba(108, 112, 134, 0.2);
+      color: var(--text-muted);
+    }
+    
+    /* Team filters */
+    .team-filter {
+      padding: 8px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .team-filter:hover {
+      border-color: var(--accent-blue);
+      color: var(--text-primary);
+    }
+    
+    .team-filter.active {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: var(--bg-base);
+    }
+    
+    /* Team badges */
+    .team-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    
+    .badge-core {
+      background: rgba(137, 180, 250, 0.2);
+      color: var(--accent-blue);
+    }
+    
+    .badge-scheduled {
+      background: rgba(166, 227, 161, 0.2);
+      color: var(--accent-green);
+    }
+    
+    .badge-specialist {
+      background: rgba(203, 166, 247, 0.2);
+      color: var(--accent-purple);
+    }
+    
+    /* Station indicator */
+    .station-indicator {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    
+    /* Interactive elements */
+    .clickable {
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    
+    .clickable:hover {
+      opacity: 0.8;
+    }
+    
+    .expandable {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .expanded {
+      max-height: 500px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .agent-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .billing-portal-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .subscription-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .summary-breakdown {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Password Gate -->
+  <div id="auth-gate" style="display:flex; align-items:center; justify-content:center; height:100vh; background:#1e1e2e;">
+    <form id="auth-form" style="text-align:center;" onsubmit="checkAuth(); return false;">
+      <div style="font-size:2rem; margin-bottom:1rem;">🪨</div>
+      <input type="password" id="auth-input" placeholder="Enter passphrase" autocomplete="off"
+        style="padding:12px 20px; border-radius:8px; border:1px solid #45475a; background:#313244; color:#cdd6f4; font-size:1rem; width:250px; text-align:center; outline:none; margin-bottom: 12px;">
+      <button type="submit" style="padding:12px 24px; border-radius:8px; border:none; background:#89b4fa; color:#1e1e2e; font-size:1rem; font-weight:600; cursor:pointer;">Enter</button>
+      <div id="auth-error" style="color:#f38ba8; margin-top:8px; font-size:0.85rem; display:none;">Nope. Try "pocket"</div>
+      <div style="margin-top: 16px; font-size: 0.85rem; color: #6c7086;">
+        <a href="javascript:void(0)" onclick="resetAuth()" style="color: #89b4fa; text-decoration: none;">Reset session</a>
+      </div>
+    </form>
+  </div>
+  
+  <div id="main-dashboard" class="dashboard" style="display:none;">
+    <!-- Tab Bar -->
+    <nav class="view-tabs">
+      <button class="view-tab active" id="tab-projects" onclick="switchView('projects')">📊 Projects & Time</button>
+      <button class="view-tab" id="tab-organization" onclick="switchView('organization')">🏢 Organization (12 Agents)</button>
+      <button class="view-tab" id="tab-costs" onclick="switchView('costs')">💰 Operational Costs</button>
+    </nav>
+    
+    <!-- Projects View -->
+    <div id="projects-view">
+      <!-- Header -->
+      <header class="header">
+        <h1>⚡ Project & Time Tracking</h1>
+        <div class="header-meta">
+          <span id="last-updated"></span>
+          <span class="live-time" id="live-time"></span>
+        </div>
+      </header>
+      
+      <!-- Needs Attention -->
+      <div class="section-title">🔴 Needs Attention</div>
+      <div id="attention-grid" class="attention-grid"></div>
+      
+      <!-- Sprint Progress -->
+      <div class="section-title">📱 SailorSkills Pro — Sprint Progress</div>
+      <div id="sprint-section" class="sprint-section card"></div>
+      
+      <!-- Projects -->
+      <div class="section-title">📦 Active Projects</div>
+      <div id="project-grid" class="project-grid"></div>
+      
+      <!-- To-Do Section -->
+      <div class="section-title">✅ To-Do</div>
+      <div id="todo-section" class="todo-section"></div>
+      
+      <!-- Bottom: Chart + Activity + Deadlines -->
+      <div class="section-title" style="margin-bottom: 0;"></div>
+      <div class="bottom-grid" style="margin-top: 14px;">
+        <div>
+          <div class="section-title" style="margin-top: 0;">⏰ Time Allocation</div>
+          <div class="chart-container">
+            <canvas id="time-chart"></canvas>
+          </div>
+          <div id="time-detail-panel" class="time-detail-panel"></div>
+        </div>
+        <div>
+          <div class="section-title" style="margin-top: 0;">📋 Recent Activity</div>
+          <div id="activity-list" class="activity-list"></div>
+        </div>
+        <div>
+          <div class="section-title" style="margin-top: 0;">🎯 Deadlines</div>
+          <div id="deadlines-list" class="deadlines-list"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Organization View -->
+    <div id="organization-view" style="display:none;">
+      <div class="dashboard">
+        <header class="header">
+          <h1>🏢 Organization Dashboard</h1>
+          <div class="header-meta">
+            <span id="org-last-updated">Loading...</span>
+            <span class="live-time" id="org-live-time">Loading...</span>
+          </div>
+        </header>
+        
+        <!-- Cost Overview -->
+        <div class="section-title">💰 Monthly Cost Overview</div>
+        <div class="grid grid-3">
+          <div class="cost-card">
+            <div class="cost-card-header">
+              <div class="cost-card-title">Total Monthly Cost</div>
+              <div class="trend-badge change-up">+14%</div>
+            </div>
+            <div class="cost-card-amount" id="org-total-cost">$---</div>
+            <div class="cost-card-detail" id="org-cost-detail">Last 30 days</div>
+            <div class="cost-card-progress">
+              <div class="cost-card-progress-fill" id="org-cost-progress" style="width: 85%"></div>
+            </div>
+          </div>
+          
+          <div class="cost-card">
+            <div class="cost-card-header">
+              <div class="cost-card-title">Cost Target</div>
+            </div>
+            <div class="cost-card-amount" style="color: var(--accent-green);" id="org-target-cost">$---</div>
+            <div class="cost-card-detail">Monthly budget</div>
+          </div>
+          
+          <div class="cost-card">
+            <div class="cost-card-header">
+              <div class="cost-card-title">Overspend</div>
+            </div>
+            <div class="cost-card-amount" style="color: var(--accent-red);" id="org-overspend">$---</div>
+            <div class="cost-card-detail">Above target</div>
+            <div class="cost-card-progress">
+              <div class="cost-card-progress-fill" style="background: linear-gradient(90deg, var(--accent-red), #f38ba8); width: 100%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Agent Activity -->
+        <div class="section-title">👥 Crew Activity & Focus</div>
+        
+        <!-- Team Filter -->
+        <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+          <button class="team-filter active" onclick="filterAgents('all')">All Crew (12)</button>
+          <button class="team-filter" onclick="filterAgents('Core Team')">Core Team (3)</button>
+          <button class="team-filter" onclick="filterAgents('Scheduled Crew')">Scheduled Crew (2)</button>
+          <button class="team-filter" onclick="filterAgents('On-Demand Specialists')">Specialists (7)</button>
+        </div>
+        
+        <div id="org-agents-grid" class="agent-grid">
+          <!-- Filled by JavaScript -->
+        </div>
+        
+        <!-- API Costs -->
+        <div class="section-title">🔌 API Cost Breakdown</div>
+        <div class="grid grid-3">
+          <div class="cost-card">
+            <div class="cost-card-header">
+              <div class="cost-card-title">🤖 Anthropic (Claude)</div>
+            </div>
+            <div class="cost-card-amount" id="api-anthropic">$---</div>
+            <div class="cost-card-detail" id="api-anthropic-detail">Loading...</div>
+            <div class="cost-card-progress">
+              <div class="cost-card-progress-fill" id="api-anthropic-progress" style="width: 60%"></div>
+            </div>
+          </div>
+          
+          <div class="cost-card">
+            <div class="cost-card-header">
+              <div class="cost-card-title">🧠 OpenAI</div>
+            </div>
+            <div class="cost-card-amount" id="api-openai">$---</div>
+            <div class="cost-card-detail" id="api-openai-detail">Loading...</div>
+            <div class="cost-card-progress">
+              <div class="cost-card-progress-fill" id="api-openai-progress" style="width: 20%"></div>
+            </div>
+          </div>
+          
+          <div class="cost-card">
+            <div class="cost-card-header">
+              <div class="cost-card-title">🔍 Google (Gemini)</div>
+            </div>
+            <div class="cost-card-amount" id="api-google">$---</div>
+            <div class="cost-card-detail" id="api-google-detail">Loading...</div>
+            <div class="cost-card-progress">
+              <div class="cost-card-progress-fill" id="api-google-progress" style="width: 11%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Infrastructure -->
+        <div class="section-title">🛠️ Infrastructure & Subscriptions</div>
+        <div class="grid grid-2">
+          <div class="cost-card">
+            <div class="cost-card-header">
+              <div class="cost-card-title">☁️ Hosting & Domains</div>
+            </div>
+            <div class="cost-list" id="org-hosting-list">
+              <!-- Filled by JavaScript -->
+            </div>
+          </div>
+          
+          <div class="cost-card">
+            <div class="cost-card-header">
+              <div class="cost-card-title">💼 Services & Tools</div>
+            </div>
+            <div class="cost-list" id="org-services-list">
+              <!-- Filled by JavaScript -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- Alerts -->
+        <div class="section-title">⚠️ Alerts & Recommendations</div>
+        <div id="org-alerts">
+          <!-- Filled by JavaScript -->
+        </div>
+      </div>
+    </div>
+    
+    <!-- Costs View -->
+    <div id="costs-view" style="display:none;">
+      <div class="dashboard">
+        <header class="header">
+          <h1>💰 Operational Costs</h1>
+          <div class="header-meta">
+            <span id="billing-last-updated">Loading...</span>
+            <span class="live-time" id="billing-live-time">Loading...</span>
+          </div>
+        </header>
+        
+        <div class="section-title">💳 Active Subscriptions</div>
+        <div id="subscriptions-grid" class="subscription-grid">
+          <!-- Filled by JavaScript -->
+        </div>
+        
+        <div class="section-title">🔗 Billing Portals</div>
+        <div id="billing-portals-grid" class="billing-portal-grid">
+          <!-- Filled by JavaScript -->
+        </div>
+        
+        <div class="section-title">📊 Monthly Summary</div>
+        <div class="monthly-summary-card">
+          <div class="summary-header">
+            <div class="summary-title">February 2026</div>
+            <div class="summary-total" id="monthly-total">$---</div>
+          </div>
+          <div class="summary-breakdown" id="monthly-breakdown">
+            <!-- Filled by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Authentication
+    function checkAuth() {
+      console.log('checkAuth called');
+      var hash = 0, s = document.getElementById('auth-input').value;
+      console.log('Password entered:', s);
+      for (var i = 0; i < s.length; i++) { hash = ((hash << 5) - hash) + s.charCodeAt(i); hash |= 0; }
+      console.log('Hash calculated:', hash);
+      console.log('Expected hash:', -982936170);
+      if (hash === -982936170) { // "pocket"
+        console.log('Password accepted!');
+        localStorage.setItem('dashboard-auth', Date.now().toString());
+        document.getElementById('auth-gate').style.display = 'none';
+        document.getElementById('main-dashboard').style.display = 'block';
+        loadDashboardData();
+        return false;
+      }
+      console.log('Password rejected');
+      document.getElementById('auth-error').style.display = 'block';
+      // Clear any stored auth on failed attempt
+      localStorage.removeItem('dashboard-auth');
+      return false;
+    }
+    
+    function resetAuth() {
+      localStorage.removeItem('dashboard-auth');
+      localStorage.removeItem('dashboard-view');
+      location.reload();
+    }
+    
+    var authTime = parseInt(localStorage.getItem('dashboard-auth') || '0');
+    var sevenDays = 7 * 24 * 60 * 60 * 1000;
+    if (authTime && (Date.now() - authTime) < sevenDays) {
+      document.getElementById('auth-gate').style.display = 'none';
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('main-dashboard').style.display = 'block';
+        loadDashboardData();
+      });
+    } else {
+      localStorage.removeItem('dashboard-auth');
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('main-dashboard').style.display = 'none';
+        document.getElementById('auth-input').focus();
+      });
+    }
+    
+    // Data loading
+    let dashboardData = null;
+    
+    async function loadDashboardData() {
+      try {
+        const response = await fetch('/data-enhanced.json');
+        dashboardData = await response.json();
+        renderDashboard();
+      } catch (error) {
+        console.error('Failed to load dashboard data:', error);
+        // Try fallback
+        try {
+          const fallbackResponse = await fetch('/data.json');
+          dashboardData = await fallbackResponse.json();
+          renderDashboard();
+        } catch (fallbackError) {
+          document.getElementById('main-dashboard').innerHTML = '<div style="padding: 40px; text-align: center; color: #f38ba8;">Failed to load dashboard data</div>';
+        }
+      }
+    }
+    
+    function renderDashboard() {
+      if (!dashboardData) return;
+      
+      updateTime();
+      renderProjectsTab();
+      renderOrganizationTab();
+      renderCostsTab();
+      
+      // Start clock
+      setInterval(updateTime, 1000);
+    }
+    
+    function updateTime() {
+      var now = new Date();
+      var opts = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      var timeStr = now.toLocaleDateString('en-US', opts);
+      
+      // Update all time displays
+      document.getElementById('live-time').textContent = timeStr;
+      document.getElementById('org-live-time').textContent = timeStr;
+      document.getElementById('billing-live-time').textContent = timeStr;
+      
+      var shortDate = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+      document.getElementById('last-updated').textContent = 'Updated ' + shortDate;
+      document.getElementById('org-last-updated').textContent = 'Updated ' + shortDate;
+      document.getElementById('billing-last-updated').textContent = 'Updated ' + shortDate;
+    }
+    
+    // Tab switching
+    function switchView(view) {
+      var views = ['projects', 'organization', 'costs'];
+      var projectsView = document.getElementById('projects-view');
+      var orgView = document.getElementById('organization-view');
+      var costsView = document.getElementById('costs-view');
+      
+      // Hide all views
+      projectsView.style.display = 'none';
+      orgView.style.display = 'none';
+      costsView.style.display = 'none';
+      
+      // Deactivate all tabs
+      views.forEach(function(v) {
+        var tab = document.getElementById('tab-' + v);
+        if (tab) tab.classList.remove('active');
+      });
+      
+      // Show selected view
+      if (view === 'organization') {
+        orgView.style.display = 'block';
+        document.getElementById('tab-organization').classList.add('active');
+      } else if (view === 'costs') {
+        costsView.style.display = 'block';
+        document.getElementById('tab-costs').classList.add('active');
+      } else {
+        projectsView.style.display = 'block';
+        document.getElementById('tab-projects').classList.add('active');
+      }
+      localStorage.setItem('dashboard-view', view);
+    }
+    
+    // Projects Tab Rendering
+    function renderProjectsTab() {
+      // Needs Attention
+      const attentionGrid = document.getElementById('attention-grid');
+      const items = dashboardData.needsAttention || [];
+      attentionGrid.innerHTML = items.map(item => `
+        <div class="attention-card ${item.urgency}">
+          <div class="attention-card-header">
+            <div>
+              <div class="icon">${item.icon}</div>
+              <div class="title">${item.title}</div>
+              <div class="status">${item.status}</div>
+              <div class="detail">${item.detail}</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+      // Sprint Progress
+      const sprint = dashboardData.sprintProgress || {};
+      const sprintSection = document.getElementById('sprint-section');
+      sprintSection.innerHTML = `
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="sprint-bars">
+            <div class="progress-row">
+              <div class="progress-label">Backend</div>
+              <div class="progress-bar"><div class="progress-fill complete" style="width: ${sprint.backendProgress || 100}%"></div></div>
+              <div class="progress-value">${sprint.backendProgress || 100}%</div>
+            </div>
+            <div class="progress-row">
+              <div class="progress-label">Mobile</div>
+              <div class="progress-bar"><div class="progress-fill" style="width: ${sprint.mobileProgress || 85}%"></div></div>
+              <div class="progress-value">${sprint.mobileProgress || 85}%</div>
+            </div>
+            <div class="progress-row">
+              <div class="progress-label">Web</div>
+              <div class="progress-bar"><div class="progress-fill" style="width: ${sprint.webProgress || 70}%"></div></div>
+              <div class="progress-value">${sprint.webProgress || 70}%</div>
+            </div>
+            <div class="progress-row">
+              <div class="progress-label">Overall</div>
+              <div class="progress-bar"><div class="progress-fill overall" style="width: ${sprint.overallProgress || 85}%"></div></div>
+              <div class="progress-value">${sprint.overallProgress || 85}%</div>
+            </div>
+          </div>
+          <div class="sprint-stats">
+            <div class="stat-card">
+              <div class="stat-label">Launch Date</div>
+              <div class="stat-value">${sprint.launchDate || '2026-03-01'}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Open Issues</div>
+              <div class="stat-value">${sprint.openIssues || 6}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Current Build</div>
+              <div class="stat-value">${sprint.currentBuild || 'TestFlight 18'}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Days Remaining</div>
+              <div class="stat-value">${sprint.daysRemaining || 12}</div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Projects
+      const projects = dashboardData.projects || [];
+      const projectGrid = document.getElementById('project-grid');
+      projectGrid.innerHTML = projects.map(project => `
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">${project.icon}</div>
+            <div class="project-title">${project.name}</div>
+            <div class="project-status ${project.status}">${project.status}</div>
+          </div>
+          <div class="project-progress">
+            <div class="progress-bar"><div class="progress-fill" style="width: ${project.progress}%"></div></div>
+            <div class="progress-value">${project.progress}%</div>
+          </div>
+          <div class="project-detail">${project.detail}</div>
+          <div class="project-deadline">${project.deadline}</div>
+        </div>
+      `).join('');
+      
+      // To-Dos
+      const todos = dashboardData.todos || [];
+      const todoSection = document.getElementById('todo-section');
+      todoSection.innerHTML = todos.map(todo => `
+        <div class="todo-item ${todo.completed ? 'completed' : ''}">
+          <div class="todo-checkbox">${todo.completed ? '✅' : '⬜'}</div>
+          <div class="todo-text">${todo.text}</div>
+          <div class="todo-context">${todo.context || ''}</div>
+        </div>
+      `).join('');
+      
+      // Time Chart
+      const ctx = document.getElementById('time-chart').getContext('2d');
+      const timeData = dashboardData.timeAllocation || {};
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Development', 'Diving', 'Business', 'Admin', 'Learning', 'Personal'],
+          datasets: [{
+            data: [timeData.development || 35, timeData.diving || 30, timeData.business || 15, timeData.admin || 10, timeData.learning || 5, timeData.personal || 5],
+            backgroundColor: [
+              'rgba(137, 180, 250, 0.8)',
+              'rgba(166, 227, 161, 0.8)',
+              'rgba(203, 166, 247, 0.8)',
+              'rgba(148, 226, 213, 0.8)',
+              'rgba(249, 226, 175, 0.8)',
+              'rgba(250, 179, 135, 0.8)'
+            ],
+            borderColor: [
+              'rgba(137, 180, 250, 1)',
+              'rgba(166, 227, 161, 1)',
+              'rgba(203, 166, 247, 1)',
+              'rgba(148, 226, 213, 1)',
+              'rgba(249, 226, 175, 1)',
+              'rgba(250, 179, 135, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } }
+        }
+      });
+      
+      // Time detail panel
+      const detailPanel = document.getElementById('time-detail-panel');
+      detailPanel.innerHTML = `
+        <div class="time-detail-row">
+          <div class="time-detail-label">Development</div>
+          <div class="time-detail-value">${timeData.development || 35}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Diving</div>
+          <div class="time-detail-value">${timeData.diving || 30}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Business</div>
+          <div class="time-detail-value">${timeData.business || 15}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Admin</div>
+          <div class="time-detail-value">${timeData.admin || 10}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Learning</div>
+          <div class="time-detail-value">${timeData.learning || 5}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Personal</div>
+          <div class="time-detail-value">${timeData.personal || 5}%</div>
+        </div>
+      `;
+      
+      // Recent Activity
+      const activities = dashboardData.recentActivity || [];
+      const activityList = document.getElementById('activity-list');
+      activityList.innerHTML = activities.map(activity => `
+        <div class="activity-item">
+          <div class="activity-icon">${activity.icon}</div>
+          <div class="activity-content">
+            <div class="activity-text">${activity.text}</div>
+            <div class="activity-time">${activity.time}</div>
+          </div>
+        </div>
+      `).join('');
+      
+      // Deadlines
+      const deadlines = dashboardData.deadlines || [];
+      const deadlinesList = document.getElementById('deadlines-list');
+      deadlinesList.innerHTML = deadlines.map(deadline => `
+        <div class="deadline-item ${deadline.urgency}">
+          <div class="deadline-icon">${deadline.icon}</div>
+          <div class="deadline-content">
+            <div class="deadline-title">${deadline.title}</div>
+            <div class="deadline-date">${deadline.date}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Organization Tab Rendering
+    let allAgents = [];
+    
+    function renderOrganizationTab() {
+      const orgData = dashboardData.organization || {};
+      allAgents = dashboardData.agents || [];
+      
+      // Cost Overview
+      const totalCost = orgData.monthlyCosts?.total || 1280;
+      const targetCost = orgData.monthlyCosts?.target || 150;
+      const overspend = totalCost - targetCost;
+      const overspendPercent = Math.min(100, Math.round((overspend / targetCost) * 100));
+      
+      document.getElementById('org-total-cost').textContent = `$${totalCost}`;
+      document.getElementById('org-target-cost').textContent = `$${targetCost}`;
+      document.getElementById('org-overspend').textContent = `$${overspend}`;
+      document.getElementById('org-cost-detail').textContent = `Last 30 days • ${orgData.monthlyCosts?.trend === 'up' ? '+' : ''}14% vs last month`;
+      document.getElementById('org-cost-progress').style.width = `${Math.min(100, Math.round((totalCost / 1500) * 100))}%`;
+      
+      // Render all agents initially
+      renderAgents('all');
+    }
+    
+    function renderAgents(filter) {
+      const agentsGrid = document.getElementById('org-agents-grid');
+      
+      // Filter agents
+      let filteredAgents = allAgents;
+      if (filter === 'Core Team') {
+        filteredAgents = allAgents.filter(a => a.team === 'Core Team');
+      } else if (filter === 'Scheduled Crew') {
+        filteredAgents = allAgents.filter(a => a.team === 'Scheduled Crew');
+      } else if (filter === 'On-Demand Specialists') {
+        filteredAgents = allAgents.filter(a => a.team === 'On-Demand Specialists');
+      }
+      
+      agentsGrid.innerHTML = filteredAgents.map(agent => {
+        // Format last active time
+        const lastActive = new Date(agent.lastActive);
+        const now = new Date();
+        const diffHours = Math.floor((now - lastActive) / (1000 * 60 * 60));
+        let lastActiveText = '';
+        
+        if (diffHours < 1) {
+          lastActiveText = 'Just now';
+        } else if (diffHours < 24) {
+          lastActiveText = `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+        } else {
+          const diffDays = Math.floor(diffHours / 24);
+          lastActiveText = `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+        }
+        
+        // Get team badge class
+        let badgeClass = '';
+        if (agent.team === 'Core Team') badgeClass = 'badge-core';
+        else if (agent.team === 'Scheduled Crew') badgeClass = 'badge-scheduled';
+        else if (agent.team === 'On-Demand Specialists') badgeClass = 'badge-specialist';
+        
+        return `
+        <div class="agent-card-enhanced">
+          <div class="agent-header-enhanced">
+            <div class="agent-avatar-enhanced">${agent.emoji}</div>
+            <div class="agent-info-enhanced">
+              <div class="agent-name-enhanced">
+                ${agent.name}
+                <span class="team-badge ${badgeClass}">${agent.team}</span>
+              </div>
+              <div class="agent-role-enhanced">${agent.role}</div>
+              <div class="station-indicator">📍 ${agent.station}</div>
+            </div>
+            <div class="agent-status-badge status-${agent.status}">${agent.status.toUpperCase()}</div>
+          </div>
+          
+          <div class="agent-focus">
+            <div class="agent-focus-label">Current Focus</div>
+            <div class="agent-focus-text">${agent.currentTask}</div>
+          </div>
+          
+          <div class="agent-metrics-enhanced">
+            <div class="agent-metric">
+              <div class="agent-metric-label">Cost This Month</div>
+              <div class="agent-metric-value">$${agent.costThisMonth}</div>
+            </div>
+            <div class="agent-metric">
+              <div class="agent-metric-label">Tasks Completed</div>
+              <div class="agent-metric-value">${agent.tasksCompleted}</div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 12px; font-size: 0.85rem; color: var(--text-muted);">
+            <div>Last active: ${lastActiveText}</div>
+            <div>Productivity: ${agent.productivity}%</div>
+          </div>
+        </div>
+      `}).join('');
+    }
+    
+    function filterAgents(team) {
+      // Update filter buttons
+      document.querySelectorAll('.team-filter').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Render filtered agents
+      renderAgents(team);
+    }
+      
+      // API Costs
+      const apis = orgData.apiCosts || [];
+      apis.forEach(api => {
+        if (api.name.includes('Anthropic')) {
+          document.getElementById('api-anthropic').textContent = `$${api.cost}`;
+          document.getElementById('api-anthropic-detail').textContent = api.detail;
+          document.getElementById('api-anthropic-progress').style.width = `${api.percent}%`;
+        } else if (api.name.includes('OpenAI')) {
+          document.getElementById('api-openai').textContent = `$${api.cost}`;
+          document.getElementById('api-openai-detail').textContent = api.detail;
+          document.getElementById('api-openai-progress').style.width = `${api.percent}%`;
+        } else if (api.name.includes('Google')) {
+          document.getElementById('api-google').textContent = `$${api.cost}`;
+          document.getElementById('api-google-detail').textContent = api.detail;
+          document.getElementById('api-google-progress').style.width = `${api.percent}%`;
+        }
+      });
+      
+      // Infrastructure
+      const infra = orgData.infrastructure || {};
+      document.getElementById('org-hosting-list').innerHTML = (infra.hosting || []).map(item => `
+        <div class="cost-item">
+          <div class="cost-label">${item.name}</div>
+          <div class="cost-amount">$${item.cost}</div>
+          <div class="cost-detail">${item.detail}</div>
+        </div>
+      `).join('');
+      
+      document.getElementById('org-services-list').innerHTML = (infra.services || []).map(item => `
+        <div class="cost-item">
+          <div class="cost-label">${item.name}</div>
+          <div class="cost-amount">$${item.cost}</div>
+          <div class="cost-detail">${item.detail}</div>
+        </div>
+      `).join('');
+      
+      // Alerts
+      const alerts = orgData.alerts || [];
+      const alertsContainer = document.getElementById('org-alerts');
+      alertsContainer.innerHTML = alerts.map(alert => `
+        <div class="alert">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <div class="alert-title">${alert.title}</div>
+            <div class="alert-desc">${alert.detail}</div>
+            <div class="alert-action">${alert.action}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Costs Tab Rendering
+    function renderCostsTab() {
+      const billing = dashboardData.billing || {};
+      
+      // Subscriptions
+      const subscriptions = billing.subscriptions || [];
+      const subscriptionsGrid = document.getElementById('subscriptions-grid');
+      subscriptionsGrid.innerHTML = subscriptions.map(sub => `
+        <div class="subscription-card">
+          <div class="subscription-status">${sub.status}</div>
+          <div class="subscription-name">${sub.name}</div>
+          <div class="subscription-cost">$${sub.cost}/${sub.period}</div>
+          <div class="subscription-period">${sub.period} subscription</div>
+          <div class="subscription-next">Next charge: ${sub.nextCharge}</div>
+          <a href="${sub.url}" target="_blank" class="billing-portal-link">Manage →</a>
+        </div>
+      `).join('');
+      
+      // Billing Portals
+      const portals = billing.portals || [];
+      const portalsGrid = document.getElementById('billing-portals-grid');
+      portalsGrid.innerHTML = portals.map(portal => `
+        <a href="${portal.url}" target="_blank" class="billing-portal-card">
+          <div class="billing-portal-header">
+            <div class="billing-portal-name">${portal.name}</div>
+            <div class="billing-portal-cost">$${portal.cost}</div>
+          </div>
+          <div class="billing-portal-category">${portal.category}</div>
+          <div class="billing-portal-link">Open billing portal →</div>
+        </a>
+      `).join('');
+      
+      // Monthly Summary
+      const summary = billing.monthlySummary || {};
+      document.getElementById('monthly-total').textContent = `$${summary.total || 1280}`;
+      
+      const breakdown = document.getElementById('monthly-breakdown');
+      breakdown.innerHTML = `
+        <div class="summary-item">
+          <div class="summary-item-label">AI APIs</div>
+          <div class="summary-item-value">$${summary.aiApis || 847}</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-item-label">Infrastructure</div>
+          <div class="summary-item-value">$${summary.infrastructure || 186}</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-item-label">Subscriptions</div>
+          <div class="summary-item-value">$${summary.subscriptions || 40}</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-item-label">Agents</div>
+          <div class="summary-item-value">$${summary.agents || 207}</div>
+        </div>
+        <div class="summary-item" style="border-top: 2px solid var(--border); padding-top: 16px; margin-top: 8px;">
+          <div class="summary-item-label" style="font-weight: 700;">TOTAL</div>
+          <div class="summary-item-value" style="font-size: 1.3rem; color: var(--accent-red);">$${summary.total || 1280}</div>
+          <span class="summary-change ${summary.change?.includes('+') ? 'change-up' : 'change-down'}">${summary.change || '+14%'}</span>
+        </div>
+      `;
+    }
+    
+    // Restore saved view
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedView = localStorage.getItem('dashboard-view') || 'projects';
+      switchView(savedView);
+    });
+  </script>
+</body>
+</html>

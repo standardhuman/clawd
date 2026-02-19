@@ -1,0 +1,5 @@
+# Dashboard Data Collection
+*/15 8-20 * * * cd /Users/brian/clawd/dashboard && node scripts/collect-data.js >> cron.log 2>&1
+0 * * * * cd /Users/brian/clawd/dashboard && node scripts/collect-data.js >> cron.log 2>&1
+0 0 * * * cd /Users/brian/clawd/dashboard && cp data.json "data-backup-$(date +%Y%m%d).json"
+0 2 * * 0 find /Users/brian/clawd/dashboard -name "data-backup-*.json" -mtime +7 -delete

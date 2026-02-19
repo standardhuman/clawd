@@ -1,0 +1,120 @@
+// Simple API endpoint that returns fallback data directly
+// Vercel serverless functions have limitations with self-signed certs
+
+const fallbackData = {
+  "lastUpdated": "2026-02-18T12:45:00-08:00",
+  "monthlyCosts": {
+    "total": 1073,
+    "target": 150,
+    "changeVsLastMonth": 12,
+    "breakdown": {
+      "aiApis": 847,
+      "infrastructure": 186,
+      "subscriptions": 40
+    }
+  },
+  "agents": [
+    {
+      "name": "Marcel",
+      "emoji": "🎨",
+      "role": "Creative Director",
+      "status": "active",
+      "currentTask": "La Gracia website proposal & client work",
+      "costThisMonth": 412,
+      "tasksCompleted": 24,
+      "avgCostPerTask": 17.17,
+      "hoursActive": 42,
+      "trend": 8
+    },
+    {
+      "name": "Howard",
+      "emoji": "🪨",
+      "role": "Main Assistant",
+      "status": "active",
+      "currentTask": "Tax reconciliation & security audit",
+      "costThisMonth": 387,
+      "tasksCompleted": 31,
+      "avgCostPerTask": 12.48,
+      "hoursActive": 56,
+      "trend": -5
+    },
+    {
+      "name": "Jacques",
+      "emoji": "🤿",
+      "role": "Pro App Developer",
+      "status": "active",
+      "currentTask": "SailorSkills Pro Week 4 sprint",
+      "costThisMonth": 274,
+      "tasksCompleted": 18,
+      "avgCostPerTask": 15.22,
+      "hoursActive": 38,
+      "trend": 0
+    }
+  ],
+  "apiCosts": [
+    {
+      "name": "Anthropic (Claude)",
+      "emoji": "🤖",
+      "cost": 512,
+      "percent": 60,
+      "detail": "42,000 tokens"
+    },
+    {
+      "name": "OpenAI",
+      "emoji": "🧠",
+      "cost": 218,
+      "percent": 20,
+      "detail": "18,500 tokens"
+    },
+    {
+      "name": "Google (Gemini)",
+      "emoji": "🔍",
+      "cost": 117,
+      "percent": 11,
+      "detail": "Free tier mostly"
+    },
+    {
+      "name": "Other APIs",
+      "emoji": "🌐",
+      "cost": 226,
+      "percent": 21,
+      "detail": "Resend, Stripe, Supabase, etc."
+    }
+  ],
+  "infrastructure": {
+    "hosting": [
+      { "name": "Vercel Pro", "cost": 20 },
+      { "name": "Supabase", "cost": 25 },
+      { "name": "Domains", "cost": 41 }
+    ],
+    "services": [
+      { "name": "Stripe", "cost": 32 },
+      { "name": "Resend", "cost": 18 },
+      { "name": "1Password", "cost": 8 }
+    ]
+  },
+  "alerts": [
+    {
+      "title": "High API Costs Detected",
+      "description": "Anthropic usage is 60% of total spend. Consider switching more tasks to DeepSeek ($0.28/MTok) or Kimi (free). Current monthly run rate: $12,876/year.",
+      "severity": "high",
+      "icon": "⚠️"
+    }
+  ]
+};
+
+export default async function handler(request, response) {
+  // Set CORS headers
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  
+  // Handle OPTIONS request for CORS preflight
+  if (request.method === 'OPTIONS') {
+    return response.status(200).end();
+  }
+  
+  // Always return the fallback data for now
+  // In the future, we could implement proper Tailscale fetching
+  return response.status(200).json(fallbackData);
+}

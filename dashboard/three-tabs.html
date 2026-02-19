@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brian's Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- Password Gate -->
+  <div id="auth-gate" style="display:flex; align-items:center; justify-content:center; height:100vh; background:#1e1e2e;">
+    <form id="auth-form" style="text-align:center;" onsubmit="return checkAuth()">
+      <div style="font-size:2rem; margin-bottom:1rem;">🪨</div>
+      <input type="password" id="auth-input" placeholder="Enter passphrase" autocomplete="off"
+        style="padding:12px 20px; border-radius:8px; border:1px solid #45475a; background:#313244; color:#cdd6f4; font-size:1rem; width:250px; text-align:center; outline:none;">
+      <div id="auth-error" style="color:#f38ba8; margin-top:8px; font-size:0.85rem; display:none;">Nope.</div>
+    </form>
+  </div>
+  <script>
+    function checkAuth() {
+      var hash = 0, s = document.getElementById('auth-input').value;
+      for (var i = 0; i < s.length; i++) { hash = ((hash << 5) - hash) + s.charCodeAt(i); hash |= 0; }
+      if (hash === -982936170) {
+        localStorage.setItem('dashboard-auth', Date.now().toString());
+        document.getElementById('auth-gate').style.display = 'none';
+        document.getElementById('main-dashboard').style.display = 'block';
+        loadDashboardData();
+        return false;
+      }
+      document.getElementById('auth-error').style.display = 'block';
+      return false;
+    }
+    var authTime = parseInt(localStorage.getItem('dashboard-auth') || '0');
+    var sevenDays = 7 * 24 * 60 * 60 * 1000;
+    if (authTime && (Date.now() - authTime) < sevenDays) {
+      document.getElementById('auth-gate').style.display = 'none';
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('main-dashboard').style.display = 'block';
+        loadDashboardData();
+      });
+    } else {
+      localStorage.removeItem('dashboard-auth');
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('main-dashboard').style.display = 'none';
+        document.getElementById('auth-input').focus();
+      });
+    }
+    
+    let dashboardData = null;
+    
+    async function loadDashboardData() {
+      try {
+        const response = await fetch('/data.json');
+        dashboardData = await response.json();
+        renderDashboard();
+      } catch (error) {
+        console.error('Failed to load dashboard data:', error);
+        // Use fallback data
+        dashboardData = getFallbackData();
+        renderDashboard();
+      }
+    }
+    
+    function renderDashboard() {
+      if (!dashboardData) return;
+      
+      updateTime();
+      renderProjectsTab();
+      renderOrganizationTab();
+      renderCostsTab();
+      
+      // Start clock
+      setInterval(updateTime, 1000);
+    }
+    
+    function updateTime() {
+      var now = new Date();
+      var opts = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      document.getElementById('live-time').textContent = now.toLocaleDateString('en-US', opts);
+      document.getElementById('last-updated').textContent = 'Updated ' + now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    }
+    
+    function renderProjectsTab() {
+      // Needs Attention
+      const attentionGrid = document.getElementById('attention-grid');
+      const items = dashboardData.needsAttention || [];
+      attentionGrid.innerHTML = items.map(item => `
+        <div class="attention-card ${item.urgency}">
+          <div class="attention-card-header">
+            <div>
+              <div class="icon">${item.icon}</div>
+              <div class="title">${item.title}</div>
+              <div class="status">${item.status}</div>
+              <div class="detail">${item.detail}</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+      // Sprint Progress
+      const sprint = dashboardData.sprintProgress || {};
+      const sprintSection = document.getElementById('sprint-section');
+      sprintSection.innerHTML = `
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="sprint-bars">
+            <div class="progress-row">
+              <div class="progress-label">Backend</div>
+              <div class="progress-bar"><div class="progress-fill complete" style="width: ${sprint.backendProgress || 100}%"></div></div>
+              <div class="progress-value">${sprint.backendProgress || 100}%</div>
+            </div>
+            <div class="progress-row">
+              <div class="progress-label">Mobile</div>
+              <div class="progress-bar"><div class="progress-fill" style="width: ${sprint.mobileProgress || 85}%"></div></div>
+              <div class="progress-value">${sprint.mobileProgress || 85}%</div>
+            </div>
+            <div class="progress-row">
+              <div class="progress-label">Web</div>
+              <div class="progress-bar"><div class="progress-fill" style="width: ${sprint.webProgress || 70}%"></div></div>
+              <div class="progress-value">${sprint.webProgress || 70}%</div>
+            </div>
+            <div class="progress-row">
+              <div class="progress-label">Overall</div>
+              <div class="progress-bar"><div class="progress-fill overall" style="width: ${sprint.overallProgress || 85}%"></div></div>
+              <div class="progress-value">${sprint.overallProgress || 85}%</div>
+            </div>
+          </div>
+          <div class="sprint-stats">
+            <div class="stat-card">
+              <div class="stat-label">Launch Date</div>
+              <div class="stat-value">${sprint.launchDate || '2026-03-01'}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Open Issues</div>
+              <div class="stat-value">${sprint.openIssues || 6}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Current Build</div>
+              <div class="stat-value">${sprint.currentBuild || 'TestFlight 18'}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Days Remaining</div>
+              <div class="stat-value">${sprint.daysRemaining || 12}</div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Projects
+      const projects = dashboardData.projects || [];
+      const projectGrid = document.getElementById('project-grid');
+      projectGrid.innerHTML = projects.map(project => `
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">${project.icon}</div>
+            <div class="project-title">${project.name}</div>
+            <div class="project-status ${project.status}">${project.status}</div>
+          </div>
+          <div class="project-progress">
+            <div class="progress-bar"><div class="progress-fill" style="width: ${project.progress}%"></div></div>
+            <div class="progress-value">${project.progress}%</div>
+          </div>
+          <div class="project-detail">${project.detail}</div>
+          <div class="project-deadline">${project.deadline}</div>
+        </div>
+      `).join('');
+      
+      // To-Dos
+      const todos = dashboardData.todos || [];
+      const todoSection = document.getElementById('todo-section');
+      todoSection.innerHTML = todos.map(todo => `
+        <div class="todo-item ${todo.completed ? 'completed' : ''}">
+          <div class="todo-checkbox">${todo.completed ? '✅' : '⬜'}</div>
+          <div class="todo-text">${todo.text}</div>
+          <div class="todo-context">${todo.context || ''}</div>
+        </div>
+      `).join('');
+      
+      // Time Chart
+      const ctx = document.getElementById('time-chart').getContext('2d');
+      const timeData = dashboardData.timeAllocation || {};
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Development', 'Diving', 'Business', 'Admin', 'Learning', 'Personal'],
+          datasets: [{
+            data: [timeData.development || 35, timeData.diving || 30, timeData.business || 15, timeData.admin || 10, timeData.learning || 5, timeData.personal || 5],
+            backgroundColor: [
+              'rgba(137, 180, 250, 0.8)',
+              'rgba(166, 227, 161, 0.8)',
+              'rgba(203, 166, 247, 0.8)',
+              'rgba(148, 226, 213, 0.8)',
+              'rgba(249, 226, 175, 0.8)',
+              'rgba(250, 179, 135, 0.8)'
+            ],
+            borderColor: [
+              'rgba(137, 180, 250, 1)',
+              'rgba(166, 227, 161, 1)',
+              'rgba(203, 166, 247, 1)',
+              'rgba(148, 226, 213, 1)',
+              'rgba(249, 226, 175, 1)',
+              'rgba(250, 179, 135, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } }
+        }
+      });
+      
+      // Time detail panel
+      const detailPanel = document.getElementById('time-detail-panel');
+      detailPanel.innerHTML = `
+        <div class="time-detail-row">
+          <div class="time-detail-label">Development</div>
+          <div class="time-detail-value">${timeData.development || 35}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Diving</div>
+          <div class="time-detail-value">${timeData.diving || 30}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Business</div>
+          <div class="time-detail-value">${timeData.business || 15}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Admin</div>
+          <div class="time-detail-value">${timeData.admin || 10}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Learning</div>
+          <div class="time-detail-value">${timeData.learning || 5}%</div>
+        </div>
+        <div class="time-detail-row">
+          <div class="time-detail-label">Personal</div>
+          <div class="time-detail-value">${timeData.personal || 5}%</div>
+        </div>
+      `;
+      
+      // Recent Activity
+      const activities = dashboardData.recentActivity || [];
+      const activityList = document.getElementById('activity-list');
+      activityList.innerHTML = activities.map(activity => `
+        <div class="activity-item">
+          <div class="activity-icon">${activity.icon}</div>
+          <div class="activity-content">
+            <div class="activity-text">${activity.text}</div>
+            <div class="activity-time">${activity.time}</div>
+          </div>
+        </div>
+      `).join('');
+      
+      // Deadlines
+      const deadlines = dashboardData.deadlines || [];
+      const deadlinesList = document.getElementById('deadlines-list');
+      deadlinesList.innerHTML = deadlines.map(deadline => `
+        <div class="deadline-item ${deadline.urgency}">
+          <div class="deadline-icon">${deadline.icon}</div>
+          <div class="deadline-content">
+            <div class="deadline-title">${deadline.title}</div>
+            <div class="deadline-date">${deadline.date}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function renderOrganizationTab() {
+      const orgData = dashboardData.organization || {};
+      const agents = dashboardData.agents || [];
+      
+      // Cost Overview
+      const totalCost = orgData.monthlyCosts?.total || 1073;
+      const targetCost = orgData.monthlyCosts?.target || 150;
+      const overspend = totalCost - targetCost;
+      
+      document.getElementById('org-total-cost').textContent = `$${totalCost}`;
+      document.getElementById('org-target-cost').textContent = `$${targetCost}`;
+      document.getElementById('org-overspend').textContent = `$${overspend}`;
+      
+      // Agent Activity
+      const agentsGrid = document.getElementById('org-agents-grid');
+      agentsGrid.innerHTML = agents.map(agent => `
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-avatar">${agent.emoji}</div>
+            <div class="agent-info">
+              <div class="agent-name">${agent.name}</div>
+              <div class="agent-role">${agent.role}</div>
+            </div>
+            <div class="agent-status status-active">${agent.status?.toUpperCase() || 'ACTIVE'}</div>
+          </div>
+          
+          <div style="margin: 12px 0; padding: 12px; background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-sm); font-size: 0.9rem;">
+            <strong>Current:</strong> ${agent.currentTask || 'No current task'}
+          </div>
+          
+          <div class="agent-metrics">
+            <div class="metric">
+              <div class="metric-label">Cost This Month</div>
+              <div class="metric-value">$${agent.costThisMonth || 0}</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Tasks Completed</div>
+              <div class="metric-value">${agent.tasksCompleted || 0}</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+      // API Costs
+      const apiGrid = document.getElementById('org-api-grid');
+      const apis = orgData.apiCosts || [];
+      apiGrid.innerHTML = apis.map(api => `
+        <div class="api-card">
+          <div class="api-name">${api.emoji} ${api.name}</div>
+          <div class="api-cost">$${api.cost}</div>
+          <div class="api-detail">${api.percent}% of total • ${api.detail}</div>
+        </div>
+      `).join('');
+      
+      // Infrastructure
+      const infra = orgData.infrastructure || {};
+      document.getElementById('org-hosting-list').innerHTML = (infra.hosting || []).map(item => `
+        <div class="cost-item">
+          <div class="cost-label">${item.name}</div>
+          <div class="cost-amount">$${item.cost}</div>
+        </div>
+      `).join('');
+      
+      document.getElementById('org-services-list').innerHTML = (infra.services || []).map(item => `
+        <div class="cost-item">
+          <div class="cost-label">${item.name}</div>
+          <div class="cost-amount">$${item.cost}</div>
+        </div>
+      `).join('');
+    }
+    
+    function renderCostsTab() {
+      const orgData = dashboardData.organization || {};
+      const infra = orgData.infrastructure || {};
+      
+      // Update billing time
+      const now = new Date();
+      const opts = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', second: '2-digit' };
+      document.getElementById('billing-live-time').textContent = now.toLocaleDateString('en-US', opts);
+      document.getElementById('billing-last-updated').textContent = 'Updated ' + now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+      
+      // Monthly summary
+      const totalCost = orgData.monthlyCosts?.total || 1073;
+      const aiApis = orgData.monthlyCosts?.breakdown?.aiApis || 847;
+      const infrastructure = orgData.monthlyCosts?.breakdown?.infrastructure || 186;
+      const subscriptions = orgData.monthlyCosts?.breakdown?.subscriptions || 40;
+      
+      document.getElementById('monthly-total').textContent = `$${totalCost}`;
+      document.getElementById('monthly-ai').textContent = `$${aiApis}`;
+      document.getElementById('monthly-infra').textContent = `$${infrastructure}`;
+      document.getElementById('monthly-subs').textContent = `$${subscriptions}`;
+    }
+    
+    function switchView(view) {
+      var views = ['projects', 'organization', 'costs'];
+      var projectsView = document.getElementById('projects-view');
+      var orgView = document.getElementById('organization-view');
+      var costsView = document.getElementById('costs-view');
+      
+      // Hide all views
+      projectsView.style.display = 'none';
+      orgView.style.display = 'none';
+      costsView.style.display = 'none';
+      
+      // Deactivate all tabs
+      views.forEach(function(v) {
+        var tab = document.getElementById('tab-' + v);
+        if (tab) tab.classList.remove('active');
+      });
+      
+      // Show selected view
+      if (view === 'organization') {
+        orgView.style.display = 'block';
+        document.getElementById('tab-organization').classList.add('active');
+      } else if (view === 'costs') {
+        costsView.style.display = 'block';
+        document.getElementById('tab-costs').classList.add('active');
+      } else {
+        projectsView.style.display = 'block';
+        document.getElementById('tab-projects').classList.add('active');
+      }
+      localStorage.setItem('dashboard-view', view);
+    }
+    
+    function getFallbackData() {
+      return {
+        needsAttention: [
+          { title: "2024 Tax Return", status: "OVERDUE", detail: "~$12,343 estimated", urgency: "critical", icon: "🚨" },
+          { title: "1120-S Filing", status: "Due March 15", detail: "27 days remaining", urgency: "medium", icon: "📋" },
+          { title: "Gmail OAuth", status: "Expired", detail: "Re-authenticate to restore email access", urgency: "medium", icon: "🔑" }
+        ],
+        sprintProgress: {
+          launchDate: "2026-03-01",
+          overallProgress: 85,
+          openIssues: 6,
+          currentBuild: "TestFlight 18",
+          daysRemaining: 12
+        },
+        projects: [
+          { name: "SailorSkills Pro", icon: "🤿", status: "active", progress: 85, detail: "Mobile app for marine service pros", deadline: "Launch Mar 1" },
+          { name: "Sarah Hiring", icon: "👩‍💼", status: "active", progress: 60, detail: "Executive assistant hiring process", deadline: "Ongoing" },
+          { name: "Taxes", icon: "📋", status: "critical", progress: 30, detail: "2024 tax return + 1120-S filing", deadline: "Mar 15" }
+        ],
+        todos: [
+          { text: "Send La Gracia proposal", completed: false, context: "Marcel" },
+          { text: "Review security audit findings", completed: false, context: "Howard" },
+          { text: "Test Stripe integration", completed: true, context: "Jacques" }
+        ],
+        timeAllocation: {
+          development: 35,
+          diving: 30,
+          business: 15,
+          admin: 10,
+          learning: 5,
+          personal: 5
+        },
+        recentActivity: [
+          { icon: "🎨", text: "Marcel sent La Gracia proposal", time: "2 hours ago" },
+          { icon: "🪨", text: "Howard completed tax reconciliation", time: "4 hours ago" },
+          { icon: "🤿", text: "Jacques deployed TestFlight 18", time: "1 day ago" }
+        ],
+        deadlines: [
+          { date: "2026-03-01", title: "Pro app launch", icon: "🚀", urgency: "high" },
+          { date: "2026-03-15", title: "1120-S filing deadline", icon: "📋", urgency: "medium" }
+        ],
+        agents: [
+          { name: "Marcel", emoji: "🎨", role: "Creative Director", status: "active", costThisMonth: 412, currentTask: "La Gracia website proposal", tasksCompleted: 24 },
+          { name: "Howard", emoji: "🪨", role: "Main Assistant", status: "active", costThisMonth: 387, currentTask: "Tax reconciliation", tasksCompleted: 31 },
+          { name: "Jacques", emoji: "🤿", role: "Pro App Developer", status: "active", costThisMonth: 274, currentTask: "SailorSkills Pro sprint", tasksCompleted: 18 }
+        ],
+        organization: {
+          monthlyCosts: {
+            total: 1073,
+            target: 150,
+            breakdown: { aiApis: 847, infrastructure: 186, subscriptions: 40 }
+          },
+          apiCosts: [
+            { name: "Anthropic (Claude)", emoji: "🤖", cost: 512, percent: 60, detail: "42,000 tokens" },
+            { name: "OpenAI", emoji: "🧠", cost: 218, percent: 20, detail: "18,500 tokens" },
+            { name: "Google (Gemini)", emoji: "🔍", cost: 117, percent: 11, detail: "Free tier mostly" }
+          ],
+          infrastructure: {
+            hosting: [
+              { name: "Vercel Pro", cost: 20 },
+              { name: "Supabase", cost: 25 },
+              { name: "Domains", cost: 41 }
+            ],
+            services: [
+              { name: "Stripe", cost: 32 },
+              { name: "Resend", cost: 18 },
+              { name: "1Password", cost: 8 }
+            ]
+          }
+        }
+      };
+    }
+  </script>
+  <div id="main-dashboard" class="dashboard" style="display:none;">
+    <!-- Tab Bar -->
+    <nav class="view-tabs">
+      <button class="view-tab active" id="tab-projects" onclick="switchView('projects')">📊 Projects & Time</button>
+      <button class="view-tab" id="tab-organization" onclick="switchView('organization')">🏢 Organization</button>
+      <button class="view-tab" id="tab-costs" onclick="switchView('costs')">💰 Operational Costs</button>
+    </nav>
+    
+    <!-- Projects View -->
+    <div id="projects-view">
+      <!-- Header -->
+      <header class="header">
+        <h1>⚡ Project & Time Tracking</h1>
+        <div class="header-meta">
+          <span id="last-updated"></span>
+          <span class="live-time" id="live-time"></span>
+        </div>
+      </header>
+      
+      <!-- Needs Attention -->
+      <div class="section-title">🔴 Needs Attention</div>
+      <div id="attention-grid" class="attention-grid"></div>
+      
+      <!-- Sprint Progress -->
+      <div class="section-title">📱 SailorSkills Pro — Sprint Progress</div>
+      <div id="sprint-section" class="sprint-section card"></div>
+      
+      <!-- Projects -->
+      <div class="section-title">📦 Active Projects</div>
+      <div id="project-grid" class="project-grid"></div>
+      
+      <!-- To-Do Section -->
+      <div class="section-title">✅ To-Do</div>
+      <div id="todo-section" class="todo-section"></div>
+      
+      <!-- Bottom: Chart + Activity + Deadlines -->
+      <div class="section-title" style="margin-bottom: 0;"></div>
+      <div class="bottom-grid" style="margin-top: 14px;">
+        <div>
+          <div class="section-title" style="margin-top: 0;">⏰ Time Allocation</div>
+          <div class="chart-container">
+            <canvas id="time-chart"></canvas>
+          </div>
+          <div id="time-detail-panel" class="time-detail-panel"></div>
+        </div>
+        <div>
+          <div class="section-title" style="margin-top: 0;">📋 Recent Activity</div>
+          <div id="activity-list" class="activity-list"></div>
+        </div>
+        <div>
+          <div class="section-title" style="margin-top: 0;">🎯 Deadlines</div>
+          <div id="deadlines-list" class="deadlines-list"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Organization View -->
+    <div id="organization-view" style="display:none;">
+      <div class="dashboard">
+        <header class="header">
+          <h1>🏢 Organization Dashboard</h1>
+          <div class="header-meta">
+            <span id="org-last-updated">Updated Feb 18, 2026</span>
+            <span class="live-time" id="org-live-time">Loading...</span>
+          </div>
+        </header>
+        
+        <!-- Cost Overview -->
+        <div class="section-title">💰 Monthly Cost Overview</div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Total Monthly Cost</div>
+            </div>
+            <div class="card-value" id="org-total-cost">$---</div>
+            <div class="card-subtitle">Last 30 days</div>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Cost Target</div>
+            </div>
+            <div class="card-value" style="color: var(--accent-red);" id="org-target-cost">$---</div>
+            <div class="card-subtitle">Monthly target</div>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Overspend</div>
+            </div>
+            <div class="card-value" style="color: var(--accent-red);" id="org-overspend">$---</div>
+            <div class="card-subtitle">Above target</div>
+          </div>
+        </div>
+        
+        <!-- Agent Activity -->
+        <div class="section-title">👥 Agent Activity & Costs</div>
+        <div class="grid grid-3" id="org-agents-grid">
+          <!-- Filled by JavaScript -->
+        </div>
+        
+        <!-- API Costs -->
+        <div class="section-title">🔌 API Cost Breakdown</div>
+        <div class="api-grid" id="org-api-grid">
+          <!-- Filled by JavaScript -->
+        </div>
+        
+        <!-- Infrastructure -->
+        <div class="section-title">🛠️ Infrastructure & Subscriptions</div>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">☁️ Hosting & Domains</div>
+            </div>
+            <div class="cost-list" id="org-hosting-list">
+              <!-- Filled by JavaScript -->
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">💼 Services & Tools</div>
+            </div>
+            <div class="cost-list" id="org-services-list">
+              <!-- Filled by JavaScript -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- Alerts -->
+        <div class="alert">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <div class="alert-title">High API Costs Detected</div>
+            <div class="alert-desc">Anthropic usage is 60% of total spend. Consider switching more tasks to DeepSeek ($0.28/MTok) or Kimi (free). Current monthly run rate: $12,876/year.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Costs View -->
+    <div id="costs-view" style="display:none;">
+      <div class="dashboard">
+        <header class="header">
+          <h1>💰 Operational Costs</h1>
+          <div class="header-meta">
+            <span id="billing-last-updated">Loading...</span>
+            <span class="live-time" id="billing-live-time">Loading...</span>
+          </div>
+        </header>
+        
+        <div class="section-title">💳 Active Subscriptions</div>
+        <div class="grid grid-3">
+          <a href="https://vercel.com/account/billing" target="_blank" class="card" style="text-decoration: none; color: inherit;">
+            <div class="card-header">
+              <div class="card-title">☁️ Vercel Pro</div>
+            </div>
+            <div class="card-value">$20/mo</div>
+            <div class="card-subtitle">Next charge: Mar 1</div>
+          </a>
+          
+          <a href="https://supabase.com/dashboard/account/billing" target="_blank" class="card" style="text-decoration: none; color: inherit;">
+            <div class="card-header">
+              <div class="card-title">🗄️ Supabase</div>
+            </div>
+            <div class="card-value">$25/mo</div>
+            <div class="card-subtitle">Next charge: Mar 15</div>
+          </a>
+          
+          <a href="https://dashboard.stripe.com/" target="_blank" class="card" style="text-decoration: none; color: inherit;">
+            <div class="card-header">
+              <div class="card-title">💳 Stripe</div>
+            </div>
+            <div class="card-value">$32/mo</div>
+            <div class="card-subtitle">Processing fees</div>
+          </a>
+        </div>
+        
+        <div class="section-title">🔗 Billing Portals</div>
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🤖 AI APIs</div>
+            </div>
+            <div class="cost-list">
+              <a href="https://console.anthropic.com/settings/billing" target="_blank" class="cost-item" style="text-decoration: none; color: inherit;">
+                <div class="cost-label">Anthropic</div>
+                <div class="cost-amount">$512</div>
+              </a>
+              <a href="https://platform.openai.com/settings/organization/billing/overview" target="_blank" class="cost-item" style="text-decoration: none; color: inherit;">
+                <div class="cost-label">OpenAI</div>
+                <div class="cost-amount">$218</div>
+              </a>
+              <a href="https://aistudio.google.com/app/billing" target="_blank" class="cost-item" style="text-decoration: none; color: inherit;">
+                <div class="cost-label">Google AI</div>
+                <div class="cost-amount">$117</div>
+              </a>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🛠️ Services</div>
+            </div>
+            <div class="cost-list">
+              <a href="https://resend.com/dashboard" target="_blank" class="cost-item" style="text-decoration: none; color: inherit;">
+                <div class="cost-label">Resend</div>
+                <div class="cost-amount">$18</div>
+              </a>
+              <a href="https://start.1password.com/sign-in" target="_blank" class="cost-item" style="text-decoration: none; color: inherit;">
+                <div class="cost-label">1Password</div>
+                <div class="cost-amount">$8</div>
+              </a>
+              <a href="https://domains.google.com/registrar" target="_blank" class="cost-item" style="text-decoration: none; color: inherit;">
+                <div class="cost-label">Domains</div>
+                <div class="cost-amount">$41</div>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section-title">📊 Monthly Summary</div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">February 2026</div>
+          </div>
+          <div class="cost-list">
+            <div class="cost-item">
+              <div class="cost-label">Total AI API Costs</div>
+              <div class="cost-amount" id="monthly-ai">$847</div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-label">Total Infrastructure</div>
+              <div class="cost-amount" id="monthly-infra">$186</div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-label">Total Subscriptions</div>
+              <div class="cost-amount" id="monthly-subs">$40</div>
+            </div>
+            <div class="cost-item" style="border-top: 2px solid var(--border); padding-top: 16px; margin-top: 8px;">
+              <div class="cost-label" style="font-weight: 700;">TOTAL MONTHLY</div>
+              <div class="cost-amount" style="font-size: 1.3rem; color: var(--accent-red);" id="monthly-total">$1,073</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,20 +1,9 @@
 {
-  "buildCommand": "",
-  "outputDirectory": ".",
-  "cleanUrls": true,
-  "headers": [
-    {
-      "source": "/data.json",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
-      ]
-    },
+  "redirects": [
     {
       "source": "/(.*)",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "X-Frame-Options", "value": "DENY" }
-      ]
+      "destination": "https://brians-mac-mini.taile67de1.ts.net:8443/$1",
+      "permanent": false
     }
   ]
 }

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brian's Dashboard</title>
+  <style>
+    /* Catppuccin Mocha theme */
+    :root {
+      --bg-base: #1e1e2e;
+      --bg-surface: #181825;
+      --bg-card: #313244;
+      --text-primary: #cdd6f4;
+      --text-secondary: #a6adc8;
+      --text-muted: #6c7086;
+      --accent-blue: #89b4fa;
+      --accent-green: #a6e3a1;
+      --accent-red: #f38ba8;
+      --accent-purple: #cba6f7;
+      --border: #45475a;
+      --radius: 12px;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.5;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    
+    .dashboard {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    
+    .header-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin: 25px 0 15px 0;
+    }
+    
+    .attention-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+    }
+    
+    .attention-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px;
+      border-left: 4px solid var(--accent-red);
+    }
+    
+    .attention-card .title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .attention-card .status {
+      font-size: 0.8rem;
+      color: var(--accent-red);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .attention-card .detail {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .agent-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px;
+    }
+    
+    .agent-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .agent-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    
+    .agent-info {
+      flex: 1;
+    }
+    
+    .agent-name {
+      font-weight: 600;
+    }
+    
+    .agent-role {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .cost-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .cost-item:last-child {
+      border-bottom: none;
+    }
+    
+    .alert {
+      background: rgba(243, 139, 168, 0.1);
+      border: 1px solid var(--accent-red);
+      border-radius: var(--radius);
+      padding: 15px;
+      margin: 20px 0;
+    }
+    
+    .alert-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .alert-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Password Gate -->
+  <div id="auth-gate" style="display:flex; align-items:center; justify-content:center; height:100vh; background:#1e1e2e;">
+    <form id="auth-form" style="text-align:center;" onsubmit="return checkAuth()">
+      <div style="font-size:2rem; margin-bottom:1rem;">🪨</div>
+      <input type="password" id="auth-input" placeholder="Enter passphrase" autocomplete="off"
+        style="padding:12px 20px; border-radius:8px; border:1px solid #45475a; background:#313244; color:#cdd6f4; font-size:1rem; width:250px; text-align:center; outline:none;">
+      <div id="auth-error" style="color:#f38ba8; margin-top:8px; font-size:0.85rem; display:none;">Nope.</div>
+    </form>
+  </div>
+  
+  <div id="main-dashboard" class="dashboard" style="display:none;">
+    <!-- Header -->
+    <header class="header">
+      <h1>⚡ Brian's Dashboard</h1>
+      <div class="header-meta">
+        <span id="last-updated">Loading...</span>
+      </div>
+    </header>
+    
+    <!-- Needs Attention -->
+    <div class="section-title">🔴 Needs Attention</div>
+    <div id="attention-grid" class="attention-grid">
+      <!-- Filled by JavaScript -->
+    </div>
+    
+    <!-- Organization Overview -->
+    <div class="section-title">🏢 Organization Overview</div>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Monthly AI Costs</div>
+        </div>
+        <div class="card-value" style="font-size: 2rem; font-weight: 700; color: var(--accent-red);">$1,073</div>
+        <div class="card-subtitle" style="font-size: 0.9rem; color: var(--text-muted);">Target: $150 • Overspend: $923</div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Active Agents</div>
+        </div>
+        <div class="card-value" style="font-size: 2rem; font-weight: 700;">3</div>
+        <div class="card-subtitle" style="font-size: 0.9rem; color: var(--text-muted);">Marcel, Howard, Jacques</div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">API Usage</div>
+        </div>
+        <div class="card-value" style="font-size: 2rem; font-weight: 700;">$847</div>
+        <div class="card-subtitle" style="font-size: 0.9rem; color: var(--text-muted);">60% Anthropic, 20% OpenAI</div>
+      </div>
+    </div>
+    
+    <!-- Agent Status -->
+    <div class="section-title">👥 Agent Status</div>
+    <div class="grid grid-3" id="agents-grid">
+      <!-- Filled by JavaScript -->
+    </div>
+    
+    <!-- Cost Breakdown -->
+    <div class="section-title">💰 Cost Breakdown</div>
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">AI APIs</div>
+        </div>
+        <div class="cost-list">
+          <div class="cost-item">
+            <div>🤖 Anthropic (Claude)</div>
+            <div style="font-weight: 600;">$512</div>
+          </div>
+          <div class="cost-item">
+            <div>🧠 OpenAI</div>
+            <div style="font-weight: 600;">$218</div>
+          </div>
+          <div class="cost-item">
+            <div>🔍 Google (Gemini)</div>
+            <div style="font-weight: 600;">$117</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Infrastructure</div>
+        </div>
+        <div class="cost-list">
+          <div class="cost-item">
+            <div>☁️ Vercel Pro</div>
+            <div style="font-weight: 600;">$20</div>
+          </div>
+          <div class="cost-item">
+            <div>🗄️ Supabase</div>
+            <div style="font-weight: 600;">$25</div>
+          </div>
+          <div class="cost-item">
+            <div>💳 Stripe</div>
+            <div style="font-weight: 600;">$32</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Alert -->
+    <div class="alert">
+      <div class="alert-title">High API Costs Detected</div>
+      <div class="alert-desc">Anthropic usage is 60% of total spend. Consider switching more tasks to DeepSeek ($0.28/MTok) or Kimi (free).</div>
+    </div>
+    
+    <!-- Link to Full Dashboard -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">🔗 Full Organization Dashboard</div>
+      </div>
+      <div style="margin-top: 10px;">
+        <a href="https://brians-mac-mini.taile67de1.ts.net:10443" target="_blank" style="color: var(--accent-blue); text-decoration: none;">
+          https://brians-mac-mini.taile67de1.ts.net:10443
+        </a>
+        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">
+          Passphrase: "pocket" • Detailed cost tracking and API breakdowns
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function checkAuth() {
+      var hash = 0, s = document.getElementById('auth-input').value;
+      for (var i = 0; i < s.length; i++) { hash = ((hash << 5) - hash) + s.charCodeAt(i); hash |= 0; }
+      if (hash === -982936170) {
+        localStorage.setItem('dashboard-auth', Date.now().toString());
+        document.getElementById('auth-gate').style.display = 'none';
+        document.getElementById('main-dashboard').style.display = 'block';
+        loadDashboardData();
+        return false;
+      }
+      document.getElementById('auth-error').style.display = 'block';
+      return false;
+    }
+    
+    var authTime = parseInt(localStorage.getItem('dashboard-auth') || '0');
+    var sevenDays = 7 * 24 * 60 * 60 * 1000;
+    if (authTime && (Date.now() - authTime) < sevenDays) {
+      document.getElementById('auth-gate').style.display = 'none';
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('main-dashboard').style.display = 'block';
+        loadDashboardData();
+      });
+    } else {
+      localStorage.removeItem('dashboard-auth');
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('main-dashboard').style.display = 'none';
+        document.getElementById('auth-input').focus();
+      });
+    }
+    
+    async function loadDashboardData() {
+      try {
+        const response = await fetch('/data.json');
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        const data = await response.json();
+        renderDashboard(data);
+      } catch (error) {
+        console.error('Failed to load dashboard data:', error);
+        // Show static data if fetch fails
+        renderStaticDashboard();
+      }
+    }
+    
+    function renderDashboard(data) {
+      // Update time
+      const now = new Date();
+      document.getElementById('last-updated').textContent = 'Updated ' + now.toLocaleDateString('en-US', { 
+        month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' 
+      });
+      
+      // Render needs attention
+      const attentionGrid = document.getElementById('attention-grid');
+      if (data.needsAttention && data.needsAttention.length > 0) {
+        attentionGrid.innerHTML = data.needsAttention.slice(0, 4).map(item => `
+          <div class="attention-card">
+            <div class="title">${item.title}</div>
+            <div class="status">${item.status}</div>
+            <div class="detail">${item.detail}</div>
+          </div>
+        `).join('');
+      }
+      
+      // Render agents
+      const agentsGrid = document.getElementById('agents-grid');
+      if (data.agents && data.agents.length > 0) {
+        agentsGrid.innerHTML = data.agents.map(agent => `
+          <div class="agent-card">
+            <div class="agent-header">
+              <div class="agent-avatar">${agent.emoji}</div>
+              <div class="agent-info">
+                <div class="agent-name">${agent.name}</div>
+                <div class="agent-role">${agent.role}</div>
+              </div>
+            </div>
+            <div style="margin-top: 10px; font-size: 0.9rem;">
+              <div><strong>Cost this month:</strong> $${agent.costThisMonth || 0}</div>
+              <div><strong>Current:</strong> ${agent.currentTask || 'No current task'}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+    
+    function renderStaticDashboard() {
+      // Show static data if fetch fails
+      document.getElementById('last-updated').textContent = 'Updated just now (static data)';
+      
+      document.getElementById('attention-grid').innerHTML = `
+        <div class="attention-card">
+          <div class="title">2024 Tax Return</div>
+          <div class="status">OVERDUE</div>
+          <div class="detail">~$12,343 estimated</div>
+        </div>
+        <div class="attention-card">
+          <div class="title">1120-S Filing</div>
+          <div class="status">Due March 15</div>
+          <div class="detail">27 days remaining</div>
+        </div>
+        <div class="attention-card">
+          <div class="title">Gmail OAuth</div>
+          <div class="status">Expired</div>
+          <div class="detail">Re-authenticate to restore email access</div>
+        </div>
+      `;
+      
+      document.getElementById('agents-grid').innerHTML = `
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-avatar">🎨</div>
+            <div class="agent-info">
+              <div class="agent-name">Marcel</div>
+              <div class="agent-role">Creative Director</div>
+            </div>
+          </div>
+          <div style="margin-top: 10px; font-size: 0.9rem;">
+            <div><strong>Cost this month:</strong> $412</div>
+            <div><strong>Current:</strong> La Gracia website proposal</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-avatar">🪨</div>
+            <div class="agent-info">
+              <div class="agent-name">Howard</div>
+              <div class="agent-role">Main Assistant</div>
+            </div>
+          </div>
+          <div style="margin-top: 10px; font-size: 0.9rem;">
+            <div><strong>Cost this month:</strong> $387</div>
+            <div><strong>Current:</strong> Tax reconciliation</div>
+          </div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-header">
+            <div class="agent-avatar">🤿</div>
+            <div class="agent-info">
+              <div class="agent-name">Jacques</div>
+              <div class="agent-role">Pro App Developer</div>
+            </div>
+          </div>
+          <div style="margin-top: 10px; font-size: 0.9rem;">
+            <div><strong>Cost this month:</strong> $274</div>
+            <div><strong>Current:</strong> SailorSkills Pro sprint</div>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

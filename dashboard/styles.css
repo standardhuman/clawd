@@ -240,6 +240,124 @@ body {
   color: var(--text-muted);
 }
 
+/* ===== Agent Cards ===== */
+.agent-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.agent-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.agent-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.agent-info {
+  flex: 1;
+}
+
+.agent-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.agent-role {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.agent-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.status-active {
+  background: rgba(166, 227, 161, 0.2);
+  color: var(--accent-green);
+}
+
+.agent-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.metric {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.metric-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* ===== Alert ===== */
+.alert {
+  background: rgba(243, 139, 168, 0.1);
+  border: 1px solid var(--accent-red);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.alert-icon {
+  font-size: 1.5rem;
+}
+
+.alert-content {
+  flex: 1;
+}
+
+.alert-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.alert-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.alert-desc a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.alert-desc a:hover {
+  text-decoration: underline;
+}
+
 /* ===== Sprint Progress ===== */
 .sprint-section {
   display: grid;

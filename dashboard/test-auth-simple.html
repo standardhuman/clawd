@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Auth Test</title>
+  <script>
+    function testAuth() {
+      console.log('testAuth called');
+      const password = document.getElementById('password').value;
+      console.log('Password entered:', password);
+      
+      // Calculate hash
+      let hash = 0;
+      for (let i = 0; i < password.length; i++) {
+        hash = ((hash << 5) - hash) + password.charCodeAt(i);
+        hash |= 0;
+      }
+      console.log('Hash calculated:', hash);
+      console.log('Expected hash:', -982936170);
+      console.log('Match:', hash === -982936170);
+      
+      if (hash === -982936170) {
+        console.log('SUCCESS: Password accepted!');
+        document.getElementById('result').innerHTML = '✅ SUCCESS! Password accepted.';
+        document.getElementById('result').style.color = 'green';
+      } else {
+        console.log('FAIL: Password rejected');
+        document.getElementById('result').innerHTML = '❌ FAIL: Password rejected. Hash: ' + hash;
+        document.getElementById('result').style.color = 'red';
+      }
+      
+      return false; // Prevent form submission
+    }
+    
+    // Test the hash function
+    console.log('Testing hash function:');
+    console.log('"pocket" hash:', hashPassword('pocket'));
+    console.log('"test" hash:', hashPassword('test'));
+    
+    function hashPassword(s) {
+      let hash = 0;
+      for (let i = 0; i < s.length; i++) {
+        hash = ((hash << 5) - hash) + s.charCodeAt(i);
+        hash |= 0;
+      }
+      return hash;
+    }
+  </script>
+</head>
+<body>
+  <h1>Simple Auth Test</h1>
+  <p>Open browser console (F12) to see debug output</p>
+  
+  <form onsubmit="return testAuth()">
+    <input type="password" id="password" placeholder="Enter password">
+    <button type="submit">Test</button>
+  </form>
+  
+  <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+  
+  <div style="margin-top: 30px;">
+    <h3>Test these passwords:</h3>
+    <ul>
+      <li><code>pocket</code> - should work (hash: -982936170)</li>
+      <li><code>test</code> - should fail (hash: 3556498)</li>
+      <li><code>rock</code> - should fail (hash: 3506021)</li>
+    </ul>
+  </div>
+</body>
+</html>
