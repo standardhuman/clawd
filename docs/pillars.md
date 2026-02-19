@@ -18,10 +18,9 @@ status: active
 This isn't a "nice to have" — it's the foundation under every other pillar. Physical health, emotional processing, relationships, rest, boundaries. If this breaks, everything breaks.
 
 **Fitness Goals:**
-- Strength training: consistent program (progressive overload, compound lifts)
-- Cardio: running and biking (indoor or outdoor), maintain cardiovascular base
-- Mobility: biking and running contribute, plus dedicated stretching and yoga routine
-- Maintain sailing as physical practice and joy
+- Strength training: consistent program (progressive overload, compound lifts) 3x/week
+- Cardio: running and biking (indoor or outdoor) 3x/week
+- Mobility: dedicated stretching and yoga routine 3x/week (develop this — focus on hip flexors, hamstrings, thoracic spine, calves/ankles to complement lifting + cycling + running)
 
 **Emotional & Relational Goals:**
 - Deepen TMC involvement and men's work
