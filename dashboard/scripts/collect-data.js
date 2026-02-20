@@ -177,8 +177,10 @@ function parseSessionTranscripts() {
 
 function getDeepSeekBalance() {
   try {
+    const dsKey = process.env.DEEPSEEK_API_KEY;
+    if (!dsKey) return null;
     const result = execSync(
-      'curl -s https://api.deepseek.com/user/balance -H "Authorization: Bearer ***REDACTED_DEEPSEEK_KEY***"',
+      `curl -s https://api.deepseek.com/user/balance -H "Authorization: Bearer ${dsKey}"`,
       { timeout: 5000, encoding: 'utf8' }
     );
     const data = JSON.parse(result);
