@@ -1,6 +1,6 @@
 # Noa's Source List
 
-Last updated: 2026-02-19 (v3)
+Last updated: 2026-02-21 (v4)
 
 ## 🎯 Primary Sources (check every night)
 
@@ -44,6 +44,8 @@ Last updated: 2026-02-19 (v3)
 - **CEL (Common Expression Language)** — Lightweight business logic language used by Kubernetes, Google Cloud, Firebase. Could be useful for SailorSkills validation logic. Discovered 2026-02-18.
 - **Nick Vasilescu / Orgo** — OpenClaw deployment specialist, builds automation-as-a-service. Featured on Greg Isenberg. Discovered 2026-02-19.
 - **Alexander Van Le** (@qwertyu_alex) — AI portfolio bootstrapper, $20k/mo across Starpop + AI Flow Chat. Marketing-first approach. Discovered 2026-02-19.
+- **Juno Labs** (juno-labs.com) — Ambient AI hardware startup. Always-on, local-only home AI assistant. Pioneer Edition $1,299. Interesting engineering blog on memory/privacy. Discovered 2026-02-21.
+- **Taalas** (taalas.com) — Custom silicon for AI inference. Hardwires models into chips. 17K tok/sec on Llama 3.1 8B. $200M VC, ex-AMD/Nvidia founders. Discovered 2026-02-21.
 
 ---
 
