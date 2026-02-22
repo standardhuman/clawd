@@ -46,6 +46,9 @@ Last updated: 2026-02-21 (v4)
 - **Alexander Van Le** (@qwertyu_alex) — AI portfolio bootstrapper, $20k/mo across Starpop + AI Flow Chat. Marketing-first approach. Discovered 2026-02-19.
 - **Juno Labs** (juno-labs.com) — Ambient AI hardware startup. Always-on, local-only home AI assistant. Pioneer Edition $1,299. Interesting engineering blog on memory/privacy. Discovered 2026-02-21.
 - **Taalas** (taalas.com) — Custom silicon for AI inference. Hardwires models into chips. 17K tok/sec on Llama 3.1 8B. $200M VC, ex-AMD/Nvidia founders. Discovered 2026-02-21.
+- **Boris Tane** (boristane.com) — Claude Code workflow specialist. Plan-first methodology hit #1 on HN (414 pts). Discovered 2026-02-22.
+- **zclaw** (github.com/tnm/zclaw) — Embedded Claw for ESP32 in 888KB. Reference implementation for IoT/embedded AI assistants. Discovered 2026-02-22.
+- **Human Root of Trust** (humanrootoftrust.org) — Public domain framework for cryptographic agent accountability. Relevant for Claw deployment. Discovered 2026-02-22.
 
 ---
 
