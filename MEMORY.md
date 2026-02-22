@@ -186,4 +186,8 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 
 **Model Cost Optimization (Feb 16):** Howard=Opus 4.6, Jacques/Marcel/all subagents=DeepSeek V3.2. Estimated $70/day → $3-5/day.
 
-*Last updated: February 16, 2026*
+**Email Sending Scope (Feb 22):** Howard can send email via `gog gmail send` (sends as Brian). Rule: only send to Brian's own addresses without asking. Ask permission for anyone else.
+
+**Dawn Patrol (Feb 22):** Consolidated morning briefing — Rio + Kai + Triage in one document, delivered to Kindle (`standardhuman_paperwhite@kindle.com`) at 6am AND Telegram. Sections: Wellbeing, Pillars & Focus, Today's Pitch, Triage, Powers Check.
+
+*Last updated: February 22, 2026*
