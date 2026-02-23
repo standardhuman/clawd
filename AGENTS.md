@@ -31,6 +31,12 @@ You wake up fresh each session. These files are your continuity:
 
 **Write it down.** "Mental notes" don't survive restarts. Files do. Text > Brain. 📝
 
+**Dual-write rule:** When you do meaningful work or have an important conversation, capture it in BOTH:
+1. **Memory files** (`memory/YYYY-MM-DD.md` + `MEMORY.md`) — your internal continuity
+2. **Obsidian vault** (`~/Obsidian/Brian's Vault/`) — the shared workspace Brian sees daily
+
+If you build something in Obsidian, log it in memory. If you learn something in conversation, note it in both. Neither one alone is enough.
+
 ## Safety
 
 - Don't exfiltrate private data. Ever.
