@@ -10,6 +10,12 @@ Last updated: 2026-02-21 (v4)
 - **What to extract:** Business ideas, methods, tools, guest names, referenced creators/builders
 - **Frequency:** New episodes ~2-3x/week
 
+### Peter Yang — Creator Economy & Product
+- **RSS Feed:** https://www.youtube.com/feeds/videos.xml?channel_id=UCkipSmIsFMgLOb-arzjQJOw
+- **Method:** Same as Greg Isenberg — `web_fetch` RSS, `summarize` new episodes from last 48h
+- **What to extract:** Product strategy, creator economy insights, growth tactics, AI applications
+- **Frequency:** Check nightly
+
 ### Hacker News
 - **URL:** https://news.ycombinator.com/
 - **Focus:** "Show HN" launches, AI business discussions, solo founder stories, SaaS/micro-SaaS ideas
