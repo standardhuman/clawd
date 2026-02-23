@@ -4,7 +4,7 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 
 ## Obsidian Vault
 
-**Path:** `~/Documents/Brian's Vault/`
+**Path:** `~/Obsidian/Brian's Vault/`
 
 Key folders:
 - `SailorSkills/` — Architecture diagrams (mermaid), Business docs, Development notes
@@ -106,7 +106,7 @@ Brian's original AI workspace. Check here for project history and context.
 
 - **Canonical source**: Mermaid diagrams in markdown (version-controlled, editable by Howard)
 - **Location**: `~/AI/business/sailorskills/docs/architecture/ecosystem-diagram.md`
-- **Obsidian copy**: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Brian's Vault/SailorSkills/Architecture/`
+- **Obsidian copy**: `~/Obsidian/Brian's Vault/SailorSkills/Architecture/`
 - **Workflow**: Brian thinks out loud (Wispr Flow) → Howard edits Mermaid → Brian views in Obsidian
 - **Excalidraw**: Keep for whiteboarding only, not source of truth
 
