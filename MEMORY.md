@@ -194,4 +194,8 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 
 **Relationship History Context:** Lauren (lived on boat at marina, breakup was destabilizing — Brian avoided marina during certain hours for months). Allison (10-month relationship, ended Dec 5 2025, processed well through TMC). Sarah (lives on Brian's dock, now in a relationship with someone else, decided not to pursue — marina is too important as work/community to risk). ~20 years of dating apps starting with PlentyOfFish/OkCupid in 2006, pattern of short-term relationships. Done with apps — they create anxiety, addictive behavior, devalue the person in front of him.
 
-*Last updated: February 22, 2026*
+**OpenTelemetry + Testing (Feb 23, 2026):** Both Marketplace and Pro instrumented with OpenTelemetry. Grafana Cloud free tier (Instance 1511014, us-west-0). Marketplace: auto-instrumented fetch/page loads + custom spans on review.submit, recommendation_request, social proof. Pro: custom spans on service_log.create, voice recording, BLE, offline sync. API token in `.env` (gitignored). Marketplace testing: 53 unit tests (vitest, trust network hooks + auth regression) + 36 E2E tests (Playwright, 6 suites: homepage/auth/browse/SEO/navigation/learn). Test infra: Supabase chainable mock, test factories, Playwright with auto dev server. Full plan at `~/clawd/docs/plans/2026-02-23-otel-and-testing-plan.md`.
+
+**Dawn Patrol Kindle Delivery Fix (Feb 23):** Plain .txt emails cause Kindle E999 error (emoji/Unicode). HTML attachment works. Cron updated to generate `/tmp/dawn-patrol.html`. Also removed `--from standardhuman@gmail.com` flag (not verified as Send As alias; default sending address works fine).
+
+*Last updated: February 23, 2026*
