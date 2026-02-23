@@ -1,6 +1,6 @@
 # Noa's Source List
 
-Last updated: 2026-02-21 (v4)
+Last updated: 2026-02-23 (v5)
 
 ## 🎯 Primary Sources (check every night)
 
@@ -55,6 +55,9 @@ Last updated: 2026-02-21 (v4)
 - **Boris Tane** (boristane.com) — Claude Code workflow specialist. Plan-first methodology hit #1 on HN (414 pts). Discovered 2026-02-22.
 - **zclaw** (github.com/tnm/zclaw) — Embedded Claw for ESP32 in 888KB. Reference implementation for IoT/embedded AI assistants. Discovered 2026-02-22.
 - **Human Root of Trust** (humanrootoftrust.org) — Public domain framework for cryptographic agent accountability. Relevant for Claw deployment. Discovered 2026-02-22.
+- **Shuru** (shuru.run) — Local-first microVM sandbox for AI agents on macOS. Checkpoint/restore, network isolation. Solves agent sandboxing. Discovered 2026-02-23.
+- **Aqua / Mistermorph** (github.com/quailyquaily/aqua) — P2P encrypted messaging CLI for AI agents. Identity verification + E2EE. Early but interesting inter-Claw communication primitive. Discovered 2026-02-23.
+- **Gabriel Chua** (OpenAI DevEx APAC) — Published clear Codex architecture breakdown (model + harness + surfaces). Useful competitive intelligence source. Discovered 2026-02-23.
 
 ---
 
