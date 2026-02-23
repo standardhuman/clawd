@@ -1,6 +1,6 @@
 ---
 type: pillars
-updated: 2026-02-19
+updated: 2026-02-22
 status: active
 ---
 
@@ -24,7 +24,7 @@ This isn't a "nice to have" — it's the foundation under every other pillar. Ph
 
 **Emotional & Relational Goals:**
 - Deepen TMC involvement and men's work
-- Continue intentional partner search (authenticity over apps)
+- See Pillar 7 (Partnership) for relationship work
 - Practice digital boundaries (phones off 7pm-7am)
 - Keep learning (teaching, coaching, personal development)
 - Maintain ACA/NVC practices
@@ -118,6 +118,37 @@ This combines forward-looking work: new business ideas, content, marketing, and 
 - Stay ahead of industry shifts (marine tech, AI tooling)
 
 **Agents:** Noa (research), Kai (strategy), Milo (marketing), Marcel (design), Sage (sales), Reese (product specs)
+
+---
+
+## 🫂 Pillar 7: Partnership
+**Finding and building a deep intimate relationship.**
+
+Brian is ready for partnership — not urgently, but intentionally. After 20 years of dating apps and a pattern of short-term relationships, he's choosing a different path: grounding into himself, showing up at events aligned with his values, and letting connections form organically. No apps. No rushing. Quality over quantity.
+
+**Key context:**
+- Ended relationship with Allison (Dec 2025), processed well through TMC
+- Sarah (marina) decided against — too risky to date someone at the marina after the Lauren experience (relationship ending made the marina feel unsafe for months)
+- Built a "Completing Relationships" tool in Dec 2025 to process endings
+- Currently finishing a 6-week Communication & Intimate Relationships course (Newt Bailey's Communication Dojo)
+- Feels genuinely good being independent right now
+- 20 years of apps (since Plenty of Fish/OkCupid in 2006) — done with that pattern
+
+**Strategy: Show Up & Be Findable**
+- Attend events where aligned women gather: attachment workshops, circling, authentic relating, improv, play workshops
+- Leverage TMC network: ask the men to think about women in their lives who might be a good match
+- Keep saying yes to things
+- Let the communication/relationship coursework deepen his capacity
+- No dating apps — they create anxiety, addictive behavior, and devalue the person in front of you
+
+**Value Goals:**
+- Continue Communication Dojo and similar coursework
+- Send a thoughtful outreach to TMC men about introductions
+- Attend 2+ social/workshop events per month where connection is possible
+- Stay grounded in independence while remaining open
+- Build clarity on what he wants in a partner (needs, values, non-negotiables)
+
+**Agents:** Howard (check-ins, accountability, reflection prompts)
 
 ---
 

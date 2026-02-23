@@ -190,4 +190,8 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 
 **Dawn Patrol (Feb 22):** Consolidated morning briefing — Rio + Kai + Triage in one document, delivered to Kindle (`standardhuman_paperwhite@kindle.com`) at 6am AND Telegram. Sections: Wellbeing, Pillars & Focus, Today's Pitch, Triage, Powers Check.
 
+**Partnership Pillar (Feb 22):** Added as Pillar 7. Brian is intentionally seeking a romantic partner but NOT through dating apps (done after 20 years since 2006). Strategy: show up at aligned events (attachment workshops, circling, authentic relating, improv), leverage TMC network for introductions, stay grounded in independence. Key context: Sarah (marina) decided against — too risky after Lauren experience (breakup made marina feel unsafe for months; Sarah even closer to Brian's boat). Built "Completing Relationships" web app Dec 2025 to process Allison ending. Currently finishing Newt Bailey's 6-week Communication Dojo course. Feels good being independent. No rush.
+
+**Relationship History Context:** Lauren (lived on boat at marina, breakup was destabilizing — Brian avoided marina during certain hours for months). Allison (10-month relationship, ended Dec 5 2025, processed well through TMC). Sarah (lives on Brian's dock, now in a relationship with someone else, decided not to pursue — marina is too important as work/community to risk). ~20 years of dating apps starting with PlentyOfFish/OkCupid in 2006, pattern of short-term relationships. Done with apps — they create anxiety, addictive behavior, devalue the person in front of him.
+
 *Last updated: February 22, 2026*

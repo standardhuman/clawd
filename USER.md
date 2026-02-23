@@ -36,7 +36,9 @@
 ## Current Life Context (January 2026)
 
 - Ended 10-month relationship with Allison (Dec 5, 2025) — processed healthily with TMC support
-- Getting to know Sarah (marina, sailor, mountain biker, entrepreneur)
+- Sarah (marina) — decided not to pursue; she's in a relationship, and marina is too important to risk (learned from Lauren breakup)
+- Intentionally seeking partnership through events and network, NOT dating apps (20 years of apps, done with that pattern)
+- Finishing 6-week Communication Dojo course (Newt Bailey) on communication in intimate relationships
 - S-Corp application mailed Dec 8, 2025
 
 ## Communication Style
