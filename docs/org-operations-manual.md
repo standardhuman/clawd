@@ -244,6 +244,31 @@ Things that need Brian's input
 
 ---
 
+## Knowledge Management
+
+Three systems, clear boundaries. No duplicating content across all three.
+
+| System | Purpose | Audience | What goes here |
+|--------|---------|----------|---------------|
+| **Obsidian vault** | Company wiki — durable, curated reference material | Brian | Org structure, team profiles, strategy (Pillars, Powers), architecture, business analysis, decision records, course notes |
+| **~/clawd/docs/** | Working docs — specs and references agents need for tasks | Agents | Build plans, technical specs, agent-facing scripts, API references, sprint plans |
+| **~/clawd/memory/** | Operational log — what happened, daily context | Howard | Daily notes, session continuity, ephemeral context |
+
+**Rule of thumb:**
+- Would Brian read it on a Sunday to understand how things work? → **Obsidian**
+- Does an agent need it to execute a task? → **~/clawd/docs/**
+- Is it what happened today? → **~/clawd/memory/**
+
+**Dual-write rule:** When meaningful work is done, it gets logged in memory AND anything durable gets written to Obsidian. Neither alone is enough.
+
+**Canonical locations:**
+- Pillars → `~/Obsidian/Brian's Vault/Organization/Strategy/Pillars.md`
+- Powers framework → `~/Obsidian/Brian's Vault/Organization/Strategy/Powers × Pillars.md`
+- Team profiles → `~/Obsidian/Brian's Vault/Organization/Team/`
+- This manual → `~/Obsidian/Brian's Vault/Organization/Operations Manual.md`
+
+---
+
 ## Communication Channels
 
 | Channel | Used For | Agents |
