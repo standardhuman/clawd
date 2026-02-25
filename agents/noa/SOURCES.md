@@ -1,6 +1,6 @@
 # Noa's Source List
 
-Last updated: 2026-02-24 (v6)
+Last updated: 2026-02-25 (v7)
 
 ## 🎯 Primary Sources (check every night)
 
@@ -60,6 +60,10 @@ Last updated: 2026-02-24 (v6)
 - **Gabriel Chua** (OpenAI DevEx APAC) — Published clear Codex architecture breakdown (model + harness + surfaces). Useful competitive intelligence source. Discovered 2026-02-23.
 - **Internet Vin** (@InternetVin) — Obsidian + Claude Code thinking-partner workflow. Built custom slash commands featured on Greg Isenberg. Commands at gregisenberg.com/obsidian-codes. Discovered 2026-02-24.
 - **Opper.ai** — LLM gateway with model benchmarking (Car Wash Test). Useful for practical model evaluation. Discovered 2026-02-24.
+- **Pi Agent** (pi.dev / github.com/badlogic/pi-mono) — Mario Zechner's minimal coding harness. Underlying engine of OpenClaw. Provider-agnostic, TypeScript extensions. Critical infrastructure. Discovered 2026-02-25.
+- **Inception Labs / Mercury** (inceptionlabs.ai) — Diffusion-based LLM. Mercury 2 at 1,009 tok/sec. Paradigm shift for agentic speed. Discovered 2026-02-25.
+- **Moonshine AI** (github.com/moonshine-ai/moonshine) — Pete Warden's open-weight STT models beating Whisper Large v3. 6-person team. Discovered 2026-02-25.
+- **Emdash** (github.com/generalaction/emdash) — Open-source ADE for parallel multi-agent coding. 21 provider CLIs, git worktree isolation. Discovered 2026-02-25.
 
 ---
 
