@@ -27,32 +27,34 @@ Howard can spawn any sub-agent using `sessions_spawn` with their persona file re
 
 **Pattern:** "Read ~/clawd/agents/{name}/PERSONA.md and follow its instructions. Then: {task}"
 
-## Active Agents
+## Organization
 
-### Scheduled (Cron)
-| Agent | Role | Schedule | Output |
-|-------|------|----------|--------|
-| **Noa** 🔍 | Research Analyst | Midnight daily | `~/clawd/reports/YYYY-MM-DD-research.md` |
-| **Kai** 💡 | Strategist | 6:30am daily | `~/clawd/reports/YYYY-MM-DD-pitch.md` + Telegram announce |
+All 13 agents are always-on staff with their own workspaces, memory, identity, and Telegram channels.
 
-### On-Demand (Spawned by Howard)
-| Agent | Role | When to use |
-|-------|------|-------------|
-| **Blake** 🔍 | QA | Code/content review before shipping |
-| **Quinn** 📊 | Ops & Finance | Invoicing, financial summaries, compliance deadlines |
-| **Sage** 🤝 | Sales & Client Relations | Lead qualification, proposals, onboarding |
-| **Milo** 📢 | Marketing & Growth | Content, SEO, distribution, campaigns |
-| **Reese** 📋 | Product Manager | Feature specs, roadmap, user research synthesis |
-| **Avery** ⚖️ | Legal & Compliance | Contract review, regulatory, risk assessment |
-| **Rio** 🌊 | Wellbeing Coach | Morning routine, training oversight, recovery, accountability |
-| **Cyrus** 🛡️ | Security | Security audits, infrastructure review, incident response |
-
-### Core Team (Full agents with own workspaces)
-| Agent | Role | Workspace |
-|-------|------|-----------|
+### Brian's Direct Reports
+| Agent | Title | Workspace |
+|-------|-------|-----------|
 | **Howard** 🪨 | Chief of Staff | ~/clawd |
-| **Jacques** 🤿 | Dev Partner | ~/clawd-jacques |
-| **Marcel** 🎨 | Creative Director | ~/clawd-marcel |
+| **Jacques** 🤿 | Product Lead, SailorSkills Pro | ~/clawd-jacques |
+| **Marcel** 🎨 | Product Lead, SailorSkills Marketplace | ~/clawd-marcel |
+| **Quinn** 📊 | Head of Business Operations | ~/clawd-quinn |
+| **Rio** 🌊 | Head of Wellbeing | ~/clawd-rio |
+
+### Shared Services Pool (Howard allocates)
+| Agent | Specialty | Workspace |
+|-------|-----------|-----------|
+| **Noa** 🔍 | Research Analyst | ~/clawd-noa |
+| **Kai** 💡 | Strategist | ~/clawd-kai |
+| **Blake** 🧪 | QA & Testing | ~/clawd-blake |
+| **Reese** 📋 | Product Manager | ~/clawd-reese |
+| **Milo** 📣 | Marketing & Growth | ~/clawd-milo |
+| **Cyrus** 🔒 | Security | ~/clawd-cyrus |
+
+### Business Operations (Quinn's Team)
+| Agent | Specialty | Workspace |
+|-------|-----------|-----------|
+| **Sage** 💰 | Sales & Client Relations | ~/clawd-sage |
+| **Avery** ⚖️ | Legal & Compliance | ~/clawd-avery |
 
 ## Pipelines
 

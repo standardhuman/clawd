@@ -2,7 +2,7 @@
 
 *How the crew runs. Reporting lines, workflows, handoff protocols, and accountability.*
 
-*Last updated: February 24, 2026*
+*Last updated: February 25, 2026*
 
 ---
 
@@ -22,94 +22,113 @@ The goal is **leverage** — Brian's 40-50 hours/week should produce the output 
 ## Reporting Structure
 
 ```
-                        Brian (Principal)
-                             │
-                    Howard 🪨 (Chief of Staff)
-                     ┌───────┼───────────┐
-                     │       │           │
-              Jacques 🤿  Marcel 🎨   Scheduled Crew
-              (Dev)    (Creative)    ┌────┼────┐
-                                   Noa 🔍 Kai 💡 Rio 🌊
-                                     
-                        On-Demand Specialists
-              ┌─────┬──────┬──────┬──────┬──────┬──────┐
-           Blake 🧪 Quinn 📊 Sage 💰 Milo 📣 Reese 📋 Avery ⚖️ Cyrus 🔒
+                         Brian (CEO)
+              ┌──────┬────────┬────────┬──────┬──────┐
+              │      │        │        │      │
+          Howard   Jacques   Marcel   Quinn   Rio
+          (CoS)    (Pro)   (Mktplace) (Biz)  (Well)
+              │
+     Shared Services Pool
+     ┌──┬──┬──┬──┬──┬──┐
+   Noa Kai Blake Reese Milo Cyrus
 ```
 
-### Reporting Lines
+### Brian's Direct Reports (5)
 
-| Who | Reports To | Cadence |
-|-----|-----------|---------|
-| **Howard** | Brian | Continuous (main session) |
-| **Jacques** | Howard → Brian | Per-task + handoffs |
-| **Marcel** | Howard → Brian | Per-task + handoffs |
-| **Noa** | Howard | Daily (midnight research brief) |
-| **Kai** | Howard (consumes Noa's output) | Daily (Dawn Patrol pitch) |
-| **Rio** | Howard | Daily (Dawn Patrol wellbeing) |
-| **All specialists** | Howard (spawned on-demand) | Per-task |
+| Who | Title | Domain |
+|-----|-------|--------|
+| **Howard 🪨** | Chief of Staff | Org ops, memory, daily rhythm, shared services pool, cross-team coordination |
+| **Jacques 🤿** | Product Lead, SailorSkills Pro | Pro app end-to-end (architecture, code, deploys, TestFlight) |
+| **Marcel 🎨** | Product Lead, SailorSkills Marketplace | Marketplace end-to-end (UI, UX, trust graph, frontend) |
+| **Quinn 📊** | Head of Business Operations | Finance, invoicing, compliance + manages Sage (sales) and Avery (legal) |
+| **Rio 🌊** | Head of Wellbeing | Pillar 1 — reports directly because it's the #1 pillar |
+
+### Shared Services Pool (managed by Howard)
+
+These specialists are allocated to projects as needed. They don't permanently belong to one product team — they go where the work is.
+
+| Who | Specialty | Typical Assignments |
+|-----|-----------|-------------------|
+| **Noa 🔍** | Research Analyst | Nightly research → feeds Kai's strategy |
+| **Kai 💡** | Strategist | Morning pitches → feeds Brian's decisions |
+| **Blake 🧪** | QA & Testing | Code review for Jacques and Marcel, pre-ship verification |
+| **Reese 📋** | Product Manager | Specs for Jacques or Marcel when features need scoping |
+| **Milo 📣** | Marketing & Growth | Content, SEO, campaigns for Marketplace or brand |
+| **Cyrus 🔒** | Security | Infrastructure review, code security audits across all products |
+
+### Quinn's Team (Business Operations)
+
+| Who | Specialty |
+|-----|-----------|
+| **Sage 💰** | Sales & Client Relations |
+| **Avery ⚖️** | Legal & Compliance |
+
+### How Product Leads Work with Specialists
+
+Jacques and Marcel are **product owners, not people managers**. They own their products end-to-end and pull in specialists when needed:
+
+- Jacques needs QA → requests Blake through Howard
+- Marcel needs a feature spec → requests Reese through Howard
+- Either needs a security review → requests Cyrus through Howard
+
+Howard allocates the shared pool based on priorities. If there's a conflict (both Jacques and Marcel need Blake), Howard decides based on what's most urgent, or escalates to Brian.
 
 ### Decision Authority
 
 | Decision Type | Who Decides | Who's Consulted |
 |--------------|------------|-----------------|
 | Strategy, priorities, spending | Brian | Howard advises |
-| Task assignment, sequencing | Howard | Brian approves major items |
-| Technical architecture | Jacques | Howard reviews, Brian approves |
-| Design, UX, brand | Marcel | Howard reviews, Brian approves |
-| Shipping code to production | Jacques or Marcel | Blake reviews (QA) |
+| Specialist allocation | Howard | Brian approves if contested |
+| Pro app architecture & code | Jacques | Blake reviews (QA) |
+| Marketplace architecture & code | Marcel | Blake reviews (QA) |
+| Shipping code to production | Jacques or Marcel (their product) | Blake reviews (QA), Cyrus reviews (security) |
 | External communications (email, social) | Brian approves | Milo/Sage draft |
 | Financial decisions | Brian | Quinn advises |
 | Legal/compliance | Brian | Avery advises |
 
-**Principle:** Agents draft, Brian decides on anything external. Internal work (code, research, organization) can proceed autonomously.
+**Principle:** Agents draft, Brian decides on anything external. Product leads own their products autonomously. Internal work (code, research, organization) can proceed without approval.
 
 ---
 
-## The Three Tiers
+## Team Structure
 
-### Tier 1: Core Team (Persistent Agents)
+All 13 agents are **always-on staff** with their own workspaces, memory, identity, and Telegram channels. No consultants, no ad-hoc spawning. Everyone is a permanent employee.
 
-These agents have their own workspaces, memory files, identity, and continuity across sessions. They're the senior staff.
+### Leadership (Brian's Direct Reports)
 
-| Agent | Domain | Workspace | Key Artifacts |
-|-------|--------|-----------|--------------|
-| **Howard 🪨** | Chief of Staff — orchestration, memory, accountability, Brian's primary interface | `~/clawd` | MEMORY.md, daily notes, Dawn Patrol |
-| **Jacques 🤿** | Dev Partner — builds software, ships code, manages deploys | `~/clawd-jacques` | HANDOFF.md, Pro app codebase |
-| **Marcel 🎨** | Creative Director — UI/UX, design systems, frontend, brand | `~/clawd-marcel` | HANDOFF.md, Marketplace codebase |
+| Agent | Title | Workspace | Owns |
+|-------|-------|-----------|------|
+| **Howard 🪨** | Chief of Staff | `~/clawd` | Org ops, daily rhythm, shared services pool, memory |
+| **Jacques 🤿** | Product Lead, SailorSkills Pro | `~/clawd-jacques` | Pro app (React Native/Expo), GoPro integration, TestFlight |
+| **Marcel 🎨** | Product Lead, SailorSkills Marketplace | `~/clawd-marcel` | Marketplace (React/Vite/Supabase), trust graph, UX |
+| **Quinn 📊** | Head of Business Operations | `~/clawd-quinn` | Finance, invoicing, compliance, manages Sage + Avery |
+| **Rio 🌊** | Head of Wellbeing | `~/clawd-rio` | Pillar 1 — physical & emotional wellbeing |
 
-**How they work together:**
-- Howard assigns work via `sessions_send` or `sessions_spawn`
-- Jacques and Marcel use HANDOFF.md for async continuity
-- Code reviews: Jacques reviews Marcel's code, Marcel reviews Jacques's UX
-- Both push to git; Howard tracks commits in memory
+### Shared Services Pool (Howard allocates)
 
-### Tier 2: Scheduled Crew (Cron Agents)
+| Agent | Specialty | Workspace | Primary Output |
+|-------|-----------|-----------|---------------|
+| **Noa 🔍** | Research Analyst | `~/clawd-noa` | `reports/YYYY-MM-DD-research.md` (nightly) |
+| **Kai 💡** | Strategist | `~/clawd-kai` | `reports/YYYY-MM-DD-pitch.md` (daily via Dawn Patrol) |
+| **Blake 🧪** | QA & Testing | `~/clawd-blake` | Code reviews, pre-ship verification |
+| **Reese 📋** | Product Manager | `~/clawd-reese` | Feature specs, PRDs, user stories |
+| **Milo 📣** | Marketing & Growth | `~/clawd-milo` | Content, SEO, campaigns |
+| **Cyrus 🔒** | Security | `~/clawd-cyrus` | Security audits, infrastructure review |
 
-These agents run on a schedule, produce artifacts, and go quiet. They don't have persistent memory — they read context fresh each run.
+### Business Operations (Quinn's Team)
 
-| Agent | Schedule | Input | Output | Consumed By |
-|-------|----------|-------|--------|-------------|
-| **Noa 🔍** | Midnight | SOURCES.md, web, RSS | `reports/YYYY-MM-DD-research.md` | Kai |
-| **Kai 💡** | 6am (via Dawn Patrol) | Noa's research, PPV goals, past pitches | `reports/YYYY-MM-DD-pitch.md` | Brian (Dawn Patrol) |
-| **Rio 🌊** | 6am (via Dawn Patrol) | Yesterday's memory, voice memos | Wellbeing section of Dawn Patrol | Brian (Kindle + Telegram) |
+| Agent | Specialty | Workspace |
+|-------|-----------|-----------|
+| **Sage 💰** | Sales & Client Relations | `~/clawd-sage` |
+| **Avery ⚖️** | Legal & Compliance | `~/clawd-avery` |
 
-**Data flow:** Noa → Kai → Dawn Patrol → Brian's Kindle
+### How It Works Together
 
-### Tier 3: On-Demand Specialists (Spawned by Howard)
-
-These agents are invoked for specific tasks, do the work, report back, and terminate. Think of them as consultants on retainer.
-
-| Agent | Specialty | When Howard Spawns Them |
-|-------|-----------|------------------------|
-| **Blake 🧪** | QA & Testing | Before shipping code, after major changes |
-| **Quinn 📊** | Ops & Finance | Invoicing, financial summaries, compliance deadlines |
-| **Sage 💰** | Sales & Client Relations | Lead qualification, proposals, client onboarding |
-| **Milo 📣** | Marketing & Growth | Content creation, SEO, campaigns, distribution |
-| **Reese 📋** | Product Management | Feature specs, PRDs, roadmap, user research synthesis |
-| **Avery ⚖️** | Legal & Compliance | Contract review, regulatory questions, risk assessment |
-| **Cyrus 🔒** | Security | Security audits, infrastructure review, incident response |
-
-**Spawn pattern:** Howard reads their PERSONA.md, gives them a task, they execute and announce results.
+- **Product leads own outcomes:** Jacques ships Pro, Marcel ships Marketplace. They make technical decisions autonomously.
+- **Shared services rotate:** Blake might review Pro code in the morning and Marketplace code in the afternoon. Howard allocates based on priority.
+- **Business ops runs independently:** Quinn, Sage, and Avery handle finance/sales/legal without needing product lead involvement.
+- **Rio reports directly to Brian:** Wellbeing is too important to filter through anyone.
+- **Everyone has a Telegram channel:** Brian can talk to any agent directly. No more routing everything through Howard.
 
 ---
 
