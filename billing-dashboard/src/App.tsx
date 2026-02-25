@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { EmailPanel } from './EmailPanel';
+import { VideoPanel } from './VideoPanel';
 
 // Use env var if set (production), otherwise use current hostname (dev/Tailscale)
 const API_URL = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:3001/api`;
@@ -33,7 +34,7 @@ interface BillingData {
 }
 
 type FilterType = 'all' | 'ready' | 'noEmail' | 'billed';
-type ViewType = 'billing' | 'email';
+type ViewType = 'billing' | 'email' | 'video';
 
 export { API_URL };
 
@@ -57,6 +58,9 @@ function App() {
   const [filterPlan, setFilterPlan] = useState(false);
   const [filterStartTime, setFilterStartTime] = useState(false);
   const [generateResult, setGenerateResult] = useState<{count: number, total: string, checked: number} | null>(null);
+
+  // Video status per boat
+  const [videoStatus, setVideoStatus] = useState<Record<string, { count: number; uploaded: boolean; youtubeUrl?: string }>>({});
 
   const generateBilling = async () => {
     setGenerating(true);
@@ -110,6 +114,39 @@ function App() {
       .catch(console.error)
       .finally(() => setLoading(false));
   }, [selectedMonth]);
+
+  // Load video status for billing rows
+  useEffect(() => {
+    if (!billingData?.boats?.length) return;
+    fetch(`${API_URL}/videos/upload-ready`)
+      .then(r => r.json())
+      .then(data => {
+        const vids = data.videos || {};
+        const status: Record<string, { count: number; uploaded: boolean; youtubeUrl?: string }> = {};
+        // Match by boat name (case-insensitive)
+        for (const boat of billingData.boats) {
+          const key = Object.keys(vids).find(k => k.toLowerCase() === boat.Boat.toLowerCase());
+          if (key) {
+            status[boat.Boat] = { count: vids[key].length, uploaded: false };
+          }
+        }
+        // Also check archive for already-uploaded videos
+        fetch(`${API_URL}/videos/durations`)
+          .then(r => r.json())
+          .then(durData => {
+            const durs = durData.durations || {};
+            for (const boat of billingData.boats) {
+              const durKey = Object.keys(durs).find(k => k.toLowerCase().startsWith(boat.Boat.toLowerCase() + '|'));
+              if (durKey && !status[boat.Boat]) {
+                status[boat.Boat] = { count: durs[durKey].videoCount, uploaded: true };
+              }
+            }
+            setVideoStatus(status);
+          })
+          .catch(() => setVideoStatus(status));
+      })
+      .catch(console.error);
+  }, [billingData]);
 
   const configureStripe = async () => {
     if (!stripeKey) return;
@@ -228,7 +265,7 @@ function App() {
     <div className="min-h-screen bg-gray-900 text-white p-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center gap-6 mb-6">
-          <h1 className="text-3xl font-bold">SailorSkills Billing</h1>
+          <h1 className="text-3xl font-bold">SailorSkills Operations</h1>
           <div className="flex gap-2">
             <button
               onClick={() => setActiveView('billing')}
@@ -238,10 +275,16 @@ function App() {
               onClick={() => setActiveView('email')}
               className={`px-4 py-2 rounded-lg text-sm font-medium ${activeView === 'email' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
             >📧 Email</button>
+            <button
+              onClick={() => setActiveView('video')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium ${activeView === 'video' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+            >🎬 Videos</button>
           </div>
         </div>
 
-        {activeView === 'email' ? (
+        {activeView === 'video' ? (
+          <VideoPanel />
+        ) : activeView === 'email' ? (
           <EmailPanel apiUrl={API_URL} />
         ) : (
         <>
@@ -407,6 +450,7 @@ function App() {
                   <th className="p-3 text-right">Anode</th>
                   <th className="p-3 text-right">Total</th>
                   <th className="p-3 text-left">Email</th>
+                  <th className="p-3 text-center">Video</th>
                   <th className="p-3 text-center">Card</th>
                   <th className="p-3 text-center">Status</th>
                   <th className="p-3 text-center">Action</th>
@@ -450,6 +494,22 @@ function App() {
                     <td className="p-3 text-right font-medium">${boat.Total}</td>
                     <td className="p-3 text-sm">
                       {boat.email || <span className="text-red-400">Missing</span>}
+                    </td>
+                    <td className="p-3 text-center">
+                      {videoStatus[boat.Boat] ? (
+                        <span
+                          className={`text-xs px-1.5 py-0.5 rounded ${
+                            videoStatus[boat.Boat].uploaded
+                              ? 'bg-green-900/40 text-green-400'
+                              : 'bg-blue-900/40 text-blue-400'
+                          }`}
+                          title={`${videoStatus[boat.Boat].count} video${videoStatus[boat.Boat].count !== 1 ? 's' : ''} ${videoStatus[boat.Boat].uploaded ? 'uploaded' : 'ready'}`}
+                        >
+                          🎬 {videoStatus[boat.Boat].count}
+                        </span>
+                      ) : (
+                        <span className="text-gray-600" title="No video">-</span>
+                      )}
                     </td>
                     <td className="p-3 text-center">
                       {boat.hasCard === true ? (

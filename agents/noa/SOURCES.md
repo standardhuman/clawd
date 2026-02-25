@@ -1,6 +1,6 @@
 # Noa's Source List
 
-Last updated: 2026-02-23 (v5)
+Last updated: 2026-02-24 (v6)
 
 ## 🎯 Primary Sources (check every night)
 
@@ -58,6 +58,8 @@ Last updated: 2026-02-23 (v5)
 - **Shuru** (shuru.run) — Local-first microVM sandbox for AI agents on macOS. Checkpoint/restore, network isolation. Solves agent sandboxing. Discovered 2026-02-23.
 - **Aqua / Mistermorph** (github.com/quailyquaily/aqua) — P2P encrypted messaging CLI for AI agents. Identity verification + E2EE. Early but interesting inter-Claw communication primitive. Discovered 2026-02-23.
 - **Gabriel Chua** (OpenAI DevEx APAC) — Published clear Codex architecture breakdown (model + harness + surfaces). Useful competitive intelligence source. Discovered 2026-02-23.
+- **Internet Vin** (@InternetVin) — Obsidian + Claude Code thinking-partner workflow. Built custom slash commands featured on Greg Isenberg. Commands at gregisenberg.com/obsidian-codes. Discovered 2026-02-24.
+- **Opper.ai** — LLM gateway with model benchmarking (Car Wash Test). Useful for practical model evaluation. Discovered 2026-02-24.
 
 ---
 

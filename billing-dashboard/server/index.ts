@@ -4,6 +4,16 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, unlinkSync } from
 import { join } from 'path';
 import dotenv from 'dotenv';
 import { getConditionsDatabase, getServiceConditions, calculateGrowthSurcharge, parseAnodeFromNotes } from './notion-helpers.js';
+import {
+  getSourceVideos, getUploadReadyVideos, previewRename, renameVideos,
+  undoRename, archiveVideos, calculateJobDurations, setVideoConfig,
+  type VideoConfig
+} from './video-service.js';
+import {
+  isYouTubeConfigured, getPlaylists, findMatchingPlaylist,
+  startUpload, getUploadStatus, cancelUpload, pauseUpload,
+  resumeUpload, clearUploadStatus,
+} from './youtube-service.js';
 
 // Load env from local .env first, then sailorskills-platform as fallback
 dotenv.config(); // Load local .env
@@ -857,6 +867,7 @@ app.post('/api/generate/:year/:month', async (req, res) => {
       const length = props.Length?.number || 30;
       const boatType = props['Boat Type']?.select?.name || 'Sail';
       const numProps = props.Props?.number || 1;
+      const startTime = props['Start Time']?.date?.start || null;
       
       try {
         const conditionsDbId = await getConditionsDatabase(boatPageId, token);
@@ -911,6 +922,7 @@ app.post('/api/generate/:year/:month', async (req, res) => {
         return {
           boat,
           date: serviceDate,
+          startTime,
           length,
           type: boatType,
           plan,
@@ -940,8 +952,15 @@ app.post('/api/generate/:year/:month', async (req, res) => {
       boatsWithService.push(...results.filter(r => r !== null));
     }
     
-    // Sort by date
-    boatsWithService.sort((a: any, b: any) => a.date.localeCompare(b.date));
+    // Sort by service date, then by start time within the same date
+    boatsWithService.sort((a: any, b: any) => {
+      const dateCompare = a.date.localeCompare(b.date);
+      if (dateCompare !== 0) return dateCompare;
+      // Same date — sort by start time if available
+      const aTime = a.startTime || '';
+      const bTime = b.startTime || '';
+      return aTime.localeCompare(bTime);
+    });
     
     // Generate CSV content
     const csvHeader = 'Boat,Date,HullTotal,Anode,AnodeType,Total';
@@ -976,5 +995,154 @@ app.post('/api/generate/:year/:month', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to generate billing' });
+  }
+});
+
+// ── Video Routes (ported from BOATY) ──────────────────────────────────────
+
+app.get('/api/videos/source', (_req, res) => {
+  try {
+    const videos = getSourceVideos();
+    res.json({ videos });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/videos/upload-ready', (_req, res) => {
+  try {
+    const videos = getUploadReadyVideos();
+    res.json({ videos });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/videos/preview-rename', (req, res) => {
+  try {
+    const { boat_names, selected_date, videos_per_boat = 2 } = req.body;
+    if (!boat_names?.length || !selected_date) {
+      return res.status(400).json({ error: 'boat_names and selected_date required' });
+    }
+    const result = previewRename(boat_names, selected_date, videos_per_boat);
+    res.json({ success: true, ...result });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/videos/rename', (req, res) => {
+  try {
+    const { assignments } = req.body;
+    if (!assignments?.length) {
+      return res.status(400).json({ error: 'assignments required' });
+    }
+    const result = renameVideos(assignments);
+    res.json(result);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/videos/undo-rename', (_req, res) => {
+  try {
+    res.json(undoRename());
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/videos/archive', (req, res) => {
+  try {
+    const { filenames } = req.body;
+    if (!filenames?.length) {
+      return res.status(400).json({ error: 'filenames required' });
+    }
+    res.json(archiveVideos(filenames));
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/videos/durations', (_req, res) => {
+  try {
+    const durations = calculateJobDurations();
+    res.json({ durations });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/videos/config', (_req, res) => {
+  res.json({
+    sourceDir: '/Users/brian/Downloads/*BOATY Video Files/source',
+    uploadDir: '/Users/brian/Downloads/*BOATY Video Files/upload',
+    archiveDir: '/Users/brian/Downloads/*BOATY Video Files/archive',
+  });
+});
+
+app.post('/api/videos/config', (req, res) => {
+  try {
+    setVideoConfig(req.body);
+    res.json({ success: true });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ── YouTube Routes ──────────────────────────────────────────────────────────
+
+app.get('/api/youtube/status', (_req, res) => {
+  res.json({
+    configured: isYouTubeConfigured(),
+    upload: getUploadStatus(),
+  });
+});
+
+app.get('/api/youtube/playlists', async (req, res) => {
+  try {
+    const playlists = await getPlaylists(req.query.refresh === 'true');
+    res.json({ playlists });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/youtube/upload', async (req, res) => {
+  try {
+    const { videos, privacy = 'unlisted', autoCreatePlaylists = true } = req.body;
+    if (!videos?.length) return res.status(400).json({ error: 'videos required' });
+    await startUpload(videos, privacy, autoCreatePlaylists);
+    res.json({ success: true, total: videos.length });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/youtube/upload-status', (_req, res) => {
+  res.json(getUploadStatus());
+});
+
+app.post('/api/youtube/cancel', (_req, res) => {
+  cancelUpload();
+  res.json({ success: true });
+});
+
+app.post('/api/youtube/pause', (_req, res) => {
+  pauseUpload();
+  res.json({ success: true });
+});
+
+app.post('/api/youtube/resume', (_req, res) => {
+  resumeUpload();
+  res.json({ success: true });
+});
+
+app.post('/api/youtube/clear', (_req, res) => {
+  try {
+    clearUploadStatus();
+    res.json({ success: true });
+  } catch (err: any) {
+    res.status(400).json({ error: err.message });
   }
 });
