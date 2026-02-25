@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-25T07:36:04.980Z",
+  "lastUpdated": "2026-02-25T14:51:05.108Z",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
@@ -507,12 +507,12 @@
       "station": "Helm",
       "avatar": "/avatars/howard-robot-v2.png",
       "status": "standby",
-      "costThisMonth": 409.41,
-      "totalTokens": 420885467,
-      "lastActive": "5h ago",
-      "lastActiveTs": 1771988688405,
+      "costThisMonth": 411.66,
+      "totalTokens": 422234987,
+      "lastActive": "48m ago",
+      "lastActiveTs": 1772028208685,
       "currentTask": "thanks, good night for now",
-      "tasksCompleted": 1256,
+      "tasksCompleted": 1260,
       "productivity": 92
     },
     {
@@ -525,7 +525,7 @@
       "status": "standby",
       "costThisMonth": 374.96,
       "totalTokens": 517659903,
-      "lastActive": "5h ago",
+      "lastActive": "12h ago",
       "lastActiveTs": 1771988543641,
       "currentTask": "Did it build?",
       "tasksCompleted": 1168,
@@ -539,12 +539,12 @@
       "station": "Workshop",
       "avatar": "/avatars/marcel-robot-v2.png",
       "status": "active",
-      "costThisMonth": 116.67,
-      "totalTokens": 147291970,
+      "costThisMonth": 117.23,
+      "totalTokens": 147975471,
       "lastActive": "just now",
-      "lastActiveTs": 1772004959482,
+      "lastActiveTs": 1772031059582,
       "currentTask": "Yeah you can keep anything with dive in the name as well or bottom or hull",
-      "tasksCompleted": 1845,
+      "tasksCompleted": 1875,
       "productivity": 65
     },
     {
@@ -695,15 +695,15 @@
   "organization": {
     "monthlyCosts": {
       "actual": 552.21,
-      "apiEquivalent": 1050.04,
+      "apiEquivalent": 1052.85,
       "infrastructure": 349,
       "target": 500
     },
     "anthropic": {
       "plan": "Max 20X",
       "planCost": 200,
-      "apiEquivalentUsage": 897.83,
-      "savings": 697.83,
+      "apiEquivalentUsage": 900.64,
+      "savings": 700.64,
       "apiUsage": null,
       "source": "transcript-estimate"
     },
@@ -724,7 +724,7 @@
     "costsByModel": [
       {
         "name": "claude-opus-4-6",
-        "cost": 467.63,
+        "cost": 470.44,
         "percent": 52
       },
       {
@@ -741,7 +741,7 @@
     "costsByAgent": [
       {
         "agent": "Howard",
-        "cost": 409.41
+        "cost": 411.66
       },
       {
         "agent": "Jacques",
@@ -749,7 +749,7 @@
       },
       {
         "agent": "Marcel",
-        "cost": 116.67
+        "cost": 117.23
       }
     ],
     "infrastructure": {
@@ -802,43 +802,61 @@
   "recentActivity": [
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. The numbers look healthy — $552.21/mo act",
+      "text": "Marcel: Dashboard data collected successfully. Costs tracking at $552.21/mo actual vs $1",
       "time": "15m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully.",
+      "text": "Marcel: Data collection complete. The dashboard has been updated with the latest usage s",
       "time": "30m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs are tracking at **$552.21/mo** actu",
+      "text": "Marcel: Dashboard data collected successfully. 📊",
       "time": "45m ago",
       "agent": "Marcel"
     },
     {
+      "icon": "🪨",
+      "text": "Howard:   Good morning Brian. Dawn Patrol's on your Kindle ☕  Quick highlights:  🌊 **Ri",
+      "time": "48m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: # 🌅 Dawn Patrol — Wednesday, February 25, 2026  ---  ## 🌊 WELLBEING (Rio)  Yes",
+      "time": "48m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Now I have everything I need. Let me craft the pitch and full Dawn Patrol.",
+      "time": "50m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Now let me assemble everything. The memory audit looks complete — yesterday's fi",
+      "time": "50m ago",
+      "agent": "Howard"
+    },
+    {
       "icon": "🎨",
-      "text": "Marcel: Data collection complete. The dashboard has been updated with the latest usage s",
+      "text": "Marcel: Dashboard data collected successfully. Costs tracked: $552.21/mo actual vs $1,05",
+      "time": "60m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs tracked: **$552.21/mo actual** vs *",
       "time": "1h ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Data collection complete. Costs are tracking at **$552.21/mo** actual vs **$1,04",
-      "time": "1h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Data collection complete. The dashboard has been updated with the latest metrics",
-      "time": "2h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Data collection complete. Costs are tracking at **$552.21/mo actual** vs **$1,04",
+      "text": "Marcel: Dashboard data collected successfully. Costs tracked: **$552.21/mo actual** vs *",
       "time": "2h ago",
       "agent": "Marcel"
     },
@@ -850,38 +868,44 @@
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. The numbers look healthy — $552.21/mo act",
+      "text": "Marcel: Data collection complete. Costs are tracking at **$552.21/mo** actual vs **$1,05",
       "time": "2h ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collection completed successfully. Costs tracked: **$552.21/mo ac",
+      "text": "Marcel: Dashboard data collection completed successfully.",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully.",
       "time": "3h ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collection completed successfully. Costs tracked: **$552.21/mo ac",
+      "text": "Marcel: Dashboard data collected successfully. Costs tracked: $552.21/mo actual vs $1,05",
+      "time": "3h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
+      "time": "3h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Data collection completed successfully. Costs are tracking at **$552.21/mo actua",
       "time": "3h ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
       "text": "Marcel: Dashboard data collected successfully. Costs tracked: **$552.21/mo actual** vs *",
-      "time": "3h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collection completed successfully. Costs tracked: **$552.21/mo ac",
-      "time": "3h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collection completed successfully. Costs updated: **$552.21/mo ac",
-      "time": "3h ago",
+      "time": "4h ago",
       "agent": "Marcel"
     },
     {
@@ -892,33 +916,9 @@
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collection completed successfully. Costs tracked: **$552.21/mo ac",
+      "text": "Marcel: Dashboard data collection completed successfully. Costs tracked: $552.21/mo actu",
       "time": "4h ago",
       "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collection completed successfully. Costs tracked: **$552.21/mo ac",
-      "time": "4h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collection complete. Costs tracked: **$552.21/mo actual** vs **$1",
-      "time": "4h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard:   Night Brian. Good stuff tonight — Rio's on the team page, org is documented, v",
-      "time": "5h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Updated version is on its way to your Kindle now. 📖",
-      "time": "5h ago",
-      "agent": "Howard"
     }
   ],
   "billing": {
@@ -974,16 +974,16 @@
     ],
     "monthlySummary": {
       "actual": 552.21,
-      "apiEquivalent": 1050.04,
+      "apiEquivalent": 1052.85,
       "anthropicPlan": 200,
-      "anthropicApiEquiv": 897.83,
-      "anthropicSavings": 697.83,
+      "anthropicApiEquiv": 900.64,
+      "anthropicSavings": 700.64,
       "otherApis": 3.21,
       "infrastructure": 349
     }
   },
   "metadata": {
-    "lastUpdated": "2026-02-25T07:36:04.980Z",
+    "lastUpdated": "2026-02-25T14:51:05.108Z",
     "version": "3.0",
     "source": "Real data from session transcripts + curated static data"
   }

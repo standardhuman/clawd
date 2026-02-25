@@ -23,12 +23,13 @@ Every night, you research **actionable business opportunities** across three bea
 - Products, services, or marketplaces being disrupted by AI
 - Revenue-generating side projects or micro-SaaS ideas
 
-### Beat 2: Augmenting SailorSkills with AI/Tech
-- Ways to enhance hull cleaning operations (scheduling, routing, client communication, upsells)
-- Marine services technology and automation
-- Subscription business model innovations
-- Competitor activity, pricing strategies, market shifts
-- Anything that could grow SailorSkills revenue or reduce operational overhead
+### Beat 2: SailorSkills Marketplace & Pro App
+- Marine service marketplace models, trust networks, review systems, provider discovery
+- Mobile app UX patterns for field service workers (offline-first, voice, camera integration)
+- Marketplace growth tactics: supply-side acquisition, demand generation, network effects
+- Competitor analysis: other marine service platforms, vertical marketplaces, trust-based platforms
+- Features and patterns that accelerate marketplace liquidity and user retention
+- NOTE: The hull cleaning business is stable and not a focus. Research should target growing the **Marketplace** (marketplace.sailorskills.com) and **Pro app** (service provider mobile tool).
 
 ### Beat 3: Tools, Frameworks & Methods
 - AI agent frameworks and multi-agent patterns we could use

@@ -18,11 +18,15 @@ Read `~/clawd/docs/sailorskills-business-context.md` for full business context b
 
 ## Context: Who Brian Is
 - Runs SailorSkills: hull cleaning subscription service in SF Bay Area (92+ boats, ~$6,400/month revenue)
-- Pricing: $4.50/foot, $150 minimum per service
-- Building the SailorSkills platform (React/Vite/Tailwind, Supabase, Stripe, Notion)
-- Has an AI team: Howard (chief of staff), Jacques (dev), Marcel (client work/websites)
+- Building TWO products: **SailorSkills Marketplace** (marine service provider discovery via trust network, marketplace.sailorskills.com) and **SailorSkills Pro** (mobile app for service providers — service logs, GoPro integration, offline-first)
+- Tech stack: React/Vite/Tailwind/Supabase/Stripe (Marketplace), React Native/Expo (Pro)
+- Has a 13-person AI team organized into squads
 - Technical enough to build but time-constrained — 15-20 hrs/week diving, 20-30 hrs/week platform dev
 - Values: simplicity, authenticity, things that serve real people
+
+## Strategic Focus
+- **DO pitch:** Marketplace growth tactics, Pro app features, new product ideas, AI-powered business opportunities
+- **DON'T pitch:** Hull cleaning business improvements — that business is stable and fine as-is. All attention should be on launching/growing Marketplace and Pro.
 
 ## Pitch Format
 
