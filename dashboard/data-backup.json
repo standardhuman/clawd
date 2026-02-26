@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-26T07:36:04.603Z",
+  "lastUpdated": "2026-02-26T19:36:04.769Z",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
@@ -507,12 +507,12 @@
       "station": "Helm",
       "avatar": "/avatars/howard-robot-v2.png",
       "status": "standby",
-      "costThisMonth": 450.38,
-      "totalTokens": 439514471,
+      "costThisMonth": 452.77,
+      "totalTokens": 440807573,
       "lastActive": "5h ago",
-      "lastActiveTs": 1772073096997,
+      "lastActiveTs": 1772118010262,
       "currentTask": "What does he like about discord?",
-      "tasksCompleted": 1263,
+      "tasksCompleted": 1268,
       "productivity": 94
     },
     {
@@ -525,7 +525,7 @@
       "status": "standby",
       "costThisMonth": 403.09,
       "totalTokens": 538485477,
-      "lastActive": "5h ago",
+      "lastActive": "17h ago",
       "lastActiveTs": 1772073813077,
       "currentTask": "[media attached: /Users/brian/.openclaw/media/inbound/file_36---d8236ab0-5bce-44",
       "tasksCompleted": 1168,
@@ -539,13 +539,13 @@
       "station": "Workshop",
       "avatar": "/avatars/marcel-robot-v2.png",
       "status": "active",
-      "costThisMonth": 121.97,
-      "totalTokens": 150651496,
+      "costThisMonth": 143.57,
+      "totalTokens": 167476895,
       "lastActive": "just now",
-      "lastActiveTs": 1772091359543,
-      "currentTask": "Yeah you can keep anything with dive in the name as well or bottom or hull",
-      "tasksCompleted": 1942,
-      "productivity": 65
+      "lastActiveTs": 1772134559548,
+      "currentTask": "i already have obsidian sync",
+      "tasksCompleted": 1991,
+      "productivity": 67
     },
     {
       "name": "Noa",
@@ -695,15 +695,15 @@
   "organization": {
     "monthlyCosts": {
       "actual": 552.21,
-      "apiEquivalent": 1124.43,
+      "apiEquivalent": 1148.43,
       "infrastructure": 349,
       "target": 500
     },
     "anthropic": {
       "plan": "Max 20X",
       "planCost": 200,
-      "apiEquivalentUsage": 972.22,
-      "savings": 772.22,
+      "apiEquivalentUsage": 996.22,
+      "savings": 796.22,
       "apiUsage": null,
       "source": "transcript-estimate"
     },
@@ -724,13 +724,13 @@
     "costsByModel": [
       {
         "name": "claude-opus-4-6",
-        "cost": 542.02,
-        "percent": 56
+        "cost": 566.02,
+        "percent": 57
       },
       {
         "name": "claude-opus-4-5",
         "cost": 430.2,
-        "percent": 44
+        "percent": 43
       },
       {
         "name": "deepseek-chat",
@@ -741,7 +741,7 @@
     "costsByAgent": [
       {
         "agent": "Howard",
-        "cost": 450.38
+        "cost": 452.77
       },
       {
         "agent": "Jacques",
@@ -749,7 +749,7 @@
       },
       {
         "agent": "Marcel",
-        "cost": 121.97
+        "cost": 143.57
       }
     ],
     "infrastructure": {
@@ -802,123 +802,123 @@
   "recentActivity": [
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collection complete. Costs tracked: $552.21/mo actual vs $1,124.4",
+      "text": "Marcel: Perfect — then in Obsidian on the mini, open Settings → Obsidian Sync → connect ",
+      "time": "12m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: A few options, from simplest to best:  **1. macOS File Sharing (quick & free)** ",
+      "time": "13m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
       "time": "15m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collection completed successfully.",
+      "text": "Marcel: Ha — that explains it. The vault's on the Mac mini but you're looking at Finder ",
+      "time": "16m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: That should've opened a Finder window right at the vault folder. See it?",
+      "time": "17m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel:   Finder can be stubborn about refreshing. Try this — press **Cmd+Shift+G** in F",
+      "time": "19m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: The `Obsidian` folder was hidden from Finder. I just unhid it — it should appear",
+      "time": "24m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel:   The `Obsidian` folder isn't showing in Finder — it might be hidden. Let me che",
+      "time": "24m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel:   I see — it only shows the Documents (iCloud) vault. The local one at `/Users/b",
+      "time": "26m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Found it. Here's what's happening:  **You have two vaults:** 1. **`/Users/brian/",
+      "time": "28m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs looking healthy — $552/mo actual vs",
       "time": "30m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. The script found $975.38 in API costs acr",
+      "text": "Marcel: Done — it's in your vault as **BuildZig Email Draft** in the same folder as the ",
+      "time": "32m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: It's in your Obsidian vault at:  **SailorSkills → Business → Clients → BuildZig*",
+      "time": "34m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Draft saved to `/AI/business/clients/buildzig/email-draft.md`. Here's what I cha",
+      "time": "38m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Okay, I've got the full picture now — the post-call notes are gold. The creed, t",
+      "time": "40m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Let me pull up the meeting brief and any BuildZig notes so I can weave in the sp",
+      "time": "40m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
       "time": "45m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
-      "time": "60m ago",
+      "text": "Marcel: Can't browse visually right now, but I've got the key info. Here's the draft:  -",
+      "time": "47m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collection complete. Costs tracked: $552.21/mo actual vs $1,124.3",
-      "time": "1h ago",
+      "text": "Marcel: The site is image-heavy (21 architecture photos, no text extracted). Let me see ",
+      "time": "47m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
-      "time": "2h ago",
+      "text": "Marcel: Let me pull up Patricia's portfolio and the BuildZig context.",
+      "time": "47m ago",
       "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs tracked: $552.21/mo actual vs $1,12",
-      "time": "2h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully.",
-      "time": "2h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
-      "time": "2h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
-      "time": "3h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
-      "time": "3h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
-      "time": "3h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
-      "time": "3h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs are tracking at $552.21/mo actual v",
-      "time": "4h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
-      "time": "4h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
-      "time": "4h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collection complete. Costs look healthy — $552/mo actual vs $1,12",
-      "time": "4h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
-      "time": "5h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. API costs tracked at $975.08 across 3 mod",
-      "time": "5h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🤿",
-      "text": "Jacques: 🤿 **Build 51 is up.** Here's the rundown:  - **Build**: 51 (commit `821d8ba`) -",
-      "time": "5h ago",
-      "agent": "Jacques"
     }
   ],
   "billing": {
@@ -974,16 +974,16 @@
     ],
     "monthlySummary": {
       "actual": 552.21,
-      "apiEquivalent": 1124.43,
+      "apiEquivalent": 1148.43,
       "anthropicPlan": 200,
-      "anthropicApiEquiv": 972.22,
-      "anthropicSavings": 772.22,
+      "anthropicApiEquiv": 996.22,
+      "anthropicSavings": 796.22,
       "otherApis": 3.21,
       "infrastructure": 349
     }
   },
   "metadata": {
-    "lastUpdated": "2026-02-26T07:36:04.604Z",
+    "lastUpdated": "2026-02-26T19:36:04.771Z",
     "version": "3.0",
     "source": "Real data from session transcripts + curated static data"
   }
