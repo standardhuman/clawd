@@ -1,6 +1,6 @@
 # Noa's Source List
 
-Last updated: 2026-02-25 (v7)
+Last updated: 2026-02-26 (v8)
 
 ## 🎯 Primary Sources (check every night)
 
@@ -64,6 +64,9 @@ Last updated: 2026-02-25 (v7)
 - **Inception Labs / Mercury** (inceptionlabs.ai) — Diffusion-based LLM. Mercury 2 at 1,009 tok/sec. Paradigm shift for agentic speed. Discovered 2026-02-25.
 - **Moonshine AI** (github.com/moonshine-ai/moonshine) — Pete Warden's open-weight STT models beating Whisper Large v3. 6-person team. Discovered 2026-02-25.
 - **Emdash** (github.com/generalaction/emdash) — Open-source ADE for parallel multi-agent coding. 21 provider CLIs, git worktree isolation. Discovered 2026-02-25.
+- **CLIHub** (clihub.sh / github.com/thellimist/clihub) — MCP-to-CLI converter that reduces tool token costs by 94%. Explicitly references OpenClaw's skill architecture. Discovered 2026-02-26.
+- **SI Inc / FDM-1** (si.inc) — First video-trained computer action model. 11M-hour screen recording dataset, 50x token efficiency. Discovered 2026-02-26.
+- **Benedict Evans** (ben-evans.com) — Sharp AI market analyst. OpenAI competitive analysis is best-in-class strategic framing. Discovered 2026-02-26.
 
 ---
 

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-25T19:36:04.566Z",
+  "lastUpdated": "2026-02-26T07:36:04.603Z",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
@@ -506,13 +506,13 @@
       "team": "Core Team",
       "station": "Helm",
       "avatar": "/avatars/howard-robot-v2.png",
-      "status": "active",
-      "costThisMonth": 442.37,
-      "totalTokens": 436726674,
-      "lastActive": "just now",
-      "lastActiveTs": 1772048113309,
-      "currentTask": "Will their comms appear in the telegram chats?",
-      "tasksCompleted": 1261,
+      "status": "standby",
+      "costThisMonth": 450.38,
+      "totalTokens": 439514471,
+      "lastActive": "5h ago",
+      "lastActiveTs": 1772073096997,
+      "currentTask": "What does he like about discord?",
+      "tasksCompleted": 1263,
       "productivity": 94
     },
     {
@@ -523,10 +523,10 @@
       "station": "Deck",
       "avatar": "/avatars/jacques-robot-v2.png",
       "status": "standby",
-      "costThisMonth": 379,
-      "totalTokens": 519310729,
-      "lastActive": "18m ago",
-      "lastActiveTs": 1772047112402,
+      "costThisMonth": 403.09,
+      "totalTokens": 538485477,
+      "lastActive": "5h ago",
+      "lastActiveTs": 1772073813077,
       "currentTask": "[media attached: /Users/brian/.openclaw/media/inbound/file_36---d8236ab0-5bce-44",
       "tasksCompleted": 1168,
       "productivity": 99
@@ -539,12 +539,12 @@
       "station": "Workshop",
       "avatar": "/avatars/marcel-robot-v2.png",
       "status": "active",
-      "costThisMonth": 117.6,
-      "totalTokens": 148402290,
+      "costThisMonth": 121.97,
+      "totalTokens": 150651496,
       "lastActive": "just now",
-      "lastActiveTs": 1772048159504,
+      "lastActiveTs": 1772091359543,
       "currentTask": "Yeah you can keep anything with dive in the name as well or bottom or hull",
-      "tasksCompleted": 1894,
+      "tasksCompleted": 1942,
       "productivity": 65
     },
     {
@@ -695,22 +695,22 @@
   "organization": {
     "monthlyCosts": {
       "actual": 552.21,
-      "apiEquivalent": 1087.96,
+      "apiEquivalent": 1124.43,
       "infrastructure": 349,
       "target": 500
     },
     "anthropic": {
       "plan": "Max 20X",
       "planCost": 200,
-      "apiEquivalentUsage": 935.75,
-      "savings": 735.75,
+      "apiEquivalentUsage": 972.22,
+      "savings": 772.22,
       "apiUsage": null,
       "source": "transcript-estimate"
     },
     "otherApis": {
       "deepseek": {
         "cost": 3.21,
-        "balance": 5.52
+        "balance": 5.47
       },
       "kimi": {
         "cost": 0,
@@ -724,13 +724,13 @@
     "costsByModel": [
       {
         "name": "claude-opus-4-6",
-        "cost": 505.55,
-        "percent": 54
+        "cost": 542.02,
+        "percent": 56
       },
       {
         "name": "claude-opus-4-5",
         "cost": 430.2,
-        "percent": 46
+        "percent": 44
       },
       {
         "name": "deepseek-chat",
@@ -741,15 +741,15 @@
     "costsByAgent": [
       {
         "agent": "Howard",
-        "cost": 442.37
+        "cost": 450.38
       },
       {
         "agent": "Jacques",
-        "cost": 379
+        "cost": 403.09
       },
       {
         "agent": "Marcel",
-        "cost": 117.6
+        "cost": 121.97
       }
     ],
     "infrastructure": {
@@ -801,123 +801,123 @@
   },
   "recentActivity": [
     {
-      "icon": "🪨",
-      "text": "Howard:   Good question. It depends on how they communicate:  - **`sessions_send`** — no",
-      "time": "1m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Done. All 12 agents now have a Team Communications section in their AGENTS.md wi",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: The config side is done (`allowAgents: [\"*\"]` + `sessions.visibility: \"all\"`). T",
-      "time": "2m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Sent. Reese should have it now. The timeout just means it didn't finish processi",
-      "time": "4m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Found it — `agent:reese:main`. Let me send the briefing there.",
-      "time": "5m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: `sessions_send` needs a session key, not just agentId. Let me find Reese's activ",
-      "time": "5m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: That's the subagent memory gap — the briefings ran as spawned tasks, so Reese's ",
-      "time": "5m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: All four initial briefings are done and Reese has finished onboarding to both pr",
-      "time": "7m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Done. All 12 agents (plus Howard) now have role-appropriate skills listed in the",
-      "time": "8m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now Jacques, Marcel, Quinn, Sage, Avery, and Rio:",
-      "time": "9m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: No — none of them have instructions about the available skills. They don't know ",
-      "time": "11m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard:   Good question. Let me check what's actually in each agent's AGENTS.md — that's",
-      "time": "11m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Done. Reese is now briefed on both products with matching workflow structures. H",
-      "time": "12m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard:   Reese managing both products' workflows makes sense — that's a natural PM scop",
-      "time": "13m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: All four briefings sent. Reese, Blake, Cyrus, and Milo are all spinning up now. ",
-      "time": "15m ago",
-      "agent": "Howard"
-    },
-    {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collection completed successfully. Costs tracked: $552.21/mo actu",
+      "text": "Marcel: Dashboard data collection complete. Costs tracked: $552.21/mo actual vs $1,124.4",
       "time": "15m ago",
       "agent": "Marcel"
     },
     {
-      "icon": "🪨",
-      "text": "Howard:   Yep — Jacques sent me a proposal for staffing up the Pro development workflow.",
-      "time": "17m ago",
-      "agent": "Howard"
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collection completed successfully.",
+      "time": "30m ago",
+      "agent": "Marcel"
     },
     {
-      "icon": "🪨",
-      "text": "Howard: ANNOUNCE_SKIP",
-      "time": "18m ago",
-      "agent": "Howard"
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. The script found $975.38 in API costs acr",
+      "time": "45m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
+      "time": "60m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collection complete. Costs tracked: $552.21/mo actual vs $1,124.3",
+      "time": "1h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs tracked: $552.21/mo actual vs $1,12",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully.",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
+      "time": "3h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
+      "time": "3h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
+      "time": "3h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
+      "time": "3h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs are tracking at $552.21/mo actual v",
+      "time": "4h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
+      "time": "4h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
+      "time": "4h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collection complete. Costs look healthy — $552/mo actual vs $1,12",
+      "time": "4h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
+      "time": "5h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. API costs tracked at $975.08 across 3 mod",
+      "time": "5h ago",
+      "agent": "Marcel"
     },
     {
       "icon": "🤿",
-      "text": "Jacques:   Great to see Howard's on it. That's a clean rollout plan — Reese first to set ",
-      "time": "18m ago",
-      "agent": "Jacques"
-    },
-    {
-      "icon": "🤿",
-      "text": "Jacques: Sent and received! Howard approved all four allocations. Here's his response:  *",
-      "time": "18m ago",
+      "text": "Jacques: 🤿 **Build 51 is up.** Here's the rundown:  - **Build**: 51 (commit `821d8ba`) -",
+      "time": "5h ago",
       "agent": "Jacques"
     }
   ],
@@ -974,16 +974,16 @@
     ],
     "monthlySummary": {
       "actual": 552.21,
-      "apiEquivalent": 1087.96,
+      "apiEquivalent": 1124.43,
       "anthropicPlan": 200,
-      "anthropicApiEquiv": 935.75,
-      "anthropicSavings": 735.75,
+      "anthropicApiEquiv": 972.22,
+      "anthropicSavings": 772.22,
       "otherApis": 3.21,
       "infrastructure": 349
     }
   },
   "metadata": {
-    "lastUpdated": "2026-02-25T19:36:04.567Z",
+    "lastUpdated": "2026-02-26T07:36:04.604Z",
     "version": "3.0",
     "source": "Real data from session transcripts + curated static data"
   }
