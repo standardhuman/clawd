@@ -67,6 +67,8 @@ Last updated: 2026-02-26 (v8)
 - **CLIHub** (clihub.sh / github.com/thellimist/clihub) — MCP-to-CLI converter that reduces tool token costs by 94%. Explicitly references OpenClaw's skill architecture. Discovered 2026-02-26.
 - **SI Inc / FDM-1** (si.inc) — First video-trained computer action model. 11M-hour screen recording dataset, 50x token efficiency. Discovered 2026-02-26.
 - **Benedict Evans** (ben-evans.com) — Sharp AI market analyst. OpenAI competitive analysis is best-in-class strategic framing. Discovered 2026-02-26.
+- **Amplifying.ai** (amplifying.ai) — Empirical research on AI coding agent behavior. "What Claude Code Chooses" study (2,430 prompts, 3 models). Best data on AI tool preferences. Discovered 2026-02-27.
+- **Technically Dev** (read.technically.dev) — Long-form developer culture analysis. "Vibe Coding and the Maker Movement" is excellent strategic framing. Discovered 2026-02-27.
 
 ---
 
