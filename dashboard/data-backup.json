@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-28T07:36:08.582Z",
+  "lastUpdated": "2026-02-28T19:36:04.210Z",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
@@ -507,12 +507,12 @@
       "station": "Helm",
       "avatar": "/avatars/howard-robot-v2.png",
       "status": "standby",
-      "costThisMonth": 492.96,
-      "totalTokens": 468947602,
+      "costThisMonth": 496.89,
+      "totalTokens": 470869974,
       "lastActive": "2h ago",
-      "lastActiveTs": 1772258508986,
-      "currentTask": "pleae do that",
-      "tasksCompleted": 1277,
+      "lastActiveTs": 1772301905849,
+      "currentTask": "Got it. Okay all the videos are done uploading. Can you look in the videos archi",
+      "tasksCompleted": 1282,
       "productivity": 97
     },
     {
@@ -523,10 +523,10 @@
       "station": "Deck",
       "avatar": "/avatars/jacques-robot-v2.png",
       "status": "standby",
-      "costThisMonth": 403.09,
-      "totalTokens": 538485477,
-      "lastActive": "2d ago",
-      "lastActiveTs": 1772073813077,
+      "costThisMonth": 403.9,
+      "totalTokens": 539045299,
+      "lastActive": "1h ago",
+      "lastActiveTs": 1772302243622,
       "currentTask": "[media attached: /Users/brian/.openclaw/media/inbound/file_36---d8236ab0-5bce-44",
       "tasksCompleted": 1168,
       "productivity": 99
@@ -539,12 +539,12 @@
       "station": "Workshop",
       "avatar": "/avatars/marcel-robot-v2.png",
       "status": "active",
-      "costThisMonth": 150.92,
-      "totalTokens": 173375347,
+      "costThisMonth": 151.82,
+      "totalTokens": 174559792,
       "lastActive": "just now",
-      "lastActiveTs": 1772264159590,
+      "lastActiveTs": 1772307359640,
       "currentTask": "Why is where the photos are stored so important? Can't we scrape the existing si",
-      "tasksCompleted": 2136,
+      "tasksCompleted": 2185,
       "productivity": 67
     },
     {
@@ -695,22 +695,22 @@
   "organization": {
     "monthlyCosts": {
       "actual": 552.21,
-      "apiEquivalent": 1195.97,
+      "apiEquivalent": 1201.61,
       "infrastructure": 349,
       "target": 500
     },
     "anthropic": {
       "plan": "Max 20X",
       "planCost": 200,
-      "apiEquivalentUsage": 1043.76,
-      "savings": 843.76,
+      "apiEquivalentUsage": 1049.4,
+      "savings": 849.4,
       "apiUsage": null,
       "source": "transcript-estimate"
     },
     "otherApis": {
       "deepseek": {
         "cost": 3.21,
-        "balance": 5.47
+        "balance": 5.25
       },
       "kimi": {
         "cost": 0,
@@ -724,7 +724,7 @@
     "costsByModel": [
       {
         "name": "claude-opus-4-6",
-        "cost": 613.56,
+        "cost": 619.2,
         "percent": 59
       },
       {
@@ -741,15 +741,15 @@
     "costsByAgent": [
       {
         "agent": "Howard",
-        "cost": 492.96
+        "cost": 496.89
       },
       {
         "agent": "Jacques",
-        "cost": 403.09
+        "cost": 403.9
       },
       {
         "agent": "Marcel",
-        "cost": 150.92
+        "cost": 151.82
       }
     ],
     "infrastructure": {
@@ -802,122 +802,122 @@
   "recentActivity": [
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
       "time": "15m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs looking healthy — $552/mo actual vs",
+      "text": "Marcel: Dashboard data collection complete. Costs tracked: $552.41/mo actual vs $1,201.7",
       "time": "30m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collection complete. Costs look healthy — $552/mo actual vs $1,19",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.41/mo actual vs",
       "time": "45m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
+      "text": "Marcel: Dashboard data collected successfully.",
+      "time": "60m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collection complete. Costs tracked: $552.24/mo actual vs $1,201.5",
       "time": "1h ago",
       "agent": "Marcel"
+    },
+    {
+      "icon": "🤿",
+      "text": "Jacques: Sent the full update to Reese. Here's the summary:  **Build 52 → TestFlight** ✅ ",
+      "time": "1h ago",
+      "agent": "Jacques"
+    },
+    {
+      "icon": "🤿",
+      "text": "Jacques: Build 52 compiled. Now uploading to TestFlight.",
+      "time": "1h ago",
+      "agent": "Jacques"
     },
     {
       "icon": "🎨",
       "text": "Marcel: Dashboard data collected successfully.",
       "time": "1h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🤿",
+      "text": "Jacques: Already imported. Bump build and ship.",
+      "time": "2h ago",
+      "agent": "Jacques"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Hey Brian — got a check-in from the team on Pro launch prep (tomorrow, March 1).",
+      "time": "2h ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🤿",
+      "text": "Jacques: Flagged it to Howard to chase Brian on all three. We'll know soon.",
+      "time": "2h ago",
+      "agent": "Jacques"
+    },
+    {
+      "icon": "🤿",
+      "text": "Jacques: Hey Reese — here's where we stand:  1. **Build 51 in TestFlight** — Yes. Uploade",
+      "time": "2h ago",
+      "agent": "Jacques"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully.",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully.",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552.21/mo actual vs",
+      "time": "3h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collection complete. Costs tracked: $552.21/mo actual vs $1,200.1",
+      "time": "3h ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
       "text": "Marcel: Dashboard data collected successfully. Costs look healthy — $552/mo actual vs $1",
-      "time": "2h ago",
+      "time": "3h ago",
       "agent": "Marcel"
     },
     {
       "icon": "🪨",
-      "text": "Howard: Zero boats with Anodes logged in February Conditions entries. Either:  1. You re",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Got killed — too many API calls probably. Let me try a more targeted approach, q",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now I need to find each boat's Conditions sub-database and query for February en",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: I can see the boats, but to find anode replacements I'd need to query each boat'",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: The client DB is querying fine but I need to search the individual boat Conditio",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collection complete. Costs tracked: **$552.21/mo actual** vs **$1",
-      "time": "2h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully. Costs tracked: $552.21/mo actual vs $1,19",
-      "time": "2h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully.",
-      "time": "2h ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard:   It doesn't auto-open a browser — you still need to navigate to `http://localho",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Reverted. Now open Terminal on the mini and run:  ``` cd ~/AI/business/sailorski",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Killed. Also let me revert my auth change — it didn't work right and you'll want",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: No `token.json` — the auth never actually completed. That \"success\" popup was bo",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Wait — all the logs stopped at 21:10:43 and it's been ~10 minutes. And those are",
-      "time": "2h ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Let me check what's actually happening:",
-      "time": "2h ago",
+      "text": "Howard: Good news — **it fits comfortably.**  Here's the breakdown:  - **1.30 GB average",
+      "time": "3h ago",
       "agent": "Howard"
     }
   ],
@@ -974,16 +974,16 @@
     ],
     "monthlySummary": {
       "actual": 552.21,
-      "apiEquivalent": 1195.97,
+      "apiEquivalent": 1201.61,
       "anthropicPlan": 200,
-      "anthropicApiEquiv": 1043.76,
-      "anthropicSavings": 843.76,
+      "anthropicApiEquiv": 1049.4,
+      "anthropicSavings": 849.4,
       "otherApis": 3.21,
       "infrastructure": 349
     }
   },
   "metadata": {
-    "lastUpdated": "2026-02-28T07:36:08.586Z",
+    "lastUpdated": "2026-02-28T19:36:04.211Z",
     "version": "3.0",
     "source": "Real data from session transcripts + curated static data"
   }
