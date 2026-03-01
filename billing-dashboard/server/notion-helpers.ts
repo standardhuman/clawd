@@ -64,6 +64,68 @@ export async function getConditionsDatabase(boatPageId: string, token: string): 
   }
 }
 
+// Find Admin database for a boat page (fallback when no Conditions entry exists)
+export async function getAdminDatabase(boatPageId: string, token: string): Promise<string | null> {
+  try {
+    const boatChildren = await fetch(`https://api.notion.com/v1/blocks/${boatPageId}/children`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Notion-Version': '2022-06-28'
+      }
+    }).then(r => r.json());
+    
+    const adminDb = boatChildren.results?.find((b: any) =>
+      b.type === 'child_database' && b.child_database?.title?.toLowerCase().includes('admin')
+    );
+    
+    return adminDb?.id || null;
+  } catch (err) {
+    console.error('Error finding Admin database:', err);
+    return null;
+  }
+}
+
+// Check if Admin table has an entry created within the target month
+export async function getAdminServiceEntry(
+  adminDbId: string,
+  startDate: string,
+  endDate: string,
+  token: string
+): Promise<{ date: string } | null> {
+  try {
+    // Admin entries don't have a Date property — use created_time as proxy
+    const response = await fetch(`https://api.notion.com/v1/databases/${adminDbId}/query`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Notion-Version': '2022-06-28',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        filter: {
+          and: [
+            { timestamp: 'created_time', created_time: { on_or_after: startDate }},
+            { timestamp: 'created_time', created_time: { before: endDate }}
+          ]
+        },
+        page_size: 1
+      })
+    });
+    
+    const data = await response.json();
+    const result = data.results?.[0];
+    
+    if (!result) return null;
+    
+    return {
+      date: result.created_time?.split('T')[0] || startDate
+    };
+  } catch (err) {
+    console.error('Error querying Admin database:', err);
+    return null;
+  }
+}
+
 export async function getServiceConditions(
   conditionsDbId: string, 
   startDate: string, 

@@ -5,6 +5,12 @@ import { VideoPanel } from './VideoPanel';
 // Use env var if set (production), otherwise use current hostname (dev/Tailscale)
 const API_URL = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:3001/api`;
 
+interface Override {
+  type: 'percent' | 'dollar' | 'flat';
+  value: number;
+  note?: string;
+}
+
 interface Boat {
   Boat: string;
   Date: string;
@@ -20,6 +26,21 @@ interface Boat {
   billedStatus?: string;
   hasCard?: boolean | null;
   stripeCustomerId?: string;
+  // Breakdown fields
+  length?: number;
+  boatType?: string;
+  plan?: string;
+  props?: number;
+  rate?: number;
+  baseAmount?: number;
+  typeSurcharge?: number;
+  propSurcharge?: number;
+  baseTotal?: number;
+  growthPercent?: string;
+  growthDesc?: string;
+  priceNote?: string;
+  override?: Override | null;
+  originalTotal?: string;
 }
 
 interface BillingData {
@@ -58,6 +79,10 @@ function App() {
   const [filterPlan, setFilterPlan] = useState(false);
   const [filterStartTime, setFilterStartTime] = useState(false);
   const [generateResult, setGenerateResult] = useState<{count: number, total: string, checked: number} | null>(null);
+
+  // Conditions check
+  const [conditionsCheck, setConditionsCheck] = useState<{total: number, withConditions: number, missingCount: number, missing: {boat: string, location: string}[]} | null>(null);
+  const [checkingConditions, setCheckingConditions] = useState(false);
 
   // Video status per boat
   const [videoStatus, setVideoStatus] = useState<Record<string, { count: number; uploaded: boolean; youtubeUrl?: string }>>({});
@@ -363,6 +388,52 @@ function App() {
           )}
         </div>
         
+        {/* Conditions Check */}
+        {billingData && (
+          <div className="mb-4">
+            <button
+              onClick={async () => {
+                setCheckingConditions(true);
+                try {
+                  // Extract year/month from selectedMonth (format: "month_year" e.g. "february_2026")
+                  const parts = selectedMonth.split('_');
+                  const monthNames = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+                  const monthNum = monthNames.indexOf(parts[0]) + 1;
+                  const year = parts[1];
+                  const res = await fetch(`${API_URL}/conditions-check/${year}/${monthNum}`);
+                  const data = await res.json();
+                  setConditionsCheck(data);
+                } catch (err) { console.error(err); }
+                finally { setCheckingConditions(false); }
+              }}
+              disabled={checkingConditions}
+              className="px-3 py-1 rounded text-sm bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
+            >
+              {checkingConditions ? '⏳ Checking...' : '🔍 Check Missing Conditions'}
+            </button>
+            {conditionsCheck && (
+              <div className="mt-2 p-3 bg-gray-800 rounded border border-gray-700">
+                <div className="flex gap-4 text-sm mb-2">
+                  <span>Active boats: <span className="text-white font-medium">{conditionsCheck.total}</span></span>
+                  <span className="text-green-400">✓ Has conditions: {conditionsCheck.withConditions}</span>
+                  <span className="text-yellow-400">⚠ Missing: {conditionsCheck.missingCount}</span>
+                </div>
+                {conditionsCheck.missing.length > 0 && (
+                  <div className="max-h-40 overflow-y-auto text-sm">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1">
+                      {conditionsCheck.missing.map(m => (
+                        <span key={m.boat} className="text-yellow-300">
+                          {m.boat} <span className="text-gray-500 text-xs">{m.location}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Filters & Actions */}
         {billingData && (
           <div className="flex items-center justify-between mb-4">
@@ -491,7 +562,10 @@ function App() {
                     <td className="p-3 text-right text-gray-400">
                       {parseFloat(boat.Anode) > 0 ? `$${boat.Anode}` : '-'}
                     </td>
-                    <td className="p-3 text-right font-medium">${boat.Total}</td>
+                    <td className="p-3 text-right font-medium">
+                      <span className={boat.override ? 'text-yellow-300' : ''}>${boat.Total}</span>
+                      {boat.override && <span className="text-yellow-500 text-xs ml-1">✎</span>}
+                    </td>
                     <td className="p-3 text-sm">
                       {boat.email || <span className="text-red-400">Missing</span>}
                     </td>
@@ -549,9 +623,9 @@ function App() {
                         <button
                           onClick={() => sendInvoice(boat)}
                           disabled={!stripeConfigured || sendingBoat !== null}
-                          className="text-sm bg-blue-600 hover:bg-blue-500 disabled:bg-gray-600 px-3 py-1 rounded"
+                          className={`text-sm px-3 py-1 rounded disabled:bg-gray-600 ${boat.hasCard ? 'bg-green-700 hover:bg-green-600' : 'bg-blue-600 hover:bg-blue-500'}`}
                         >
-                          {sendingBoat === boat.Boat ? 'Sending...' : 'Send'}
+                          {sendingBoat === boat.Boat ? '...' : boat.hasCard ? '💳' : '📧'}
                         </button>
                       )}
                     </td>
@@ -657,59 +731,184 @@ function App() {
           </div>
         )}
         
-        {/* Preview Modal */}
+        {/* Preview Modal with Breakdown + Price Adjustment */}
         {previewBoat && (
-          <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4" onClick={() => setPreviewBoat(null)}>
-            <div className="bg-gray-800 rounded-lg p-6 max-w-lg w-full" onClick={e => e.stopPropagation()}>
-              <h2 className="text-xl font-bold mb-4">Invoice Preview</h2>
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 overflow-y-auto" onClick={() => setPreviewBoat(null)}>
+            <div className="bg-gray-800 rounded-lg p-6 max-w-lg w-full my-4" onClick={e => e.stopPropagation()}>
+              <h2 className="text-xl font-bold mb-4">{previewBoat.Boat}</h2>
               
-              <div className="space-y-4">
-                <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-400">Vessel</span>
-                  <span className="font-medium">{previewBoat.Boat}</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-400">Service Performed</span>
-                  <span className="font-medium text-blue-300">
-                    {previewBoat.Date 
-                      ? new Date(previewBoat.Date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-                      : months.find(m => m.id === selectedMonth)?.name
-                    }
-                  </span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-gray-700">
-                  <span className="text-gray-400">Customer Email</span>
-                  <span>{previewBoat.email || <span className="text-red-400">Missing</span>}</span>
-                </div>
-                
-                <div className="bg-gray-700 rounded p-4 mt-4">
-                  <p className="text-xs text-gray-400 mb-2">Line items (as shown on invoice):</p>
-                  <div className="flex justify-between py-1 text-sm">
-                    <span>{
-                      previewBoat.Date 
-                        ? new Date(previewBoat.Date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-                        : months.find(m => m.id === selectedMonth)?.name
-                    } - Hull Cleaning - {previewBoat.Boat}</span>
-                    <span>${previewBoat.HullTotal}</span>
-                  </div>
-                  {parseFloat(previewBoat.Anode) > 0 && (
-                    <div className="flex justify-between py-1 text-sm">
-                      <span>{
-                        previewBoat.Date 
-                          ? new Date(previewBoat.Date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-                          : months.find(m => m.id === selectedMonth)?.name
-                      } - Anode Replacement: {previewBoat.AnodeType} - {previewBoat.Boat}</span>
-                      <span>${previewBoat.Anode}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between py-2 border-t border-gray-600 mt-2 font-bold">
-                    <span>Total</span>
-                    <span>${previewBoat.Total}</span>
-                  </div>
-                </div>
+              {/* Boat Info */}
+              <div className="grid grid-cols-2 gap-2 text-sm mb-4">
+                <div><span className="text-gray-400">Date:</span> {previewBoat.Date ? new Date(previewBoat.Date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '-'}</div>
+                <div><span className="text-gray-400">Email:</span> {previewBoat.email || <span className="text-red-400">Missing</span>}</div>
+                {previewBoat.length && <div><span className="text-gray-400">Length:</span> {previewBoat.length}ft</div>}
+                {previewBoat.boatType && <div><span className="text-gray-400">Type:</span> {previewBoat.boatType}</div>}
+                {previewBoat.plan && <div><span className="text-gray-400">Plan:</span> {previewBoat.plan}</div>}
+                {previewBoat.props && previewBoat.props > 1 && <div><span className="text-gray-400">Props:</span> {previewBoat.props}</div>}
               </div>
               
-              <div className="flex gap-3 mt-6">
+              {/* Charge Breakdown */}
+              <div className="bg-gray-700 rounded p-4 mb-4">
+                <p className="text-xs text-gray-400 mb-2 font-medium uppercase tracking-wide">Charge Breakdown</p>
+                
+                {previewBoat.length && previewBoat.rate ? (
+                  <>
+                    <div className="flex justify-between py-1 text-sm">
+                      <span className="text-gray-300">Base: {previewBoat.length}ft × ${previewBoat.rate}/ft</span>
+                      <span>${previewBoat.baseAmount?.toFixed(2)}</span>
+                    </div>
+                    {(previewBoat.typeSurcharge ?? 0) > 0 && (
+                      <div className="flex justify-between py-1 text-sm">
+                        <span className="text-gray-300">Power boat surcharge (+25%)</span>
+                        <span>${previewBoat.typeSurcharge?.toFixed(2)}</span>
+                      </div>
+                    )}
+                    {(previewBoat.propSurcharge ?? 0) > 0 && (
+                      <div className="flex justify-between py-1 text-sm">
+                        <span className="text-gray-300">Extra prop surcharge (+10% × {(previewBoat.props ?? 1) - 1})</span>
+                        <span>${previewBoat.propSurcharge?.toFixed(2)}</span>
+                      </div>
+                    )}
+                    {previewBoat.growthDesc && previewBoat.growthPercent !== '0.0%' && (
+                      <div className="flex justify-between py-1 text-sm">
+                        <span className="text-gray-300">Growth: {previewBoat.growthDesc} (+{previewBoat.growthPercent})</span>
+                        <span>${(parseFloat(previewBoat.HullTotal) - (previewBoat.baseTotal ?? 0)).toFixed(2)}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between py-1 text-sm border-t border-gray-600 mt-1 pt-1">
+                      <span className="text-gray-200 font-medium">Hull Total</span>
+                      <span className="font-medium">${previewBoat.HullTotal}</span>
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex justify-between py-1 text-sm">
+                    <span className="text-gray-300">Hull Cleaning</span>
+                    <span>${previewBoat.HullTotal}</span>
+                  </div>
+                )}
+                
+                {parseFloat(previewBoat.Anode) > 0 && (
+                  <div className="flex justify-between py-1 text-sm">
+                    <span className="text-gray-300">Anode: {previewBoat.AnodeType}</span>
+                    <span>${previewBoat.Anode}</span>
+                  </div>
+                )}
+                
+                {previewBoat.priceNote && (
+                  <div className="text-xs text-yellow-400 mt-1">⚠ {previewBoat.priceNote}</div>
+                )}
+                
+                <div className="flex justify-between py-2 border-t border-gray-500 mt-2 font-bold text-lg">
+                  <span>Total</span>
+                  <span className={previewBoat.override ? 'text-yellow-300' : ''}>
+                    ${previewBoat.Total}
+                    {previewBoat.override && <span className="text-xs font-normal ml-1">(adjusted)</span>}
+                  </span>
+                </div>
+                {previewBoat.override && previewBoat.originalTotal && (
+                  <div className="text-xs text-gray-400 text-right">
+                    Original: ${previewBoat.originalTotal}
+                    {previewBoat.override.note && <span> — {previewBoat.override.note}</span>}
+                  </div>
+                )}
+              </div>
+              
+              {/* Price Adjustment */}
+              {!previewBoat.billed && (
+                <div className="bg-gray-750 border border-gray-600 rounded p-4 mb-4">
+                  <p className="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">Adjust Price</p>
+                  <div className="flex gap-2 mb-3">
+                    {(['percent', 'dollar', 'flat'] as const).map(t => (
+                      <button
+                        key={t}
+                        id={`adj-${t}`}
+                        onClick={() => {
+                          const el = document.getElementById('adj-value') as HTMLInputElement;
+                          const noteEl = document.getElementById('adj-note') as HTMLInputElement;
+                          if (el) el.dataset.type = t;
+                          // Update button styles
+                          document.querySelectorAll('[id^="adj-"]').forEach(b => {
+                            if (b.id === `adj-${t}`) b.className = 'px-3 py-1 rounded text-sm bg-blue-600';
+                            else if (b.id.startsWith('adj-') && b.id !== 'adj-value' && b.id !== 'adj-note') b.className = 'px-3 py-1 rounded text-sm bg-gray-700 hover:bg-gray-600';
+                          });
+                        }}
+                        className={`px-3 py-1 rounded text-sm ${t === 'flat' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+                      >
+                        {t === 'percent' ? '% Adjust' : t === 'dollar' ? '$ Adjust' : 'Set Amount'}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex gap-2">
+                    <input
+                      id="adj-value"
+                      type="number"
+                      step="any"
+                      placeholder="Enter value"
+                      data-type="flat"
+                      className="flex-1 bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm"
+                    />
+                    <input
+                      id="adj-note"
+                      type="text"
+                      placeholder="Note (optional)"
+                      className="flex-1 bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm"
+                    />
+                  </div>
+                  <div className="flex gap-2 mt-2">
+                    <button
+                      onClick={async () => {
+                        const el = document.getElementById('adj-value') as HTMLInputElement;
+                        const noteEl = document.getElementById('adj-note') as HTMLInputElement;
+                        const type = (el?.dataset.type || 'flat') as Override['type'];
+                        const value = parseFloat(el?.value || '0');
+                        if (!value && type !== 'flat') return;
+                        
+                        const res = await fetch(`${API_URL}/billing/${selectedMonth}/override`, {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ boat: previewBoat.Boat, override: { type, value, note: noteEl?.value || '' } })
+                        });
+                        if (res.ok) {
+                          // Reload billing data
+                          const dataRes = await fetch(`${API_URL}/billing/${selectedMonth}`);
+                          const data = await dataRes.json();
+                          setBillingData(data);
+                          const updated = data.boats.find((b: Boat) => b.Boat === previewBoat.Boat);
+                          if (updated) setPreviewBoat(updated);
+                          setMessage({ type: 'success', text: `${previewBoat.Boat}: Price adjusted` });
+                        }
+                      }}
+                      className="px-4 py-2 bg-yellow-600 hover:bg-yellow-500 rounded text-sm"
+                    >
+                      Apply
+                    </button>
+                    {previewBoat.override && (
+                      <button
+                        onClick={async () => {
+                          const res = await fetch(`${API_URL}/billing/${selectedMonth}/override`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ boat: previewBoat.Boat, override: null })
+                          });
+                          if (res.ok) {
+                            const dataRes = await fetch(`${API_URL}/billing/${selectedMonth}`);
+                            const data = await dataRes.json();
+                            setBillingData(data);
+                            const updated = data.boats.find((b: Boat) => b.Boat === previewBoat.Boat);
+                            if (updated) setPreviewBoat(updated);
+                            setMessage({ type: 'success', text: `${previewBoat.Boat}: Override cleared` });
+                          }
+                        }}
+                        className="px-4 py-2 bg-red-700 hover:bg-red-600 rounded text-sm"
+                      >
+                        Clear Override
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
+              
+              <div className="flex gap-3">
                 <button
                   onClick={() => setPreviewBoat(null)}
                   className="flex-1 bg-gray-600 hover:bg-gray-500 py-2 rounded"
@@ -720,9 +919,9 @@ function App() {
                   <button
                     onClick={() => { sendInvoice(previewBoat); setPreviewBoat(null); }}
                     disabled={!stripeConfigured || sendingBoat !== null}
-                    className="flex-1 bg-green-600 hover:bg-green-500 disabled:bg-gray-600 py-2 rounded"
+                    className={`flex-1 py-2 rounded ${previewBoat.hasCard ? 'bg-green-600 hover:bg-green-500' : 'bg-blue-600 hover:bg-blue-500'} disabled:bg-gray-600`}
                   >
-                    Send Invoice
+                    {previewBoat.hasCard ? '💳 Charge Card' : '📧 Send Invoice'}
                   </button>
                 )}
               </div>

@@ -3,7 +3,7 @@ import cors from 'cors';
 import { readFileSync, writeFileSync, readdirSync, existsSync, unlinkSync } from 'fs';
 import { join } from 'path';
 import dotenv from 'dotenv';
-import { getConditionsDatabase, getServiceConditions, calculateGrowthSurcharge, parseAnodeFromNotes } from './notion-helpers.js';
+import { getConditionsDatabase, getServiceConditions, getAdminDatabase, getAdminServiceEntry, calculateGrowthSurcharge, parseAnodeFromNotes } from './notion-helpers.js';
 import {
   getSourceVideos, getUploadReadyVideos, previewRename, renameVideos,
   undoRename, archiveVideos, calculateJobDurations, setVideoConfig,
@@ -86,6 +86,18 @@ app.get('/api/billing/:month', async (req, res) => {
       } catch {}
     }
     
+    // Load JSON breakdown data if available
+    const billingJsonPath = join(BILLING_DIR, `${month}_billing.json`);
+    let breakdownData: Record<string, any> = {};
+    if (existsSync(billingJsonPath)) {
+      try {
+        const jsonBilling = JSON.parse(readFileSync(billingJsonPath, 'utf-8'));
+        for (const b of jsonBilling.boats || []) {
+          breakdownData[b.boat] = b;
+        }
+      } catch {}
+    }
+    
     const lines = csv.trim().split('\n');
     const headers = lines[0].split(',');
     
@@ -93,6 +105,35 @@ app.get('/api/billing/:month', async (req, res) => {
       const values = line.split(',');
       const boat: any = {};
       headers.forEach((h, i) => boat[h] = values[i]);
+      
+      // Merge breakdown data from JSON
+      const bd = breakdownData[boat.Boat];
+      if (bd) {
+        boat.length = bd.length;
+        boat.boatType = bd.type;
+        boat.plan = bd.plan;
+        boat.props = bd.props;
+        boat.rate = (bd.plan === 'One-time' || bd.plan === 'One time') ? 5.99 : 4.49;
+        boat.baseAmount = bd.length * boat.rate;
+        boat.typeSurcharge = bd.type === 'Power' ? boat.baseAmount * 0.25 : 0;
+        boat.propSurcharge = bd.props > 1 ? boat.baseAmount * 0.10 * (bd.props - 1) : 0;
+        boat.baseTotal = parseFloat(bd.baseTotal);
+        boat.growthPercent = bd.growthPercent;
+        boat.growthDesc = bd.growthDesc;
+        boat.priceNote = bd.priceNote;
+        boat.override = bd.override || null;
+        // If there's an override, compute the effective total
+        if (bd.override) {
+          boat.originalTotal = bd.total;
+          if (bd.override.type === 'flat') {
+            boat.Total = parseFloat(bd.override.value).toFixed(2);
+          } else if (bd.override.type === 'dollar') {
+            boat.Total = (parseFloat(bd.total) + parseFloat(bd.override.value)).toFixed(2);
+          } else if (bd.override.type === 'percent') {
+            boat.Total = (parseFloat(bd.total) * (1 + parseFloat(bd.override.value) / 100)).toFixed(2);
+          }
+        }
+      }
       
       // Check if billed and get invoice details
       boat.billed = billedList.includes(boat.Boat);
@@ -550,7 +591,8 @@ app.get('/api/email/clients', async (req, res) => {
           filter: {
             or: [
               { property: 'Plan', select: { equals: 'Subbed' } },
-              { property: 'Plan', select: { equals: 'One-time' } }
+              { property: 'Plan', select: { equals: 'One-time' } },
+              { property: 'Plan', select: { equals: 'One time' } }
             ]
           },
           page_size: 100,
@@ -803,7 +845,8 @@ app.post('/api/generate/:year/:month', async (req, res) => {
         and: [
           { or: [
             { property: 'Plan', select: { equals: 'Subbed' }},
-            { property: 'Plan', select: { equals: 'One-time' }}
+            { property: 'Plan', select: { equals: 'One-time' }},
+            { property: 'Plan', select: { equals: 'One time' }}
           ]},
           { property: 'Start Time', date: { on_or_before: endDate }}
         ]
@@ -812,7 +855,8 @@ app.post('/api/generate/:year/:month', async (req, res) => {
       notionFilter = {
         or: [
           { property: 'Plan', select: { equals: 'Subbed' }},
-          { property: 'Plan', select: { equals: 'One-time' }}
+          { property: 'Plan', select: { equals: 'One-time' }},
+          { property: 'Plan', select: { equals: 'One time' }}
         ]
       };
     } else if (filterStartTime) {
@@ -880,7 +924,7 @@ app.post('/api/generate/:year/:month', async (req, res) => {
         const serviceDate = conditions.date;
         
         // Base pricing
-        const rate = plan === 'One-time' ? 5.99 : 4.49;
+        const rate = (plan === 'One-time' || plan === 'One time') ? 5.99 : 4.49;
         const base = length * rate;
         const typeSurcharge = boatType === 'Power' ? base * 0.25 : 0;
         const propSurcharge = numProps > 1 ? base * 0.10 * (numProps - 1) : 0;
@@ -962,17 +1006,43 @@ app.post('/api/generate/:year/:month', async (req, res) => {
       return aTime.localeCompare(bTime);
     });
     
-    // Generate CSV content
+    // Generate CSV content (legacy compatibility)
     const csvHeader = 'Boat,Date,HullTotal,Anode,AnodeType,Total';
     const csvRows = boatsWithService.map((b: any) => 
       `${b.boat},${b.date},${b.hullTotal},${b.anode},${b.anodeType},${b.total}`
     );
     const csv = [csvHeader, ...csvRows].join('\n');
     
-    // Save to file
+    // Save CSV (legacy)
     const filename = `${monthName.toLowerCase()}_${year}_billing.csv`;
     const filepath = join(BILLING_DIR, filename);
     writeFileSync(filepath, csv);
+    
+    // Save full JSON with breakdown (new format)
+    const jsonFilename = `${monthName.toLowerCase()}_${year}_billing.json`;
+    const jsonFilepath = join(BILLING_DIR, jsonFilename);
+    
+    // Preserve any existing overrides
+    let existingOverrides: Record<string, any> = {};
+    if (existsSync(jsonFilepath)) {
+      try {
+        const existing = JSON.parse(readFileSync(jsonFilepath, 'utf-8'));
+        for (const b of existing.boats || []) {
+          if (b.override) existingOverrides[b.boat] = b.override;
+        }
+      } catch {}
+    }
+    
+    const jsonData = {
+      month: `${monthName} ${year}`,
+      generatedAt: new Date().toISOString(),
+      boats: boatsWithService.map((b: any) => ({
+        ...b,
+        // Restore any existing override
+        ...(existingOverrides[b.boat] ? { override: existingOverrides[b.boat] } : {})
+      }))
+    };
+    writeFileSync(jsonFilepath, JSON.stringify(jsonData, null, 2));
     
     const totalAmount = boatsWithService.reduce((sum: number, b: any) => sum + parseFloat(b.total), 0);
     
@@ -995,6 +1065,151 @@ app.post('/api/generate/:year/:month', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to generate billing' });
+  }
+});
+
+// Update price override for a boat
+app.post('/api/billing/:month/override', (req, res) => {
+  const { month } = req.params;
+  const { boat, override } = req.body; // override: { type: 'percent'|'dollar'|'flat', value: number, note?: string } or null to clear
+  
+  const jsonPath = join(BILLING_DIR, `${month}_billing.json`);
+  if (!existsSync(jsonPath)) {
+    return res.status(404).json({ error: 'Billing JSON not found — regenerate first' });
+  }
+  
+  try {
+    const data = JSON.parse(readFileSync(jsonPath, 'utf-8'));
+    const boatEntry = data.boats?.find((b: any) => b.boat === boat);
+    if (!boatEntry) {
+      return res.status(404).json({ error: `Boat "${boat}" not found in billing` });
+    }
+    
+    if (override) {
+      boatEntry.override = {
+        type: override.type,
+        value: parseFloat(override.value),
+        note: override.note || '',
+        updatedAt: new Date().toISOString()
+      };
+    } else {
+      delete boatEntry.override;
+    }
+    
+    writeFileSync(jsonPath, JSON.stringify(data, null, 2));
+    
+    // Also update the CSV total for consistency
+    const csvPath = join(BILLING_DIR, `${month}_billing.csv`);
+    if (existsSync(csvPath)) {
+      const csv = readFileSync(csvPath, 'utf-8');
+      const lines = csv.split('\n');
+      const header = lines[0];
+      const rows = lines.slice(1).map(line => {
+        const cols = line.split(',');
+        if (cols[0] === boat && override) {
+          const origTotal = parseFloat(boatEntry.total);
+          let newTotal: number;
+          if (override.type === 'flat') newTotal = parseFloat(override.value);
+          else if (override.type === 'dollar') newTotal = origTotal + parseFloat(override.value);
+          else newTotal = origTotal * (1 + parseFloat(override.value) / 100);
+          cols[cols.length - 1] = newTotal.toFixed(2);
+        } else if (cols[0] === boat && !override) {
+          cols[cols.length - 1] = boatEntry.total;
+        }
+        return cols.join(',');
+      });
+      writeFileSync(csvPath, [header, ...rows].join('\n'));
+    }
+    
+    res.json({ success: true, boat, override: boatEntry.override || null });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to update override' });
+  }
+});
+
+// Check which active boats are missing Conditions entries for a given month
+app.get('/api/conditions-check/:year/:month', async (req, res) => {
+  const { year, month } = req.params;
+  const token = getNotionToken();
+  if (!token) return res.status(400).json({ error: 'Notion token not configured' });
+
+  const monthNum = parseInt(month);
+  const startDate = `${year}-${month.padStart(2, '0')}-01`;
+  const endDate = monthNum === 12
+    ? `${parseInt(year) + 1}-01-01`
+    : `${year}-${(monthNum + 1).toString().padStart(2, '0')}-01`;
+
+  try {
+    // Get all active boats (Plan = Subbed or One-time/One time)
+    let allBoats: any[] = [];
+    let hasMore = true;
+    let startCursor: string | undefined;
+
+    while (hasMore) {
+      const response = await fetch(`https://api.notion.com/v1/databases/${NOTION_DB_ID}/query`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Notion-Version': '2022-06-28',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          filter: { or: [
+            { property: 'Plan', select: { equals: 'Subbed' }},
+            { property: 'Plan', select: { equals: 'One-time' }},
+            { property: 'Plan', select: { equals: 'One time' }}
+          ]},
+          page_size: 100,
+          ...(startCursor && { start_cursor: startCursor })
+        })
+      });
+      const data = await response.json();
+      allBoats = allBoats.concat(data.results || []);
+      hasMore = data.has_more;
+      startCursor = data.next_cursor;
+    }
+
+    const BATCH_SIZE = 10;
+    const withConditions: string[] = [];
+    const missingConditions: { boat: string, location: string }[] = [];
+
+    const checkBoat = async (page: any) => {
+      const boat = page.properties.Boat?.title?.[0]?.plain_text || 'Unknown';
+      const location = page.properties.Location?.select?.name || '';
+      try {
+        const conditionsDbId = await getConditionsDatabase(page.id, token);
+        if (!conditionsDbId) {
+          missingConditions.push({ boat, location });
+          return;
+        }
+        const conditions = await getServiceConditions(conditionsDbId, startDate, endDate, token);
+        if (conditions) {
+          withConditions.push(boat);
+        } else {
+          missingConditions.push({ boat, location });
+        }
+      } catch {
+        missingConditions.push({ boat, location });
+      }
+    };
+
+    for (let i = 0; i < allBoats.length; i += BATCH_SIZE) {
+      const batch = allBoats.slice(i, i + BATCH_SIZE);
+      await Promise.all(batch.map(checkBoat));
+    }
+
+    missingConditions.sort((a, b) => a.boat.localeCompare(b.boat));
+
+    res.json({
+      total: allBoats.length,
+      withConditions: withConditions.length,
+      missingCount: missingConditions.length,
+      missing: missingConditions
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to check conditions' });
   }
 });
 
