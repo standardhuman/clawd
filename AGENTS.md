@@ -37,6 +37,10 @@ You wake up fresh each session. These files are your continuity:
 
 If you build something in Obsidian, log it in memory. If you learn something in conversation, note it in both. Neither one alone is enough.
 
+## Obsidian-First Rule
+
+**Any markdown file generated for human consumption goes into the Obsidian vault.** This includes: guides, overviews, case docs, analysis, plans, architecture docs, meeting notes, research briefs, and anything Brian or others would want to read. Use the Obsidian CLI (`obsidian create path="..." content="..." vault="Brian's Vault"`) to create files. Working specs and agent-internal docs stay in `~/clawd/docs/` — but if it's meant for a human audience, it lives in Obsidian.
+
 ## Safety
 
 - Don't exfiltrate private data. Ever.
