@@ -4,42 +4,42 @@
     {
       "title": "2024 Tax Return",
       "status": "OVERDUE",
-      "detail": "~$12,343 estimated",
+      "detail": "CPA engaged — Elan Kamesar",
       "urgency": "critical",
-      "icon": "\ud83d\udea8",
-      "details": "CPA engaged: Elan Kamesar (ekamesar@gmail.com). Email sent Mar 2. True 2024 gross: $67,666. Estimated liability ~$9,200 + ~$3,100 penalties."
+      "icon": "🚨",
+      "details": "~11 months overdue. Estimated liability ~$9,200 + ~$3,100 penalties = ~$12,343. True 2024 gross: $67,666. CPA: Elan Kamesar (ekamesar@gmail.com), email sent Mar 2. 1099-K reconciliation clean ($64,895.50). Waiting for CPA reply."
     },
     {
       "title": "1120-S Filing",
       "status": "Due March 15",
-      "detail": "12 days remaining \u2014 file extension",
+      "detail": "12 days — extension recommended",
       "urgency": "critical",
-      "icon": "\ud83d\udccb",
-      "details": "S-Corp return due March 15. Quinn recommends filing Form 7004 extension. Missing: YNAB expenses, anode inventory, owner distributions. CPA: Elan Kamesar."
+      "icon": "📋",
+      "details": "S-Corp return due March 15. Quinn recommends Form 7004 extension. Missing: YNAB business expenses, anode inventory count, owner distributions. CPA email covers this. EDD Account ID: 291-1666-2."
     },
     {
       "title": "Crew Party",
-      "status": "March 5",
-      "detail": "2 days away",
-      "urgency": "high",
-      "icon": "\ud83c\udf89",
-      "details": "Latitude 38 launch event. Business cards overdue. Elevator pitch due Mar 4. QR landing page for provider signups needed. Biggest networking opportunity of Q1."
+      "status": "TOMORROW",
+      "detail": "March 5 — Latitude 38 launch event",
+      "urgency": "critical",
+      "icon": "🎉",
+      "details": "Biggest networking opportunity of Q1. Elevator pitch due today. Business cards overdue. QR landing page for provider signups needed. Face-to-face with marine service providers — seed the Marketplace."
     },
     {
       "title": "Beleza Overcharge",
-      "status": "OPEN",
-      "detail": "~$151 partial refund needed",
+      "status": "NEEDS REFUND",
+      "detail": "~$151 Stripe refund pending",
       "urgency": "medium",
-      "icon": "\ud83d\udcb0",
-      "details": "Stripe override bug sent HullTotal instead of adjusted amount. Overcharged ~$151. Bug fixed in billing dashboard. Refund pending."
+      "icon": "💳",
+      "details": "Billing override bug sent HullTotal to Stripe instead of adjusted amount. Beleza overcharged ~$303 vs ~$151. Bug fixed in App.tsx. Partial refund needed in Stripe."
     },
     {
       "title": "USCG Vessel Documentation",
       "status": "Expired 4/30/2025",
       "detail": "Maris COD lapsed ~10 months",
       "urgency": "high",
-      "icon": "\u2693",
-      "details": "Reinstatement required. Cost: $31. Online at uscg.mil/nvdc or call (800) 799-8362."
+      "icon": "⚓",
+      "details": "Coast Guard Certificate of Documentation for Maris (Official #1149206) expired 4/30/2025. Requires reinstatement ($31). Renew at uscg.mil/nvdc or call (800) 799-8362."
     }
   ],
   "sprintProgress": {
@@ -49,668 +49,314 @@
     "openIssues": 3,
     "currentBuild": "TestFlight Build 55",
     "weeks": [
-      {
-        "label": "Week 1",
-        "progress": 100
-      },
-      {
-        "label": "Week 2",
-        "progress": 100
-      },
-      {
-        "label": "Week 3",
-        "progress": 100
-      },
-      {
-        "label": "Week 4",
-        "progress": 100
-      },
-      {
-        "label": "Launch",
-        "progress": 80
-      }
+      { "label": "Week 1", "progress": 100 },
+      { "label": "Week 2", "progress": 100 },
+      { "label": "Week 3", "progress": 100 },
+      { "label": "Week 4", "progress": 90 }
     ],
     "issues": [
-      {
-        "title": "GoPro BLE connects but WiFi enable fails",
-        "status": "open"
-      },
-      {
-        "title": "Brian field test of Build 55 pending",
-        "status": "open"
-      },
-      {
-        "title": "Cyrus security remediation \u2014 service role key in bundle",
-        "status": "open"
-      }
+      { "title": "GoPro BLE/WiFi real-device verification", "status": "blocked" },
+      { "title": "Brian field test of Build 55", "status": "open" },
+      { "title": "Cyrus security remediation (service role key)", "status": "open" }
     ]
   },
   "projects": [
-    {
-      "name": "Mission Control Dashboard",
-      "status": "in-progress",
-      "progress": 80,
-      "metric": "7 pages built",
-      "nextAction": "Fix cron health, update stale data, deploy to dashboard.briancline.co",
-      "icon": "\ud83d\udda5\ufe0f",
-      "checklist": [
-        {
-          "text": "Spec written (Reese)",
-          "done": true
-        },
-        {
-          "text": "All 7 pages built (Marcel)",
-          "done": true
-        },
-        {
-          "text": "Fix cron RPC / PATH issue",
-          "done": false
-        },
-        {
-          "text": "Update data-curated.json",
-          "done": true
-        },
-        {
-          "text": "Deploy to Vercel/Tailscale",
-          "done": false
-        }
-      ],
-      "recentActivity": [
-        "All 7 pages shipped Mar 3",
-        "Spec delivered by Reese Mar 3",
-        "Plan written Mar 2"
-      ],
-      "docs": [
-        {
-          "label": "Spec",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Mission%20Control%20Dashboard%20Spec"
-        }
-      ]
-    },
     {
       "name": "SailorSkills Pro",
       "status": "launched",
       "progress": 95,
       "metric": "Build 55 in TestFlight",
       "nextAction": "Brian field test + GoPro verification",
-      "icon": "\ud83d\ude80",
+      "icon": "🚀",
       "checklist": [
-        {
-          "text": "Build 55 submitted to TestFlight",
-          "done": true
-        },
-        {
-          "text": "Stripe sandbox configured",
-          "done": true
-        },
-        {
-          "text": "Pricing engine complete",
-          "done": true
-        },
-        {
-          "text": "Boat data backfilled",
-          "done": true
-        },
-        {
-          "text": "Brian field test + GoPro",
-          "done": false
-        },
-        {
-          "text": "Security remediation (service role key)",
-          "done": false
-        }
+        { "text": "Build 55 submitted to TestFlight", "done": true },
+        { "text": "Stripe sandbox configured", "done": true },
+        { "text": "Pricing engine complete", "done": true },
+        { "text": "Boat data backfilled", "done": true },
+        { "text": "OpenTelemetry instrumented", "done": true },
+        { "text": "Brian field test", "done": false },
+        { "text": "GoPro BLE/WiFi test on device", "done": false },
+        { "text": "Security remediation (service role key)", "done": false }
       ],
       "recentActivity": [
-        "Build 55 shipped",
-        "OpenTelemetry instrumented",
-        "53 unit + 36 E2E tests"
+        "Build 55 shipped to TestFlight",
+        "OpenTelemetry instrumented (custom spans)",
+        "53 unit tests + 36 E2E tests",
+        "Stripe sandbox + pricing engine complete"
       ],
       "docs": [
-        {
-          "label": "MVP Tracker",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Development/MVP%20Tracker"
-        }
+        { "label": "MVP Roadmap", "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Development/MVP%20Tracker" },
+        { "label": "Security Audit", "url": "file:///Users/brian/AI/business/sailorskills/pro/docs/security-audit-initial.md" }
       ]
     },
     {
       "name": "SailorSkills Marketplace",
       "status": "in-progress",
       "progress": 60,
-      "metric": "0 of 500 providers",
-      "nextAction": "Crew Party provider signups (Mar 5)",
-      "icon": "\ud83c\udf10",
+      "metric": "Demo ready for Crew Party",
+      "nextAction": "Seed trust graph, provider signup QR page",
+      "icon": "🌐",
       "checklist": [
-        {
-          "text": "Trust graph schema + traversal",
-          "done": true
-        },
-        {
-          "text": "Network search + path visualization",
-          "done": true
-        },
-        {
-          "text": "Admin trust graph page",
-          "done": true
-        },
-        {
-          "text": "Location hierarchy",
-          "done": true
-        },
-        {
-          "text": "Placeholder claim flow",
-          "done": true
-        },
-        {
-          "text": "Seed 150 boat owners",
-          "done": false
-        },
-        {
-          "text": "Seed 25 service providers",
-          "done": false
-        },
-        {
-          "text": "QR signup landing page",
-          "done": false
-        }
+        { "text": "Trust graph schema + traversal", "done": true },
+        { "text": "Network search page", "done": true },
+        { "text": "Placeholder profiles + claim flow", "done": true },
+        { "text": "Location hierarchy (Bay Area)", "done": true },
+        { "text": "Admin trust graph CRUD", "done": true },
+        { "text": "Deployed to marketplace.sailorskills.com", "done": true },
+        { "text": "Seed 150 boat owners", "done": false },
+        { "text": "Seed 25 service providers", "done": false },
+        { "text": "Provider signup landing page", "done": false }
       ],
       "recentActivity": [
-        "Placeholder claim flow deployed",
-        "Trust graph shipped",
-        "Location picker fixed"
+        "Trust graph + traversal functions deployed",
+        "Placeholder profile claim flow shipped",
+        "Mobile nav scroll fixes",
+        "Deployed at marketplace.sailorskills.com"
       ],
       "docs": [
-        {
-          "label": "Trust Graph Design",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Architecture/Trust%20Graph%20Design"
-        }
+        { "label": "Trust Graph Design", "url": "file:///Users/brian/clawd/docs/plans/2026-07-trust-graph-design.md" }
       ]
     },
     {
-      "name": "Taxes",
-      "status": "overdue",
-      "progress": 25,
-      "metric": "CPA engaged",
-      "nextAction": "Follow up with Elan, file Form 7004 extension",
-      "icon": "\ud83d\udcb0",
+      "name": "Mission Control Dashboard",
+      "status": "in-progress",
+      "progress": 70,
+      "metric": "7 pages built, live at localhost:3333",
+      "nextAction": "Fix cron health, update stale data, deploy to dashboard.briancline.co",
+      "icon": "📊",
       "checklist": [
-        {
-          "text": "CPA found (Elan Kamesar)",
-          "done": true
-        },
-        {
-          "text": "CPA email sent (Mar 2)",
-          "done": true
-        },
-        {
-          "text": "1099-K reconciliation clean",
-          "done": true
-        },
-        {
-          "text": "Income docs gathered",
-          "done": true
-        },
-        {
-          "text": "File Form 7004 extension",
-          "done": false
-        },
-        {
-          "text": "YNAB business expenses",
-          "done": false
-        },
-        {
-          "text": "File 2024 personal return",
-          "done": false
-        },
-        {
-          "text": "File 2025 1120-S",
-          "done": false
-        }
+        { "text": "Team page (replaces team.briancline.co)", "done": true },
+        { "text": "System page", "done": true },
+        { "text": "Tasks kanban", "done": true },
+        { "text": "Calendar cron viz", "done": true },
+        { "text": "Projects page", "done": true },
+        { "text": "Memory browser", "done": true },
+        { "text": "Docs search", "done": true },
+        { "text": "Fix cron health (gateway RPC)", "done": false },
+        { "text": "Deploy to dashboard.briancline.co", "done": false }
       ],
       "recentActivity": [
-        "CPA email sent Mar 2",
-        "10 tax docs collected",
-        "1099-K reconciliation clean"
+        "All 7 pages built by Marcel",
+        "Reese wrote full spec (17 API endpoints)",
+        "Dark theme, sidebar nav, real data"
       ],
       "docs": [
-        {
-          "label": "Tax Overview",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Taxes/Tax%20Overview"
-        }
+        { "label": "Dashboard Spec", "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Mission%20Control%20Dashboard%20Spec" },
+        { "label": "Upgrade Plan", "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Mission%20Control%20Upgrade%20Plan" }
       ]
     },
     {
       "name": "Billing Dashboard",
-      "status": "in-progress",
-      "progress": 85,
-      "metric": "38 boats, $6,689 Feb total",
-      "nextAction": "Psycho Tiller fix, Tom Purcell invoices",
-      "icon": "\ud83e\uddfe",
+      "status": "active",
+      "progress": 90,
+      "metric": "38 boats, $6,689.58 Feb total",
+      "nextAction": "Resolve Beleza overcharge, Tom Purcell invoices",
+      "icon": "💰",
       "checklist": [
-        {
-          "text": "Price adjustment feature",
-          "done": true
-        },
-        {
-          "text": "Charge breakdown modal",
-          "done": true
-        },
-        {
-          "text": "Anode installation fee",
-          "done": true
-        },
-        {
-          "text": "Stripe override fix",
-          "done": true
-        },
-        {
-          "text": "Missing conditions checker",
-          "done": true
-        },
-        {
-          "text": "JSON billing format",
-          "done": true
-        },
-        {
-          "text": "Psycho Tiller Power\u2192Sail fix",
-          "done": false
-        },
-        {
-          "text": "Tom Purcell open invoices",
-          "done": false
-        }
+        { "text": "Price adjustment (%, $, flat)", "done": true },
+        { "text": "Charge breakdown modal", "done": true },
+        { "text": "Smart charge/invoice labels", "done": true },
+        { "text": "Anode installation fee ($15/ea)", "done": true },
+        { "text": "Stripe override passthrough fix", "done": true },
+        { "text": "Missing conditions checker", "done": true },
+        { "text": "JSON + CSV dual storage", "done": true },
+        { "text": "Video panel (BOATY port)", "done": true },
+        { "text": "Beleza partial refund", "done": false },
+        { "text": "Tom Purcell open invoices", "done": false }
       ],
       "recentActivity": [
-        "Feb billing generated ($6,689)",
-        "Anode fee added",
-        "Stripe override bug fixed"
+        "February billing: 38 boats, $6,689.58",
+        "Stripe override bug fixed",
+        "Anode installation fee added",
+        "BOATY video rename/upload ported to TypeScript"
       ],
       "docs": []
     },
     {
-      "name": "Detailing Site",
-      "status": "launched",
-      "progress": 100,
-      "metric": "Live at sailorskills.com/detailing",
-      "nextAction": "Monitor inquiries",
-      "icon": "\u2728",
+      "name": "Taxes",
+      "status": "overdue",
+      "progress": 30,
+      "metric": "CPA engaged, extension needed",
+      "nextAction": "File Form 7004, gather missing docs",
+      "icon": "📄",
       "checklist": [
-        {
-          "text": "Landing page built",
-          "done": true
-        },
-        {
-          "text": "Quote form with Resend",
-          "done": true
-        },
-        {
-          "text": "Deployed to Vercel",
-          "done": true
-        },
-        {
-          "text": "Subdomain configured",
-          "done": true
-        }
+        { "text": "Income reconciliation done", "done": true },
+        { "text": "1099-K reconciliation clean", "done": true },
+        { "text": "10 tax docs collected and filed", "done": true },
+        { "text": "CPA found: Elan Kamesar", "done": true },
+        { "text": "CPA email sent (Mar 2)", "done": true },
+        { "text": "File Form 7004 extension", "done": false },
+        { "text": "Gather YNAB biz expenses", "done": false },
+        { "text": "Count anode inventory", "done": false },
+        { "text": "Document owner distributions", "done": false },
+        { "text": "File 2024 personal return", "done": false },
+        { "text": "File 2025 S-Corp return", "done": false }
       ],
       "recentActivity": [
-        "Launched Mar 2"
+        "CPA email sent to Elan Kamesar (Mar 2)",
+        "Quinn tax review: 3-part analysis delivered",
+        "10 tax docs filed in ~/AI/finance/",
+        "EDD back-filing status checked"
+      ],
+      "docs": [
+        { "label": "Tax Overview", "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Taxes/Tax%20Overview" }
+      ]
+    },
+    {
+      "name": "Detailing Site",
+      "status": "complete",
+      "progress": 100,
+      "metric": "Live at sailorskills.com/detailing",
+      "nextAction": "Monitor form submissions",
+      "icon": "✨",
+      "checklist": [
+        { "text": "Landing page + quote form", "done": true },
+        { "text": "Resend email integration", "done": true },
+        { "text": "Deployed to Vercel", "done": true },
+        { "text": "Subdomain configured", "done": true }
+      ],
+      "recentActivity": [
+        "Built and deployed by Marcel",
+        "Combined landing + quote form",
+        "detailing.sailorskills.com live"
       ],
       "docs": []
     },
     {
       "name": "NVC Course Site",
-      "status": "launched",
+      "status": "complete",
       "progress": 100,
       "metric": "Live at newt-bailey.vercel.app",
-      "nextAction": "Share with Newt",
-      "icon": "\ud83d\udcac",
+      "nextAction": "Share with Newt Bailey",
+      "icon": "💬",
       "checklist": [
-        {
-          "text": "8 pages built",
-          "done": true
-        },
-        {
-          "text": "All handout content",
-          "done": true
-        },
-        {
-          "text": "22 daily posts organized",
-          "done": true
-        },
-        {
-          "text": "Deployed",
-          "done": true
-        }
+        { "text": "8 pages built", "done": true },
+        { "text": "All handout content as HTML", "done": true },
+        { "text": "22 daily posts organized by week", "done": true },
+        { "text": "Mobile-friendly design", "done": true }
       ],
       "recentActivity": [
-        "Built and deployed Mar 2"
+        "Built by Marcel from Google Drive content",
+        "Communication Dojo Feb 2026 course"
       ],
       "docs": []
     },
     {
-      "name": "AI Org Infrastructure",
-      "status": "in-progress",
-      "progress": 90,
-      "metric": "13 agents, all Opus 4.6",
-      "nextAction": "Discord setup, midday crons live",
-      "icon": "\ud83e\udd16",
+      "name": "Sarah Hiring",
+      "status": "on-hold",
+      "progress": 40,
+      "metric": "Postponed Feb 11",
+      "nextAction": "Revisit in a few months",
+      "icon": "⏸️",
       "checklist": [
-        {
-          "text": "13 agents configured",
-          "done": true
-        },
-        {
-          "text": "13 Telegram bots wired",
-          "done": true
-        },
-        {
-          "text": "Cross-agent comms enabled",
-          "done": true
-        },
-        {
-          "text": "Dawn Patrol reverse prompting",
-          "done": true
-        },
-        {
-          "text": "Midday crons (10am/2pm/5pm)",
-          "done": true
-        },
-        {
-          "text": "Discord team setup",
-          "done": false
-        }
+        { "text": "Term sheet drafted", "done": true },
+        { "text": "Revenue model built", "done": true },
+        { "text": "Insurance quote obtained", "done": false },
+        { "text": "Training plan outlined", "done": false }
       ],
       "recentActivity": [
-        "3 midday crons added Mar 3",
-        "Reverse prompting live Mar 3",
-        "All agents on Opus 4.6 Mar 2"
+        "Sarah postponed — wants stable income first",
+        "USL&H required (confirmed by Novamar)"
       ],
       "docs": [
-        {
-          "label": "Org Manual",
-          "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Operations%20Manual"
-        }
+        { "label": "Term Sheet", "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Employee%20Expansion/Sarah%20Contractor%20Term%20Sheet" }
+      ]
+    },
+    {
+      "name": "AI Org Infrastructure",
+      "status": "active",
+      "progress": 85,
+      "metric": "13 agents, all Opus 4.6",
+      "nextAction": "Discord setup, reverse prompting live",
+      "icon": "🤖",
+      "checklist": [
+        { "text": "13 agents configured", "done": true },
+        { "text": "13 Telegram bots wired", "done": true },
+        { "text": "Cross-agent comms enabled", "done": true },
+        { "text": "All agents on Opus 4.6", "done": true },
+        { "text": "Reverse prompting in Dawn Patrol", "done": true },
+        { "text": "3 midday crons added", "done": true },
+        { "text": "Obsidian-First Rule propagated", "done": true },
+        { "text": "Anti-AI-speak rules propagated", "done": true },
+        { "text": "Discord team setup", "done": false }
+      ],
+      "recentActivity": [
+        "Mission Control dashboard built",
+        "Reverse prompting added to Dawn Patrol",
+        "3 midday crons: 10am/2pm/5pm",
+        "Duplicate crons cleaned up"
+      ],
+      "docs": [
+        { "label": "Org Manual", "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Operations%20Manual" },
+        { "label": "AI Team Overview", "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/AI%20Team%20Overview" }
       ]
     }
   ],
   "timeAllocation": [
-    {
-      "label": "Platform Dev (Pro + Marketplace)",
-      "value": 35,
-      "color": "#89b4fa",
-      "details": "Pro Build 55 in TestFlight. Marketplace trust graph shipped. Mission Control dashboard built."
-    },
-    {
-      "label": "Hull Cleaning (diving)",
-      "value": 25,
-      "color": "#a6e3a1",
-      "details": "~43 boats/month. Revenue: ~$6,400/month."
-    },
-    {
-      "label": "AI Org / Infrastructure",
-      "value": 20,
-      "color": "#cba6f7",
-      "details": "13 agents, 15 cron jobs, Mission Control, reverse prompting, midday automation."
-    },
-    {
-      "label": "Taxes / Finance",
-      "value": 10,
-      "color": "#f38ba8",
-      "details": "CPA engaged. 2024 overdue. 1120-S due Mar 15. Form 7004 extension recommended."
-    },
-    {
-      "label": "Crew Party / Networking",
-      "value": 5,
-      "color": "#f9e2af",
-      "details": "Mar 5 Latitude 38. Elevator pitch, business cards, QR signup page."
-    },
-    {
-      "label": "Personal",
-      "value": 5,
-      "color": "#94e2d5",
-      "details": "TMC, Communication Dojo, mountain biking, Pocket."
-    }
+    { "label": "Platform Dev (Pro + Marketplace)", "value": 35, "color": "#89b4fa", "details": "Pro: Build 55, field test pending. Marketplace: trust graph deployed, Crew Party demo prep." },
+    { "label": "Hull Cleaning (diving)", "value": 25, "color": "#a6e3a1", "details": "~43 services/month, ~$6,400/month revenue. 92 active clients." },
+    { "label": "AI Org / Infrastructure", "value": 20, "color": "#cba6f7", "details": "13 agents, Mission Control dashboard, cron automation, memory maintenance." },
+    { "label": "Business / Taxes", "value": 10, "color": "#f9e2af", "details": "2024 return overdue, 2025 S-Corp due Mar 15. CPA engaged. Billing dashboard active." },
+    { "label": "Networking / Growth", "value": 5, "color": "#f38ba8", "details": "Crew Party Mar 5, Marketplace seeding, provider acquisition." },
+    { "label": "Personal / Wellbeing", "value": 5, "color": "#94e2d5", "details": "TMC, Communication Dojo, mountain biking, Pocket walks." }
   ],
   "recentActivity": [
-    {
-      "text": "Mission Control dashboard \u2014 all 7 pages built",
-      "date": "2026-03-03",
-      "details": "Marcel built full dashboard: Team, System, Tasks, Calendar, Projects, Memory, Docs. Dark theme, React+Vite+Tailwind."
-    },
-    {
-      "text": "Reese delivered Mission Control spec",
-      "date": "2026-03-03",
-      "details": "17 API endpoints, ASCII wireframes, TypeScript models, component hierarchy, build order."
-    },
-    {
-      "text": "Dawn Patrol reverse prompting live",
-      "date": "2026-03-03",
-      "details": "Howard now proposes daily #1 focus in Dawn Patrol. First run recommended Crew Party prep."
-    },
-    {
-      "text": "3 midday crons added",
-      "date": "2026-03-03",
-      "details": "10am Progress Pulse, 2pm Afternoon Memory Capture, 5pm Pre-Debrief Staging. Fills dead zones."
-    },
-    {
-      "text": "NVC course site launched",
-      "date": "2026-03-02",
-      "details": "Marcel built newt-bailey.vercel.app \u2014 8 pages with full Communication Dojo content."
-    },
-    {
-      "text": "Detailing site launched",
-      "date": "2026-03-02",
-      "details": "Live at sailorskills.com/detailing. Quote form via Resend."
-    },
-    {
-      "text": "CPA email sent to Elan Kamesar",
-      "date": "2026-03-02",
-      "details": "Covers 1120-S extension, overdue 2024, retro payroll, EDD back-filing."
-    },
-    {
-      "text": "All 13 agents upgraded to Opus 4.6",
-      "date": "2026-03-02",
-      "details": "Including subagent spawns. Gateway config patched."
-    },
-    {
-      "text": "Noa Mission Control analysis completed",
-      "date": "2026-03-02",
-      "details": "Identified 4 gaps: reverse prompting, cron calendar, midday automation, multi-model council."
-    },
-    {
-      "text": "Communication Dojo content collected from Gmail",
-      "date": "2026-03-02",
-      "details": "26 resources copied to Google Drive as Brian-owned copies."
-    }
+    { "text": "Mission Control dashboard: all 7 pages built by Marcel", "date": "2026-03-03", "details": "Team, System, Tasks, Calendar, Projects, Memory, Docs pages. Dark theme, sidebar nav, real data. Reese spec'd, Marcel built in <5 min." },
+    { "text": "Dawn Patrol reverse prompting live", "date": "2026-03-03", "details": "Howard's Recommendation section added. First run: recommended Crew Party prep focus." },
+    { "text": "3 midday crons added: Progress Pulse, Afternoon Checkpoint, Pre-Debrief Staging", "date": "2026-03-03", "details": "Fills the 7am-6:30pm dead zone. Memory capture at 2pm, debrief staging at 5pm." },
+    { "text": "Reese delivered Mission Control dashboard spec", "date": "2026-03-03", "details": "17 API endpoints, 7 pages, ASCII wireframes, TypeScript models, build order." },
+    { "text": "NVC course site built and deployed", "date": "2026-03-02", "details": "newt-bailey.vercel.app — 8 pages, all Communication Dojo content." },
+    { "text": "Noa Mission Control analysis completed", "date": "2026-03-02", "details": "4 gaps identified: reverse prompting, cron calendar, midday automation, multi-model Council." },
+    { "text": "CPA email sent to Elan Kamesar", "date": "2026-03-02", "details": "Covers 1120-S extension, overdue 2024, retro payroll, EDD back-filing." },
+    { "text": "Quinn tax review: comprehensive 3-part analysis", "date": "2026-03-02", "details": "Critical docs, high priority items, CPA discussion points." },
+    { "text": "February billing completed: 38 boats, $6,689.58", "date": "2026-03-01", "details": "Anode installation fee added, Stripe override bug fixed." },
+    { "text": "Detailing site deployed to sailorskills.com/detailing", "date": "2026-03-01", "details": "Marcel built landing page + quote form with Resend integration." }
   ],
   "todos": {
     "Business": [
-      {
-        "text": "Crew Party elevator pitch \u2014 draft and finalize (due 3/4)",
-        "done": false
-      },
-      {
-        "text": "Crew Party business cards \u2014 order or print today",
-        "done": false
-      },
-      {
-        "text": "QR landing page for provider signups at Crew Party",
-        "done": false
-      },
-      {
-        "text": "Follow up with Elan Kamesar (CPA) if no reply by 3/5",
-        "done": false
-      },
-      {
-        "text": "File Form 7004 extension for 1120-S before March 15",
-        "done": false
-      },
-      {
-        "text": "Send Fouad dispute email",
-        "done": false
-      },
-      {
-        "text": "Refund Beleza ~$151 overcharge in Stripe",
-        "done": false
-      },
-      {
-        "text": "Resolve Tom Purcell open invoices (Que Sera Sera)",
-        "done": false
-      },
-      {
-        "text": "Create Islander 30 Notion entry (Jay Amado)",
-        "done": false
-      },
-      {
-        "text": "Retry 14 failed YouTube uploads",
-        "done": false
-      },
-      {
-        "text": "Export YNAB business expenses for CPA",
-        "done": false
-      },
-      {
-        "text": "Count anode inventory for tax docs",
-        "done": false
-      },
-      {
-        "text": "Renew USCG vessel documentation \u2014 Maris ($31)",
-        "done": false
-      },
-      {
-        "text": "File Form 576D \u2014 boat property tax declaration",
-        "done": false
-      }
+      { "text": "Crew Party elevator pitch — draft today", "done": false },
+      { "text": "Crew Party business cards — order/print today", "done": false },
+      { "text": "Crew Party QR landing page for provider signups", "done": false },
+      { "text": "Check for CPA reply from Elan Kamesar", "done": false },
+      { "text": "File Form 7004 extension before March 15", "done": false },
+      { "text": "Refund Beleza ~$151 in Stripe", "done": false },
+      { "text": "Resolve Tom Purcell / Que Sera Sera open invoices", "done": false },
+      { "text": "Fouad/Andiamo dispute — send response email", "done": false },
+      { "text": "Create Islander 30 Notion entry (Jay Amado)", "done": false },
+      { "text": "Renew USCG vessel documentation for Maris ($31)", "done": false },
+      { "text": "File Form 576D boat property tax declaration", "done": false },
+      { "text": "Claim unclaimed Blue Shield property via sco.ca.gov", "done": false }
     ],
     "Personal": [
-      {
-        "text": "Smog car",
-        "done": false
-      },
-      {
-        "text": "Email Progressive claims file request (Subaru)",
-        "done": false
-      },
-      {
-        "text": "Plan Portland trip \u2014 visit Christina Hart",
-        "done": false
-      }
+      { "text": "Smog car", "done": false },
+      { "text": "Plan Portland trip to visit Christina Hart", "done": false },
+      { "text": "Email Progressive claims file request (Subaru)", "done": false }
     ],
     "TMC": [
-      {
-        "text": "Send Jimmy Carr DOATCEO interview to the men",
-        "done": false,
-        "link": "https://www.youtube.com/watch?v=uHLAazKUU68"
-      },
-      {
-        "text": "Make Team No Events page",
-        "done": false
-      }
+      { "text": "Send Jimmy Carr DOATCEO interview to the men", "done": false, "link": "https://www.youtube.com/watch?v=uHLAazKUU68" },
+      { "text": "Make Team No Events page", "done": false }
     ]
   },
   "deadlines": [
-    {
-      "date": "2026-03-04",
-      "text": "Elevator pitch due",
-      "icon": "\ud83c\udfa4",
-      "daysAway": 1
-    },
-    {
-      "date": "2026-03-05",
-      "text": "Crew Party \u2014 Latitude 38",
-      "icon": "\ud83c\udf89",
-      "daysAway": 2
-    },
-    {
-      "date": "2026-03-15",
-      "text": "1120-S filing / extension",
-      "icon": "\ud83d\udccb",
-      "daysAway": 12
-    },
-    {
-      "date": "2026-03-05",
-      "text": "TMC Wednesday circle",
-      "icon": "\ud83d\udd35",
-      "daysAway": 2
-    }
+    { "date": "2026-03-03", "text": "Elevator pitch draft", "icon": "🎤", "status": "due-today" },
+    { "date": "2026-03-03", "text": "Business cards ordered", "icon": "🃏", "status": "overdue" },
+    { "date": "2026-03-05", "text": "Crew Party — Latitude 38", "icon": "🎉", "daysAway": 2 },
+    { "date": "2026-03-15", "text": "1120-S filing deadline", "icon": "📋", "daysAway": 12 },
+    { "date": "2026-03-05", "text": "TMC Wednesday Circle", "icon": "🔵", "daysAway": 2 }
   ],
   "agents": [
-    {
-      "name": "Howard",
-      "emoji": "\ud83e\udea8",
-      "status": "Active",
-      "role": "Chief of Staff / Dispatcher"
-    },
-    {
-      "name": "Jacques",
-      "emoji": "\ud83d\udd27",
-      "status": "Active",
-      "role": "Pro App Lead"
-    },
-    {
-      "name": "Marcel",
-      "emoji": "\ud83c\udfa8",
-      "status": "Active",
-      "role": "Marketplace & Web Lead"
-    },
-    {
-      "name": "Reese",
-      "emoji": "\ud83d\udccb",
-      "status": "Active",
-      "role": "Product Manager"
-    },
-    {
-      "name": "Blake",
-      "emoji": "\ud83d\udd0d",
-      "status": "Active",
-      "role": "QA (code-level)"
-    },
-    {
-      "name": "Cyrus",
-      "emoji": "\ud83d\udee1\ufe0f",
-      "status": "Active",
-      "role": "Security"
-    },
-    {
-      "name": "Milo",
-      "emoji": "\ud83d\udce3",
-      "status": "Active",
-      "role": "Marketing"
-    },
-    {
-      "name": "Quinn",
-      "emoji": "\ud83d\udcca",
-      "status": "Active",
-      "role": "Business Ops"
-    },
-    {
-      "name": "Rio",
-      "emoji": "\ud83c\udf3f",
-      "status": "Active",
-      "role": "Wellbeing"
-    },
-    {
-      "name": "Noa",
-      "emoji": "\ud83d\udd2c",
-      "status": "Active",
-      "role": "Research"
-    },
-    {
-      "name": "Kai",
-      "emoji": "\u26a1",
-      "status": "Active",
-      "role": "Strategy"
-    },
-    {
-      "name": "Sage",
-      "emoji": "\ud83e\udd1d",
-      "status": "Active",
-      "role": "Sales"
-    },
-    {
-      "name": "Avery",
-      "emoji": "\u2696\ufe0f",
-      "status": "Active",
-      "role": "Legal"
-    }
+    { "name": "Howard", "emoji": "🪨", "status": "Active", "role": "Chief of Staff" },
+    { "name": "Jacques", "emoji": "🔧", "status": "Active", "role": "Pro App Lead" },
+    { "name": "Marcel", "emoji": "🎨", "status": "Active", "role": "Marketplace Lead" },
+    { "name": "Reese", "emoji": "📋", "status": "Active", "role": "Product Manager" },
+    { "name": "Blake", "emoji": "🔍", "status": "Standby", "role": "QA (code-level)" },
+    { "name": "Cyrus", "emoji": "🛡️", "status": "Standby", "role": "Security" },
+    { "name": "Milo", "emoji": "📣", "status": "Standby", "role": "Marketing" },
+    { "name": "Quinn", "emoji": "📊", "status": "Active", "role": "Business Ops" },
+    { "name": "Rio", "emoji": "🌿", "status": "Active", "role": "Wellbeing" },
+    { "name": "Noa", "emoji": "🔬", "status": "Active", "role": "Research" },
+    { "name": "Kai", "emoji": "⚡", "status": "Active", "role": "Strategy" },
+    { "name": "Sage", "emoji": "🤝", "status": "Standby", "role": "Sales" },
+    { "name": "Avery", "emoji": "⚖️", "status": "Active", "role": "Legal" }
   ]
 }
