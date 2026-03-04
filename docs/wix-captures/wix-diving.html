@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Diving Services | Sailor Skills</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+  <script type="module" crossorigin src="/assets/main-BN7tco_C.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-r4AcEMs9.css">
+</head>
+<body>
+    <!-- Public Navigation -->
+    <nav class="public-nav">
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="https://www.sailorskills.com/">HOME</a>
+            <a href="https://www.sailorskills.com/training">TRAINING</a>
+            <a href="https://www.sailorskills.com/diving" class="active">DIVING</a>
+            <a href="https://www.sailorskills.com/detailing">DETAILING</a>
+            <a href="https://www.sailorskills.com/deliveries">DELIVERIES</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Header -->
+        <div class="hero-header">
+            <div class="hero-content">
+                <div class="hero-brand">SAILOR SKILLS</div>
+                <div class="hero-divider"></div>
+                <h1 class="hero-service">DIVING</h1>
+                <div class="hero-tagline">UNDERWATER VESSEL CARE</div>
+                <div class="hero-subtitle">Formerly Bottom Service</div>
+            </div>
+        </div>
+        
+        <div class="calculator-container">
+        <!-- Step 0: Service Selection -->
+        <div id="step-0" class="form-step active">
+            <h2>Select a service to see more details</h2>
+            <div class="input-group">
+                <div class="service-selection-grid" id="serviceButtons">
+                    <!-- Service buttons will be populated by JS -->
+                </div>
+                <p class="variable-info" style="margin-top: 15px; color: var(--ss-text-dark); font-weight: 500;">
+                    All prices shown are for labor only. Materials are additional.
+                </p>
+                <p class="variable-info" style="margin-top: 8px; color: var(--ss-text-medium);">
+                    <span id="minimum-fee-display">$150</span> minimum service fee applies to all services.
+                </p>
+                <p class="variable-info" id="servicePriceExplainer" style="margin-top: 10px;"></p>
+            </div>
+        </div>
+
+        <!-- Step 1: Boat Length -->
+        <div id="step-1" class="form-step" style="display: none;">
+            <h2>Boat Length</h2>
+            <div class="input-group">
+                <label for="boatLength">Boat Length (feet):</label>
+                <input type="number" id="boatLength" value="30" min="1">
+                 <p class="variable-info" id="boatLengthError" style="color: #d32f2f; display: none; margin-top: 5px;">Please enter a valid boat length.</p>
+            </div>
+            </div>
+
+        <!-- Step 2: Boat Type -->
+        <div id="step-2" class="form-step" style="display: none;">
+            <h2>Boat Type</h2>
+            <div class="input-group">
+                <label class="group-title">Select Boat Type:</label>
+                <div class="radio-group-item"><input type="radio" id="boat_type_sailboat" name="boat_type" value="sailboat" checked><label for="boat_type_sailboat" class="radio-label"><span class="radio-custom"></span>Sailboat</label></div>
+                <div class="radio-group-item"><input type="radio" id="boat_type_powerboat" name="boat_type" value="powerboat"><label for="boat_type_powerboat" class="radio-label"><span class="radio-custom"></span>Powerboat</label></div>
+            </div>
+            </div>
+
+        <!-- Step 3: Hull Type -->
+        <div id="step-3" class="form-step" style="display: none;">
+            <h2>Hull Type</h2>
+            <div class="input-group">
+                <label class="group-title">Select Hull Type:</label>
+                <div class="radio-group-item"><input type="radio" id="hull_monohull" name="hull_type" value="monohull" checked><label for="hull_monohull" class="radio-label"><span class="radio-custom"></span>Monohull</label></div>
+                <div class="radio-group-item"><input type="radio" id="hull_catamaran" name="hull_type" value="catamaran"><label for="hull_catamaran" class="radio-label"><span class="radio-custom"></span>Catamaran</label></div>
+                <div class="radio-group-item"><input type="radio" id="hull_trimaran" name="hull_type" value="trimaran"><label for="hull_trimaran" class="radio-label"><span class="radio-custom"></span>Trimaran</label></div>
+            </div>
+            </div>
+            
+        <!-- Step 4: Propeller Count -->
+        <div id="step-4" class="form-step" style="display: none;">
+            <h2>Propeller Count</h2>
+            <div class="input-group">
+                <label for="propellerCount">How many propellers are in the water?</label>
+                <input type="number" id="propellerCount" value="1" min="1" max="10">
+                <p class="variable-info" style="margin-top:5px;">One propeller is included in the base price. Each additional propeller adds 10% to the service cost.</p>
+            </div>
+        </div>
+
+        <!-- Step 5: Last Painted Time -->
+        <div id="step-5" class="form-step" style="display: none;">
+            <h2>Bottom Paint Age</h2>
+            <div class="input-group">
+                <label for="lastPaintedTime">When was the bottom last painted?</label>
+                <select id="lastPaintedTime">
+                    <option value="0-6_months" selected>Within 6 months</option>
+                    <option value="7-12_months">7-12 months ago</option>
+                    <option value="13-21_months">13-21 months ago</option>
+                    <option value="22-24_months">22-24 months ago</option>
+                    <option value="over_24_months">Over 24 months ago</option>
+                    <option value="unsure_paint">Unsure</option>
+                </select>
+                <p class="variable-info" id="paintExplainerText">The age of your boat's bottom paint helps me estimate its current condition.</p>
+            </div>
+            </div>
+
+        <!-- Step 6: Last Cleaned Time -->
+        <div id="step-6" class="form-step" style="display: none;">
+            <h2>Last Cleaning</h2>
+            <div class="input-group">
+                <label for="lastCleanedTime">When was it last cleaned?</label>
+                <select id="lastCleanedTime">
+                    <option value="0-2_months" selected>Within 2 months</option>
+                    <option value="3-4_months">3-4 months ago</option>
+                    <option value="5-6_months">5-6 months ago</option>
+                    <option value="7-8_months">7-8 months ago</option>
+                    <option value="9-12_months">9-12 months ago</option>
+                    <option value="13-24_months">13-24 months ago</option>
+                    <option value="over_24_months_unsure">Over 24 months ago / Unsure</option>
+                </select>
+                <p class="variable-info" id="growthExplainerText">The time since your last hull cleaning is a key factor in estimating marine growth.</p>
+            </div>
+        </div>
+
+        <!-- Step 7: Anode Installation (was step-2) -->
+        <div id="step-7" class="form-step" style="display: none;">
+            <h2>Anode Check & Optional Installation</h2>
+            <label for="anodesToInstall">If you'd like me to replace anodes, how many should I plan for?</label>
+            <input type="number" id="anodesToInstall" value="0" min="0">
+            <p class="variable-info" style="margin-top:5px;">This is optional. If you want anodes replaced, enter the quantity. I charge $15 per anode for installation (cost of anodes themselves is separate). Leave at 0 if unsure or no replacement needed now.</p>
+        </div>
+
+        <!-- Step 8: Result (was step-3) -->
+        <div id="step-8" class="result-section form-step" style="display: none;"> <!-- Added form-step for consistency -->
+            <h3>Estimated Cost:</h3>
+            <p class="total-cost-display" id="totalCostDisplay">$0.00</p>
+            <p class="variable-info"><span id="minimum-fee-result">$150</span> minimum for all services.</p>
+            <!-- Checkout button will be inserted here dynamically -->
+            <div id="costBreakdown"></div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="navigation-buttons">
+            <button id="backButton" type="button">Back</button>
+            <button id="nextButton" type="button">Next</button>
+        </div>
+
+        <!-- Checkout Section (hidden by default) -->
+        <div id="checkout-section" class="checkout-section" style="display: none;">
+            <h2>Complete Your Service Order</h2>
+
+            <!-- Form wrapper for proper browser security recognition -->
+            <form id="checkout-form" autocomplete="on">
+
+            <!-- Boat Information (for non-item-recovery services) -->
+            <div class="checkout-form" id="boat-info-section">
+                <h3>Boat Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="boat-name">Boat Name</label>
+                        <input type="text" id="boat-name" name="boat-name" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="boat-length-checkout">Boat Length (feet)</label>
+                        <input type="text" id="boat-length-checkout" name="boat-length-checkout" autocomplete="off" readonly>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="boat-make">Boat Make</label>
+                        <input type="text" id="boat-make" name="boat-make" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="boat-model">Boat Model</label>
+                        <input type="text" id="boat-model" name="boat-model" autocomplete="off">
+                    </div>
+                </div>
+
+                <h3>Marina Information</h3>
+                <div class="form-group">
+                    <label for="marina-name">Marina Name</label>
+                    <input type="text" id="marina-name" name="marina-name" autocomplete="off">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dock">Dock</label>
+                        <input type="text" id="dock" name="dock" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="slip-number">Slip Number</label>
+                        <input type="text" id="slip-number" name="slip-number" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item Recovery Location Information (only for item recovery service) -->
+            <div class="checkout-form" id="item-recovery-section" style="display: none;">
+                <h3>Recovery Location Information</h3>
+                <div class="form-group">
+                    <label for="recovery-location">Location Details</label>
+                    <textarea id="recovery-location" name="recovery-location" rows="6"
+                        placeholder="Please describe the recovery location in detail. Include:&#10;• Marina name and address&#10;• Slip number (if applicable)&#10;• Boat name (if item is near a boat)&#10;• Exact location where the item was lost&#10;• Any landmarks or reference points"></textarea>
+                    <p class="field-help">Please lower a weighted line into the water as close to where the item was last seen as possible. This will help me locate the item more quickly.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-description">Item Description</label>
+                    <input type="text" id="item-description" name="item-description"
+                        placeholder="Describe the item (e.g., keys on blue floaty, iPhone 14 Pro, prescription sunglasses)">
+                </div>
+
+                <div class="form-group">
+                    <label for="drop-date">When was the item lost?</label>
+                    <input type="date" id="drop-date" name="drop-date">
+                </div>
+            </div>
+
+            <!-- Anode Details Section (only for anodes only service) -->
+            <div class="checkout-form" id="anode-details-section" style="display: none;">
+                <h3>Anode Information</h3>
+                <div class="form-group">
+                    <label for="anode-details">Anode Details (Optional)</label>
+                    <textarea id="anode-details" name="anode-details" rows="4"></textarea>
+                    <p class="field-help">I maintain a good stock of common anodes, but any details help me come prepared with the right anodes for your boat.</p>
+                </div>
+            </div>
+
+            <div class="checkout-form">
+                <div id="service-interval-section">
+                    <h3>Service Interval</h3>
+                    <div class="form-group">
+                        <label>Select your preferred service interval:</label>
+                        <div class="service-interval-grid">
+                        <div class="interval-option" data-interval="1">
+                            <strong>Monthly</strong>
+                            <div>Every month</div>
+                        </div>
+                        <div class="interval-option recommended" data-interval="2">
+                            <strong>Bi-Monthly</strong>
+                            <div>Every 2 months</div>
+                        </div>
+                        <div class="interval-option" data-interval="3">
+                            <strong>Quarterly</strong>
+                            <div>Every 3 months</div>
+                        </div>
+                        <div class="interval-option" data-interval="6">
+                            <strong>Semi-Annual</strong>
+                            <div>Every 6 months</div>
+                        </div>
+                        <div class="interval-option" data-interval="one-time">
+                            <strong>One-Time</strong>
+                            <div>Single service</div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <h3>Contact Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customer-name">Full Name*</label>
+                        <input type="text" id="customer-name" name="customer-name" autocomplete="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-email">Email*</label>
+                        <input type="email" id="customer-email" name="customer-email" autocomplete="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-phone">Phone Number*</label>
+                    <input type="tel" id="customer-phone" name="customer-phone" autocomplete="tel" required>
+                </div>
+                
+                <h3>Billing Address</h3>
+                <div class="form-group">
+                    <label for="billing-address">Street Address*</label>
+                    <input type="text" id="billing-address" name="billing-address" autocomplete="street-address" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="billing-city">City*</label>
+                        <input type="text" id="billing-city" name="billing-city" autocomplete="address-level2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing-state">State*</label>
+                        <select id="billing-state" name="billing-state" autocomplete="address-level1" required>
+                            <option value="">Select State</option>
+                            <option value="CA">California</option>
+                            <option value="WA">Washington</option>
+                            <option value="OR">Oregon</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="NV">Nevada</option>
+                            <option value="FL">Florida</option>
+                            <option value="TX">Texas</option>
+                            <option value="NY">New York</option>
+                            <option value="Other">Other State</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h3>Additional Notes</h3>
+                <div class="form-group" style="max-width: 100%;">
+                    <label for="customer-notes">Is there anything else you'd like me to know?</label>
+                    <textarea id="customer-notes" name="customer-notes" rows="4" style="width: 100%;"></textarea>
+                    <p class="field-help">Include any scheduling or time-sensitive needs here</p>
+                </div>
+                
+                <h3>Payment Information</h3>
+
+                <div class="form-group">
+                    <label for="card-number-element">Card Number*</label>
+                    <div id="card-number-element"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="card-expiry-element">Expiration*</label>
+                        <div id="card-expiry-element"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-cvc-element">CVC*</label>
+                        <div id="card-cvc-element"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="postal-code-element">Billing ZIP Code*</label>
+                    <div id="postal-code-element"></div>
+                </div>
+
+                <div id="card-errors" role="alert"></div>
+
+                <!-- Service Agreement -->
+                <div class="agreement-section">
+                    <h4>Important Service Agreement</h4>
+                    <p><strong>Billing:</strong> Your card will be charged only after service completion.</p>
+                    <p><strong>Estimate Notice:</strong> The final amount may vary from the provided estimate based on actual conditions found during service. Common variations include:</p>
+                    <ul>
+                        <li>Unexpected marine growth levels</li>
+                        <li>Additional anode replacements needed</li>
+                    </ul>
+                    <p>Any variations and their reasons will be documented in your service logs and underwater video.</p>
+                    
+                    <div class="agreement-checkbox">
+                        <input type="checkbox" id="service-agreement" name="service-agreement" required>
+                        <label for="service-agreement">
+                            I understand and agree to be billed for the service at time of completion, and that the final amount may vary from the estimate provided.
+                        </label>
+                    </div>
+                </div>
+
+                <div id="submit-button-wrapper" style="text-align: center;">
+                    <button type="button" id="submit-order" class="submit-button" disabled>Complete Order</button>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="button" id="back-to-calculator" style="background: none; border: none; color: #116DFF; text-decoration: underline; cursor: pointer; font-size: 1em;">Back to Estimator</button>
+                </div>
+            </div>
+            </form>
+        </div>
+
+        <!-- Service Information Section -->
+        <div class="service-info-section">
+            <h2>Why Choose Sailor Skills Diving?</h2>
+            <div class="service-features">
+                <div class="feature-item">
+                    <h3>100% Satisfaction Guarantee</h3>
+                    <p>I stand behind my work with a complete satisfaction guarantee on all services.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Dependable Communication</h3>
+                    <p>Stay informed with regular updates before, during, and after each service.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Easy Account Management</h3>
+                    <p>Manage your service schedule and history through the convenient online portal.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Predictable Scheduling</h3>
+                    <p>Set it and forget it - I'll maintain your boat on a reliable schedule.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>4K Underwater Video</h3>
+                    <p>Receive detailed video documentation of your hull's condition with each service.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Online Service Logs</h3>
+                    <p>Access complete service history and reports anytime through your account.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-category">
+                <h3 class="faq-category-title">Assessment & Ratings</h3>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        How do you rate levels of marine growth?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>None:</strong> No visible marine growth. The hull appears clean and antifouling is effective.</li>
+                            <li><strong>Minimal:</strong> Light slime or isolated algae. Paint still provides good protection, but monitoring recommended.</li>
+                            <li><strong>Moderate:</strong> Noticeable slime, algae, or scattered barnacles. Antifouling may be losing effectiveness—cleaning should be scheduled soon.</li>
+                            <li><strong>Heavy:</strong> Dense slime, algae, barnacles, or other hard growth. Antifouling is likely failing; immediate cleaning needed.</li>
+                            <li><strong>Severe:</strong> Heavy colonies of barnacles, mussels, or tube worms plus pervasive slime. Antifouling offers no protection. Urgent cleaning and likely repainting required.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        How do you rate paint condition?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><em>Note: When two terms are used (e.g., Good/Fair), it indicates a spectrum. The waterline degrades fastest due to warmer temperatures and sunlight. Other high-wear areas include keel edges, rudder, and prop aperture surfaces.</em></p>
+                        <ul>
+                            <li><strong>Excellent:</strong> Optimal coverage with highly effective antifouling. No flaking or peeling. Extended time before repainting needed.</li>
+                            <li><strong>Good:</strong> Adequate coverage with minor wear or slight thinning. Plan maintenance in the near future.</li>
+                            <li><strong>Fair:</strong> Significant wear with larger areas of thinning, peeling, or fouling. Repainting recommended soon.</li>
+                            <li><strong>Poor:</strong> Minimal protection with large exposed areas and significant fouling. Prioritize repainting to prevent long-term damage.</li>
+                            <li><strong>Missing:</strong> Paint absent in areas, exposing barrier coat, gel coat, or fiberglass. Rapid hard growth expected. These areas are scraped with metal tools. Painting well past due.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h3 class="faq-category-title">Billing & Pricing</h3>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        How does billing work?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>I aim to bill within a week after your service. I coordinate service timing based on weather, inventory, and other factors to hit your ideal window. Any anode or variable charges are included when I bill for the service.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Are anodes extra?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, anodes are additional. You're welcome to provide your own. I charge roughly chandlery prices plus tax. See the estimator above for current anode installation pricing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Can you provide an estimate before beginning work?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>If your boat is in my service area, I'm happy to stop by for a look and present you with options before your first service.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Do you offer a referral program?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! For each referral who signs up for ongoing service, you receive a free cleaning (anodes extra). Your friend gets 50% off their first cleaning. There's no limit—earn a year or more of free cleanings!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h3 class="faq-category-title">Cleaning Process</h3>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What do you use to clean the bottom?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>I use tools ranging from soft cloths to steel scrapers, matched to each growth type. I always use minimum effective abrasion to protect your paint. If I can't achieve a clean finish without removing paint, I'll let you know it's time to plan your next haul-out.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Will my paint look perfectly clean afterward?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The final appearance depends on your paint's remaining biocidal properties. If the protective properties are diminished, some stubborn algae may remain in the paint's microscopic texture. This algae is harmless, and removing it would require damaging the paint. Leaving it protects your hull, extends paint life, and minimizes environmental impact—while still restoring vessel performance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        How high up do you clean?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>I clean up to the antifouling paint line only. To avoid gel coat damage, I don't scrub unpainted surfaces, including worn-through areas or where the paint line is below the waterline. If your waterline is submerged, consider lightening the vessel or raising the paint line at your next haul-out. For above-waterline cleaning, see my <a href="https://www.sailorskills.com/detailing">detailing services</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h3 class="faq-category-title">Special Services</h3>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Do you offer one-time services?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! While regular service offers the best performance and savings, I'm happy to provide one-time cleanings—especially for voyage preparation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        I need a cleaning before a race. Can you help?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! I'll do my best to align your cleaning as close to race day as possible. If you're in my service area and I'm available, just let me know your needs and I'll work with you on timing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        I dropped something in the water. Can you retrieve it?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>I'm happy to help! Off-schedule retrievals require booking as a one-time service. For regular clients, items retrieved during scheduled service incur no extra charge (just any added time).</p>
+                        <p><strong>Important:</strong> Don't disturb the bottom before I arrive—one customer raked the bottom searching for a phone, and despite 40 minutes of searching, I couldn't locate it.</p>
+                        <p>I cannot guarantee successful or undamaged retrieval. If I can't find the item in 20 minutes, I'll search another 20 minutes at no additional charge. Use the estimator above to book item recovery.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // FAQ Accordion functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                const answer = button.nextElementSibling;
+
+                // Toggle current item
+                button.setAttribute('aria-expanded', !isExpanded);
+                answer.classList.toggle('open');
+            });
+        });
+    </script>
+
+</body>
+</html>

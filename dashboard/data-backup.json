@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-04T17:36:05.586Z",
+  "lastUpdated": "2026-03-04T19:36:04.931Z",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
@@ -699,14 +699,14 @@
       "team": "Core Team",
       "station": "Helm",
       "avatar": "/avatars/howard-robot-v2.png",
-      "status": "standby",
-      "costThisMonth": 107.31,
-      "totalTokens": 61079584,
-      "lastActive": "3h ago",
-      "lastActiveTs": 1772636430572,
-      "currentTask": "Yes, setup Noa’s inbox flow. I’ll share directly to her",
-      "tasksCompleted": 31,
-      "productivity": 56
+      "status": "active",
+      "costThisMonth": 131.86,
+      "totalTokens": 74989186,
+      "lastActive": "3m ago",
+      "lastActiveTs": 1772652780035,
+      "currentTask": "Let's deploy as a subdomain. Give me a status update on the rest of the site mig",
+      "tasksCompleted": 32,
+      "productivity": 57
     },
     {
       "name": "Jacques",
@@ -732,12 +732,12 @@
       "station": "Workshop",
       "avatar": "/avatars/marcel-robot-v2.png",
       "status": "active",
-      "costThisMonth": 89.48,
-      "totalTokens": 77684971,
+      "costThisMonth": 92.74,
+      "totalTokens": 81361613,
       "lastActive": "just now",
-      "lastActiveTs": 1772645759548,
+      "lastActiveTs": 1772652959511,
       "currentTask": "[media attached: /Users/brian/.openclaw/media/inbound/file_24---4a9133fd-fd24-47",
-      "tasksCompleted": 333,
+      "tasksCompleted": 343,
       "productivity": 58
     },
     {
@@ -888,15 +888,15 @@
   "organization": {
     "monthlyCosts": {
       "actual": 549,
-      "apiEquivalent": 345.8,
+      "apiEquivalent": 373.6,
       "infrastructure": 349,
       "target": 500
     },
     "anthropic": {
       "plan": "Max 20X",
       "planCost": 200,
-      "apiEquivalentUsage": 196.8,
-      "savings": -3.2,
+      "apiEquivalentUsage": 224.6,
+      "savings": 24.6,
       "apiUsage": null,
       "source": "transcript-estimate"
     },
@@ -917,18 +917,18 @@
     "costsByModel": [
       {
         "name": "claude-opus-4-6",
-        "cost": 196.8,
+        "cost": 224.6,
         "percent": 100
       }
     ],
     "costsByAgent": [
       {
         "agent": "Howard",
-        "cost": 107.31
+        "cost": 131.86
       },
       {
         "agent": "Marcel",
-        "cost": 89.48
+        "cost": 92.74
       },
       {
         "agent": "Jacques",
@@ -984,124 +984,124 @@
   },
   "recentActivity": [
     {
+      "icon": "🪨",
+      "text": "Howard:   Scheduler is live at **schedule.briancline.co**. Take a look — it should have ",
+      "time": "3m ago",
+      "agent": "Howard"
+    },
+    {
       "icon": "🎨",
-      "text": "Marcel: Can't verify visually. But the code is correct — the committed HeroSection has \"",
-      "time": "7m ago",
+      "text": "Marcel: All good. Here's the report:  **Scheduler app is live at https://schedule.brianc",
+      "time": "3m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Pushed. Now on the homepage question — I need to verify what's actually live. Th",
-      "time": "7m ago",
+      "text": "Marcel: Live and serving. Let me do a quick check that the SPA routing works too.",
+      "time": "3m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Working tree matches HEAD for both files. The committed code already has the ser",
-      "time": "8m ago",
+      "text": "Marcel: Domain added. Let me verify it's resolving.",
+      "time": "4m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Clean. Now let me verify the homepage situation more carefully — the committed I",
-      "time": "8m ago",
+      "text": "Marcel: Deployed. Now add the custom domain.",
+      "time": "4m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Now verify it builds:",
-      "time": "8m ago",
+      "text": "Marcel: Build succeeds. Now deploy to Vercel.",
+      "time": "4m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Now add admin links to the mobile menu too:",
-      "time": "8m ago",
+      "text": "Marcel: vercel.json SPA rewrites look correct. Let me build and deploy.",
+      "time": "4m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Marcel's deploying the scheduler. Here's the full site migration status:  **✅ Do",
+      "time": "4m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard:   That's expected — the scheduler app exists in the codebase (`~/AI/business/bri",
+      "time": "6m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Both tasks are done — he's idle. Contact form working, service pages deployed wi",
+      "time": "6m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected. Costs tracked at $549/mo actual vs $369.94/mo API-equi",
+      "time": "15m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Marcel's fixes are deployed:  - **Images** — all replaced with high-res versions",
+      "time": "16m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Contact form fix is deployed. Vercel will rebuild with the new env var.  Here's ",
+      "time": "16m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Now update the from address in the contact API:",
+      "time": "16m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: All good - the HOME link is there, my grep just didn't match it since it doesn't",
+      "time": "17m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Now replace the desktop auth section (avatar + sign out button) with a dropdown ",
-      "time": "8m ago",
+      "text": "Marcel: Wait, the HOME link isn't showing. Let me check:",
+      "time": "17m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: The contact form is sending from `onboarding@resend.dev` which is their sandbox.",
+      "time": "17m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Let me verify the fixes are live:",
+      "time": "17m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Good. Now let me also verify what the HeroSection issue is. From my earlier inve",
-      "time": "9m ago",
+      "text": "Marcel: Deployed. Let me verify the key pages:",
+      "time": "17m ago",
       "agent": "Marcel"
     },
     {
-      "icon": "🎨",
-      "text": "Marcel: Now I need to add a dropdown menu to the avatar with admin links. Let me also ch",
-      "time": "9m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: I see the problem — the avatar is there but it's not a dropdown. It just shows t",
-      "time": "9m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: It's on Vercel. The SPA returns minimal HTML (React renders client-side). Let me",
-      "time": "9m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: The working tree now has the correct version (my `git show > file` commands over",
-      "time": "9m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: OK so HEAD already has the correct service-provider-search version. The committe",
-      "time": "9m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Wait — no diff between `2015e05` and HEAD for HeroSection? So the file on HEAD I",
-      "time": "9m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: So `2015e05` IS on main but the files were reverted by a later commit. Let me ch",
-      "time": "9m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: No diff — means the working tree already matches HEAD for these files. The curre",
-      "time": "9m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: The files aren't showing as modified because the working tree already has a lot ",
-      "time": "10m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Clean build. Let me commit and deploy.",
-      "time": "10m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Those files are no longer imported anywhere — they're orphaned. Now let me check",
-      "time": "10m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Now let me check if ChatMockup, FloatingIllustrations, and PromptChips are still",
-      "time": "10m ago",
-      "agent": "Marcel"
+      "icon": "🪨",
+      "text": "Howard: Got the API key pattern. That detailing key is domain-specific though. Let me ch",
+      "time": "17m ago",
+      "agent": "Howard"
     }
   ],
   "billing": {
@@ -1157,16 +1157,16 @@
     ],
     "monthlySummary": {
       "actual": 549,
-      "apiEquivalent": 345.8,
+      "apiEquivalent": 373.6,
       "anthropicPlan": 200,
-      "anthropicApiEquiv": 196.8,
-      "anthropicSavings": -3.2,
+      "anthropicApiEquiv": 224.6,
+      "anthropicSavings": 24.6,
       "otherApis": 0,
       "infrastructure": 349
     }
   },
   "metadata": {
-    "lastUpdated": "2026-03-04T17:36:05.587Z",
+    "lastUpdated": "2026-03-04T19:36:04.932Z",
     "version": "3.0",
     "source": "Real data from session transcripts + curated static data"
   }
