@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-04T21:51:05.139Z",
+  "lastUpdated": "2026-03-05T00:51:05.542Z",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
@@ -700,12 +700,12 @@
       "station": "Helm",
       "avatar": "/avatars/howard-robot-v2.png",
       "status": "standby",
-      "costThisMonth": 138.85,
-      "totalTokens": 79201768,
-      "lastActive": "17m ago",
-      "lastActiveTs": 1772660024039,
-      "currentTask": "OK great. Let's revisit the scheduling system. Maybe we can dispatch our QA spec",
-      "tasksCompleted": 33,
+      "costThisMonth": 145.28,
+      "totalTokens": 81198782,
+      "lastActive": "48m ago",
+      "lastActiveTs": 1772668992381,
+      "currentTask": "Marcel seems unresponsive. Even to slash commands.",
+      "tasksCompleted": 34,
       "productivity": 58
     },
     {
@@ -732,13 +732,13 @@
       "station": "Workshop",
       "avatar": "/avatars/marcel-robot-v2.png",
       "status": "active",
-      "costThisMonth": 99.83,
-      "totalTokens": 90012936,
+      "costThisMonth": 116.71,
+      "totalTokens": 103614331,
       "lastActive": "just now",
-      "lastActiveTs": 1772661059628,
-      "currentTask": "[media attached: /Users/brian/.openclaw/media/inbound/file_24---4a9133fd-fd24-47",
-      "tasksCompleted": 349,
-      "productivity": 59
+      "lastActiveTs": 1772671859557,
+      "currentTask": "oh, can you do it?",
+      "tasksCompleted": 361,
+      "productivity": 60
     },
     {
       "name": "Noa",
@@ -888,15 +888,15 @@
   "organization": {
     "monthlyCosts": {
       "actual": 549,
-      "apiEquivalent": 387.68,
+      "apiEquivalent": 410.99,
       "infrastructure": 349,
       "target": 500
     },
     "anthropic": {
       "plan": "Max 20X",
       "planCost": 200,
-      "apiEquivalentUsage": 238.68,
-      "savings": 38.68,
+      "apiEquivalentUsage": 261.99,
+      "savings": 61.99,
       "apiUsage": null,
       "source": "transcript-estimate"
     },
@@ -917,18 +917,18 @@
     "costsByModel": [
       {
         "name": "claude-opus-4-6",
-        "cost": 238.68,
+        "cost": 261.99,
         "percent": 100
       }
     ],
     "costsByAgent": [
       {
         "agent": "Howard",
-        "cost": 138.85
+        "cost": 145.28
       },
       {
         "agent": "Marcel",
-        "cost": 99.83
+        "cost": 116.71
       },
       {
         "agent": "Jacques",
@@ -985,122 +985,122 @@
   "recentActivity": [
     {
       "icon": "🎨",
-      "text": "Marcel: Dashboard data collected successfully.",
+      "text": "Marcel: Scheduler is production-ready. All three legs of the booking flow work end-to-en",
+      "time": "8m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: All three green:  ✅ **Supabase** — booking saved with `google_event_id: va9c67i1",
+      "time": "8m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Now let me verify all three:",
+      "time": "8m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Browser isn't cooperating. Let me just do it via curl — simulate the exact same ",
+      "time": "8m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel:   Go ahead — book something on `schedule.briancline.co`. I'll check your calenda",
+      "time": "10m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: All good. Here's the summary:  ✅ **Google OAuth** — fixed (new credentials, API ",
+      "time": "11m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Both working. Let me clean up the test data:",
+      "time": "11m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Email sent successfully. Check your inbox at standardhuman@gmail.com — you shoul",
+      "time": "11m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: No auth header needed — just the API call. Let me test:",
+      "time": "11m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Now test the email edge function:",
+      "time": "11m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Cleaned up. Google Calendar integration is fully working. The email issue from e",
+      "time": "12m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: **\"Connect Call with Test McTest\"** — right there on March 10 at 2:00 PM PT (sho",
+      "time": "12m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Event created. Let me verify it shows up on your calendar:",
+      "time": "12m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: API propagation takes a couple minutes. Let me wait and retry:",
+      "time": "13m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel:   No, just your account. That's the one with the OAuth tokens. Let me retry:",
+      "time": "14m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: The Google Calendar API isn't enabled on your new OAuth project. You need to ena",
+      "time": "14m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Booking created. Now call the calendar edge function:",
+      "time": "14m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Calendar access works. Now let me test the full booking flow end-to-end — I'll c",
+      "time": "14m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Got it. Let me verify:",
+      "time": "14m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel:   The gog process got killed before the callback server could receive the redire",
       "time": "15m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Blake's on it — full end-to-end QA of schedule.briancline.co. He'll test functio",
-      "time": "17m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Done. 24 Wix band-aids removed, 196 clean redirects live. Note it's now aliased ",
-      "time": "19m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Here's my take on which to keep vs remove:  **Keep** (real value — customers/pub",
-      "time": "21m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Wix is dead. 🪦",
-      "time": "22m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard:   That's Phase 1 complete. All service pages live on briancline.co, all 220 redi",
-      "time": "22m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Here's what just happened:  **220 redirects are live on Vercel.** Every sailorsk",
-      "time": "22m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now let me update the docs:",
-      "time": "22m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: All working. Now let me also update the www CNAME while we're at it:",
-      "time": "23m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Redirects are working. Let me test a few more:",
-      "time": "23m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Now let me test a redirect:",
-      "time": "23m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: The A record still points to Wix (23.236.62.147). I need to update it to Vercel'",
-      "time": "23m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: All good. Let me send the update back to Howard:",
-      "time": "23m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Deployed. Now I need to assign the sailorskills.com domain to this project.",
-      "time": "23m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Let me verify the content and image load:",
-      "time": "23m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: Those Zoho links are dead (Marcel's audit confirmed 400s). I'll redirect them to",
-      "time": "24m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: The domain is on Vercel but not assigned to a project yet. I'll create a lightwe",
-      "time": "24m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Need to add diving.html to the Vite input config:",
-      "time": "24m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Hmm — 404. The `diving.html` is at the root but Vite might not be including it i",
-      "time": "24m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Let me verify:",
-      "time": "24m ago",
       "agent": "Marcel"
     }
   ],
@@ -1157,16 +1157,16 @@
     ],
     "monthlySummary": {
       "actual": 549,
-      "apiEquivalent": 387.68,
+      "apiEquivalent": 410.99,
       "anthropicPlan": 200,
-      "anthropicApiEquiv": 238.68,
-      "anthropicSavings": 38.68,
+      "anthropicApiEquiv": 261.99,
+      "anthropicSavings": 61.99,
       "otherApis": 0,
       "infrastructure": 349
     }
   },
   "metadata": {
-    "lastUpdated": "2026-03-04T21:51:05.140Z",
+    "lastUpdated": "2026-03-05T00:51:05.544Z",
     "version": "3.0",
     "source": "Real data from session transcripts + curated static data"
   }
