@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-05T21:36:04.959Z",
+  "lastUpdated": "2026-03-06T00:36:05.040Z",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
@@ -700,12 +700,12 @@
       "station": "Helm",
       "avatar": "/avatars/howard-robot-v2.png",
       "status": "standby",
-      "costThisMonth": 178.38,
-      "totalTokens": 94758572,
-      "lastActive": "7m ago",
-      "lastActiveTs": 1772746128899,
-      "currentTask": "Ok. By the way I didn't see anything about a summary and a test plan. Where did ",
-      "tasksCompleted": 43,
+      "costThisMonth": 179.1,
+      "totalTokens": 94993943,
+      "lastActive": "51m ago",
+      "lastActiveTs": 1772754328726,
+      "currentTask": "I pasted it in. What functions do I need to run?",
+      "tasksCompleted": 44,
       "productivity": 59
     },
     {
@@ -732,12 +732,12 @@
       "station": "Workshop",
       "avatar": "/avatars/marcel-robot-v2.png",
       "status": "active",
-      "costThisMonth": 123.2,
-      "totalTokens": 111223554,
+      "costThisMonth": 119.17,
+      "totalTokens": 106389346,
       "lastActive": "just now",
-      "lastActiveTs": 1772746559533,
+      "lastActiveTs": 1772757359520,
       "currentTask": "Excellent. Marcel are you familiar with phase 2 of our website migration that we",
-      "tasksCompleted": 447,
+      "tasksCompleted": 457,
       "productivity": 61
     },
     {
@@ -888,15 +888,15 @@
   "organization": {
     "monthlyCosts": {
       "actual": 549,
-      "apiEquivalent": 450.58,
+      "apiEquivalent": 447.26,
       "infrastructure": 349,
       "target": 500
     },
     "anthropic": {
       "plan": "Max 20X",
       "planCost": 200,
-      "apiEquivalentUsage": 301.58,
-      "savings": 101.58,
+      "apiEquivalentUsage": 298.26,
+      "savings": 98.26,
       "apiUsage": null,
       "source": "transcript-estimate"
     },
@@ -917,18 +917,18 @@
     "costsByModel": [
       {
         "name": "claude-opus-4-6",
-        "cost": 301.58,
+        "cost": 298.26,
         "percent": 100
       }
     ],
     "costsByAgent": [
       {
         "agent": "Howard",
-        "cost": 178.38
+        "cost": 179.1
       },
       {
         "agent": "Marcel",
-        "cost": 123.2
+        "cost": 119.17
       },
       {
         "agent": "Jacques",
@@ -985,123 +985,123 @@
   "recentActivity": [
     {
       "icon": "🎨",
-      "text": "Marcel: Both items done:  **1. Migration applied** — `20260305000000_sailing_lessons.sql",
-      "time": "6m ago",
+      "text": "Marcel: Data collected. Costs tracked at $549/mo actual vs $447/mo API-equivalent.",
+      "time": "15m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Now deploy the edge functions, commit, and push:",
-      "time": "6m ago",
+      "text": "Marcel: Data collection complete. Costs tracked at $549/mo actual vs $447.22/mo API-equi",
+      "time": "30m ago",
       "agent": "Marcel"
     },
     {
       "icon": "🎨",
-      "text": "Marcel: Now update the Google Calendar function to handle sailing events:",
-      "time": "6m ago",
+      "text": "Marcel: Dashboard data collected successfully.",
+      "time": "45m ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard:   1. **setupTriggers** 2. **fullSyncSheetToCalendar**  In that order. Clean up t",
+      "time": "51m ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected. Costs tracked: $549/mo actual, $446.66/mo API-equivale",
+      "time": "1h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully.",
+      "time": "1h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Data collection complete. Costs tracked: $549/mo actual vs $446.63/mo API-equiva",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected. Costs tracking at $549/mo actual vs $446.61/mo API-equ",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected. Costs tracked: $549/mo actual, $446.59/mo API-equivale",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected. Costs tracking at $549/mo actual vs $447 API-equivalen",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected. Costs tracked at $549/mo actual, $447.12/mo API-equiva",
+      "time": "2h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Afternoon checkpoint complete. Key captures: Reese's major sailing lessons booki",
+      "time": "3h ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Now I have everything. Let me update the memory file.",
+      "time": "3h ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🪨",
+      "text": "Howard: Now let me check the new Obsidian file and update the memory file.",
+      "time": "3h ago",
+      "agent": "Howard"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected successfully.",
+      "time": "3h ago",
+      "agent": "Marcel"
+    },
+    {
+      "icon": "🎨",
+      "text": "Marcel: Dashboard data collected. Costs tracking at $549/mo actual vs $450.58/mo API-equ",
+      "time": "3h ago",
       "agent": "Marcel"
     },
     {
       "icon": "🪨",
       "text": "Howard:   You're right — looking at the screenshot, my response to \"What do you think?\" ",
-      "time": "7m ago",
+      "time": "3h ago",
       "agent": "Howard"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Migration applied. Now updating the edge functions.",
-      "time": "8m ago",
-      "agent": "Marcel"
     },
     {
       "icon": "🪨",
       "text": "Howard:   Oh — you were asking what I think about the cancelled status approach specific",
-      "time": "10m ago",
+      "time": "3h ago",
       "agent": "Howard"
     },
     {
       "icon": "🪨",
       "text": "Howard: Got it — the 👀 on every single message. That's excessive and weird. I should be",
-      "time": "10m ago",
+      "time": "3h ago",
       "agent": "Howard"
     },
     {
       "icon": "🪨",
       "text": "Howard:   Ha — I see the 👀 reactions stacking up. Sorry for the delayed responses. I'm ",
-      "time": "11m ago",
+      "time": "3h ago",
       "agent": "Howard"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected. Costs tracked: $549/mo actual, $447.39/mo API-equivale",
-      "time": "15m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: I think that covers the core sync loop pretty well:  - Sheet edit → creates/upda",
-      "time": "24m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard: On your clipboard. Now if someone deletes a calendar event, the next hourly refr",
-      "time": "30m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Dashboard data collected. Costs tracked: $549/mo actual, $446.24/mo API-equivale",
-      "time": "30m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🪨",
-      "text": "Howard:   Currently nothing happens — the row stays in the spreadsheet as a ghost. The h",
-      "time": "31m ago",
-      "agent": "Howard"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: The Sailing Lessons Booking feature is built and pushed. Here's what was accompl",
-      "time": "31m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: No references to `/connect` on the training page — already updated.   Now let me",
-      "time": "31m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: The training page CTAs are already pointing to `/sailing`. That was already upda",
-      "time": "31m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Now let me update the briancline.co training page CTAs:",
-      "time": "32m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Build successful. Let me commit:",
-      "time": "32m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Clean compile. Let me also check it builds:",
-      "time": "32m ago",
-      "agent": "Marcel"
-    },
-    {
-      "icon": "🎨",
-      "text": "Marcel: Also remove unused `emailChecked`:",
-      "time": "32m ago",
-      "agent": "Marcel"
     }
   ],
   "billing": {
@@ -1157,16 +1157,16 @@
     ],
     "monthlySummary": {
       "actual": 549,
-      "apiEquivalent": 450.58,
+      "apiEquivalent": 447.26,
       "anthropicPlan": 200,
-      "anthropicApiEquiv": 301.58,
-      "anthropicSavings": 101.58,
+      "anthropicApiEquiv": 298.26,
+      "anthropicSavings": 98.26,
       "otherApis": 0,
       "infrastructure": 349
     }
   },
   "metadata": {
-    "lastUpdated": "2026-03-05T21:36:04.980Z",
+    "lastUpdated": "2026-03-06T00:36:05.042Z",
     "version": "3.0",
     "source": "Real data from session transcripts + curated static data"
   }
