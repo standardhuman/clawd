@@ -1,6 +1,6 @@
 # Noa's Source List
 
-Last updated: 2026-02-26 (v8)
+Last updated: 2026-03-07 (v9)
 
 ## 🎯 Primary Sources (check every night)
 
@@ -69,6 +69,10 @@ Last updated: 2026-02-26 (v8)
 - **Benedict Evans** (ben-evans.com) — Sharp AI market analyst. OpenAI competitive analysis is best-in-class strategic framing. Discovered 2026-02-26.
 - **Amplifying.ai** (amplifying.ai) — Empirical research on AI coding agent behavior. "What Claude Code Chooses" study (2,430 prompts, 3 models). Best data on AI tool preferences. Discovered 2026-02-27.
 - **Technically Dev** (read.technically.dev) — Long-form developer culture analysis. "Vibe Coding and the Maker Movement" is excellent strategic framing. Discovered 2026-02-27.
+
+- **Cova / @covacut** — AI content creator (20M+ views). Works with NVIDIA and Adobe. Uses Obsidian + Claude Code for content scaling. Featured on Greg Isenberg Mar 6. Discovered 2026-03-07.
+- **George Fraser** (Fivetran CEO) — "Anthropic, please make a new Slack" — thinking deeply about AI + enterprise communication gaps. Discovered 2026-03-07.
+- **Joseph Politano** (@JosephPolitano) — Economic analyst with detailed BLS tech employment data. Useful for labor market context. Discovered 2026-03-07.
 
 ---
 

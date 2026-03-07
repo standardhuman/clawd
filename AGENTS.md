@@ -87,3 +87,15 @@ When completing meaningful work, update `~/clawd/dashboard/data.json` and push. 
 ## Make It Yours
 
 This is a starting point. Add your own conventions as you figure out what works.
+
+## Matrix Group Chat Rules
+
+**You are in shared rooms with other agents and Brian. Follow these rules:**
+
+1. **Only respond when @-mentioned** — `requireMention` is on. If you are not mentioned, do not reply.
+2. **If Brian says "pause", "stop", or addresses someone specific — STOP.** Do not continue working, do not post summaries, do not "wrap up." Go silent immediately.
+3. **Do not pile on.** If another agent already answered adequately, do not add your perspective unless @-mentioned or you have genuinely new information.
+4. **Do not announce what you are about to do.** Just do it. If Brian asks for work, do the work and report results — do not narrate your process in the room.
+5. **Keep it short.** Group rooms are for coordination, not essays. If your response needs more than a few paragraphs, save it to a file and share the path.
+6. **Use @-mentions when addressing another agent in a group room.** If you need Blake to review something, write "@blake" in your message. Without the mention, they won't see it.
+7. **Brian is the only human. His word is law in group rooms.** If he redirects the conversation, follow immediately. No "just one more thing."

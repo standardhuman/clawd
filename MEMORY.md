@@ -6,7 +6,9 @@
 
 ## Urgent: Taxes
 
-**2024 return is ~10 months overdue.** ~~Estimated liability ~$21,715~~ **CORRECTED: ~$9,200** (revenue was double-counted — Stripe payments are a subset of Zoho, not separate). With penalties: ~$12,343. No payments made. Brian is hiring a CPA — top picks: Dimov Tax (866-681-2140), Mary Geong (510-654-4417), Chang & Associates (510-548-1962). Corrected reconciliation at `~/AI/finance/taxes-2024/docs/income/2024-CORRECTED-INCOME-RECONCILIATION.md`. True 2024 gross: $67,666 (not $113K).
+**2024 return is ~10 months overdue.** ~~Estimated liability ~$21,715~~ **CORRECTED: ~$9,200** (revenue was double-counted — Stripe payments are a subset of Zoho, not separate). With penalties: ~$12,343. No payments made. Corrected reconciliation at `~/AI/finance/taxes-2024/docs/income/2024-CORRECTED-INCOME-RECONCILIATION.md`. True 2024 gross: $67,666 (not $113K).
+
+**CPA: Dimov Tax — ENGAGED (March 6, 2026).** George Dimov (info@dimovtax.com). Scope: 2024 personal return ($595) + 2025 1120-S ($895) + 7004 extension ($240) = $1,730 total. Priority: 7004 extension before March 15 deadline. Also raised CA EDD back-filings (DE 9/DE 9C Q2+Q3 2025) for follow-up. Waiting for George's checklist to send document package.
 
 **S-Corp accepted effective Jan 1, 2025** (not 2024). Form 1120-S due March 15, 2026. Brian paying W-2 via Gusto already.
 
@@ -82,7 +84,7 @@ Original plan: Hiring Sarah (lives on Brian's dock) as **W-2 employee** (not 109
 
 **Model Menu (Feb 13, 2026):** `/model opus` (default), `/model kimi` (free), `/model deepseek` ($0.28/$0.42), `/model deepseek-r`. All configured and working.
 
-**OpenClaw Version Mismatch:** Homebrew CLI at 2026.1.29, fnm CLI at 2026.2.12, gateway at 2026.2.3-1. Codex OAuth needs version alignment + gateway restart. Parked for now.
+**OpenClaw Version:** Updated to v2026.3.2 on March 6, 2026 (both npm global and fnm installs now aligned).
 
 **Anthropic OAuth Token (Feb 16):** Using OAuth token (`sk-ant-oat01-...`) — Brian's preference. Token removed from `openclaw.json` and now injected at runtime via 1Password CLI (`op run`). Wrapper script: `~/.openclaw/gateway-start.sh`, env file: `~/.openclaw/gateway.env` with `op://Personal/Anthropic Claude Code OAuth Token/credential`. After reboot, 1Password must be unlocked for gateway to start. Also has API key in 1Password as "Anthropic API Credentials" if needed.
 
@@ -168,6 +170,10 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 - 🔍 Noa — Research Analyst (midnight daily → ~/clawd/reports/YYYY-MM-DD-research.md)
 - 💡 Kai — Strategist (6:30am daily → pitch announced to Brian)
 
+**Builders (full agents, own workspaces — added March 6):**
+- 🏗️ Ellis — Personal Sites Builder (Tahoe, CIIR, Scheduler)
+- 🎪 Wes — Client Sites Builder (TMC, Blisscapes)
+
 **On-Demand (Howard spawns via sessions_spawn with persona context):**
 - Blake (QA), Quinn (Ops & Finance), Sage (Sales), Milo (Marketing), Reese (Product), Avery (Legal), Cyrus (Security)
 
@@ -216,7 +222,7 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 
 **Obsidian doc:** `SailorSkills/Business/Domain Restructure - briancline.co.md`
 
-*Last updated: March 4, 2026*
+*Last updated: March 6, 2026*
 
 ## Matrix Homeserver — Full Setup (March 6, 2026)
 
@@ -234,4 +240,10 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 
 **Brian's Avatar:** Stylized illustrated portrait at `~/clawd/avatars/brian-stylized-avatar.png` (`mxc://briancline.co/rifxxxSTkLhbAAcPveLTpBtF`). Also generated Pixar and robot versions — Brian chose the illustrated one.
 
-**imageModel.primary broken:** `google/gemini-2.5-flash-preview` returns "Unknown model" in image tool. Needs updating.
+**Matrix Plugin — Partially Working (March 6):** Plugin installed and loaded, 15 Matrix accounts configured, 15 bindings, 4 rooms mapped. Two bugs patched manually (keyed-async-queue shim, subpath import fix). API test message succeeded. BUT gateway never cleanly restarted — sync loop never started. Need clean gateway stop+start. Brian's DM in Element got no response (confirms sync not running).
+
+**imageModel.primary broken (March 6):** `google/gemini-2.5-flash-preview` returns "Unknown model" in image tool. `nano-banana-pro` (Gemini 3 Pro Image) still works for generation. Needs config update.
+
+## TMC Tahoe Away Weekend Site (March 2026)
+
+Built by Ellis. RSVP system with Supabase (`tahoe_rsvps` table, 15 attendees seeded). Click-to-edit roster, rideshare board pulling from RSVP data, Google Calendar/ICS links. RSVP deadline March 27. Supabase JS SDK removed — replaced with fetch wrapper (bundle 406KB → 235KB, fixed AdGuard blocking). Obsidian doc: `SailorSkills/Projects/TMC Tahoe Away Weekend Site.md`.
