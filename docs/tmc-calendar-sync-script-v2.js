@@ -29,7 +29,17 @@
  * O: Event ID (hidden)
  */
 
-const CALENDAR_ID = 'b7cad28ac6a1dc2c862ddfb8af611eb955f6748c042309ef8ea5bdc27b9c31ec@group.calendar.google.com';
+// ─── TEST MODE ───────────────────────────────────────────
+// Set TEST_MODE = true to test without spamming members.
+// Creates events on a private test calendar, skips all invites.
+// Set it back to false when you're ready to go live.
+const TEST_MODE = false;
+
+const PROD_CALENDAR_ID = 'b7cad28ac6a1dc2c862ddfb8af611eb955f6748c042309ef8ea5bdc27b9c31ec@group.calendar.google.com';
+// Create a personal calendar called "TMC Test", then paste its ID here:
+const TEST_CALENDAR_ID = '';
+
+const CALENDAR_ID = TEST_MODE && TEST_CALENDAR_ID ? TEST_CALENDAR_ID : PROD_CALENDAR_ID;
 const SHEET_NAME = 'Events';
 const DIRECTORY_SHEET = 'Member Directory';
 const EVENT_ID_COL = 15; // Column O
@@ -243,10 +253,15 @@ function syncRowToCalendar(sheet, row) {
 
   // On new events: invite all members.
   // On existing events: only add members who aren't already guests.
-  if (isNewEvent) {
-    inviteAllMembers(event);
+  // In TEST_MODE: skip all invites.
+  if (!TEST_MODE) {
+    if (isNewEvent) {
+      inviteAllMembers(event);
+    } else {
+      inviteNewMembersOnly(event);
+    }
   } else {
-    inviteNewMembersOnly(event);
+    Logger.log('[TEST] Skipping invites for: ' + eventName);
   }
 
   // Update auto-columns for this row
@@ -714,10 +729,159 @@ function combineDateAndTime(dateVal, timeVal) {
 // ─── TEST / DEBUG ────────────────────────────────────────
 
 /**
+ * Run all tests. TEST_MODE must be true and TEST_CALENDAR_ID must be set.
+ * 
+ * This creates a temporary test row, exercises Publish → Update → Unpublish,
+ * verifies calendar events are created/modified/deleted, then cleans up.
+ * 
+ * Run from: Apps Script editor → select runAllTests → Run
+ */
+function runAllTests() {
+  if (!TEST_MODE) {
+    Logger.log('❌ Set TEST_MODE = true before running tests!');
+    return;
+  }
+  if (!TEST_CALENDAR_ID) {
+    Logger.log('❌ Set TEST_CALENDAR_ID before running tests!');
+    Logger.log('   Go to Google Calendar → Settings → Add calendar → Create new');
+    Logger.log('   Name it "TMC Test", then copy its Calendar ID from Settings.');
+    return;
+  }
+
+  const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+  const calendar = CalendarApp.getCalendarById(CALENDAR_ID);
+  let passed = 0;
+  let failed = 0;
+  const testRow = sheet.getLastRow() + 1;
+
+  function assert(label, condition) {
+    if (condition) {
+      Logger.log('  ✅ ' + label);
+      passed++;
+    } else {
+      Logger.log('  ❌ ' + label);
+      failed++;
+    }
+  }
+
+  Logger.log('═══ TMC Sync Tests ═══');
+  Logger.log('Test calendar: ' + CALENDAR_ID);
+  Logger.log('Using row: ' + testRow);
+  Logger.log('');
+
+  // ── Test 1: Draft row (no Publish) should NOT create event ──
+  Logger.log('── Test 1: Draft row ──');
+  sheet.getRange(testRow, COL.NAME).setValue('TEST EVENT - DELETE ME');
+  sheet.getRange(testRow, COL.DATE).setValue('12/31/26');
+  sheet.getRange(testRow, COL.START).setValue('7:00 PM');
+  sheet.getRange(testRow, COL.END).setValue('9:00 PM');
+  // Leave Publish blank
+  syncRowToCalendar(sheet, testRow);
+  assert('Draft row: no event created', !sheet.getRange(testRow, COL.EVENT_ID).getValue());
+  assert('Draft row: no status set', !sheet.getRange(testRow, COL.STATUS).getValue());
+
+  // ── Test 2: Publish with missing details ──
+  Logger.log('── Test 2: Publish with missing details ──');
+  sheet.getRange(testRow, COL.PUBLISH).setValue('Publish');
+  sheet.getRange(testRow, COL.DATE).setValue('');  // remove date
+  syncRowToCalendar(sheet, testRow);
+  assert('Missing details: status set', sheet.getRange(testRow, COL.STATUS).getValue() === 'Missing details');
+  assert('Missing details: no event created', !sheet.getRange(testRow, COL.EVENT_ID).getValue());
+
+  // ── Test 3: Publish with full details ──
+  Logger.log('── Test 3: Publish ──');
+  sheet.getRange(testRow, COL.SPONSOR).setValue('Test Sponsor');
+  sheet.getRange(testRow, COL.COSPONSOR).setValue('Test Co-sponsor');
+  sheet.getRange(testRow, COL.THEME).setValue('Test Theme');
+  sheet.getRange(testRow, COL.LOCATION).setValue('Test Location');
+  sheet.getRange(testRow, COL.DATE).setValue('12/31/26');
+  syncRowToCalendar(sheet, testRow);
+  const eventId = sheet.getRange(testRow, COL.EVENT_ID).getValue();
+  assert('Publish: event ID written', !!eventId);
+  assert('Publish: status is Upcoming', sheet.getRange(testRow, COL.STATUS).getValue() === 'Upcoming');
+  assert('Publish: calendar link set', !!sheet.getRange(testRow, COL.CAL_LINK).getValue());
+
+  // Verify the event actually exists on the calendar
+  let event = null;
+  if (eventId) {
+    try { event = calendar.getEventById(eventId); } catch (e) {}
+  }
+  assert('Publish: event exists on calendar', !!event);
+  if (event) {
+    assert('Publish: title matches', event.getTitle() === 'TEST EVENT - DELETE ME');
+    assert('Publish: location matches', event.getLocation() === 'Test Location');
+    assert('Publish: description has sponsor', (event.getDescription() || '').indexOf('Test Sponsor') > -1);
+  }
+
+  // ── Test 4: Update published event ──
+  Logger.log('── Test 4: Update ──');
+  sheet.getRange(testRow, COL.NAME).setValue('TEST EVENT UPDATED');
+  sheet.getRange(testRow, COL.LOCATION).setValue('Updated Location');
+  syncRowToCalendar(sheet, testRow);
+  const eventId2 = sheet.getRange(testRow, COL.EVENT_ID).getValue();
+  assert('Update: same event ID', eventId2 === eventId);
+  if (eventId2) {
+    try { event = calendar.getEventById(eventId2); } catch (e) {}
+    if (event) {
+      assert('Update: title changed', event.getTitle() === 'TEST EVENT UPDATED');
+      assert('Update: location changed', event.getLocation() === 'Updated Location');
+    }
+  }
+
+  // ── Test 5: Unpublish ──
+  Logger.log('── Test 5: Unpublish ──');
+  sheet.getRange(testRow, COL.PUBLISH).setValue('Unpublish');
+  syncRowToCalendar(sheet, testRow);
+  assert('Unpublish: event ID cleared', !sheet.getRange(testRow, COL.EVENT_ID).getValue());
+  assert('Unpublish: status is Unpublished', sheet.getRange(testRow, COL.STATUS).getValue() === 'Unpublished');
+  assert('Unpublish: calendar link cleared', !sheet.getRange(testRow, COL.CAL_LINK).getValue());
+  // Verify event is gone from calendar
+  let deletedEvent = null;
+  if (eventId) {
+    try { deletedEvent = calendar.getEventById(eventId); } catch (e) {}
+  }
+  assert('Unpublish: event deleted from calendar', !deletedEvent);
+
+  // ── Test 6: Time parsing ──
+  Logger.log('── Test 6: Time parsing ──');
+  const formats = [
+    ['7:00 PM', 19, 0],
+    ['7pm', 19, 0],
+    ['7 pm', 19, 0],
+    ['7:30 p.m.', 19, 30],
+    ['12:00 AM', 0, 0],
+    ['12:00 PM', 12, 0],
+    ['19:00', 19, 0],
+    ['9:15 AM', 9, 15],
+  ];
+  for (const [input, expectedH, expectedM] of formats) {
+    const parsed = parseTime(input);
+    assert('parseTime("' + input + '") → ' + expectedH + ':' + String(expectedM).padStart(2, '0'),
+      parsed && parsed.hours === expectedH && parsed.minutes === expectedM);
+  }
+
+  // ── Cleanup: delete the test row ──
+  Logger.log('');
+  Logger.log('── Cleanup ──');
+  sheet.deleteRow(testRow);
+  Logger.log('Test row deleted.');
+
+  // ── Summary ──
+  Logger.log('');
+  Logger.log('═══════════════════════');
+  Logger.log('Results: ' + passed + ' passed, ' + failed + ' failed');
+  if (failed === 0) {
+    Logger.log('🎉 All tests passed! Safe to set TEST_MODE = false and go live.');
+  } else {
+    Logger.log('⚠️ Some tests failed — check the logs above.');
+  }
+}
+
+/**
  * Test function — check a specific row's data and parsing.
  */
 function testRow() {
-  const ROW = 6; // Change this to test different rows
+  const ROW = 6;
   const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
   const data = sheet.getRange(ROW, 1, 1, EVENT_ID_COL).getValues()[0];
   Logger.log('Row ' + ROW + ' data: ' + JSON.stringify(data));
