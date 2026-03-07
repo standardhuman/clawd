@@ -879,28 +879,15 @@ function runAllTests() {
   assert('Unpublish: event ID cleared', !sheet.getRange(testRow, COL.EVENT_ID).getValue());
   assert('Unpublish: status is Unpublished', sheet.getRange(testRow, COL.STATUS).getValue() === 'Unpublished');
   assert('Unpublish: calendar link cleared', !sheet.getRange(testRow, COL.CAL_LINK).getValue());
-  // Verify event is gone from calendar
-  // Google's API can still return a just-deleted event briefly.
-  // We check both: null return OR event exists but can't get title (cancelled).
-  Utilities.sleep(5000);
-  let eventGone = true;
-  if (eventId) {
-    try {
-      const check = calendar.getEventById(eventId);
-      if (check) {
-        // Event object returned — but is it actually cancelled/deleted?
-        try {
-          check.getTitle();  // throws if event is in deleted state
-          eventGone = false; // still fully accessible = not deleted
-        } catch (e) {
-          eventGone = true;  // can't access = effectively deleted
-        }
-      }
-    } catch (e) {
-      eventGone = true;
-    }
-  }
-  assert('Unpublish: event deleted from calendar', eventGone);
+  // Verify event is gone from calendar by searching for it in the event list.
+  // Note: getEventById() caches deleted events for an unpredictable window,
+  // so we search by title in a time range instead.
+  Utilities.sleep(2000);
+  const searchStart = new Date(2026, 11, 31, 0, 0, 0);  // Dec 31 2026
+  const searchEnd = new Date(2026, 11, 31, 23, 59, 59);
+  const remainingEvents = calendar.getEvents(searchStart, searchEnd);
+  const stillExists = remainingEvents.some(e => e.getTitle() === 'TEST EVENT UPDATED');
+  assert('Unpublish: event deleted from calendar', !stillExists);
 
   // ── Test 6: Time parsing ──
   Logger.log('── Test 6: Time parsing ──');
