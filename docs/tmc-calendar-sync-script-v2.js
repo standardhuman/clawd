@@ -36,7 +36,7 @@
 const TEST_MODE = false;
 
 const PROD_CALENDAR_ID = 'b7cad28ac6a1dc2c862ddfb8af611eb955f6748c042309ef8ea5bdc27b9c31ec@group.calendar.google.com';
-// Create a personal calendar called "TMC Test", then paste its ID here:
+// Run createTestCalendar() once to auto-create this, then paste the ID it logs:
 const TEST_CALENDAR_ID = '';
 
 const CALENDAR_ID = TEST_MODE && TEST_CALENDAR_ID ? TEST_CALENDAR_ID : PROD_CALENDAR_ID;
@@ -729,12 +729,57 @@ function combineDateAndTime(dateVal, timeVal) {
 // ─── TEST / DEBUG ────────────────────────────────────────
 
 /**
+ * Step 1: Run this once to create a test calendar.
+ * It logs the calendar ID — paste that into TEST_CALENDAR_ID above.
+ */
+function createTestCalendar() {
+  // Check if we already have one
+  const calendars = CalendarApp.getAllOwnedCalendars();
+  for (const cal of calendars) {
+    if (cal.getName() === 'TMC Test') {
+      Logger.log('TMC Test calendar already exists!');
+      Logger.log('Calendar ID: ' + cal.getId());
+      Logger.log('Paste this into TEST_CALENDAR_ID in the script.');
+      return;
+    }
+  }
+
+  const cal = CalendarApp.createCalendar('TMC Test', {
+    summary: 'TMC Test',
+    timeZone: Session.getScriptTimeZone(),
+  });
+  Logger.log('✅ Created "TMC Test" calendar');
+  Logger.log('Calendar ID: ' + cal.getId());
+  Logger.log('');
+  Logger.log('Now paste that ID into TEST_CALENDAR_ID at the top of this script,');
+  Logger.log('set TEST_MODE = true, save, and run runAllTests().');
+}
+
+/**
+ * Optional: delete the test calendar when you're done testing.
+ */
+function deleteTestCalendar() {
+  if (!TEST_CALENDAR_ID) {
+    Logger.log('No TEST_CALENDAR_ID set.');
+    return;
+  }
+  const cal = CalendarApp.getCalendarById(TEST_CALENDAR_ID);
+  if (cal) {
+    cal.deleteCalendar();
+    Logger.log('✅ Deleted test calendar. Clear TEST_CALENDAR_ID and set TEST_MODE = false.');
+  } else {
+    Logger.log('Calendar not found — may already be deleted.');
+  }
+}
+
+/**
  * Run all tests. TEST_MODE must be true and TEST_CALENDAR_ID must be set.
  * 
- * This creates a temporary test row, exercises Publish → Update → Unpublish,
- * verifies calendar events are created/modified/deleted, then cleans up.
- * 
- * Run from: Apps Script editor → select runAllTests → Run
+ * Steps:
+ *   1. Run createTestCalendar() — copy the ID it logs
+ *   2. Paste into TEST_CALENDAR_ID, set TEST_MODE = true, save
+ *   3. Run runAllTests()
+ *   4. When done: run deleteTestCalendar(), set TEST_MODE = false
  */
 function runAllTests() {
   if (!TEST_MODE) {
@@ -742,9 +787,8 @@ function runAllTests() {
     return;
   }
   if (!TEST_CALENDAR_ID) {
-    Logger.log('❌ Set TEST_CALENDAR_ID before running tests!');
-    Logger.log('   Go to Google Calendar → Settings → Add calendar → Create new');
-    Logger.log('   Name it "TMC Test", then copy its Calendar ID from Settings.');
+    Logger.log('❌ Set TEST_CALENDAR_ID first!');
+    Logger.log('   Run createTestCalendar() and paste the ID it logs.');
     return;
   }
 
