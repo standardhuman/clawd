@@ -880,6 +880,8 @@ function runAllTests() {
   assert('Unpublish: status is Unpublished', sheet.getRange(testRow, COL.STATUS).getValue() === 'Unpublished');
   assert('Unpublish: calendar link cleared', !sheet.getRange(testRow, COL.CAL_LINK).getValue());
   // Verify event is gone from calendar
+  // (short delay — Google's API can still return a just-deleted event)
+  Utilities.sleep(3000);
   let deletedEvent = null;
   if (eventId) {
     try { deletedEvent = calendar.getEventById(eventId); } catch (e) {}
