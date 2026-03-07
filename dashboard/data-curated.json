@@ -41,15 +41,36 @@
     "openIssues": 3,
     "currentBuild": "TestFlight Build 55",
     "weeks": [
-      { "label": "Week 1", "progress": 100 },
-      { "label": "Week 2", "progress": 100 },
-      { "label": "Week 3", "progress": 100 },
-      { "label": "Week 4", "progress": 90 }
+      {
+        "label": "Week 1",
+        "progress": 100
+      },
+      {
+        "label": "Week 2",
+        "progress": 100
+      },
+      {
+        "label": "Week 3",
+        "progress": 100
+      },
+      {
+        "label": "Week 4",
+        "progress": 90
+      }
     ],
     "issues": [
-      { "title": "GoPro BLE/WiFi real-device verification", "status": "blocked" },
-      { "title": "Brian field test of Build 55", "status": "open" },
-      { "title": "Cyrus security remediation (service role key)", "status": "open" }
+      {
+        "title": "GoPro BLE/WiFi real-device verification",
+        "status": "blocked"
+      },
+      {
+        "title": "Brian field test of Build 55",
+        "status": "open"
+      },
+      {
+        "title": "Cyrus security remediation (service role key)",
+        "status": "open"
+      }
     ]
   },
   "projects": [
@@ -61,14 +82,38 @@
       "nextAction": "Brian field test + GoPro verification",
       "icon": "🚀",
       "checklist": [
-        { "text": "Build 55 submitted to TestFlight", "done": true },
-        { "text": "Stripe sandbox configured", "done": true },
-        { "text": "Pricing engine complete", "done": true },
-        { "text": "Boat data backfilled", "done": true },
-        { "text": "OpenTelemetry instrumented", "done": true },
-        { "text": "Brian field test", "done": false },
-        { "text": "GoPro BLE/WiFi test on device", "done": false },
-        { "text": "Security remediation (service role key)", "done": false }
+        {
+          "text": "Build 55 submitted to TestFlight",
+          "done": true
+        },
+        {
+          "text": "Stripe sandbox configured",
+          "done": true
+        },
+        {
+          "text": "Pricing engine complete",
+          "done": true
+        },
+        {
+          "text": "Boat data backfilled",
+          "done": true
+        },
+        {
+          "text": "OpenTelemetry instrumented",
+          "done": true
+        },
+        {
+          "text": "Brian field test",
+          "done": false
+        },
+        {
+          "text": "GoPro BLE/WiFi test on device",
+          "done": false
+        },
+        {
+          "text": "Security remediation (service role key)",
+          "done": false
+        }
       ],
       "recentActivity": [
         "Build 55 shipped to TestFlight",
@@ -77,8 +122,14 @@
         "Stripe sandbox + pricing engine complete"
       ],
       "docs": [
-        { "label": "MVP Roadmap", "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Development/MVP%20Tracker" },
-        { "label": "Security Audit", "url": "file:///Users/brian/AI/business/sailorskills/pro/docs/security-audit-initial.md" }
+        {
+          "label": "MVP Roadmap",
+          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Development/MVP%20Tracker"
+        },
+        {
+          "label": "Security Audit",
+          "url": "file:///Users/brian/AI/business/sailorskills/pro/docs/security-audit-initial.md"
+        }
       ]
     },
     {
@@ -89,15 +140,42 @@
       "nextAction": "Seed trust graph, provider signup page",
       "icon": "🌐",
       "checklist": [
-        { "text": "Trust graph schema + traversal", "done": true },
-        { "text": "Network search page", "done": true },
-        { "text": "Placeholder profiles + claim flow", "done": true },
-        { "text": "Location hierarchy (Bay Area)", "done": true },
-        { "text": "Admin trust graph CRUD", "done": true },
-        { "text": "Deployed to marketplace.sailorskills.com", "done": true },
-        { "text": "Seed 150 boat owners", "done": false },
-        { "text": "Seed 25 service providers", "done": false },
-        { "text": "Provider signup landing page", "done": false }
+        {
+          "text": "Trust graph schema + traversal",
+          "done": true
+        },
+        {
+          "text": "Network search page",
+          "done": true
+        },
+        {
+          "text": "Placeholder profiles + claim flow",
+          "done": true
+        },
+        {
+          "text": "Location hierarchy (Bay Area)",
+          "done": true
+        },
+        {
+          "text": "Admin trust graph CRUD",
+          "done": true
+        },
+        {
+          "text": "Deployed to marketplace.sailorskills.com",
+          "done": true
+        },
+        {
+          "text": "Seed 150 boat owners",
+          "done": false
+        },
+        {
+          "text": "Seed 25 service providers",
+          "done": false
+        },
+        {
+          "text": "Provider signup landing page",
+          "done": false
+        }
       ],
       "recentActivity": [
         "Trust graph + traversal functions deployed",
@@ -106,7 +184,10 @@
         "Deployed at marketplace.sailorskills.com"
       ],
       "docs": [
-        { "label": "Trust Graph Design", "url": "file:///Users/brian/clawd/docs/plans/2026-07-trust-graph-design.md" }
+        {
+          "label": "Trust Graph Design",
+          "url": "file:///Users/brian/clawd/docs/plans/2026-07-trust-graph-design.md"
+        }
       ]
     },
     {
@@ -117,11 +198,26 @@
       "nextAction": "Phase 2 build — spec complete, Tier 1 active",
       "icon": "🌊",
       "checklist": [
-        { "text": "Phase 1: Design + build", "done": true },
-        { "text": "Phase 1: Deploy to briancline.co", "done": true },
-        { "text": "Phase 2: Spec complete", "done": true },
-        { "text": "Phase 2: Tier 1 build", "done": false },
-        { "text": "Phase 2: Content + copy", "done": false }
+        {
+          "text": "Phase 1: Design + build",
+          "done": true
+        },
+        {
+          "text": "Phase 1: Deploy to briancline.co",
+          "done": true
+        },
+        {
+          "text": "Phase 2: Spec complete",
+          "done": true
+        },
+        {
+          "text": "Phase 2: Tier 1 build",
+          "done": false
+        },
+        {
+          "text": "Phase 2: Content + copy",
+          "done": false
+        }
       ],
       "recentActivity": [
         "Phase 1 complete and live",
@@ -138,9 +234,18 @@
       "nextAction": "Monitor RSVPs",
       "icon": "🏔️",
       "checklist": [
-        { "text": "Site built and deployed", "done": true },
-        { "text": "RSVP system built", "done": true },
-        { "text": "Live at tahoe-away-weekend-26.briancline.co", "done": true }
+        {
+          "text": "Site built and deployed",
+          "done": true
+        },
+        {
+          "text": "RSVP system built",
+          "done": true
+        },
+        {
+          "text": "Live at tahoe-away-weekend-26.briancline.co",
+          "done": true
+        }
       ],
       "recentActivity": [
         "Site live with RSVP system",
@@ -156,9 +261,18 @@
       "nextAction": "None",
       "icon": "🪦",
       "checklist": [
-        { "text": "Migrate off Wix", "done": true },
-        { "text": "sailorskills.com redirects (196)", "done": true },
-        { "text": "Wix subscription cancelled", "done": true }
+        {
+          "text": "Migrate off Wix",
+          "done": true
+        },
+        {
+          "text": "sailorskills.com redirects (196)",
+          "done": true
+        },
+        {
+          "text": "Wix subscription cancelled",
+          "done": true
+        }
       ],
       "recentActivity": [
         "Wix is dead — fully migrated",
@@ -174,15 +288,42 @@
       "nextAction": "Deploy to dashboard.briancline.co",
       "icon": "📊",
       "checklist": [
-        { "text": "Team page (replaces team.briancline.co)", "done": true },
-        { "text": "System page", "done": true },
-        { "text": "Tasks kanban", "done": true },
-        { "text": "Calendar cron viz", "done": true },
-        { "text": "Projects page", "done": true },
-        { "text": "Memory browser", "done": true },
-        { "text": "Docs search", "done": true },
-        { "text": "Fix cron health (gateway RPC)", "done": false },
-        { "text": "Deploy to dashboard.briancline.co", "done": false }
+        {
+          "text": "Team page (replaces team.briancline.co)",
+          "done": true
+        },
+        {
+          "text": "System page",
+          "done": true
+        },
+        {
+          "text": "Tasks kanban",
+          "done": true
+        },
+        {
+          "text": "Calendar cron viz",
+          "done": true
+        },
+        {
+          "text": "Projects page",
+          "done": true
+        },
+        {
+          "text": "Memory browser",
+          "done": true
+        },
+        {
+          "text": "Docs search",
+          "done": true
+        },
+        {
+          "text": "Fix cron health (gateway RPC)",
+          "done": false
+        },
+        {
+          "text": "Deploy to dashboard.briancline.co",
+          "done": false
+        }
       ],
       "recentActivity": [
         "All 7 pages built by Marcel",
@@ -190,8 +331,14 @@
         "Dark theme, sidebar nav, real data"
       ],
       "docs": [
-        { "label": "Dashboard Spec", "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Mission%20Control%20Dashboard%20Spec" },
-        { "label": "Upgrade Plan", "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Mission%20Control%20Upgrade%20Plan" }
+        {
+          "label": "Dashboard Spec",
+          "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Mission%20Control%20Dashboard%20Spec"
+        },
+        {
+          "label": "Upgrade Plan",
+          "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Mission%20Control%20Upgrade%20Plan"
+        }
       ]
     },
     {
@@ -202,15 +349,42 @@
       "nextAction": "Tom Purcell invoices",
       "icon": "💰",
       "checklist": [
-        { "text": "Price adjustment (%, $, flat)", "done": true },
-        { "text": "Charge breakdown modal", "done": true },
-        { "text": "Smart charge/invoice labels", "done": true },
-        { "text": "Anode installation fee ($15/ea)", "done": true },
-        { "text": "Stripe override passthrough fix", "done": true },
-        { "text": "Missing conditions checker", "done": true },
-        { "text": "JSON + CSV dual storage", "done": true },
-        { "text": "Video panel (BOATY port)", "done": true },
-        { "text": "Tom Purcell open invoices", "done": false }
+        {
+          "text": "Price adjustment (%, $, flat)",
+          "done": true
+        },
+        {
+          "text": "Charge breakdown modal",
+          "done": true
+        },
+        {
+          "text": "Smart charge/invoice labels",
+          "done": true
+        },
+        {
+          "text": "Anode installation fee ($15/ea)",
+          "done": true
+        },
+        {
+          "text": "Stripe override passthrough fix",
+          "done": true
+        },
+        {
+          "text": "Missing conditions checker",
+          "done": true
+        },
+        {
+          "text": "JSON + CSV dual storage",
+          "done": true
+        },
+        {
+          "text": "Video panel (BOATY port)",
+          "done": true
+        },
+        {
+          "text": "Tom Purcell open invoices",
+          "done": false
+        }
       ],
       "recentActivity": [
         "February billing: 38 boats, $6,689.58",
@@ -228,9 +402,18 @@
       "nextAction": "Fix Google Calendar OAuth",
       "icon": "📅",
       "checklist": [
-        { "text": "Core scheduling logic", "done": true },
-        { "text": "8 bugs fixed", "done": true },
-        { "text": "Google Calendar OAuth", "done": false }
+        {
+          "text": "Core scheduling logic",
+          "done": true
+        },
+        {
+          "text": "8 bugs fixed",
+          "done": true
+        },
+        {
+          "text": "Google Calendar OAuth",
+          "done": false
+        }
       ],
       "recentActivity": [
         "8 bugs fixed by Ellis",
@@ -246,11 +429,26 @@
       "nextAction": "Onboard remaining agents",
       "icon": "🏠",
       "checklist": [
-        { "text": "Synapse homeserver running", "done": true },
-        { "text": "5 project rooms created", "done": true },
-        { "text": "Space hierarchy created", "done": true },
-        { "text": "Agent accounts provisioned", "done": true },
-        { "text": "Element client configured", "done": true }
+        {
+          "text": "Synapse homeserver running",
+          "done": true
+        },
+        {
+          "text": "5 project rooms created",
+          "done": true
+        },
+        {
+          "text": "Space hierarchy created",
+          "done": true
+        },
+        {
+          "text": "Agent accounts provisioned",
+          "done": true
+        },
+        {
+          "text": "Element client configured",
+          "done": true
+        }
       ],
       "recentActivity": [
         "Space hierarchy created",
@@ -267,8 +465,14 @@
       "nextAction": "Monitor sync health",
       "icon": "🔄",
       "checklist": [
-        { "text": "Apps Script written and deployed", "done": true },
-        { "text": "Calendar sync working", "done": true }
+        {
+          "text": "Apps Script written and deployed",
+          "done": true
+        },
+        {
+          "text": "Calendar sync working",
+          "done": true
+        }
       ],
       "recentActivity": [
         "Apps Script deployed by Wes",
@@ -284,16 +488,46 @@
       "nextAction": "File Form 7004, gather missing docs",
       "icon": "📄",
       "checklist": [
-        { "text": "Income reconciliation done", "done": true },
-        { "text": "1099-K reconciliation clean", "done": true },
-        { "text": "10 tax docs collected and filed", "done": true },
-        { "text": "CPA engaged: Dimov Tax — George Dimov", "done": true },
-        { "text": "File Form 7004 extension", "done": false },
-        { "text": "Gather YNAB biz expenses", "done": false },
-        { "text": "Count anode inventory", "done": false },
-        { "text": "Document owner distributions", "done": false },
-        { "text": "File 2024 personal return", "done": false },
-        { "text": "File 2025 S-Corp return", "done": false }
+        {
+          "text": "Income reconciliation done",
+          "done": true
+        },
+        {
+          "text": "1099-K reconciliation clean",
+          "done": true
+        },
+        {
+          "text": "10 tax docs collected and filed",
+          "done": true
+        },
+        {
+          "text": "CPA engaged: Dimov Tax — George Dimov",
+          "done": true
+        },
+        {
+          "text": "File Form 7004 extension",
+          "done": false
+        },
+        {
+          "text": "Gather YNAB biz expenses",
+          "done": false
+        },
+        {
+          "text": "Count anode inventory",
+          "done": false
+        },
+        {
+          "text": "Document owner distributions",
+          "done": false
+        },
+        {
+          "text": "File 2024 personal return",
+          "done": false
+        },
+        {
+          "text": "File 2025 S-Corp return",
+          "done": false
+        }
       ],
       "recentActivity": [
         "Dimov Tax engaged — George Dimov (info@dimovtax.com), $1,730 total",
@@ -302,7 +536,10 @@
         "EDD back-filing status checked"
       ],
       "docs": [
-        { "label": "Tax Overview", "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Taxes/Tax%20Overview" }
+        {
+          "label": "Tax Overview",
+          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Taxes/Tax%20Overview"
+        }
       ]
     },
     {
@@ -313,10 +550,22 @@
       "nextAction": "Monitor form submissions",
       "icon": "✨",
       "checklist": [
-        { "text": "Landing page + quote form", "done": true },
-        { "text": "Resend email integration", "done": true },
-        { "text": "Deployed to Vercel", "done": true },
-        { "text": "Subdomain configured", "done": true }
+        {
+          "text": "Landing page + quote form",
+          "done": true
+        },
+        {
+          "text": "Resend email integration",
+          "done": true
+        },
+        {
+          "text": "Deployed to Vercel",
+          "done": true
+        },
+        {
+          "text": "Subdomain configured",
+          "done": true
+        }
       ],
       "recentActivity": [
         "Built and deployed by Marcel",
@@ -333,10 +582,22 @@
       "nextAction": "Share with Newt Bailey",
       "icon": "💬",
       "checklist": [
-        { "text": "8 pages built", "done": true },
-        { "text": "All handout content as HTML", "done": true },
-        { "text": "22 daily posts organized by week", "done": true },
-        { "text": "Mobile-friendly design", "done": true }
+        {
+          "text": "8 pages built",
+          "done": true
+        },
+        {
+          "text": "All handout content as HTML",
+          "done": true
+        },
+        {
+          "text": "22 daily posts organized by week",
+          "done": true
+        },
+        {
+          "text": "Mobile-friendly design",
+          "done": true
+        }
       ],
       "recentActivity": [
         "Built by Marcel from Google Drive content",
@@ -352,17 +613,32 @@
       "nextAction": "Revisit in a few months",
       "icon": "⏸️",
       "checklist": [
-        { "text": "Term sheet drafted", "done": true },
-        { "text": "Revenue model built", "done": true },
-        { "text": "Insurance quote obtained", "done": false },
-        { "text": "Training plan outlined", "done": false }
+        {
+          "text": "Term sheet drafted",
+          "done": true
+        },
+        {
+          "text": "Revenue model built",
+          "done": true
+        },
+        {
+          "text": "Insurance quote obtained",
+          "done": false
+        },
+        {
+          "text": "Training plan outlined",
+          "done": false
+        }
       ],
       "recentActivity": [
         "Sarah postponed — wants stable income first",
         "USL&H required (confirmed by Novamar)"
       ],
       "docs": [
-        { "label": "Term Sheet", "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Employee%20Expansion/Sarah%20Contractor%20Term%20Sheet" }
+        {
+          "label": "Term Sheet",
+          "url": "obsidian://open?vault=Brian%27s%20Vault&file=SailorSkills/Business/Employee%20Expansion/Sarah%20Contractor%20Term%20Sheet"
+        }
       ]
     },
     {
@@ -373,17 +649,50 @@
       "nextAction": "Finish Matrix onboarding, deploy dashboard",
       "icon": "🤖",
       "checklist": [
-        { "text": "15 agents configured", "done": true },
-        { "text": "13 Telegram bots wired", "done": true },
-        { "text": "Cross-agent comms enabled", "done": true },
-        { "text": "All agents on Opus 4.6", "done": true },
-        { "text": "Reverse prompting in Dawn Patrol", "done": true },
-        { "text": "3 midday crons added", "done": true },
-        { "text": "Obsidian-First Rule propagated", "done": true },
-        { "text": "Anti-AI-speak rules propagated", "done": true },
-        { "text": "Matrix homeserver live", "done": true },
-        { "text": "5 project rooms + Space hierarchy", "done": true },
-        { "text": "Discord team setup", "done": false }
+        {
+          "text": "15 agents configured",
+          "done": true
+        },
+        {
+          "text": "13 Telegram bots wired",
+          "done": true
+        },
+        {
+          "text": "Cross-agent comms enabled",
+          "done": true
+        },
+        {
+          "text": "All agents on Opus 4.6",
+          "done": true
+        },
+        {
+          "text": "Reverse prompting in Dawn Patrol",
+          "done": true
+        },
+        {
+          "text": "3 midday crons added",
+          "done": true
+        },
+        {
+          "text": "Obsidian-First Rule propagated",
+          "done": true
+        },
+        {
+          "text": "Anti-AI-speak rules propagated",
+          "done": true
+        },
+        {
+          "text": "Matrix homeserver live",
+          "done": true
+        },
+        {
+          "text": "5 project rooms + Space hierarchy",
+          "done": true
+        },
+        {
+          "text": "Discord team setup",
+          "done": false
+        }
       ],
       "recentActivity": [
         "Matrix homeserver live with 5 project rooms",
@@ -392,70 +701,268 @@
         "Reverse prompting added to Dawn Patrol"
       ],
       "docs": [
-        { "label": "Org Manual", "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Operations%20Manual" },
-        { "label": "AI Team Overview", "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/AI%20Team%20Overview" }
+        {
+          "label": "Org Manual",
+          "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Operations%20Manual"
+        },
+        {
+          "label": "AI Team Overview",
+          "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/AI%20Team%20Overview"
+        }
       ]
     }
   ],
   "timeAllocation": [
-    { "label": "Platform Dev (Pro + Marketplace)", "value": 30, "color": "#89b4fa", "details": "Pro: Build 55, field test pending. Marketplace: trust graph deployed, seeding needed." },
-    { "label": "Hull Cleaning (diving)", "value": 25, "color": "#a6e3a1", "details": "~43 services/month, ~$6,400/month revenue. 92 active clients." },
-    { "label": "AI Org / Infrastructure", "value": 20, "color": "#cba6f7", "details": "15 agents, Matrix homeserver, Mission Control dashboard, cron automation." },
-    { "label": "Personal Sites & Client Work", "value": 10, "color": "#fab387", "details": "briancline.co Phase 2, Tahoe site, TMC site, Blisscapes. Ellis + Wes building." },
-    { "label": "Business / Taxes", "value": 10, "color": "#f9e2af", "details": "2024 return overdue, 2025 S-Corp due Mar 15. CPA: Dimov Tax engaged. Billing dashboard active." },
-    { "label": "Personal / Wellbeing", "value": 5, "color": "#94e2d5", "details": "TMC, Communication Dojo, mountain biking, Pocket walks." }
+    {
+      "label": "Platform Dev (Pro + Marketplace)",
+      "value": 30,
+      "color": "#89b4fa",
+      "details": "Pro: Build 55, field test pending. Marketplace: trust graph deployed, seeding needed."
+    },
+    {
+      "label": "Hull Cleaning (diving)",
+      "value": 25,
+      "color": "#a6e3a1",
+      "details": "~43 services/month, ~$6,400/month revenue. 92 active clients."
+    },
+    {
+      "label": "AI Org / Infrastructure",
+      "value": 20,
+      "color": "#cba6f7",
+      "details": "15 agents, Matrix homeserver, Mission Control dashboard, cron automation."
+    },
+    {
+      "label": "Personal Sites & Client Work",
+      "value": 10,
+      "color": "#fab387",
+      "details": "briancline.co Phase 2, Tahoe site, TMC site, Blisscapes. Ellis + Wes building."
+    },
+    {
+      "label": "Business / Taxes",
+      "value": 10,
+      "color": "#f9e2af",
+      "details": "2024 return overdue, 2025 S-Corp due Mar 15. CPA: Dimov Tax engaged. Billing dashboard active."
+    },
+    {
+      "label": "Personal / Wellbeing",
+      "value": 5,
+      "color": "#94e2d5",
+      "details": "TMC, Communication Dojo, mountain biking, Pocket walks."
+    }
   ],
   "recentActivity": [
-    { "text": "Matrix homeserver: 5 project rooms live, Space hierarchy created", "date": "2026-03-07", "details": "Synapse running, encryption issues resolved, agent accounts provisioned." },
-    { "text": "Dimov Tax engaged as CPA — George Dimov, $1,730 total", "date": "2026-03-06", "details": "Replaced Elan Kamesar. info@dimovtax.com. Covers 2024 personal + 2025 S-Corp." },
-    { "text": "Tahoe Away Weekend site live at tahoe-away-weekend-26.briancline.co", "date": "2026-03-06", "details": "RSVP system built. Built by Ellis." },
-    { "text": "briancline.co Phase 1 COMPLETE, Phase 2 spec delivered", "date": "2026-03-05", "details": "Phase 2 Tier 1 active development." },
-    { "text": "Wix migration COMPLETE — 196 redirects, Wix is dead", "date": "2026-03-05", "details": "sailorskills.com fully migrated off Wix." },
-    { "text": "Scheduler app: 8 bugs fixed, Google Calendar OAuth still broken", "date": "2026-03-06", "details": "Ellis working on scheduler. OAuth integration pending." },
-    { "text": "TMC calendar sync: Apps Script deployed", "date": "2026-03-05", "details": "Wes deployed Apps Script for TMC calendar synchronization." },
-    { "text": "Mission Control dashboard: all 7 pages built by Marcel", "date": "2026-03-03", "details": "Team, System, Tasks, Calendar, Projects, Memory, Docs pages. Dark theme, sidebar nav, real data." },
-    { "text": "NVC course site live at newt-bailey.vercel.app", "date": "2026-03-02", "details": "8 pages, all Communication Dojo content." },
-    { "text": "February billing completed: 38 boats, $6,689.58", "date": "2026-03-01", "details": "Anode installation fee added, Stripe override bug fixed." }
+    {
+      "text": "Matrix homeserver: 5 project rooms live, Space hierarchy created",
+      "date": "2026-03-07",
+      "details": "Synapse running, encryption issues resolved, agent accounts provisioned."
+    },
+    {
+      "text": "Dimov Tax engaged as CPA — George Dimov, $1,730 total",
+      "date": "2026-03-06",
+      "details": "Replaced Elan Kamesar. info@dimovtax.com. Covers 2024 personal + 2025 S-Corp."
+    },
+    {
+      "text": "Tahoe Away Weekend site live at tahoe-away-weekend-26.briancline.co",
+      "date": "2026-03-06",
+      "details": "RSVP system built. Built by Ellis."
+    },
+    {
+      "text": "briancline.co Phase 1 COMPLETE, Phase 2 spec delivered",
+      "date": "2026-03-05",
+      "details": "Phase 2 Tier 1 active development."
+    },
+    {
+      "text": "Wix migration COMPLETE — 196 redirects, Wix is dead",
+      "date": "2026-03-05",
+      "details": "sailorskills.com fully migrated off Wix."
+    },
+    {
+      "text": "Scheduler app: 8 bugs fixed, Google Calendar OAuth still broken",
+      "date": "2026-03-06",
+      "details": "Ellis working on scheduler. OAuth integration pending."
+    },
+    {
+      "text": "TMC calendar sync: Apps Script deployed",
+      "date": "2026-03-05",
+      "details": "Wes deployed Apps Script for TMC calendar synchronization."
+    },
+    {
+      "text": "Mission Control dashboard: all 7 pages built by Marcel",
+      "date": "2026-03-03",
+      "details": "Team, System, Tasks, Calendar, Projects, Memory, Docs pages. Dark theme, sidebar nav, real data."
+    },
+    {
+      "text": "NVC course site live at newt-bailey.vercel.app",
+      "date": "2026-03-02",
+      "details": "8 pages, all Communication Dojo content."
+    },
+    {
+      "text": "February billing completed: 38 boats, $6,689.58",
+      "date": "2026-03-01",
+      "details": "Anode installation fee added, Stripe override bug fixed."
+    }
   ],
   "todos": {
     "Business": [
-      { "text": "File Form 7004 extension before March 15", "done": false },
-      { "text": "Resolve Tom Purcell / Que Sera Sera open invoices", "done": false },
-      { "text": "Create Islander 30 Notion entry (Jay Amado)", "done": false },
-      { "text": "Renew USCG vessel documentation for Maris ($31)", "done": false },
-      { "text": "File Form 576D boat property tax declaration", "done": false },
-      { "text": "Claim unclaimed Blue Shield property via sco.ca.gov", "done": false },
-      { "text": "Refresh Notion API token", "done": false }
+      {
+        "text": "File Form 7004 extension before March 15",
+        "done": false
+      },
+      {
+        "text": "Resolve Tom Purcell / Que Sera Sera open invoices",
+        "done": false
+      },
+      {
+        "text": "Create Islander 30 Notion entry (Jay Amado)",
+        "done": false
+      },
+      {
+        "text": "Renew USCG vessel documentation for Maris ($31)",
+        "done": false
+      },
+      {
+        "text": "File Form 576D boat property tax declaration",
+        "done": false
+      },
+      {
+        "text": "Claim unclaimed Blue Shield property via sco.ca.gov",
+        "done": false
+      },
+      {
+        "text": "Refresh Notion API token",
+        "done": false
+      }
     ],
     "Personal": [
-      { "text": "Smog car", "done": false },
-      { "text": "Plan Portland trip to visit Christina Hart", "done": false },
-      { "text": "Email Progressive claims file request (Subaru)", "done": false }
+      {
+        "text": "Smog car",
+        "done": false
+      },
+      {
+        "text": "Plan Portland trip to visit Christina Hart",
+        "done": false
+      },
+      {
+        "text": "Email Progressive claims file request (Subaru)",
+        "done": false
+      }
     ],
     "TMC": [
-      { "text": "Send Jimmy Carr DOATCEO interview to the men", "done": false, "link": "https://www.youtube.com/watch?v=uHLAazKUU68" },
-      { "text": "Make Team No Events page", "done": false }
+      {
+        "text": "Send Jimmy Carr DOATCEO interview to the men",
+        "done": false,
+        "link": "https://www.youtube.com/watch?v=uHLAazKUU68"
+      },
+      {
+        "text": "Make Team No Events page",
+        "done": false
+      }
     ]
   },
   "deadlines": [
-    { "date": "2026-03-15", "text": "1120-S filing deadline", "icon": "📋", "daysAway": 8 },
-    { "date": "2026-04-15", "text": "2024 personal return (if no extension)", "icon": "📄", "daysAway": 39 }
+    {
+      "date": "2026-03-15",
+      "text": "1120-S filing deadline",
+      "icon": "📋",
+      "daysAway": 8
+    },
+    {
+      "date": "2026-04-15",
+      "text": "2024 personal return (if no extension)",
+      "icon": "📄",
+      "daysAway": 39
+    }
   ],
   "agents": [
-    { "name": "Howard", "emoji": "🪨", "status": "Active", "role": "Chief of Staff" },
-    { "name": "Jacques", "emoji": "🔧", "status": "Active", "role": "Pro App Lead" },
-    { "name": "Marcel", "emoji": "🎨", "status": "Active", "role": "Creative Director" },
-    { "name": "Reese", "emoji": "📋", "status": "Active", "role": "Product Manager" },
-    { "name": "Blake", "emoji": "🔍", "status": "Standby", "role": "QA (code-level)" },
-    { "name": "Cyrus", "emoji": "🛡️", "status": "Standby", "role": "Security" },
-    { "name": "Milo", "emoji": "📣", "status": "Standby", "role": "Marketing" },
-    { "name": "Quinn", "emoji": "📊", "status": "Active", "role": "Business Ops" },
-    { "name": "Rio", "emoji": "🌿", "status": "Active", "role": "Wellbeing" },
-    { "name": "Noa", "emoji": "🔬", "status": "Active", "role": "Research" },
-    { "name": "Kai", "emoji": "⚡", "status": "Active", "role": "Strategy" },
-    { "name": "Sage", "emoji": "🤝", "status": "Standby", "role": "Sales" },
-    { "name": "Avery", "emoji": "⚖️", "status": "Active", "role": "Legal" },
-    { "name": "Ellis", "emoji": "🏕️", "status": "Active", "role": "Personal Sites Builder" },
-    { "name": "Wes", "emoji": "🤝", "status": "Active", "role": "Client Work Builder" }
+    {
+      "name": "Howard",
+      "emoji": "🪨",
+      "status": "Active",
+      "role": "Chief of Staff"
+    },
+    {
+      "name": "Jacques",
+      "emoji": "🔧",
+      "status": "Active",
+      "role": "Pro App Lead"
+    },
+    {
+      "name": "Marcel",
+      "emoji": "🎨",
+      "status": "Active",
+      "role": "Marketplace Lead"
+    },
+    {
+      "name": "Reese",
+      "emoji": "📋",
+      "status": "Active",
+      "role": "Project Manager"
+    },
+    {
+      "name": "Blake",
+      "emoji": "🔍",
+      "status": "Standby",
+      "role": "QA Engineer"
+    },
+    {
+      "name": "Cyrus",
+      "emoji": "🛡️",
+      "status": "Standby",
+      "role": "Security & Infrastructure"
+    },
+    {
+      "name": "Milo",
+      "emoji": "📣",
+      "status": "Standby",
+      "role": "Marketing & Comms"
+    },
+    {
+      "name": "Quinn",
+      "emoji": "📊",
+      "status": "Active",
+      "role": "Finance & Compliance"
+    },
+    {
+      "name": "Rio",
+      "emoji": "🌊",
+      "status": "Active",
+      "role": "Operations"
+    },
+    {
+      "name": "Noa",
+      "emoji": "🔬",
+      "status": "Active",
+      "role": "Research & Strategy"
+    },
+    {
+      "name": "Kai",
+      "emoji": "⚡",
+      "status": "Active",
+      "role": "Ideas & Innovation"
+    },
+    {
+      "name": "Sage",
+      "emoji": "🌿",
+      "status": "Standby",
+      "role": "Wellbeing & Culture"
+    },
+    {
+      "name": "Avery",
+      "emoji": "⚖️",
+      "status": "Active",
+      "role": "Legal & Risk"
+    },
+    {
+      "name": "Ellis",
+      "emoji": "🏕️",
+      "status": "Active",
+      "role": "Personal Sites Builder"
+    },
+    {
+      "name": "Wes",
+      "emoji": "🤝",
+      "status": "Active",
+      "role": "Client Work Builder"
+    }
   ]
 }
