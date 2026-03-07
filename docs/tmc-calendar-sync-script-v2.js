@@ -99,8 +99,10 @@ function setupTriggers() {
   ensureBrosDropdown();
   ensurePublishDropdown();
   ensureDirectorySheet();
+  protectAutoColumns();
+  highlightRequiredHeaders();
 
-  Logger.log('Setup complete: triggers installed, headers set, dropdowns ready, directory ready.');
+  Logger.log('Setup complete: triggers, headers, dropdowns, protections, and required highlights ready.');
 }
 
 /**
@@ -179,6 +181,83 @@ function ensureDirectorySheet() {
     dir.setColumnWidth(2, 200);
     Logger.log('Created Member Directory sheet. Add email→name rows to auto-resolve sponsors.');
   }
+}
+
+/**
+ * Protect auto-filled columns with a warning.
+ * Users get a "are you sure?" prompt but can still override if needed.
+ */
+function protectAutoColumns() {
+  const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+  if (!sheet) return;
+
+  // Remove existing protections we created (avoid duplicates on re-run)
+  sheet.getProtections(SpreadsheetApp.ProtectionType.RANGE).forEach(p => {
+    if (p.getDescription().startsWith('Auto-filled')) p.remove();
+  });
+
+  const autoCols = [
+    { col: COL.ATTENDEES, name: 'Attendees' },
+    { col: COL.HEADCOUNT, name: 'Headcount' },
+    { col: COL.STATUS, name: 'Status' },
+    { col: COL.CAL_LINK, name: 'Calendar Link' },
+    { col: COL.EVENT_ID, name: 'Event ID' },
+  ];
+
+  for (const { col, name } of autoCols) {
+    const range = sheet.getRange(HEADER_ROW + 1, col, 499, 1);
+    const protection = range.protect()
+      .setDescription('Auto-filled: ' + name)
+      .setWarningOnly(true);  // Shows warning but doesn't block
+  }
+
+  Logger.log('Protected auto-filled columns (warning-only): Attendees, Headcount, Status, Calendar Link, Event ID');
+}
+
+/**
+ * Highlight required column headers with a distinct color.
+ * Required: Event Name (C), Date (I), Start Time (J), End Time (K)
+ */
+function highlightRequiredHeaders() {
+  const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+  if (!sheet) return;
+
+  const requiredCols = [COL.NAME, COL.DATE, COL.START, COL.END];
+  const optionalCols = [COL.SPONSOR, COL.COSPONSOR, COL.THEME, COL.LOCATION, COL.OTHER, COL.BROS, COL.PUBLISH];
+  const autoCols = [COL.ATTENDEES, COL.HEADCOUNT, COL.STATUS, COL.CAL_LINK, COL.EVENT_ID];
+
+  // Required headers: dark blue background, white bold text
+  for (const col of requiredCols) {
+    const cell = sheet.getRange(1, col);
+    cell.setBackground('#1155cc')
+        .setFontColor('#ffffff')
+        .setFontWeight('bold');
+  }
+
+  // Optional headers: medium gray background
+  for (const col of optionalCols) {
+    const cell = sheet.getRange(1, col);
+    cell.setBackground('#4a86c8')
+        .setFontColor('#ffffff')
+        .setFontWeight('bold');
+  }
+
+  // Auto-filled headers: light gray background, italic
+  for (const col of autoCols) {
+    const cell = sheet.getRange(1, col);
+    cell.setBackground('#999999')
+        .setFontColor('#ffffff')
+        .setFontWeight('bold')
+        .setFontStyle('italic');
+  }
+
+  // Add notes to required headers
+  sheet.getRange(1, COL.NAME).setNote('Required — event won\'t publish without this');
+  sheet.getRange(1, COL.DATE).setNote('Required — event won\'t publish without this');
+  sheet.getRange(1, COL.START).setNote('Required — event won\'t publish without this');
+  sheet.getRange(1, COL.END).setNote('Required — event won\'t publish without this');
+
+  Logger.log('Headers color-coded: dark blue = required, medium blue = optional, gray = auto-filled');
 }
 
 // ─── SHEET → CALENDAR ────────────────────────────────────
