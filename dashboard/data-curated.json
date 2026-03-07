@@ -1,37 +1,21 @@
 {
-  "lastUpdated": "2026-03-03T06:38:00-08:00",
+  "lastUpdated": "2026-03-07T09:45:00-08:00",
   "needsAttention": [
     {
       "title": "2024 Tax Return",
       "status": "OVERDUE",
-      "detail": "CPA engaged — Elan Kamesar",
+      "detail": "CPA engaged — Dimov Tax",
       "urgency": "critical",
       "icon": "🚨",
-      "details": "~11 months overdue. Estimated liability ~$9,200 + ~$3,100 penalties = ~$12,343. True 2024 gross: $67,666. CPA: Elan Kamesar (ekamesar@gmail.com), email sent Mar 2. 1099-K reconciliation clean ($64,895.50). Waiting for CPA reply."
+      "details": "~11 months overdue. Estimated liability ~$9,200 + ~$3,100 penalties = ~$12,343. True 2024 gross: $67,666. CPA: Dimov Tax — George Dimov (info@dimovtax.com), engaged $1,730 total. 1099-K reconciliation clean ($64,895.50)."
     },
     {
       "title": "1120-S Filing",
       "status": "Due March 15",
-      "detail": "12 days — extension recommended",
+      "detail": "8 days — extension recommended",
       "urgency": "critical",
       "icon": "📋",
-      "details": "S-Corp return due March 15. Quinn recommends Form 7004 extension. Missing: YNAB business expenses, anode inventory count, owner distributions. CPA email covers this. EDD Account ID: 291-1666-2."
-    },
-    {
-      "title": "Crew Party",
-      "status": "TOMORROW",
-      "detail": "March 5 — Latitude 38 launch event",
-      "urgency": "critical",
-      "icon": "🎉",
-      "details": "Biggest networking opportunity of Q1. Elevator pitch due today. Business cards overdue. QR landing page for provider signups needed. Face-to-face with marine service providers — seed the Marketplace."
-    },
-    {
-      "title": "Beleza Overcharge",
-      "status": "NEEDS REFUND",
-      "detail": "~$151 Stripe refund pending",
-      "urgency": "medium",
-      "icon": "💳",
-      "details": "Billing override bug sent HullTotal to Stripe instead of adjusted amount. Beleza overcharged ~$303 vs ~$151. Bug fixed in App.tsx. Partial refund needed in Stripe."
+      "details": "S-Corp return due March 15. Extension (Form 7004) recommended. Missing: YNAB business expenses, anode inventory count, owner distributions. CPA: Dimov Tax — George Dimov. EDD Account ID: 291-1666-2."
     },
     {
       "title": "USCG Vessel Documentation",
@@ -40,6 +24,14 @@
       "urgency": "high",
       "icon": "⚓",
       "details": "Coast Guard Certificate of Documentation for Maris (Official #1149206) expired 4/30/2025. Requires reinstatement ($31). Renew at uscg.mil/nvdc or call (800) 799-8362."
+    },
+    {
+      "title": "Notion API Token Expired",
+      "status": "BROKEN",
+      "detail": "Token needs refresh — diving client list inaccessible",
+      "urgency": "medium",
+      "icon": "🔑",
+      "details": "Notion API integration token has expired. Diving Client List database (0ae0e330-780b-4764-956e-12e8ee344ea2) is inaccessible until token is refreshed at notion.so/my-integrations."
     }
   ],
   "sprintProgress": {
@@ -93,8 +85,8 @@
       "name": "SailorSkills Marketplace",
       "status": "in-progress",
       "progress": 60,
-      "metric": "Demo ready for Crew Party",
-      "nextAction": "Seed trust graph, provider signup QR page",
+      "metric": "Trust graph deployed, seeding needed",
+      "nextAction": "Seed trust graph, provider signup page",
       "icon": "🌐",
       "checklist": [
         { "text": "Trust graph schema + traversal", "done": true },
@@ -118,11 +110,68 @@
       ]
     },
     {
+      "name": "briancline.co",
+      "status": "in-progress",
+      "progress": 60,
+      "metric": "Phase 1 COMPLETE, Phase 2 active",
+      "nextAction": "Phase 2 build — spec complete, Tier 1 active",
+      "icon": "🌊",
+      "checklist": [
+        { "text": "Phase 1: Design + build", "done": true },
+        { "text": "Phase 1: Deploy to briancline.co", "done": true },
+        { "text": "Phase 2: Spec complete", "done": true },
+        { "text": "Phase 2: Tier 1 build", "done": false },
+        { "text": "Phase 2: Content + copy", "done": false }
+      ],
+      "recentActivity": [
+        "Phase 1 complete and live",
+        "Phase 2 spec delivered",
+        "Tier 1 active development"
+      ],
+      "docs": []
+    },
+    {
+      "name": "Tahoe Away Weekend",
+      "status": "complete",
+      "progress": 100,
+      "metric": "Live at tahoe-away-weekend-26.briancline.co",
+      "nextAction": "Monitor RSVPs",
+      "icon": "🏔️",
+      "checklist": [
+        { "text": "Site built and deployed", "done": true },
+        { "text": "RSVP system built", "done": true },
+        { "text": "Live at tahoe-away-weekend-26.briancline.co", "done": true }
+      ],
+      "recentActivity": [
+        "Site live with RSVP system",
+        "Built by Ellis"
+      ],
+      "docs": []
+    },
+    {
+      "name": "Wix Migration",
+      "status": "complete",
+      "progress": 100,
+      "metric": "COMPLETE — Wix is dead",
+      "nextAction": "None",
+      "icon": "🪦",
+      "checklist": [
+        { "text": "Migrate off Wix", "done": true },
+        { "text": "sailorskills.com redirects (196)", "done": true },
+        { "text": "Wix subscription cancelled", "done": true }
+      ],
+      "recentActivity": [
+        "Wix is dead — fully migrated",
+        "196 redirects configured for sailorskills.com"
+      ],
+      "docs": []
+    },
+    {
       "name": "Mission Control Dashboard",
       "status": "in-progress",
-      "progress": 70,
-      "metric": "7 pages built, live at localhost:3333",
-      "nextAction": "Fix cron health, update stale data, deploy to dashboard.briancline.co",
+      "progress": 85,
+      "metric": "Built, needs deployment",
+      "nextAction": "Deploy to dashboard.briancline.co",
       "icon": "📊",
       "checklist": [
         { "text": "Team page (replaces team.briancline.co)", "done": true },
@@ -150,7 +199,7 @@
       "status": "active",
       "progress": 90,
       "metric": "38 boats, $6,689.58 Feb total",
-      "nextAction": "Resolve Beleza overcharge, Tom Purcell invoices",
+      "nextAction": "Tom Purcell invoices",
       "icon": "💰",
       "checklist": [
         { "text": "Price adjustment (%, $, flat)", "done": true },
@@ -161,7 +210,6 @@
         { "text": "Missing conditions checker", "done": true },
         { "text": "JSON + CSV dual storage", "done": true },
         { "text": "Video panel (BOATY port)", "done": true },
-        { "text": "Beleza partial refund", "done": false },
         { "text": "Tom Purcell open invoices", "done": false }
       ],
       "recentActivity": [
@@ -173,18 +221,73 @@
       "docs": []
     },
     {
+      "name": "Scheduler App",
+      "status": "in-progress",
+      "progress": 70,
+      "metric": "8 bugs fixed, OAuth still broken",
+      "nextAction": "Fix Google Calendar OAuth",
+      "icon": "📅",
+      "checklist": [
+        { "text": "Core scheduling logic", "done": true },
+        { "text": "8 bugs fixed", "done": true },
+        { "text": "Google Calendar OAuth", "done": false }
+      ],
+      "recentActivity": [
+        "8 bugs fixed by Ellis",
+        "Google Calendar OAuth still broken"
+      ],
+      "docs": []
+    },
+    {
+      "name": "Matrix Homeserver",
+      "status": "active",
+      "progress": 90,
+      "metric": "Live, 5 project rooms, Space hierarchy",
+      "nextAction": "Onboard remaining agents",
+      "icon": "🏠",
+      "checklist": [
+        { "text": "Synapse homeserver running", "done": true },
+        { "text": "5 project rooms created", "done": true },
+        { "text": "Space hierarchy created", "done": true },
+        { "text": "Agent accounts provisioned", "done": true },
+        { "text": "Element client configured", "done": true }
+      ],
+      "recentActivity": [
+        "Space hierarchy created",
+        "5 project rooms live",
+        "Encryption issues resolved for DMs"
+      ],
+      "docs": []
+    },
+    {
+      "name": "TMC Calendar Sync",
+      "status": "complete",
+      "progress": 100,
+      "metric": "Apps Script deployed",
+      "nextAction": "Monitor sync health",
+      "icon": "🔄",
+      "checklist": [
+        { "text": "Apps Script written and deployed", "done": true },
+        { "text": "Calendar sync working", "done": true }
+      ],
+      "recentActivity": [
+        "Apps Script deployed by Wes",
+        "TMC calendar syncing automatically"
+      ],
+      "docs": []
+    },
+    {
       "name": "Taxes",
       "status": "overdue",
-      "progress": 30,
-      "metric": "CPA engaged, extension needed",
+      "progress": 40,
+      "metric": "CPA engaged — Dimov Tax, $1,730",
       "nextAction": "File Form 7004, gather missing docs",
       "icon": "📄",
       "checklist": [
         { "text": "Income reconciliation done", "done": true },
         { "text": "1099-K reconciliation clean", "done": true },
         { "text": "10 tax docs collected and filed", "done": true },
-        { "text": "CPA found: Elan Kamesar", "done": true },
-        { "text": "CPA email sent (Mar 2)", "done": true },
+        { "text": "CPA engaged: Dimov Tax — George Dimov", "done": true },
         { "text": "File Form 7004 extension", "done": false },
         { "text": "Gather YNAB biz expenses", "done": false },
         { "text": "Count anode inventory", "done": false },
@@ -193,7 +296,7 @@
         { "text": "File 2025 S-Corp return", "done": false }
       ],
       "recentActivity": [
-        "CPA email sent to Elan Kamesar (Mar 2)",
+        "Dimov Tax engaged — George Dimov (info@dimovtax.com), $1,730 total",
         "Quinn tax review: 3-part analysis delivered",
         "10 tax docs filed in ~/AI/finance/",
         "EDD back-filing status checked"
@@ -265,9 +368,9 @@
     {
       "name": "AI Org Infrastructure",
       "status": "active",
-      "progress": 85,
-      "metric": "15 agents, all Opus 4.6",
-      "nextAction": "Discord setup, reverse prompting live",
+      "progress": 90,
+      "metric": "15 agents, Matrix homeserver live",
+      "nextAction": "Finish Matrix onboarding, deploy dashboard",
       "icon": "🤖",
       "checklist": [
         { "text": "15 agents configured", "done": true },
@@ -278,13 +381,15 @@
         { "text": "3 midday crons added", "done": true },
         { "text": "Obsidian-First Rule propagated", "done": true },
         { "text": "Anti-AI-speak rules propagated", "done": true },
+        { "text": "Matrix homeserver live", "done": true },
+        { "text": "5 project rooms + Space hierarchy", "done": true },
         { "text": "Discord team setup", "done": false }
       ],
       "recentActivity": [
+        "Matrix homeserver live with 5 project rooms",
+        "Space hierarchy created",
         "Mission Control dashboard built",
-        "Reverse prompting added to Dawn Patrol",
-        "3 midday crons: 10am/2pm/5pm",
-        "Duplicate crons cleaned up"
+        "Reverse prompting added to Dawn Patrol"
       ],
       "docs": [
         { "label": "Org Manual", "url": "obsidian://open?vault=Brian%27s%20Vault&file=Organization/Operations%20Manual" },
@@ -293,39 +398,34 @@
     }
   ],
   "timeAllocation": [
-    { "label": "Platform Dev (Pro + Marketplace)", "value": 35, "color": "#89b4fa", "details": "Pro: Build 55, field test pending. Marketplace: trust graph deployed, Crew Party demo prep." },
+    { "label": "Platform Dev (Pro + Marketplace)", "value": 30, "color": "#89b4fa", "details": "Pro: Build 55, field test pending. Marketplace: trust graph deployed, seeding needed." },
     { "label": "Hull Cleaning (diving)", "value": 25, "color": "#a6e3a1", "details": "~43 services/month, ~$6,400/month revenue. 92 active clients." },
-    { "label": "AI Org / Infrastructure", "value": 20, "color": "#cba6f7", "details": "15 agents, Mission Control dashboard, cron automation, memory maintenance." },
-    { "label": "Business / Taxes", "value": 10, "color": "#f9e2af", "details": "2024 return overdue, 2025 S-Corp due Mar 15. CPA engaged. Billing dashboard active." },
-    { "label": "Networking / Growth", "value": 5, "color": "#f38ba8", "details": "Crew Party Mar 5, Marketplace seeding, provider acquisition." },
+    { "label": "AI Org / Infrastructure", "value": 20, "color": "#cba6f7", "details": "15 agents, Matrix homeserver, Mission Control dashboard, cron automation." },
+    { "label": "Personal Sites & Client Work", "value": 10, "color": "#fab387", "details": "briancline.co Phase 2, Tahoe site, TMC site, Blisscapes. Ellis + Wes building." },
+    { "label": "Business / Taxes", "value": 10, "color": "#f9e2af", "details": "2024 return overdue, 2025 S-Corp due Mar 15. CPA: Dimov Tax engaged. Billing dashboard active." },
     { "label": "Personal / Wellbeing", "value": 5, "color": "#94e2d5", "details": "TMC, Communication Dojo, mountain biking, Pocket walks." }
   ],
   "recentActivity": [
-    { "text": "Mission Control dashboard: all 7 pages built by Marcel", "date": "2026-03-03", "details": "Team, System, Tasks, Calendar, Projects, Memory, Docs pages. Dark theme, sidebar nav, real data. Reese spec'd, Marcel built in <5 min." },
-    { "text": "Dawn Patrol reverse prompting live", "date": "2026-03-03", "details": "Howard's Recommendation section added. First run: recommended Crew Party prep focus." },
-    { "text": "3 midday crons added: Progress Pulse, Afternoon Checkpoint, Pre-Debrief Staging", "date": "2026-03-03", "details": "Fills the 7am-6:30pm dead zone. Memory capture at 2pm, debrief staging at 5pm." },
-    { "text": "Reese delivered Mission Control dashboard spec", "date": "2026-03-03", "details": "17 API endpoints, 7 pages, ASCII wireframes, TypeScript models, build order." },
-    { "text": "NVC course site built and deployed", "date": "2026-03-02", "details": "newt-bailey.vercel.app — 8 pages, all Communication Dojo content." },
-    { "text": "Noa Mission Control analysis completed", "date": "2026-03-02", "details": "4 gaps identified: reverse prompting, cron calendar, midday automation, multi-model Council." },
-    { "text": "CPA email sent to Elan Kamesar", "date": "2026-03-02", "details": "Covers 1120-S extension, overdue 2024, retro payroll, EDD back-filing." },
-    { "text": "Quinn tax review: comprehensive 3-part analysis", "date": "2026-03-02", "details": "Critical docs, high priority items, CPA discussion points." },
-    { "text": "February billing completed: 38 boats, $6,689.58", "date": "2026-03-01", "details": "Anode installation fee added, Stripe override bug fixed." },
-    { "text": "Detailing site deployed to sailorskills.com/detailing", "date": "2026-03-01", "details": "Marcel built landing page + quote form with Resend integration." }
+    { "text": "Matrix homeserver: 5 project rooms live, Space hierarchy created", "date": "2026-03-07", "details": "Synapse running, encryption issues resolved, agent accounts provisioned." },
+    { "text": "Dimov Tax engaged as CPA — George Dimov, $1,730 total", "date": "2026-03-06", "details": "Replaced Elan Kamesar. info@dimovtax.com. Covers 2024 personal + 2025 S-Corp." },
+    { "text": "Tahoe Away Weekend site live at tahoe-away-weekend-26.briancline.co", "date": "2026-03-06", "details": "RSVP system built. Built by Ellis." },
+    { "text": "briancline.co Phase 1 COMPLETE, Phase 2 spec delivered", "date": "2026-03-05", "details": "Phase 2 Tier 1 active development." },
+    { "text": "Wix migration COMPLETE — 196 redirects, Wix is dead", "date": "2026-03-05", "details": "sailorskills.com fully migrated off Wix." },
+    { "text": "Scheduler app: 8 bugs fixed, Google Calendar OAuth still broken", "date": "2026-03-06", "details": "Ellis working on scheduler. OAuth integration pending." },
+    { "text": "TMC calendar sync: Apps Script deployed", "date": "2026-03-05", "details": "Wes deployed Apps Script for TMC calendar synchronization." },
+    { "text": "Mission Control dashboard: all 7 pages built by Marcel", "date": "2026-03-03", "details": "Team, System, Tasks, Calendar, Projects, Memory, Docs pages. Dark theme, sidebar nav, real data." },
+    { "text": "NVC course site live at newt-bailey.vercel.app", "date": "2026-03-02", "details": "8 pages, all Communication Dojo content." },
+    { "text": "February billing completed: 38 boats, $6,689.58", "date": "2026-03-01", "details": "Anode installation fee added, Stripe override bug fixed." }
   ],
   "todos": {
     "Business": [
-      { "text": "Crew Party elevator pitch — draft today", "done": false },
-      { "text": "Crew Party business cards — order/print today", "done": false },
-      { "text": "Crew Party QR landing page for provider signups", "done": false },
-      { "text": "Check for CPA reply from Elan Kamesar", "done": false },
       { "text": "File Form 7004 extension before March 15", "done": false },
-      { "text": "Refund Beleza ~$151 in Stripe", "done": false },
       { "text": "Resolve Tom Purcell / Que Sera Sera open invoices", "done": false },
-      { "text": "Fouad/Andiamo dispute — send response email", "done": false },
       { "text": "Create Islander 30 Notion entry (Jay Amado)", "done": false },
       { "text": "Renew USCG vessel documentation for Maris ($31)", "done": false },
       { "text": "File Form 576D boat property tax declaration", "done": false },
-      { "text": "Claim unclaimed Blue Shield property via sco.ca.gov", "done": false }
+      { "text": "Claim unclaimed Blue Shield property via sco.ca.gov", "done": false },
+      { "text": "Refresh Notion API token", "done": false }
     ],
     "Personal": [
       { "text": "Smog car", "done": false },
@@ -338,16 +438,13 @@
     ]
   },
   "deadlines": [
-    { "date": "2026-03-03", "text": "Elevator pitch draft", "icon": "🎤", "status": "due-today" },
-    { "date": "2026-03-03", "text": "Business cards ordered", "icon": "🃏", "status": "overdue" },
-    { "date": "2026-03-05", "text": "Crew Party — Latitude 38", "icon": "🎉", "daysAway": 2 },
-    { "date": "2026-03-15", "text": "1120-S filing deadline", "icon": "📋", "daysAway": 12 },
-    { "date": "2026-03-05", "text": "TMC Wednesday Circle", "icon": "🔵", "daysAway": 2 }
+    { "date": "2026-03-15", "text": "1120-S filing deadline", "icon": "📋", "daysAway": 8 },
+    { "date": "2026-04-15", "text": "2024 personal return (if no extension)", "icon": "📄", "daysAway": 39 }
   ],
   "agents": [
     { "name": "Howard", "emoji": "🪨", "status": "Active", "role": "Chief of Staff" },
     { "name": "Jacques", "emoji": "🔧", "status": "Active", "role": "Pro App Lead" },
-    { "name": "Marcel", "emoji": "🎨", "status": "Active", "role": "Marketplace Lead" },
+    { "name": "Marcel", "emoji": "🎨", "status": "Active", "role": "Creative Director" },
     { "name": "Reese", "emoji": "📋", "status": "Active", "role": "Product Manager" },
     { "name": "Blake", "emoji": "🔍", "status": "Standby", "role": "QA (code-level)" },
     { "name": "Cyrus", "emoji": "🛡️", "status": "Standby", "role": "Security" },
@@ -359,6 +456,6 @@
     { "name": "Sage", "emoji": "🤝", "status": "Standby", "role": "Sales" },
     { "name": "Avery", "emoji": "⚖️", "status": "Active", "role": "Legal" },
     { "name": "Ellis", "emoji": "🏕️", "status": "Active", "role": "Personal Sites Builder" },
-    { "name": "Wes", "emoji": "🤝", "status": "Active", "role": "Client Sites Builder" }
+    { "name": "Wes", "emoji": "🤝", "status": "Active", "role": "Client Work Builder" }
   ]
 }
