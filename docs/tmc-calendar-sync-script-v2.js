@@ -260,6 +260,24 @@ function highlightRequiredHeaders() {
   Logger.log('Headers color-coded: dark blue = required, medium blue = optional, gray = auto-filled');
 }
 
+/**
+ * Sort all data rows by Date (ascending), then Start Time.
+ * Run manually or called by the hourly sync.
+ */
+function sortByDate() {
+  const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+  if (!sheet) return;
+  const lastRow = sheet.getLastRow();
+  if (lastRow <= HEADER_ROW) return;
+
+  const dataRange = sheet.getRange(HEADER_ROW + 1, 1, lastRow - HEADER_ROW, EVENT_ID_COL);
+  dataRange.sort([
+    { column: COL.DATE, ascending: true },
+    { column: COL.START, ascending: true },
+  ]);
+  Logger.log('Sorted by date + start time.');
+}
+
 // ─── SHEET → CALENDAR ────────────────────────────────────
 
 /**
@@ -407,6 +425,7 @@ function hourlySyncAndUpdate() {
   calendarToSheet();
   cleanOrphanedEvents();
   refreshAllAutoColumns();
+  sortByDate();
 }
 
 /**
