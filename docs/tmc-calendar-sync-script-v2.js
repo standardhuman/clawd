@@ -555,17 +555,39 @@ function refreshAllAutoColumns() {
 
   const eventIds = sheet.getRange(HEADER_ROW + 1, COL.EVENT_ID, lastRow - HEADER_ROW, 1).getValues();
   const dates = sheet.getRange(HEADER_ROW + 1, COL.DATE, lastRow - HEADER_ROW, 1).getValues();
+  const starts = sheet.getRange(HEADER_ROW + 1, COL.START, lastRow - HEADER_ROW, 1).getValues();
+  const ends = sheet.getRange(HEADER_ROW + 1, COL.END, lastRow - HEADER_ROW, 1).getValues();
+  const publishes = sheet.getRange(HEADER_ROW + 1, COL.PUBLISH, lastRow - HEADER_ROW, 1).getValues();
 
   for (let i = 0; i < eventIds.length; i++) {
     const row = i + HEADER_ROW + 1;
     const eventId = eventIds[i][0];
     const dateVal = dates[i][0];
+    const publishVal = (publishes[i][0] || '').toString().trim();
 
-    // Status can be computed without calendar API for past events
+    // Skip rows that are explicitly Unpublished — don't overwrite that status
+    if (publishVal === 'Unpublish') continue;
+
+    // For rows without a calendar event, compute status from date + time
     if (!eventId && dateVal) {
       const d = dateVal instanceof Date ? dateVal : new Date(dateVal);
       if (!isNaN(d.getTime())) {
-        const status = d < new Date() ? 'Past' : 'Upcoming';
+        const now = new Date();
+        const startTime = starts[i][0];
+        const endTime = ends[i][0];
+        const startDt = startTime ? combineDateAndTime(d, startTime) : d;
+        const endDt = endTime ? combineDateAndTime(d, endTime) : null;
+
+        let status;
+        if (endDt && endDt < now) {
+          status = 'Past';
+        } else if (startDt && startDt <= now && endDt && endDt >= now) {
+          status = 'Happening Now';
+        } else if (startDt && startDt > now) {
+          status = 'Upcoming';
+        } else {
+          status = d < now ? 'Past' : 'Upcoming';
+        }
         sheet.getRange(row, COL.STATUS).setValue(status);
       }
       continue;
