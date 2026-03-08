@@ -69,13 +69,13 @@ const SCHEDULE = {
     events: [
       { time: '8:00 AM', title: 'Breakfast', desc: 'At the house', Icon: CoffeeIcon },
       { time: '9:00 AM', title: 'Drive to Hike', desc: '30 min drive to trailhead', Icon: CarIcon },
-      { time: '10:00 AM', title: 'Exercise Options', desc: 'Barn Trail hike, group sauna, or bike ride', Icon: HikingIcon },
+      { time: '10:00 AM', title: 'Exercise Options', desc: 'Barn Trail hike (moderate loop with lake views), group sauna, or bike ride', Icon: HikingIcon },
       { time: '12:00 PM', title: 'Lunch', desc: 'At the house', Icon: SandwichIcon },
       { time: '1:00 PM', title: 'Warrior/Magician/Lover/King', desc: 'Talk by Patrick Dominguez', Icon: SwordIcon },
       { time: '2:00 PM', title: 'Breathwork', desc: 'Led by Evan Drake — 2 hours', Icon: WindIcon },
       { time: '4:00 PM', title: 'T-Groups', desc: 'Led by Brian — 2 hours', Icon: ChatIcon },
       { time: '6:00 PM', title: 'Dinner', desc: 'At the house', Icon: MeatIcon },
-      { time: '7:00–9:00 PM', title: 'Games & Wind Down', desc: 'Relax and connect', Icon: DiceIcon },
+      { time: '7:00–9:00 PM', title: 'Games & Wind Down', desc: 'Relax, connect, instruments welcome', Icon: DiceIcon },
     ],
   },
   sunday: {
@@ -130,17 +130,24 @@ const ACCOMMODATIONS = [
     ],
   },
   {
-    title: 'Camping',
+    title: "Camp at Evan's",
+    Icon: TentIcon,
+    price: 'FREE',
+    priceNum: 0,
+    description: 'Pitch a tent in the backyard at base camp. Right where everything is happening.',
+    pros: ['Free', 'Steps from the house', 'Wake up in the woods'],
+    cons: ['Cold (30s-50s°F in April)', 'Bring your own tent & sleeping bag', 'No power hookups'],
+  },
+  {
+    title: 'Tahoe Valley Campground',
     Icon: TentIcon,
     price: '$25–50/night',
     priceNum: 35,
-    description: 'Budget option. Campground by the Lake or KOA. April temps: 30s–50s°F.',
-    pros: ['Cheapest option', 'Adventure factor', 'Close to nature'],
-    cons: ['Cold (30s–50s°F in April)', 'Limited facilities', 'Some campgrounds not open yet'],
+    description: 'Nearby campground with full facilities. Short drive to base camp.',
+    pros: ['Budget-friendly', 'Showers & restrooms', 'Close to base camp'],
+    cons: ['Cold (30s-50s°F in April)', 'Need to drive to house', 'Availability may vary'],
     links: [
-      { label: 'Campground by the Lake', url: 'https://www.cityofslt.gov/270/Campground-by-the-Lake' },
-      { label: 'Lake Tahoe KOA', url: 'https://koa.com/campgrounds/lake-tahoe/' },
-      { label: 'Tahoe Valley Campground', url: 'https://thousandtrails.com/california/tahoe-valley-campground' },
+      { label: 'Book Tahoe Valley Campground (Apr 10–12)', url: 'https://newbook.thousandtrails.com/tahoe-valley-campground/?available_from=2026-04-10&available_to=2026-04-12&adults=2&children=0&animals=0&robot_id=171' },
     ],
   },
 ]
@@ -154,16 +161,16 @@ const ACTIVITIES = [
     price: 'Free',
   },
   {
-    title: 'Tahoe Forest Baths',
+    title: 'Cedar Enzyme Bath',
     Icon: TreesIcon,
-    desc: 'Traditional Japanese cedar enzyme bath. One of only two locations in the US.',
+    desc: 'Traditional Japanese cedar enzyme bath at Tahoe Forest Baths. One of only two locations in the US. Optional side trip.',
     url: 'https://tahoeforestbaths.com',
     price: 'Check site',
   },
   {
-    title: "David Walley's Hot Springs",
+    title: "Wally's Hot Springs",
     Icon: HotSpringIcon,
-    desc: 'Seven mineral hot spring pools, steam rooms, dry saunas. ~45 min from SLT.',
+    desc: 'Seven mineral hot spring pools, steam rooms, dry saunas. ~45 min from SLT. Optional side trip worth the drive.',
     price: '$55/person day pass',
     url: 'https://www.holidayinnclub.com/explore-resorts/david-walleys-resort/on-site-activities/pools',
   },
@@ -176,7 +183,7 @@ const ACTIVITIES = [
   {
     title: 'Breathwork Session',
     Icon: WindIcon,
-    desc: '2-hour guided breathwork experience led by Evan Drake.',
+    desc: '2-hour guided somatic breathwork led by Evan Drake. Come ready to go deep.',
     price: 'Included',
   },
   {
@@ -204,7 +211,7 @@ const PACKING_LIST = [
   { category: 'Essentials', Icon: BackpackIcon, items: ['Sleeping bag or bedding (if not at hotel)', 'Pillow', 'Toiletries', 'Medications', 'Phone charger', 'ID & wallet'] },
   { category: 'Outdoor Gear', Icon: BootIcon, items: ['Hiking boots/shoes', 'Layers (30s–50s°F)', 'Rain jacket', 'Warm hat & gloves', 'Sunglasses & sunscreen', 'Water bottle'] },
   { category: 'Activities', Icon: LotusIcon, items: ['Yoga mat (if you have one)', 'Journal & pen', 'Guitar or instrument (optional)', 'Swimsuit (for sauna/hot springs)', 'Towel'] },
-  { category: 'Fun', Icon: DiceIcon, items: ['Card games', 'Board games', 'Books', 'Snacks to share', 'Your favorite beverage'] },
+  { category: 'Fun', Icon: DiceIcon, items: ['Card games', 'Board games', 'Books', 'Snacks to share'] },
 ]
 
 function Section({ id, Icon, title, children }) {
@@ -720,6 +727,16 @@ export default function App() {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-midnight to-transparent" />
       </header>
 
+      {/* Intro */}
+      <section className="py-16 px-4 max-w-3xl mx-auto text-center">
+        <p className="text-lg md:text-xl text-warm leading-relaxed">
+          A weekend carved out of ordinary life — a chance to step out of the noise and remember the man you are.
+        </p>
+        <p className="text-slate-400 mt-4 leading-relaxed">
+          We're gathering at a 4-bed house in a gated community that backs up to the woods in South Lake Tahoe. Quiet and still, with the lake and trails within a mile. No agenda beyond honesty, presence, and time in nature.
+        </p>
+      </section>
+
       {/* Nav */}
       <nav className="sticky top-0 z-50 bg-midnight/90 backdrop-blur-md border-b border-card-border">
         <div className="max-w-5xl mx-auto px-4 py-3 flex justify-center gap-6 overflow-x-auto text-sm font-medium">
@@ -762,6 +779,20 @@ export default function App() {
           ))}
         </div>
       </Section>
+
+      {/* What This Is */}
+      <section className="py-16 px-4 max-w-3xl mx-auto border-t border-card-border">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center flex items-center justify-center gap-3">
+          <FlameIcon className="w-7 h-7 text-amber" />What This Is
+        </h2>
+        <p className="text-slate-400 leading-relaxed mb-4">
+          This weekend runs at cost with no profit. No intoxicants. What's here instead: breathwork, T-groups, sauna, hikes, and honest conversation between men who want to go deeper.
+        </p>
+        <blockquote className="border-l-2 border-amber pl-4 text-warm italic">
+          "My intention is to create an awesome, mind/body-bending, safe experience."
+          <span className="block text-sm text-slate-500 mt-1 not-italic">— Evan Drake</span>
+        </blockquote>
+      </section>
 
       {/* Accommodation */}
       <Section id="accommodation" Icon={BedIcon} title="Where to Stay">
