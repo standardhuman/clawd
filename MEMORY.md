@@ -12,33 +12,11 @@
 
 **S-Corp accepted effective Jan 1, 2025** (not 2024). Form 1120-S due March 15, 2026. Brian paying W-2 via Gusto already.
 
-## SailorSkills Employee Expansion (Sarah) — ON HOLD
+## SailorSkills Employee Expansion — CLOSED
 
-**Sarah postponed (Feb 11, 2026).** Needs stable income first, wants to revisit in a few months. Door left open. Brian responded with gratitude — the process was valuable for deepening his understanding of business financials.
+**Sarah declined (Feb 2026).** Chose to pursue other income opportunities. The research was valuable — deepened Brian's understanding of business financials, insurance, and hiring costs. Full docs archived in Obsidian: `SailorSkills/Business/Employee Expansion/`.
 
-Original plan: Hiring Sarah (lives on Brian's dock) as **W-2 employee** (not 1099 — AB5 compliance). Key numbers:
-- 92 active clients, ~43 services/month avg, ~$6,400/month revenue, $149 avg/service
-- For both to earn $4K/month: need ~54 services/month total (~11 more than current)
-- Compensation: **50% per-boat revenue share, W-2** — simple, one number, no referral bonus (growth is built into the model)
-- W-2 costs Brian ~$13 extra/boat in employer taxes + workers' comp (~59% effective vs 50%)
-- Sarah keeps ~$500/month more as W-2 than 1099 (7.65% FICA vs 15.3% SE tax)
-- Per-boat piece rate, NOT hourly — incentivizes efficiency for autonomous underwater work
-- All docs in Obsidian: `SailorSkills/Business/Employee Expansion/`
-- Term sheet drafted: `~/clawd/billing/sarah-term-sheet.md`
-
-### Marine Insurance (RLI Policy EMA0103560)
-- **Carrier:** RLI Insurance Company, **Agent:** Mariners General Ins Group (Newport Beach)
-- **Premium:** $2,422/yr, **Period:** 5/31/2025–5/31/2026
-- **Coverage:** $1M per occurrence / $2M aggregate, Marine GL + Watercraft Repairers Liability + Equipment Floater
-- **Employee Endorsement (OMGL 651) currently written for 1099** — needs broker update for W-2
-- **Sarah's work IS covered** under Brian's GL for damage to boats/third parties — she does NOT need her own marine GL as his employee
-- **Workers' Comp is a separate policy needed** — GL excludes all employee injury claims (WC, Jones Act, USL&H)
-- **Hull cleaning ≠ ship repair** — Brian argues (correctly) that cleaning moored boats isn't traditional maritime repair, so USL&H may not apply. Standard CA state WC would be much cheaper (~$770–$1,920/yr vs ~$3,500–$4,800/yr)
-- **Email sent 2/11/2026, response received 2/12/2026 from Henry Medina at Novamar** (Katrina moved from Mariners General to Novamar Insurance Group)
-- **USL&H IS REQUIRED** — as in-water dive service, must have WC policy with USL&H endorsement. Standard state WC is NOT sufficient. Estimated cost: ~$3,500–$4,800/yr for $36K–$48K payroll.
-- **To add W-2 employee to GL policy, broker needs:** employee name + DOB, new estimated gross receipts, estimated employee payroll
-- **RLI GL does NOT cover employee liability** (confirmed) — separate WC+USL&H policy required
-- **1099 alternative noted by broker:** sub-contractor carries their own insurance + adds Brian as Additional Insured (but CA AB5 makes 1099 non-viable)
+**Key learnings preserved:** W-2 (not 1099, AB5 compliance), 50% per-boat revenue share model, USL&H workers' comp required for in-water dive work (~$3,500–$4,800/yr). Insurance broker: Henry Medina at Novamar (Katrina moved there from Mariners General). RLI GL policy EMA0103560 ($2,422/yr, expires 5/31/2026).
 
 ---
 
