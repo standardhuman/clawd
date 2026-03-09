@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "destination": "https://brians-mac-mini.taile67de1.ts.net:8443/$1",
-      "permanent": false
-    }
-  ]
-}

@@ -99,28 +99,28 @@ All 13 agents are **always-on staff** with their own workspaces, memory, identit
 | Agent | Title | Workspace | Owns |
 |-------|-------|-----------|------|
 | **Howard 🪨** | Chief of Staff | `~/clawd` | Org ops, daily rhythm, shared services pool, memory |
-| **Jacques 🤿** | Product Lead, SailorSkills Pro | `~/clawd-jacques` | Pro app (React Native/Expo), GoPro integration, TestFlight |
-| **Marcel 🎨** | Product Lead, SailorSkills Marketplace | `~/clawd-marcel` | Marketplace (React/Vite/Supabase), trust graph, UX |
-| **Quinn 📊** | Head of Business Operations | `~/clawd-quinn` | Finance, invoicing, compliance, manages Sage + Avery |
-| **Rio 🌊** | Head of Wellbeing | `~/clawd-rio` | Pillar 1 — physical & emotional wellbeing |
+| **Jacques 🤿** | Product Lead, SailorSkills Pro | `~/openclaw/agents/jacques` | Pro app (React Native/Expo), GoPro integration, TestFlight |
+| **Marcel 🎨** | Product Lead, SailorSkills Marketplace | `~/openclaw/agents/marcel` | Marketplace (React/Vite/Supabase), trust graph, UX |
+| **Quinn 📊** | Head of Business Operations | `~/openclaw/agents/quinn` | Finance, invoicing, compliance, manages Sage + Avery |
+| **Rio 🌊** | Head of Wellbeing | `~/openclaw/agents/rio` | Pillar 1 — physical & emotional wellbeing |
 
 ### Shared Services Pool (Howard allocates)
 
 | Agent | Specialty | Workspace | Primary Output |
 |-------|-----------|-----------|---------------|
-| **Noa 🔍** | Research Analyst | `~/clawd-noa` | `reports/YYYY-MM-DD-research.md` (nightly) |
-| **Kai 💡** | Strategist | `~/clawd-kai` | `reports/YYYY-MM-DD-pitch.md` (daily via Dawn Patrol) |
-| **Blake 🧪** | QA & Testing | `~/clawd-blake` | Code reviews, pre-ship verification |
-| **Reese 📋** | Product Manager | `~/clawd-reese` | Feature specs, PRDs, user stories |
-| **Milo 📣** | Marketing & Growth | `~/clawd-milo` | Content, SEO, campaigns |
-| **Cyrus 🔒** | Security | `~/clawd-cyrus` | Security audits, infrastructure review |
+| **Noa 🔍** | Research Analyst | `~/openclaw/agents/noa` | `reports/YYYY-MM-DD-research.md` (nightly) |
+| **Kai 💡** | Strategist | `~/openclaw/agents/kai` | `reports/YYYY-MM-DD-pitch.md` (daily via Dawn Patrol) |
+| **Blake 🧪** | QA & Testing | `~/openclaw/agents/blake` | Code reviews, pre-ship verification |
+| **Reese 📋** | Product Manager | `~/openclaw/agents/reese` | Feature specs, PRDs, user stories |
+| **Milo 📣** | Marketing & Growth | `~/openclaw/agents/milo` | Content, SEO, campaigns |
+| **Cyrus 🔒** | Security | `~/openclaw/agents/cyrus` | Security audits, infrastructure review |
 
 ### Business Operations (Quinn's Team)
 
 | Agent | Specialty | Workspace |
 |-------|-----------|-----------|
-| **Sage 💰** | Sales & Client Relations | `~/clawd-sage` |
-| **Avery ⚖️** | Legal & Compliance | `~/clawd-avery` |
+| **Sage 💰** | Sales & Client Relations | `~/openclaw/agents/sage` |
+| **Avery ⚖️** | Legal & Compliance | `~/openclaw/agents/avery` |
 
 ### How It Works Together
 
@@ -270,13 +270,13 @@ Three systems, clear boundaries. No duplicating content across all three.
 | System | Purpose | Audience | What goes here |
 |--------|---------|----------|---------------|
 | **Obsidian vault** | Company wiki — durable, curated reference material | Brian | Org structure, team profiles, strategy (Pillars, Powers), architecture, business analysis, decision records, course notes |
-| **~/clawd/docs/** | Working docs — specs and references agents need for tasks | Agents | Build plans, technical specs, agent-facing scripts, API references, sprint plans |
-| **~/clawd/memory/** | Operational log — what happened, daily context | Howard | Daily notes, session continuity, ephemeral context |
+| **~/openclaw/agents/howard/docs/** | Working docs — specs and references agents need for tasks | Agents | Build plans, technical specs, agent-facing scripts, API references, sprint plans |
+| **~/openclaw/agents/howard/memory/** | Operational log — what happened, daily context | Howard | Daily notes, session continuity, ephemeral context |
 
 **Rule of thumb:**
 - Would Brian read it on a Sunday to understand how things work? → **Obsidian**
-- Does an agent need it to execute a task? → **~/clawd/docs/**
-- Is it what happened today? → **~/clawd/memory/**
+- Does an agent need it to execute a task? → **~/openclaw/agents/howard/docs/**
+- Is it what happened today? → **~/openclaw/agents/howard/memory/**
 
 **Dual-write rule:** When meaningful work is done, it gets logged in memory AND anything durable gets written to Obsidian. Neither alone is enough.
 

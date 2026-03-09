@@ -80,7 +80,7 @@
 
 **ALSO TM-B E-Bike:** Brian has reservation for Performance model ($4,500). Rivian spinoff, Class 3, 28mph, 60-100mi range, shipping spring 2026. Part of truck+ebike combo analysis.
 
-**Dashboard Sync Script:** `~/clawd/dashboard/sync.sh` — bash+jq, no AI, auto-updates deadlines and progress.
+**Dashboard Sync Script:** `~/openclaw/agents/howard/dashboard/sync.sh` — bash+jq, no AI, auto-updates deadlines and progress.
 
 **briancline.io headshot:** Edited version at `~/AI/business/briancline-co/website/generated_imgs/2025-02-05-headshot-v3.png` (bald, softened wrinkles, slightly reduced white beard patches).
 
@@ -137,15 +137,15 @@ Everyone thinks crossing an ocean is the hardest part of sailing. It's actually 
 
 ## Agent Org Structure (Feb 15-16, 2026)
 
-Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster at `~/clawd/agents/README.md`.
+Full team built during Feb 15 hackathon. Personas at `~/openclaw/agents/howard/agents/`. Roster at `~/openclaw/agents/howard/agents/README.md`.
 
 **Core Team (full agents, own workspaces, all Opus 4.6):**
 - 🪨 Howard — Chief of Staff (~/clawd)
-- 🤿 Jacques — Dev Partner (~/clawd-jacques)
-- 🎨 Marcel — Creative Director (~/clawd-marcel)
+- 🤿 Jacques — Dev Partner (~/openclaw/agents/jacques)
+- 🎨 Marcel — Creative Director (~/openclaw/agents/marcel)
 
 **Scheduled (cron):**
-- 🔍 Noa — Research Analyst (midnight daily → ~/clawd/reports/YYYY-MM-DD-research.md)
+- 🔍 Noa — Research Analyst (midnight daily → ~/openclaw/agents/howard/reports/YYYY-MM-DD-research.md)
 - 💡 Kai — Strategist (6:30am daily → pitch announced to Brian)
 
 **Builders (full agents, own workspaces — added March 6):**
@@ -160,9 +160,9 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 - Sales: Sage → Quinn
 - Marketing: Milo → Marcel
 
-**Spawn pattern:** "Read ~/clawd/agents/{name}/PERSONA.md and follow its instructions. Then: {task}"
+**Spawn pattern:** "Read ~/openclaw/agents/howard/agents/{name}/PERSONA.md and follow its instructions. Then: {task}"
 
-**Avatars:** Generated Feb 16. Final style: cute bobblehead robots (Wall-E inspired), nautical ship crew theme, each at their station. Canonical files: `~/clawd/avatars/{name}-robot-v2.png`. Style guide + visual details in `~/clawd/agents/README.md`. Each PERSONA.md references its avatar. Earlier versions (illustrated, pixel art) also in avatars dir but `-robot-v2` is canonical.
+**Avatars:** Generated Feb 16. Final style: cute bobblehead robots (Wall-E inspired), nautical ship crew theme, each at their station. Canonical files: `~/openclaw/agents/howard/avatars/{name}-robot-v2.png`. Style guide + visual details in `~/openclaw/agents/howard/agents/README.md`. Each PERSONA.md references its avatar. Earlier versions (illustrated, pixel art) also in avatars dir but `-robot-v2` is canonical.
 
 **Slack Integration (Feb 16):** Socket Mode configured in OpenClaw. Bot token + app token stored in 1Password ("OpenClaw Slack - Howard Bot Token" / "OpenClaw Slack - Howard App Token"). DM allowlist: `*`. Awaiting first test DM.
 
@@ -178,7 +178,7 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 
 **Relationship History Context:** Lauren (lived on boat at marina, breakup was destabilizing — Brian avoided marina during certain hours for months). Allison (10-month relationship, ended Dec 5 2025, processed well through TMC). Sarah (lives on Brian's dock, now in a relationship with someone else, decided not to pursue — marina is too important as work/community to risk). ~20 years of dating apps starting with PlentyOfFish/OkCupid in 2006, pattern of short-term relationships. Done with apps — they create anxiety, addictive behavior, devalue the person in front of him.
 
-**OpenTelemetry + Testing (Feb 23, 2026):** Both Marketplace and Pro instrumented with OpenTelemetry. Grafana Cloud free tier (Instance 1511014, us-west-0). Marketplace: auto-instrumented fetch/page loads + custom spans on review.submit, recommendation_request, social proof. Pro: custom spans on service_log.create, voice recording, BLE, offline sync. API token in `.env` (gitignored). Marketplace testing: 53 unit tests (vitest, trust network hooks + auth regression) + 36 E2E tests (Playwright, 6 suites: homepage/auth/browse/SEO/navigation/learn). Test infra: Supabase chainable mock, test factories, Playwright with auto dev server. Full plan at `~/clawd/docs/plans/2026-02-23-otel-and-testing-plan.md`.
+**OpenTelemetry + Testing (Feb 23, 2026):** Both Marketplace and Pro instrumented with OpenTelemetry. Grafana Cloud free tier (Instance 1511014, us-west-0). Marketplace: auto-instrumented fetch/page loads + custom spans on review.submit, recommendation_request, social proof. Pro: custom spans on service_log.create, voice recording, BLE, offline sync. API token in `.env` (gitignored). Marketplace testing: 53 unit tests (vitest, trust network hooks + auth regression) + 36 E2E tests (Playwright, 6 suites: homepage/auth/browse/SEO/navigation/learn). Test infra: Supabase chainable mock, test factories, Playwright with auto dev server. Full plan at `~/openclaw/agents/howard/docs/plans/2026-02-23-otel-and-testing-plan.md`.
 
 **Dawn Patrol Kindle Delivery Fix (Feb 23):** Plain .txt emails cause Kindle E999 error (emoji/Unicode). HTML attachment works. Cron updated to generate `/tmp/dawn-patrol.html`. Also removed `--from standardhuman@gmail.com` flag (not verified as Send As alias; default sending address works fine).
 
@@ -216,7 +216,7 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 
 **Room Avatars:** Pro (generated diver icon), TMC (existing favicon), Marine (BC monogram), Marketplace (generated network/compass), Personal Sites (generated constellation cabin).
 
-**Brian's Avatar:** Stylized illustrated portrait at `~/clawd/avatars/brian-stylized-avatar.png` (`mxc://briancline.co/rifxxxSTkLhbAAcPveLTpBtF`). Also generated Pixar and robot versions — Brian chose the illustrated one.
+**Brian's Avatar:** Stylized illustrated portrait at `~/openclaw/agents/howard/avatars/brian-stylized-avatar.png` (`mxc://briancline.co/rifxxxSTkLhbAAcPveLTpBtF`). Also generated Pixar and robot versions — Brian chose the illustrated one.
 
 **Matrix Plugin — Working (March 7+):** Plugin installed and loaded, 15 Matrix accounts configured, 15 bindings, rooms mapped. Two bugs patched manually (keyed-async-queue shim, subpath import fix). Gateway restarted successfully — Matrix sync running, DMs and group rooms functional.
 
@@ -228,7 +228,7 @@ Full team built during Feb 15 hackathon. Personas at `~/clawd/agents/`. Roster a
 
 **Phase 1 — COMPLETE:**
 - CI GitHub Actions on 4 repos (marketplace, billing, scheduler, briancline.co). All green.
-- Initial security audit by Cyrus — 3 critical, 5 high findings. Reports at `~/clawd/docs/security/`.
+- Initial security audit by Cyrus — 3 critical, 5 high findings. Reports at `~/openclaw/agents/howard/docs/security/`.
 - All critical security fixes shipped by Marcel (service_role key moved server-side, hardcoded secrets removed, env vars used).
 - Blake deploy verification process established.
 - Supabase service_role key rotated (Brian did manually in Supabase dashboard + Vercel env vars).

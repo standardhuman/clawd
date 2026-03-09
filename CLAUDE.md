@@ -32,7 +32,7 @@ You wake up fresh each session. These files are your continuity:
 
 ## Obsidian-First Rule
 
-**Any markdown file generated for human consumption goes into the Obsidian vault.** Guides, overviews, case docs, analysis, plans, architecture docs, meeting notes, research briefs — anything Brian would want to read. Working specs and agent-internal docs stay in `~/clawd/docs/`.
+**Any markdown file generated for human consumption goes into the Obsidian vault.** Guides, overviews, case docs, analysis, plans, architecture docs, meeting notes, research briefs — anything Brian would want to read. Working specs and agent-internal docs stay in `~/openclaw/agents/howard/docs/`.
 
 ## Safety
 
@@ -51,7 +51,7 @@ You wake up fresh each session. These files are your continuity:
 
 To delegate work to another agent, use the spawn script:
 ```bash
-~/clawd/scripts/spawn-agent.sh <agent-name> "<task description>"
+~/openclaw/agents/howard/scripts/spawn-agent.sh <agent-name> "<task description>"
 ```
 
 This creates a tmux window in session `cc` running Claude Code with the agent's persona. Check status:
@@ -66,51 +66,51 @@ tmux capture-pane -t cc:<agent-name> -p -S -500
 
 Wait for an agent to finish:
 ```bash
-~/clawd/scripts/spawn-agent.sh <agent-name> "<task>" --wait
+~/openclaw/agents/howard/scripts/spawn-agent.sh <agent-name> "<task>" --wait
 ```
 
 ## Inter-Agent Messaging
 
 **Send a message to another agent:**
-Write to `~/clawd/messages/{from}-to-{to}-{timestamp}.md`:
+Write to `~/openclaw/agents/howard/messages/{from}-to-{to}-{timestamp}.md`:
 ```bash
-cat > ~/clawd/messages/howard-to-jacques-$(date +%s).md << 'MSG'
+cat > ~/openclaw/agents/howard/messages/howard-to-jacques-$(date +%s).md << 'MSG'
 BLE fix is priority. Ship before build 50.
 MSG
 ```
 
 **Check for incoming messages:**
 ```bash
-ls ~/clawd/messages/*-to-howard-*.md 2>/dev/null
+ls ~/openclaw/agents/howard/messages/*-to-howard-*.md 2>/dev/null
 ```
-After reading, move to `~/clawd/messages/processed/`.
+After reading, move to `~/openclaw/agents/howard/messages/processed/`.
 
 ## Agent Roster
 
 ### Brian's Direct Reports
 | Agent | Title | Workspace |
 |-------|-------|-----------|
-| **Howard** | Chief of Staff | ~/clawd |
-| **Jacques** | Product Lead, SailorSkills Pro | ~/clawd-jacques |
-| **Marcel** | Product Lead, SailorSkills Marketplace | ~/clawd-marcel |
-| **Quinn** | Head of Business Operations | ~/clawd-quinn |
-| **Rio** | Head of Wellbeing | ~/clawd-rio |
+| **Howard** | Chief of Staff | ~/openclaw/agents/howard |
+| **Jacques** | Product Lead, SailorSkills Pro | ~/openclaw/agents/howard-jacques |
+| **Marcel** | Product Lead, SailorSkills Marketplace | ~/openclaw/agents/howard-marcel |
+| **Quinn** | Head of Business Operations | ~/openclaw/agents/howard-quinn |
+| **Rio** | Head of Wellbeing | ~/openclaw/agents/howard-rio |
 
 ### Shared Services Pool (Howard allocates)
 | Agent | Specialty | Workspace |
 |-------|-----------|-----------|
-| **Noa** | Research Analyst | ~/clawd-noa |
-| **Kai** | Strategist | ~/clawd-kai |
-| **Blake** | QA & Testing | ~/clawd-blake |
-| **Reese** | Product Manager | ~/clawd-reese |
-| **Milo** | Marketing & Growth | ~/clawd-milo |
-| **Cyrus** | Security | ~/clawd-cyrus |
+| **Noa** | Research Analyst | ~/openclaw/agents/howard-noa |
+| **Kai** | Strategist | ~/openclaw/agents/howard-kai |
+| **Blake** | QA & Testing | ~/openclaw/agents/howard-blake |
+| **Reese** | Product Manager | ~/openclaw/agents/howard-reese |
+| **Milo** | Marketing & Growth | ~/openclaw/agents/howard-milo |
+| **Cyrus** | Security | ~/openclaw/agents/howard-cyrus |
 
 ### Business Operations (Quinn's Team)
 | Agent | Specialty | Workspace |
 |-------|-----------|-----------|
-| **Sage** | Sales & Client Relations | ~/clawd-sage |
-| **Avery** | Legal & Compliance | ~/clawd-avery |
+| **Sage** | Sales & Client Relations | ~/openclaw/agents/howard-sage |
+| **Avery** | Legal & Compliance | ~/openclaw/agents/howard-avery |
 
 ### Pipelines
 - **Innovation:** Noa → Kai → Brian → Reese → Jacques → Blake → Cyrus
@@ -119,7 +119,7 @@ After reading, move to `~/clawd/messages/processed/`.
 
 ## LifeSkills Auto-Detection
 
-Watch for triggers → suggest the matching skill from `~/clawd/skills/lifeskills/skills/`:
+Watch for triggers → suggest the matching skill from `~/openclaw/agents/howard/skills/lifeskills/skills/`:
 - Business/planning → `business-planning` | Pricing → `pricing-strategy` | Clients → `client-management`
 - Budget → `budgeting` | Debt → `debt-payoff` | Big purchase → `big-purchases`
 - Schedule → `scheduling` | End of week → `weekly-review` | End of day → `daily-shutdown` | Start of day → `daily-startup`
@@ -132,13 +132,13 @@ Every completed task gets a commit. Use conventional commits: `feat(area):`, `fi
 
 ## Dashboard Updates
 
-When completing meaningful work, update `~/clawd/dashboard/data.json` and push. Dashboard auto-deploys via Vercel. Sync script: `dashboard/sync.sh`.
+When completing meaningful work, update `~/openclaw/agents/howard/dashboard/data.json` and push. Dashboard auto-deploys via Vercel. Sync script: `dashboard/sync.sh`.
 
 ## Activity Logging
 
 After completing meaningful work, log it:
 ```bash
-echo '{"ts":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'","agent":"howard","type":"task","desc":"BRIEF_DESC"}' >> ~/clawd/logs/activity.jsonl
+echo '{"ts":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'","agent":"howard","type":"task","desc":"BRIEF_DESC"}' >> ~/openclaw/agents/howard/logs/activity.jsonl
 ```
 
 ## Session End Protocol

@@ -7,7 +7,7 @@
 
 ## Domain
 Owns the codebase and full context for:
-- **Tahoe Away Weekend** — `~/clawd/tahoe-away-weekend/` → tahoe-away-weekend-26.briancline.co
+- **Tahoe Away Weekend** — `~/openclaw/agents/howard/tahoe-away-weekend/` → tahoe-away-weekend-26.briancline.co
 - **CIIR Site** — `~/AI/business/clients/newt-bailey/` → ciir.briancline.co
 - **Scheduler** — schedule.briancline.co (Supabase project `ivdbteyplackgojjtqvn`)
 - **Dating Page** — TBD

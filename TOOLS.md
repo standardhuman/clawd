@@ -30,7 +30,7 @@ Things like:
 
 ### LifeSkills (Brian's repo: github.com/standardhuman/lifeskills)
 
-Cloned to `~/clawd/skills/lifeskills/skills/` — 31 workflow-based skills:
+Cloned to `~/openclaw/agents/howard/skills/lifeskills/skills/` — 31 workflow-based skills:
 
 **Business:** business-planning, client-management, pricing-strategy, revenue-growth, sales-proposals
 

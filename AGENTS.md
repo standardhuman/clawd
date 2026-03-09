@@ -39,7 +39,7 @@ If you build something in Obsidian, log it in memory. If you learn something in 
 
 ## Obsidian-First Rule
 
-**Any markdown file generated for human consumption goes into the Obsidian vault.** This includes: guides, overviews, case docs, analysis, plans, architecture docs, meeting notes, research briefs, and anything Brian or others would want to read. Use the Obsidian CLI (`obsidian create path="..." content="..." vault="Brian's Vault"`) to create files. Working specs and agent-internal docs stay in `~/clawd/docs/` — but if it's meant for a human audience, it lives in Obsidian.
+**Any markdown file generated for human consumption goes into the Obsidian vault.** This includes: guides, overviews, case docs, analysis, plans, architecture docs, meeting notes, research briefs, and anything Brian or others would want to read. Use the Obsidian CLI (`obsidian create path="..." content="..." vault="Brian's Vault"`) to create files. Working specs and agent-internal docs stay in `~/openclaw/agents/howard/docs/` — but if it's meant for a human audience, it lives in Obsidian.
 
 ## Safety
 
@@ -68,7 +68,7 @@ Skills provide your tools. Check `SKILL.md` for each. Keep local notes in `TOOLS
 
 ### 🎯 LifeSkills Auto-Detection
 
-Watch for triggers → suggest the matching skill from `~/clawd/skills/lifeskills/skills/`:
+Watch for triggers → suggest the matching skill from `~/openclaw/agents/howard/skills/lifeskills/skills/`:
 - Business/planning → `business-planning` | Pricing → `pricing-strategy` | Clients → `client-management`
 - Budget → `budgeting` | Debt → `debt-payoff` | Big purchase → `big-purchases`
 - Schedule → `scheduling` | End of week → `weekly-review` | End of day → `daily-shutdown` | Start of day → `daily-startup`
@@ -82,7 +82,7 @@ Watch for triggers → suggest the matching skill from `~/clawd/skills/lifeskill
 
 ## Dashboard Updates
 
-When completing meaningful work, update `~/clawd/dashboard/data.json` and push. Dashboard auto-deploys via Vercel. A sync script (`dashboard/sync.sh`) can also be run manually.
+When completing meaningful work, update `~/openclaw/agents/howard/dashboard/data.json` and push. Dashboard auto-deploys via Vercel. A sync script (`dashboard/sync.sh`) can also be run manually.
 
 ## Make It Yours
 

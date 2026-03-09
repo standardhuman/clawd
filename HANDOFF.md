@@ -1,7 +1,7 @@
 # Handoff
 
 *Last updated: 2026-03-07 16:00 PST*
-*Workspace: ~/clawd*
+*Workspace: ~/openclaw/agents/howard*
 
 ## Session Summary
 
@@ -43,8 +43,8 @@ Full day of OpenClaw gateway debugging and repair. Gateway was crash-looping on 
 - Current: 20,095 chars / 249 lines — needs to be under ~5,500 chars
 - Brian's instruction: save trimmed content to multiple files first, don't delete
 - Plan:
-  1. Archive full MEMORY.md to `~/clawd/memory/MEMORY-archive-2026-03-07.md`
-  2. Split into topic files in `~/clawd/memory/` (financial.md, personal.md, technical.md, projects.md)
+  1. Archive full MEMORY.md to `~/openclaw/agents/howard/memory/MEMORY-archive-2026-03-07.md`
+  2. Split into topic files in `~/openclaw/agents/howard/memory/` (financial.md, personal.md, technical.md, projects.md)
   3. Rewrite MEMORY.md as concise index ~100-150 lines with pointers to topic files
   4. Restart gateway after
 
