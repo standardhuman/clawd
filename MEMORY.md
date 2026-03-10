@@ -8,7 +8,7 @@
 
 **2024 return is ~10 months overdue.** ~~Estimated liability ~$21,715~~ **CORRECTED: ~$9,200** (revenue was double-counted — Stripe payments are a subset of Zoho, not separate). With penalties: ~$12,343. No payments made. Corrected reconciliation at `~/AI/finance/taxes-2024/docs/income/2024-CORRECTED-INCOME-RECONCILIATION.md`. True 2024 gross: $67,666 (not $113K).
 
-**CPA: Dimov Tax — ENGAGED (March 6, 2026).** George Dimov (info@dimovtax.com). Scope: 2024 personal return ($595) + 2025 1120-S ($895) + 7004 extension ($240) = $1,730 total. Priority: 7004 extension before March 15 deadline. Also raised CA EDD back-filings (DE 9/DE 9C Q2+Q3 2025) for follow-up. Waiting for George's checklist to send document package.
+**CPA: Dimov Tax — ENGAGED (March 6, 2026).** George Dimov (info@dimovtax.com). Base scope: 2024 personal return ($595) + 2025 1120-S ($895) + 7004 extension ($240) = $1,730. George confirmed (March 9) he'll file the 7004 extension before March 15 deadline. Also quoted EDD DE 9/DE 9C back-filings at $595/quarter (Q2+Q3 = $1,190), bringing potential total to $2,920. Brian exploring DIY via EDD e-Services (free) or Gusto handling it (since Gusto ran payroll those quarters). Decision pending.
 
 **S-Corp accepted effective Jan 1, 2025** (not 2024). Form 1120-S due March 15, 2026. Brian paying W-2 via Gusto already.
 
