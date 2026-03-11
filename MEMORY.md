@@ -247,3 +247,26 @@ Full team built during Feb 15 hackathon. Personas at `~/openclaw/agents/howard/a
 ## TMC Tahoe Away Weekend Site (March 2026)
 
 Built by Ellis. RSVP system with Supabase (`tahoe_rsvps` table, 15 attendees seeded). Click-to-edit roster, rideshare board pulling from RSVP data, Google Calendar/ICS links. RSVP deadline March 27. Supabase JS SDK removed — replaced with fetch wrapper (bundle 406KB → 235KB, fixed AdGuard blocking). Obsidian doc: `SailorSkills/Projects/TMC Tahoe Away Weekend Site.md`.
+
+## Fouad/Andiamo Dispute — RESOLVED (March 10, 2026)
+
+Fouad replied March 10 confirming he'll withdraw the Goldman Sachs dispute. Wants to continue the relationship. His ask: notify before exceeding estimate significantly. Reasonable — good business practice. Brian to reply warmly confirming. Stripe evidence still worth submitting by ~March 14 as backup.
+
+## Matrix 1-on-1 Project Rooms (March 10-11, 2026)
+
+**Pattern:** Brian + one agent per room, `requireMention: false`, `autoReply: true`. Howard must NOT be in these rooms — otherwise he responds to everything.
+
+**Rooms:**
+- #needs-are-normal (`!vPVQLlqBWoPxNjRQXU:briancline.co`) — Brian + Ellis. Web app for TMC.
+- #tahoe-site (`!vHCZMmUHRHKWCnWvrO:briancline.co`) — Brian + Ellis
+- #taxes (`!lSLGDXKUKCtfNsQyVc:briancline.co`) — Brian + Quinn
+- #the-road (`!ywKhVmKzBwwTxfAnwt:briancline.co`) — Brian + Ellis
+- #house-cleaning-dashboard (`!AiePpvXCdYdKNULjOI:briancline.co`) — Brian + Ellis. TMC House Cleaning app (community contribution for sponsors/sponsees).
+
+**Matrix lesson:** Inviter must stay in room until invitee accepts — otherwise Matrix rejects the accept with "The person who invited you has already left."
+
+**Reese DM room:** `!IlHYgeEnUrYKWRMbIj:briancline.co` — created Mar 11 so Brian can reach Reese directly.
+
+## TMC House Cleaning Dashboard (New Project — March 10, 2026)
+
+App for sponsors and sponsees in TMC House Cleaning program. Community contribution. Assigned to Ellis. Category: personal/community.
