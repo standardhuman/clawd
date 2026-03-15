@@ -196,6 +196,8 @@ Full team built during Feb 15 hackathon. Personas at `~/openclaw/agents/howard/a
 
 **Remaining:** Fix broken links, update www.sailorskills.com CNAME (still → wixdns.net), update Google Business Profile, set up redirects sailorskills.com/diving → briancline.co/diving.
 
+**sailorskills.com now serves marketplace app (March 14):** Domain moved from sailorskills-redirects project. All ~160 boat-name path redirects (/ruby, /maris, etc.) merged into marketplace vercel.json. marketplace.sailorskills.com still works too.
+
 **No DBA needed** — operates under Sailor Skills LLC regardless of website domain.
 
 **Obsidian doc:** `SailorSkills/Business/Domain Restructure - briancline.co.md`
@@ -266,6 +268,20 @@ Fouad replied March 10 confirming he'll withdraw the Goldman Sachs dispute. Want
 **Matrix lesson:** Inviter must stay in room until invitee accepts — otherwise Matrix rejects the accept with "The person who invited you has already left."
 
 **Reese DM room:** `!IlHYgeEnUrYKWRMbIj:briancline.co` — created Mar 11 so Brian can reach Reese directly.
+
+## SailorSkills Marketplace — Notion→Supabase Migration Complete (March 14, 2026)
+
+**Full client data imported:** 97 auth users (email confirmed, no password, no emails sent), 99 boats (name/make/type/marina/dock/slip/hulls/props), 101 boat_owner links via `boat_owners` many-to-many table, 1,161 service log records from ~94 Notion Conditions databases. Multi-owner boats (JGPC) and multi-boat owners handled correctly. Test vessels excluded.
+
+**Brian's dogfooding account:** Maris (Dana 24, Pacific Seacraft) at Berkeley Marina Dock F, owned by standardhuman@gmail.com — regular boat owner, no admin. 16 service logs + 16 invoices ($70 each, 15 paid, 1 outstanding).
+
+**Database additions:** `boat_owners` table (many-to-many), `invoices` table, `boats.share_token` column, profile/boat photos storage, portal public access policies. Marina abbreviations resolved (BRK, EV, EV COVE, RCH, BMC).
+
+**Portal features:** Paint health based on service log data, growth trend chart, share tokens generated for all 127 boats.
+
+## meet.briancline.co Updates (March 14, 2026)
+
+Added "Featured In" section with sailing press links (Latitude 38 SHTP finish, Jan 2022 article, Doublehanded Farallones, YouTube interview). Inline links on "solo raced" and "teach sailing." Copy pass to kill AI voice patterns. "Hardest" → "second hardest and most clarifying thing." Sailing press links catalogued in Obsidian: `Personal/Sailing Press & Media Links.md`.
 
 ## TMC House Cleaning Dashboard (New Project — March 10, 2026)
 
