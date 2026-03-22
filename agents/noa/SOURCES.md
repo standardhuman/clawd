@@ -32,8 +32,18 @@ Last updated: 2026-03-08 (v10)
 ### AI & Technology
 - https://simonwillison.net/ — Simon Willison's blog (practical AI tools)
 - https://www.latent.space/ — Latent Space podcast/blog
-- https://www.anthropic.com/news — Anthropic announcements
+- https://www.anthropic.com/news — Anthropic company announcements (renders poorly — use web_search instead)
 - https://openai.com/blog — OpenAI blog
+
+### Anthropic & Claude Product Releases (CHECK EVERY NIGHT)
+- https://releasebot.io/updates/anthropic — Claude Code version tracker (all releases)
+- https://claudefa.st/blog/guide/changelog — Community-maintained Claude Code changelog
+- https://docs.anthropic.com/en/docs/about-claude/models — Claude model page (new models, deprecations)
+- https://docs.anthropic.com/en/api/changelog — API changelog (new endpoints, parameters)
+- web_search: 'Claude Code new version OR release' (last 48h) — catch what pages miss
+- web_search: 'Anthropic Claude new feature OR update' (last 48h) — platform features
+- **What to track:** New Claude Code versions, new slash commands, context window changes, model defaults, voice mode, MCP updates, new models (Sonnet/Opus/Haiku), pricing changes, API breaking changes, enterprise features, plugins, marketplace updates
+- **Why:** We fell behind by 6 weeks (Feb-Mar 2026) only watching the blog. Product ships faster than blog posts.
 
 ### Marine Services & SailorSkills
 - https://www.latitude38.com/ — Bay Area sailing publication

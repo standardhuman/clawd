@@ -1,0 +1,51 @@
+{
+  "Que Sera Sera": {
+    "invoiceId": "in_1TChkCEbT3YrW03CZYqewpx1",
+    "status": "charged",
+    "billedAt": "2026-03-19T14:40:21.634Z",
+    "amount": "98.78",
+    "stripeUrl": "https://dashboard.stripe.com/invoices/in_1TChkCEbT3YrW03CZYqewpx1"
+  },
+  "Gerda": {
+    "invoiceId": "in_1TChkJEbT3YrW03C1gqGTzr2",
+    "status": "charged",
+    "billedAt": "2026-03-19T14:40:28.977Z",
+    "amount": "112.25",
+    "stripeUrl": "https://dashboard.stripe.com/invoices/in_1TChkJEbT3YrW03C1gqGTzr2"
+  },
+  "Moon Dance": {
+    "invoiceId": "in_1TChkQEbT3YrW03CAGM75uvG",
+    "status": "charged",
+    "billedAt": "2026-03-19T14:40:37.065Z",
+    "amount": "235.73",
+    "stripeUrl": "https://dashboard.stripe.com/invoices/in_1TChkQEbT3YrW03CAGM75uvG"
+  },
+  "Solo": {
+    "invoiceId": "in_1TChkYEbT3YrW03CLX0C4YrW",
+    "status": "charged",
+    "billedAt": "2026-03-19T14:40:44.258Z",
+    "amount": "209.91",
+    "stripeUrl": "https://dashboard.stripe.com/invoices/in_1TChkYEbT3YrW03CLX0C4YrW"
+  },
+  "Mojo": {
+    "invoiceId": "in_1TChkfEbT3YrW03CAd7ra9WM",
+    "status": "charged",
+    "billedAt": "2026-03-19T14:40:51.818Z",
+    "amount": "203.73",
+    "stripeUrl": "https://dashboard.stripe.com/invoices/in_1TChkfEbT3YrW03CAd7ra9WM"
+  },
+  "Martha": {
+    "invoiceId": "in_1TDRepEbT3YrW03CQYACtZnk",
+    "status": "charged",
+    "billedAt": "2026-03-21T15:41:52.936Z",
+    "amount": "161.64",
+    "stripeUrl": "https://dashboard.stripe.com/invoices/in_1TDRepEbT3YrW03CQYACtZnk"
+  },
+  "Salty Lady": {
+    "invoiceId": "in_1TDWl0EbT3YrW03CeDrPrwxL",
+    "status": "charged",
+    "billedAt": "2026-03-21T21:08:36.702Z",
+    "amount": "134.70",
+    "stripeUrl": "https://dashboard.stripe.com/invoices/in_1TDWl0EbT3YrW03CeDrPrwxL"
+  }
+}

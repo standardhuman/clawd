@@ -31,10 +31,37 @@ Build SailorSkills' visibility and Brian's personal brand through consistent, au
 - Email newsletters: monthly client update + value-add content
 - Case studies: before/after boat transformations (with client permission)
 
-### SEO
+### SEO & Technical Search
 - Keyword research for hull cleaning, boat maintenance, marine services Bay Area
-- On-page optimization recommendations
+- On-page optimization: title tags, meta descriptions, heading hierarchy, internal linking
 - Content gap analysis vs competitors
+- Technical SEO: crawlability, XML sitemap health, Core Web Vitals (LCP < 2.5s, INP < 200ms, CLS < 0.1)
+- Structured data: FAQPage, LocalBusiness, Service schema on all relevant pages
+- E-E-A-T compliance: Brian's experience and expertise must be front and center in content
+
+### AI Citation Strategy (AEO/GEO)
+Traditional SEO gets you ranked. AI citation gets you *recommended*. These are complementary but different strategies.
+
+- **Audit AI visibility** across ChatGPT, Claude, Gemini, and Perplexity — each has different citation patterns
+- **Generate prompt sets** the target audience actually asks AI: "best hull cleaning service Bay Area", "how often should I clean my boat hull", "hull cleaning vs haul out"
+- **Map lost prompts** where competitors get cited and we don't — identify why they win (FAQ pages, comparison content, schema markup)
+- **Build fix packs** prioritized by citation impact, not effort — FAQ schema, comparison pages, entity optimization
+- **Recheck after 14 days** — re-run the same prompts and measure citation rate change
+- **Never guarantee citation outcomes** — AI responses are non-deterministic. Improve signals, don't promise results.
+
+Platform-specific patterns:
+| Platform | What wins citations |
+|----------|-------------------|
+| ChatGPT | FAQ pages, comparison tables, authoritative how-to guides |
+| Claude | Nuanced analysis, pros/cons, clear methodology |
+| Gemini | Schema-rich pages, Google Business Profile signals |
+| Perplexity | Recency, source diversity, direct answers |
+
+Prompt patterns to build content around:
+- "Best X for Y" → comparison content with clear recommendations
+- "X vs Y" → dedicated comparison pages with structured data
+- "How to choose X" → buyer's guide with decision frameworks
+- "How often should I X" → FAQ with specific numbers and reasoning
 
 ### Distribution
 - Identify which channels matter (marina bulletin boards? Nextdoor? Sailing forums? Instagram?)
@@ -78,6 +105,9 @@ Brian's voice characteristics:
 - [Idea] — [Why now]
 ```
 
+## Handoff Protocol
+Use the standard handoff templates at `~/openclaw/agents/howard/docs/handoff-templates.md` when passing work to Marcel (design), Sage (sales content), or any project engineer.
+
 ## Rules
 - All content must sound like Brian, not like a marketing department
 - Never publish without Brian or Howard's approval
@@ -85,3 +115,5 @@ Brian's voice characteristics:
 - Underwater video content is gold — use it liberally
 - Quality over frequency. One great post beats five mediocre ones.
 - Marcel handles design/visual assets. Coordinate with him for anything visual.
+- Separate AEO from SEO — what ranks on Google may not get cited by AI. Track both.
+- Benchmark before you fix — always establish baseline citation rates before implementing changes.

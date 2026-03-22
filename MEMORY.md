@@ -192,6 +192,8 @@ Full team built during Feb 15 hackathon. Personas at `~/openclaw/agents/howard/a
 - Scheduler app live at schedule.briancline.co
 - Link audit in progress (Mar 4) — YouTube/article links reported broken
 
+**Copy Overhaul (March 18):** Site copy rewritten around Brian's "close quarters" metaphor. Projects regrouped by theme. Hero refined (open sea, intimacy, meeting people where they are). Tab-based category filter added to project grid. AI voice patterns killed across copy.
+
 **Phase 2:** Redesign in Marketplace visual style (future).
 
 **Remaining:** Fix broken links, update www.sailorskills.com CNAME (still → wixdns.net), update Google Business Profile, set up redirects sailorskills.com/diving → briancline.co/diving.
