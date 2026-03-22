@@ -244,6 +244,10 @@ Full team built during Feb 15 hackathon. Personas at `~/openclaw/agents/howard/a
 - `/security-review` in CI — not yet researched.
 - Twice-weekly security sweep cron (Sun/Wed 10pm) running via Cyrus.
 
+**Atomic Knowledge Base (March 22):** Deployed at http://localhost:8080 via Docker (`~/code/atomic/`). Rust-based personal knowledge base — atoms (markdown notes) auto-chunked, embedded, and semantically linked. MCP endpoint at `/mcp` (tools: `semantic_search`, `read_atom`, `create_atom`). API token: `at_mo-mtTQb12CCWf_7jzYMLMDZ4cI_gOVww5rUTaAq7cA`. 2 RSS feeds (HN + Simon Willison), 47 atoms ingested including 10 Noa research reports. **Needs OpenRouter API key** for embeddings/search/wiki to work — configure via web UI Settings. Full details: `~/openclaw/agents/howard/reports/2026-03-22-atomic-deploy.md`.
+
+**Infrastructure Health Check (March 22):** Script at `~/openclaw/agents/howard/scripts/health-check.sh` — 48 checks across public sites, SSL, email MX, DNS, Docker, disk, Supabase. Cron runs 3x daily (9am/3pm/9pm), only alerts on issues. Found mission-control + dashboard both 502ing.
+
 **Notion API Token:** Rotated March 8. New token from 1Password ("Notion - Howard Integration") added to OpenClaw `env` config. All Notion-dependent crons (Dawn Patrol, Evening Debrief, PPV Review, etc.) working again.
 
 **Billing repo re-cloned:** Fresh clone at `~/AI/business/sailorskills-platform/sailorskills-billing` (old copy had git object corruption).
