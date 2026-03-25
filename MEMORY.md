@@ -277,6 +277,24 @@ Fouad replied March 10 confirming he'll withdraw the Goldman Sachs dispute. Want
 
 **Reese DM room:** `!IlHYgeEnUrYKWRMbIj:briancline.co` — created Mar 11 so Brian can reach Reese directly.
 
+## Supabase Project Consolidation (March 25, 2026)
+
+Marketplace and Pro merged into a single DB per environment:
+- **SailorSkills + Pro - Production:** `aaxnoeirtjlizdhnbqbr`
+- **SailorSkills + Pro - Staging:** `dxyzxcmhhhepjndxunwx`
+- **SailorSkills Pro - Deprecated:** `lusfrdquqqfencafhdai`
+- **SailorSkills Platform (Legacy):** `fzygakldvvzxmahkdylq`
+
+Only the first two are active. The deprecated/legacy projects should not be used for new work.
+
+## Supabase Project Consolidation (March 25, 2026)
+
+Marketplace + Pro combined into a single DB per environment:
+- **Production:** `aaxnoeirtjlizdhnbqbr` (SailorSkills + Pro - Production)
+- **Staging:** `dxyzxcmhhhepjndxunwx` (SailorSkills + Pro - Staging)
+- **Deprecated:** `lusfrdquqqfencafhdai` (SailorSkills Pro - Deprecated)
+- **Deprecated:** `fzygakldvvzxmahkdylq` (SailorSkills Platform Legacy)
+
 ## SailorSkills Marketplace — Notion→Supabase Migration Complete (March 14, 2026)
 
 **Full client data imported:** 97 auth users (email confirmed, no password, no emails sent), 99 boats (name/make/type/marina/dock/slip/hulls/props), 101 boat_owner links via `boat_owners` many-to-many table, 1,161 service log records from ~94 Notion Conditions databases. Multi-owner boats (JGPC) and multi-boat owners handled correctly. Test vessels excluded.
