@@ -279,21 +279,13 @@ Fouad replied March 10 confirming he'll withdraw the Goldman Sachs dispute. Want
 
 ## Supabase Project Consolidation (March 25, 2026)
 
-Marketplace and Pro merged into a single DB per environment:
-- **SailorSkills + Pro - Production:** `aaxnoeirtjlizdhnbqbr`
-- **SailorSkills + Pro - Staging:** `dxyzxcmhhhepjndxunwx`
-- **SailorSkills Pro - Deprecated:** `lusfrdquqqfencafhdai`
-- **SailorSkills Platform (Legacy):** `fzygakldvvzxmahkdylq`
-
-Only the first two are active. The deprecated/legacy projects should not be used for new work.
-
-## Supabase Project Consolidation (March 25, 2026)
-
 Marketplace + Pro combined into a single DB per environment:
 - **Production:** `aaxnoeirtjlizdhnbqbr` (SailorSkills + Pro - Production)
 - **Staging:** `dxyzxcmhhhepjndxunwx` (SailorSkills + Pro - Staging)
 - **Deprecated:** `lusfrdquqqfencafhdai` (SailorSkills Pro - Deprecated)
-- **Deprecated:** `fzygakldvvzxmahkdylq` (SailorSkills Platform Legacy)
+- **Legacy:** `fzygakldvvzxmahkdylq` (SailorSkills Platform Legacy — still referenced by Vercel prod apps, needs migration before deletion)
+
+Only the first two are active. The deprecated/legacy projects should not be used for new work.
 
 ## SailorSkills Marketplace — Notion→Supabase Migration Complete (March 14, 2026)
 
